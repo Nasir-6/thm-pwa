@@ -9,8 +9,10 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./front-end/tsconfig.json"
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./front-end"
   },
   "plugins": ["@typescript-eslint", "prettier"],
-  "root": true
+  "root": true,
+  "ignorePatterns": ["serviceWorkerRegistration.ts"]
 }
