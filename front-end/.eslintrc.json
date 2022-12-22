@@ -10,8 +10,10 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
-    "tsconfigRootDir": "./front-end"
+    "tsconfigRootDir": "./front-end",
+    "ecmaVersion": 6
   },
+  "env": { "es6": true },
   "plugins": ["@typescript-eslint", "prettier"],
   "root": true,
   "ignorePatterns": ["serviceWorkerRegistration.ts"]
