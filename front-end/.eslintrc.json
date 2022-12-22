@@ -1,7 +1,15 @@
 {
-    // When converting from cjs to JSON - make sure key is in double quotes and any single quotes are replaced with double quotes
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  // When converting from cjs to JSON - make sure key is in double quotes and any single quotes are replaced with double quotes
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb-typescript"
+  ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "plugins": ["@typescript-eslint"],
   "root": true
 }
