@@ -10,8 +10,8 @@ module.export = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
+    tsconfigRootDir: __dirname,       // ! Make sure to use .eslintrc.js and not .json so have access to __dirname!!
+    sourceType: 'module',             // ! Add this tell eslint that import is fine to use
     ecmaVersion: 6
   },
   env: { es6: true },
