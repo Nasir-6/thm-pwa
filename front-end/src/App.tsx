@@ -1,10 +1,11 @@
 import React from 'react'; // eslint-disable-line
 import './App.css';
+import Home from './pages/Home';
 
 function App() {
   return (
     <div className="App">
-      <h1 className='text-red-500'>Hello World</h1>
+      <Home/>
     </div>
   );
 }
