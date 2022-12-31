@@ -7,8 +7,8 @@
 /* THIS IS ALL FOR MOBILE FIRST */
 .primary-navigation {
   position: absolute;
-  top:0;
-  right:0;
+  top: 0;
+  right: 0;
   background-color: white;
   height: 100vh;
   width: 200px;
@@ -20,20 +20,51 @@
   gap: 1rem;
 }
 
-.primary-navigation li{
-  position:relative;
+.primary-navigation li {
+  position: relative;
 }
-.primary-navigation li:not(:last-child)::after{
-  content: ""; 
+.primary-navigation li:not(:last-child)::after {
+  content: '';
   border: 1px solid #e2e2e2;
   width: 125px;
-  position:absolute; 
-  bottom: -0.5rem; 
-  left:-5px;
+  position: absolute;
+  bottom: -0.5rem;
+  left: -5px;
 }
 
-.hamburger {
-  position:absolute;
-  color: blue;
+/* Hamburger position and animations */
+.hamburger-btn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
   z-index: 1000;
+}
+
+.hamburger-btn .line {
+  transform-origin: center;
+}
+
+.hamburger-btn[aria-expanded='false'] .line {
+  transition: transform 200ms ease-in 200ms, rotate 200ms ease-in,
+    opacity 0ms 200ms;
+}
+
+.hamburger-btn[aria-expanded='true'] .line {
+  transition: transform 200ms ease-in, rotate 200ms ease-in 200ms,
+    opacity 0ms 200ms;
+}
+
+.hamburger-btn[aria-expanded='true'] .top {
+  transform: translateY(25px);
+  rotate: 45deg;
+}
+
+.hamburger-btn[aria-expanded='true'] .bottom {
+  transform-origin: center;
+  transform: translateY(-25px);
+  rotate: -45deg;
+}
+
+.hamburger-btn[aria-expanded='true'] .middle {
+  opacity: 0;
 }

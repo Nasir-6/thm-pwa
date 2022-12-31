@@ -1,8 +1,14 @@
-import React from 'react';
+import { useState } from 'react';
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+
+    const [isExpanded, setIsExpanded] = useState(true);
+
+    const handleClick = () => {
+        setIsExpanded(!isExpanded);
+    }
   return (
     <div className="navbar-container bg-primary text-white flex flex-row p-3">
       <a className="font-logo text-xl cursor-pointer hover:text-accent ">
@@ -11,8 +17,13 @@ const Navbar = (props: Props) => {
       </a>
 
       <nav>
-        <button aria-controls="primary-navigation" className="hamburger" aria-expanded="false">
-          <span></span> Menu
+        <button onClick={handleClick} aria-controls="primary-navigation" className="hamburger-btn" aria-expanded={isExpanded}>
+            <svg className='hamburger' viewBox='0 0 100 100' width={35}>
+                <line className='line top' x1={20} x2={80} y1={25} y2={25} stroke="black" strokeWidth="10" strokeLinecap='round'></line>
+                <line className='line middle' x1={20} x2={80} y1={50} y2={50} stroke="black" strokeWidth="10" strokeLinecap='round'></line>
+                <line className='line bottom' x1={20} x2={80} y1={75} y2={75} stroke="black" strokeWidth="10" strokeLinecap='round'></line>
+            </svg>
+          {/* <span> Menu </span> */}
         </button>
         <ul
           id="primary-navigation"
