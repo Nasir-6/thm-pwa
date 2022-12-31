@@ -10,6 +10,7 @@ const Navbar = (props: Props) => {
         setIsExpanded(!isExpanded);
     }
   return (
+    <>
     <div className="navbar-container bg-primary text-white flex flex-row p-3">
       <a className="font-logo text-xl cursor-pointer hover:text-accent ">
         TOWER <span className=" font-semibold">HAMLETS </span>
@@ -48,6 +49,8 @@ const Navbar = (props: Props) => {
         </ul>
       </nav>
     </div>
+    <div className='dark-overlay' data-visible={isExpanded} onClick={() => setIsExpanded(false)}></div>
+    </>
   );
 };
 

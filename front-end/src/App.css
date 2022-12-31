@@ -18,6 +18,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1rem;
+  z-index:999;
 }
 
 .primary-navigation li {
@@ -77,4 +78,25 @@
 .primary-navigation[data-visible="false"]{
   transition: transform 200ms ease-in;
   transform: translateX(200px)
+}
+
+.navbar-container{
+  z-index:900;
+}
+.dark-overlay[data-visible="true"]{
+  position:absolute;
+  top:0;
+  width:100vw;
+  height:100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index:990;
+}
+
+.dark-overlay[data-visible="false"]{
+  /* position:absolute;
+  top:0;
+  width:100vw;
+  height:100vh;
+  background-color: rgba(0,0,0,0.5); */
+  z-index:0;
 }
