@@ -47,6 +47,7 @@
 .hamburger-btn[aria-expanded='false'] .line {
   transition: transform 200ms ease-in 200ms, rotate 200ms ease-in,
     opacity 0ms 200ms;
+  stroke: white;
 }
 
 .hamburger-btn[aria-expanded='true'] .line {
@@ -67,4 +68,13 @@
 
 .hamburger-btn[aria-expanded='true'] .middle {
   opacity: 0;
+}
+
+.primary-navigation[data-visible="true"]{
+  transition: transform 200ms ease-in;
+}
+
+.primary-navigation[data-visible="false"]{
+  transition: transform 200ms ease-in;
+  transform: translateX(200px)
 }

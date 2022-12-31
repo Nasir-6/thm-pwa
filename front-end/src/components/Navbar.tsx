@@ -28,6 +28,7 @@ const Navbar = (props: Props) => {
         <ul
           id="primary-navigation"
           className="primary-navigation text-primary font-semibold"
+          data-visible={isExpanded}
         >
           <li>
             <a>Home</a>
