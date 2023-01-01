@@ -4,7 +4,7 @@ type Props = {};
 
 const Navbar = (props: Props) => {
 
-    const [isExpanded, setIsExpanded] = useState(true);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     const handleClick = () => {
         setIsExpanded(!isExpanded);
