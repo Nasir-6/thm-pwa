@@ -21,14 +21,14 @@ const Home = (props: Props) => {
         />
         <FaLocationArrow className=" absolute right-2" />
       </div>
-      <MapContainer style={{width:"500px", height:"500px"}} center={position} zoom={13} scrollWheelZoom={false}>
+      <MapContainer style={{width:"500px", height:"500px"}} center={position} zoom={13} scrollWheelZoom={false} attributionControl={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            Can insert some info about redcoat mosque here. Can insert pictures or text or even links here
           </Popup>
         </Marker>
       </MapContainer>
