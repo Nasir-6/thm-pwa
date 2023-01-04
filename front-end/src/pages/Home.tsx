@@ -28,7 +28,7 @@ const Home = (props: Props) => {
         <FaLocationArrow className=" absolute right-2" />
       </div>
       <MapContainer
-        style={{ width: '100%', height: '500px' }}
+        style={{ width: '100%', height: '500px', zIndex: 0 }}
         center={position}
         zoom={13}
         scrollWheelZoom={false}
