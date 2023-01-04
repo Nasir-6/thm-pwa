@@ -15,8 +15,8 @@ const Home = (props: Props) => {
   const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
 
   return (
-    <div className="home-container p-4 flex flex-col">
-      <div className="searchBox relative border-2 rounded-full flex gap-1 items-center">
+    <div className="home-container p-4 flex flex-col justify-center items-center">
+      <div className="searchBox relative border-2 rounded-full flex gap-1 items-center w-full max-w-xl mb-3">
         <FaSearchLocation className=" absolute left-2 " />
         <input
           type="text"
@@ -28,7 +28,7 @@ const Home = (props: Props) => {
         <FaLocationArrow className=" absolute right-2" />
       </div>
       <MapContainer
-        style={{ width: '500px', height: '500px' }}
+        style={{ width: '100%', height: '500px' }}
         center={position}
         zoom={13}
         scrollWheelZoom={false}
