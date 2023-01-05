@@ -8,6 +8,7 @@ import {
   AttributionControl,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import mosqueIcon from './map/MosqueIcon';
 
 type Props = {};
 
@@ -34,7 +35,7 @@ const Home = (props: Props) => {
         scrollWheelZoom={false}
         attributionControl={false}
       >
-        <Marker position={position}>
+        <Marker position={position} icon={mosqueIcon}>
           <Popup>
             Can insert some info about redcoat mosque here. Can insert pictures
             or text or even links here
