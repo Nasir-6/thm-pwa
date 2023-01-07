@@ -3,12 +3,10 @@ import { FaSearchLocation, FaLocationArrow } from 'react-icons/fa';
 import {
   MapContainer,
   TileLayer,
-  Marker,
-  Popup,
   AttributionControl,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import mosqueIcon from './map/MosqueIcon';
+import MosqueIcon from './map/MosqueIcon';
 
 type Props = {};
 
@@ -35,16 +33,11 @@ const Home = (props: Props) => {
         scrollWheelZoom={false}
         attributionControl={false}
       >
-        <Marker position={position} icon={mosqueIcon}>
-          <Popup>
-            Can insert some info about redcoat mosque here. Can insert pictures
-            or text or even links here
-          </Popup>
-        </Marker>
         <TileLayer
           attribution=' <a href="https://leafletjs.com/">Leaflet</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <a href="https://www.hotosm.org/" target="_blank">HOT</a> | <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap Fr</a>'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
+        <MosqueIcon/>
         <AttributionControl position="bottomright" prefix={false} />
       </MapContainer>
     </div>
