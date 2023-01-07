@@ -2,11 +2,14 @@ import React from 'react';
 import { DivIcon } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 
-type Props = {};
+interface Props {
+  position: {
+    lat: number;
+    lng: number;
+  };
+}
 
-const MosqueIcon = (props: Props) => {
-  const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
-
+const MosqueIcon: React.FC<Props> = ({ position }) => {
   const mosqueIcon = new DivIcon({
     html: `
     <svg>
