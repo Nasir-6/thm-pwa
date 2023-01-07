@@ -3,6 +3,7 @@ import { FaSearchLocation, FaLocationArrow } from 'react-icons/fa';
 import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import MosqueIcon from './map/MosqueIcon';
+import DataProcessor from '../data/DataProcessor';
 
 type Props = {};
 
@@ -36,6 +37,7 @@ const Home = (props: Props) => {
         <MosqueIcon position={position} />
         <AttributionControl position="bottomright" prefix={false} />
       </MapContainer>
+      <DataProcessor/>
     </div>
   );
 };
