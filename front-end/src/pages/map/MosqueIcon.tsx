@@ -11,6 +11,7 @@ interface Props {
 
 const MosqueIcon: React.FC<Props> = ({ position }) => {
   const mosqueIcon = new DivIcon({
+    // https://www.svgrepo.com/svg/302636/map-marker
     html: `
     <svg>
     <path
