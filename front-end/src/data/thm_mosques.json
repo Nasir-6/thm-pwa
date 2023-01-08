@@ -74,14 +74,14 @@
   {
     "Masjid Name": "Markazi Masjid",
     "Area Name": "",
-    "Address": "9-11 Christian Street, London, E1 1SE\n",
+    "Address": "9-11 Christian Street, London, E1 1SE",
     "Latitude": "51.51166006",
     "Longitude": "-0.06434334719",
     "On site": "",
     "url": "https://www.google.com/maps/place/East+London+Markazi+Masjid/@51.5117029,-0.0731011,15z/data=!3m1!4b1!4m5!3m4!1s0x4876033387fe0b91:0xe00cf9edae8cc761!8m2!3d51.5116578!4d-0.0643438"
   },
   {
-    "Masjid Name": "Darul Ummah Jamme Mosque\n",
+    "Masjid Name": "Darul Ummah Jamme Mosque",
     "Area Name": "",
     "Address": "56 Bigland Street, London, E1 2ND",
     "Latitude": "51.51251182",
@@ -108,9 +108,9 @@
     "url": "https://www.google.com/maps/place/Locksley+Masjid+(Mile+End)/@51.5167833,-0.0340606,17z/data=!3m1!4b1!4m5!3m4!1s0x48761d33109ba89b:0x2bec3b5eef98b4c4!8m2!3d51.5167774!4d-0.0318614"
   },
   {
-    "Masjid Name": "Teviot Community Masjid\n",
+    "Masjid Name": "Teviot Community Masjid",
     "Area Name": "",
-    "Address": "181 Teviot Street, Poplar London, E 14 6PY",
+    "Address": "181 Teviot Street, Poplar London, E14 6PY",
     "Latitude": "51.51880714",
     "Longitude": "-0.0118015736",
     "On site": "",
@@ -119,7 +119,7 @@
   {
     "Masjid Name": "Poplar Mosque & Community Centre",
     "Area Name": "",
-    "Address": "6 Webber Path, Poplar, London E14 0FZ",
+    "Address": "6 Webber Path, Poplar, London, E14 0FZ",
     "Latitude": "51.51102911",
     "Longitude": "-0.009751529447",
     "On site": "",
@@ -135,9 +135,9 @@
     "url": "https://www.google.com/maps/place/Poplar+Central+Mosque/@51.511537,-0.0186169,15z/data=!3m1!4b1!4m5!3m4!1s0x4876039e7d5917f7:0x65682fd0bc00cda0!8m2!3d51.5114932!4d-0.0098336"
   },
   {
-    "Masjid Name": "\nLansbury Estate Masjid ",
+    "Masjid Name": "Lansbury Estate Masjid",
     "Area Name": "",
-    "Address": "20 Alton Street. London E14 6BZ",
+    "Address": "20 Alton Street. London, E14 6BZ",
     "Latitude": "51.51513331",
     "Longitude": "-0.01822684862",
     "On site": "",
@@ -146,11 +146,11 @@
   {
     "Masjid Name": "Hindgrove Cultural Centre",
     "Area Name": "",
-    "Address": "162 Pigott Street, London E14 7DW",
+    "Address": "162 Pigott Street, London, E14 7DW",
     "Latitude": "51.51299327",
     "Longitude": "-0.02547935131",
     "On site": "",
-    "url": "https://www.google.com/maps/place/Hind+Grove+Cultural+And+Community+Association/@51.5098751,-0.0991724,12z/data=!4m10!1m2!2m1!1shindgrove+cultural+centre!3m6!1s0x487602caee655cbd:0x2b2171041d820e34!8m2!3d51.5129919!4d-0.0254789!15sChloaW5kZ3JvdmUgY3VsdHVyYWwgY2VudHJlkgEGbW9zcXVl4AEA!16s%2Fg%2F11fr3lfrqq"
+    "url": "https://www.google.com/maps/place/Hind+Grove+Cultural+And+Community+Association/@51.5129919,-0.0280538,17z/data=!3m1!4b1!4m5!3m4!1s0x487602caee655cbd:0x2b2171041d820e34!8m2!3d51.5129919!4d-0.0254789"
   },
   {
     "Masjid Name": "Hifzul Qur'an and Islamic Centre",
@@ -162,7 +162,7 @@
     "url": "https://www.google.com/maps/place/Hifzul+Quran+%26+Islamic+Education+Centre/@51.5150222,-0.0289089,17z/data=!3m1!4b1!4m5!3m4!1s0x48761d34acb3d20b:0x4465bf8a6a77939e!8m2!3d51.515032!4d-0.0288606"
   },
   {
-    "Masjid Name": "Burdett Estate Mosque\n",
+    "Masjid Name": "Burdett Estate Mosque",
     "Area Name": "",
     "Address": "Masjid Lane, London, E14 7UD",
     "Latitude": "51.51699822",
@@ -209,7 +209,7 @@
   {
     "Masjid Name": "Dorset Community Mosque",
     "Area Name": "",
-    "Address": "Diss St, Bethnal Green, London E2 7QX",
+    "Address": "Diss St, Bethnal Green, London, E2 7QX",
     "Latitude": "51.53001714",
     "Longitude": "-0.07238230804",
     "On site": "",
@@ -234,13 +234,13 @@
     "url": "https://www.google.com/maps/place/Locksley+Estate+Cultural+Association+%26+Mosque/@51.5139244,-0.0417811,15z/data=!3m1!4b1!4m5!3m4!1s0x487603791f27bd07:0x2a02b9c0be6911e4!8m2!3d51.5139114!4d-0.0330263"
   },
   {
-    "Masjid Name": "Limehouse Mosque \n",
+    "Masjid Name": "Limehouse Masjid",
     "Area Name": "",
-    "Address": "304-306 Stocks Pl, London E14 8AE",
+    "Address": "304-306 Stocks Pl, London, E14 8AE",
     "Latitude": "51.51014177",
     "Longitude": "-0.02830659904",
     "On site": "",
-    "url": "https://www.google.com/maps/place/Limehouse+Masjid/@51.5101333,-0.0287536,18.83z/data=!4m10!1m2!2m1!1slimehouse+mosque!3m6!1s0x487602cbe47e50eb:0x4616e697b5b6e60!8m2!3d51.5101402!4d-0.028308!15sChBsaW1laG91c2UgbW9zcXVlkgEGbW9zcXVl4AEA!16s%2Fg%2F1ptys15b0"
+    "url": "https://www.google.com/maps/place/Limehouse+Masjid/@51.510133,-0.0289321,18z/data=!3m1!4b1!4m6!3m5!1s0x487602cbe47e50eb:0x4616e697b5b6e60!8m2!3d51.5101402!4d-0.028308!16s%2Fg%2F1ptys15b0"
   },
   {
     "Masjid Name": "Westferry Community Masjid ",
@@ -252,9 +252,9 @@
     "url": "https://www.google.com/maps/place/Westferry+Community+Organisation/@51.4984365,-0.0253407,18.89z/data=!4m5!3m4!1s0x487602c0be9af205:0xcd893de833e31a15!8m2!3d51.498137!4d-0.02459"
   },
   {
-    "Masjid Name": "Docklands Community Organisation\n",
+    "Masjid Name": "Docklands Community Organisation",
     "Area Name": "",
-    "Address": "111-113 Mellish Street, London, E14  8PJ\n",
+    "Address": "111-113 Mellish Street, London, E14 8PJ",
     "Latitude": "51.49679624",
     "Longitude": "-0.02127621637",
     "On site": "",
@@ -317,7 +317,7 @@
   {
     "Masjid Name": "Bow Muslim Community Centre",
     "Area Name": "",
-    "Address": "515b-517 Roman Road, London,  E3 5EL",
+    "Address": "515b-517 Roman Road, London, E3 5EL",
     "Latitude": "51.53254607",
     "Longitude": "-0.0317094006",
     "On site": "",
@@ -326,7 +326,7 @@
   {
     "Masjid Name": "Bow Common Lane Masjid",
     "Area Name": "",
-    "Address": "208-210 Devons Road London E3 3PN ",
+    "Address": "208-210 Devons Road, London, E3 3PN",
     "Latitude": "51.52191513",
     "Longitude": "-0.01915013947",
     "On site": "",
@@ -339,7 +339,7 @@
     "Latitude": "51.52925432",
     "Longitude": "-0.01455892895",
     "On site": "",
-    "url": "https://www.google.com/maps/place/Bow+Muslim+Cultural+Centre/@51.5293381,-0.0405058,14z/data=!4m10!1m2!2m1!1sbow+central+mosque!3m6!1s0x48761d44f5908db1:0xdc548d02ec327b2a!8m2!3d51.529253!4d-0.0145596!15sChJib3cgY2VudHJhbCBtb3NxdWVaFCISYm93IGNlbnRyYWwgbW9zcXVlkgEGbW9zcXVl4AEA!16s%2Fg%2F1ptzck89t"
+    "url": "https://www.google.com/maps/place/Bow+Muslim+Cultural+Centre/@51.5292527,-0.0167448,17z/data=!3m1!4b1!4m6!3m5!1s0x48761d44f5908db1:0xdc548d02ec327b2a!8m2!3d51.529253!4d-0.0145596!16s%2Fg%2F1ptzck89t"
   },
   {
     "Masjid Name": "Bromley By Bow Masjid",
@@ -351,7 +351,7 @@
     "url": "https://www.google.com/maps/place/Bromley+by+Bow+Masjid/@51.5260467,-0.0146021,19.49z/data=!4m5!3m4!1s0x48761d45759ae2c5:0x2fd4a5db02523d38!8m2!3d51.5261604!4d-0.0143495"
   },
   {
-    "Masjid Name": "Shahporan Masjid ",
+    "Masjid Name": "Shahporan Masjid",
     "Area Name": "",
     "Address": "444 Hackney Rd, Bethnal Green, London, E2 6QL",
     "Latitude": "51.53189661",
@@ -362,14 +362,14 @@
   {
     "Masjid Name": "Globe Town Mosque",
     "Area Name": "",
-    "Address": "100 Roman Road, London E2 0RN",
+    "Address": "100 Roman Road, London, E2 0RN",
     "Latitude": "51.52869157",
     "Longitude": "-0.04821843951",
     "On site": "",
     "url": "https://www.google.com/maps/place/Globe+Town+Mosque/@51.5287064,-0.0569843,15z/data=!3m1!4b1!4m5!3m4!1s0x48761cd8f2944c35:0x117fe1910a9d27bf!8m2!3d51.5286908!4d-0.048219"
   },
   {
-    "Masjid Name": "Bishops Way Mosque ",
+    "Masjid Name": "Bishops Way Mosque",
     "Area Name": "",
     "Address": "73 Bishops Way, Cambridge Heath, London, E2 9HF",
     "Latitude": "51.53305125",
