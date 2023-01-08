@@ -3,13 +3,18 @@ import { DivIcon } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 
 interface Props {
-  position: {
-    lat: number;
-    lng: number;
-  };
+  mosque: {
+    name: string;
+    position: {
+      lat: number;
+      lng: number;
+    };
+    address: string;
+    url: string;
+  }
 }
 
-const MosqueIcon: React.FC<Props> = ({ position }) => {
+const MosqueIcon: React.FC<Props> = ({ mosque }) => {
   const mosqueIcon = new DivIcon({
     // https://www.svgrepo.com/svg/302636/map-marker
     html: `
@@ -36,10 +41,11 @@ const MosqueIcon: React.FC<Props> = ({ position }) => {
   });
 
   return (
-    <Marker position={position} icon={mosqueIcon}>
+    <Marker position={mosque.position} icon={mosqueIcon}>
       <Popup>
-        Can insert some info about redcoat mosque here. Can insert pictures or
-        text or even links here
+        <p>{mosque.name}</p>
+        <p>{mosque.address}</p>
+        <a href={mosque.url} target="_blank" >Get Directions</a>
       </Popup>
     </Marker>
   );

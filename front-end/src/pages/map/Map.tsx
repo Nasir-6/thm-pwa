@@ -12,12 +12,18 @@ const Map = (props: Props) => {
   console.log('mosqueData', mosqueData);
   const createMosqueIcons = mosqueData.map((mosque) => {
     console.log('mosque', mosque);
-    const mosquePos = {
-      lat: Number(mosque.Latitude),
-      lng: Number(mosque.Longitude),
-    };
-    return <MosqueIcon position={mosquePos} />;
-  });
+
+    const mosqueDetails = {
+        name: mosque['Masjid Name'],
+        position: {
+            lat: Number(mosque.Latitude),
+            lng: Number(mosque.Longitude),
+        },
+        address: mosque.Address,
+        url: mosque.url,
+    }
+    return <MosqueIcon mosque={mosqueDetails} />;
+    })
 
   return (
     <MapContainer
@@ -31,7 +37,6 @@ const Map = (props: Props) => {
         attribution=' <a href="https://leafletjs.com/">Leaflet</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://www.hotosm.org/" target="_blank">HOT</a> | <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap Fr</a>'
         url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
       />
-      <MosqueIcon position={position} />
       {createMosqueIcons}
       <AttributionControl position="bottomright" prefix={false} />
     </MapContainer>
