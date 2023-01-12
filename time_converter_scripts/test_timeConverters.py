@@ -1,4 +1,4 @@
-from timeConverters import fajr_convert, zuhr_convert
+from timeConverters import fajr_convert, zuhr_convert, asr_convert
 
 # =============== fajr_convert Tests ==================
 def test_will_convert_fajr_time_with_missing_0():
@@ -58,3 +58,32 @@ def test_will_return_zuhr_time_if_already_24hrs():
     result = zuhr_convert(time)
     # Then
     assert result == "13:35"
+
+
+# =============== asr_convert Tests ==================
+def test_will_return_asr_time_in_24hrs_if_missing_0():
+    # 1) 4:35 -> 16:35
+    # Given
+    time = "4:35"
+    # When
+    result = asr_convert(time)
+    # Then
+    assert result == "16:35"
+
+def test_will_return_asr_time_in_24hrs_if_in_12hrs():
+    # 2) 04:35 -> 16:35
+    # Given
+    time = "04:35"
+    # When
+    result = asr_convert(time)
+    # Then
+    assert result == "16:35"
+
+def test_will_return_asr_time_if_in_24hrs_already():
+    # 2) 16:35 -> 16:35
+    # Given
+    time = "16:35"
+    # When
+    result = asr_convert(time)
+    # Then
+    assert result == "16:35"
