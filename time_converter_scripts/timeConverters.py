@@ -96,20 +96,25 @@ def maghrib_convert(time_str):
 # 3) 11:15 -> 23:15
 # 4) 19:35 -> leave as is just return
 # 5) 22:35 -> leave as is just return
-
 def isha_convert(time_str):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
-        # 1) 9:35 -> 21:35
+        # 1) 7:35 -> 19:35
         time_hr_str = str(int(time_str[0]) + 12)
         return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and time_str[0] == "0":
-        # 2) 09:35 -> 21:35
+        # 2) 07:35 -> 19:35
         time_hr_str = str(int(time_str[1]) + 12)
         return time_hr_str + time_str[-3:]
 
-    elif not is_h_mm_format and time_str[0] != "0":
-        # 3) 21:35 -> leave as is just return
+    elif not is_h_mm_format and (time_str[:2] == "10" or time_str[:2] == "11" or time_str[:2] == "12"):
+        # 3) 11:15 -> 23:15
+        time_hr_str = str(int(time_str[:2]) + 12)
+        return time_hr_str + time_str[-3:]
+
+    else:
+        # 4) 19:35 -> leave as is just return
+        # 5) 22:35 -> leave as is just return
         return time_str
 
