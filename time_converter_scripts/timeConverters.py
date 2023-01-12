@@ -64,6 +64,8 @@ def asr_convert(time_str):
 
 
 # Maghrib Converter
+# IMPORTANT NOTE: The code is exactly the same as asr_converter,
+# but was separated just incase for clarity incase I missed a case
 # Note: all Maghrib times are between 4PM - 9:30PM so deal with 3 scenarios:
 # 1) 9:35 -> 21:35
 # 2) 09:35 -> 21:35
