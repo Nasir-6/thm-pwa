@@ -41,7 +41,7 @@ def zuhr_convert(time_str):
 
 
 # Asr Converter
-# Note: all Asr times are between 2PM - 7:30 so deal with 3 scenarios:
+# Note: all Asr times are between 2PM - 7:30PM so deal with 3 scenarios:
 # 1) 4:35 -> 16:35
 # 2) 04:35 -> 16:35
 # 3) 16:35 -> leave as is just return
@@ -61,4 +61,26 @@ def asr_convert(time_str):
         # 3) 16:35 -> leave as is just return
         return time_str
 
+
+
+# Maghrib Converter
+# Note: all Maghrib times are between 4PM - 9:30PM so deal with 3 scenarios:
+# 1) 9:35 -> 21:35
+# 2) 09:35 -> 21:35
+# 3) 21:35 -> leave as is just return
+def maghrib_convert(time_str):
+    is_missing_front0 = (len(time_str) == 4)
+    if is_missing_front0:
+        # 1) 9:35 -> 21:35
+        time_hr_str = str(int(time_str[0]) + 12)
+        return time_hr_str + time_str[-3:]
+
+    elif not is_missing_front0 and time_str[0] == "0":
+        # 2) 09:35 -> 21:35
+        time_hr_str = str(int(time_str[1]) + 12)
+        return time_hr_str + time_str[-3:]
+
+    elif not is_missing_front0 and time_str[0] != "0":
+        # 3) 21:35 -> leave as is just return
+        return time_str
 
