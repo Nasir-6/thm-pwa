@@ -1,4 +1,7 @@
+# Keep mosque data on local system
 mosques-new
+mosques
+
 .idea/
 .DS_Store
 # dotenv
