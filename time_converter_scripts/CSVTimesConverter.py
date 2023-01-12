@@ -1,6 +1,6 @@
 import csv
 import os
-from timeConverters import fajr_convert, zuhr_convert
+from timeConverters import fajr_convert, zuhr_convert, asr_convert, maghrib_convert, isha_convert, period_to_colon
 
 
 
@@ -22,7 +22,7 @@ with open("./Apr-2022.csv", 'r') as file:
     for row in csvreader:
       newRow = {}
       for name in fieldNames:
-        if(name == "Day"):
+        if(name.upper() == "DAY"):
           newRow[name] = row[name]
           continue
         print(name)
@@ -32,16 +32,23 @@ with open("./Apr-2022.csv", 'r') as file:
         print(row[name][0])
 
         print(isMissingFront0)
-        if(name.upper() == "FAJR"):
+
+        row[name] = period_to_colon(row[name])
+        if name.upper() == "FAJR":
           newRow[name] = fajr_convert(row[name])
 
-        elif(name.upper() == "ZOHAR"): # Maybe need to check for "Zuhr" spelling!
+        elif name.upper() == "ZOHAR": # spelt zohar in csvs!
           newRow[name] = zuhr_convert(row[name])
 
-        # Deal with Asr times
+        elif name.upper() == "ASR":
+          newRow[name] = asr_convert(row[name])
+
+        elif name.upper() == "MAGHRIB":
+          newRow[name] = maghrib_convert(row[name])
+
+        elif name.upper() == "ESHA": #Spelt esha in csvs
+          newRow[name] = isha_convert(row[name])
+
         else:
           newRow[name] = row[name]
-
-
-
       csvWriter.writerow(newRow)
