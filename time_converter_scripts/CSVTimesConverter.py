@@ -1,5 +1,8 @@
 import csv
 import os
+from timeConverters import fajr_convert, zuhr_convert
+
+
 
 # newpath = r'C:\Program Files\arbitrary'
 cd = os.getcwd()
@@ -29,21 +32,12 @@ with open("./Apr-2022.csv", 'r') as file:
         print(row[name][0])
 
         print(isMissingFront0)
-        # Deal with all Fajr values
-        if(isMissingFront0 and name.upper() == "FAJR"):
-          newRow[name] = "0" + row[name]
+        if(name.upper() == "FAJR"):
+          newRow[name] = fajr_convert(row[name])
 
-        # Deal with Zuhr values - 3 scenarios
-        elif(name.upper() == "ZOHAR"):
-          if(isMissingFront0 or row[name][0] == "0"):
-            # If missingFront0 - 1:00
-            # or if 01:00 - Need to convert to 13:00 - i.e chnage 1 to 13
-            # Grab last 3 chars e.g :00 and add 13 to it!
-            print("13" + row[name][-3:])
-            newRow[name] = "13" + row[name][-3:]
-          else:
-            # 1) 12:45 - This is fine leave as is
-            newRow[name] = row[name];
+        elif(name.upper() == "ZOHAR"): # Maybe need to check for "Zuhr" spelling!
+          newRow[name] = zuhr_convert(row[name])
+
         # Deal with Asr times
         else:
           newRow[name] = row[name]
