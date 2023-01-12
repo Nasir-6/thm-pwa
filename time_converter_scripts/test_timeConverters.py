@@ -1,4 +1,32 @@
-from timeConverters import fajr_convert, zuhr_convert, asr_convert, maghrib_convert, isha_convert
+from timeConverters import period_to_colon, fajr_convert, zuhr_convert, asr_convert, maghrib_convert, isha_convert
+
+# =============== period_to_colon Tests ==================
+def test_will_convert_period_to_colon_time_in_h_mm_format():
+    # Given
+    time = "7.35"
+    # When
+    result = period_to_colon(time)
+    # Then
+    assert result == "7:35"
+
+def test_will_convert_period_to_colon_time_in_hh_mm_format():
+    # Given
+    time = "12.35"
+    # When
+    result = period_to_colon(time)
+    # Then
+    assert result == "12:35"
+
+def test_will_return_time_str_if_already_has_colon():
+    # Given
+    time = "12:35"
+    time2 = "7:35"
+    # When
+    result = period_to_colon(time)
+    result2 = period_to_colon(time2)
+    # Then
+    assert result == "12:35"
+    assert result2 == "7:35"
 
 # =============== fajr_convert Tests ==================
 def test_will_convert_fajr_time_with_missing_0():

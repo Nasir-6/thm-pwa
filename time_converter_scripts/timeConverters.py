@@ -3,22 +3,22 @@
 
 
 # period_to_colon
-# 1) 7.45 -> 7:45
-# 2) 12.45 -> 12:45
-# 3) 12:45 -> Leave as is just return
-# 4) 7:45 -> Leave as is just return
+# 1) 7.35 -> 7:35
+# 2) 12.35 -> 12:35
+# 3) 12:35 -> Leave as is just return
+# 4) 7:35 -> Leave as is just return
 def period_to_colon(time_str):
     is_h_mm_format = (len(time_str) == 4)
     isPeriod = time_str[-3] == "."
     if is_h_mm_format and isPeriod:
-        # 1) 7.45 -> 7:45
+        # 1) 7.35 -> 7:35
         return time_str[0] + ":" + time_str[-2:]
     elif not is_h_mm_format and isPeriod:
-        # 2) 12.45 -> 12:45
+        # 2) 12.35 -> 12:35
         return time_str[:2] + ":" + time_str[-2:]
     elif not isPeriod:
-        # 3) 12:45 -> Leave as is just return
-        # 4) 7:45 -> Leave as is just return
+        # 3) 12:35 -> Leave as is just return
+        # 4) 7:35 -> Leave as is just return
         return time_str
 
 # Fajr Converter
