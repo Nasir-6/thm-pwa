@@ -2,6 +2,25 @@
 # This was done so each function can be unit tested to ensure they work as intended
 
 
+# period_to_colon
+# 1) 7.45 -> 7:45
+# 2) 12.45 -> 12:45
+# 3) 12:45 -> Leave as is just return
+# 4) 7:45 -> Leave as is just return
+def period_to_colon(time_str):
+    is_h_mm_format = (len(time_str) == 4)
+    isPeriod = time_str[-3] == "."
+    if is_h_mm_format and isPeriod:
+        # 1) 7.45 -> 7:45
+        return time_str[0] + ":" + time_str[-2:]
+    elif not is_h_mm_format and isPeriod:
+        # 2) 12.45 -> 12:45
+        return time_str[:2] + ":" + time_str[-2:]
+    elif not isPeriod:
+        # 3) 12:45 -> Leave as is just return
+        # 4) 7:45 -> Leave as is just return
+        return time_str
+
 # Fajr Converter
 # Note: all Fajr times are between 2AM - 8AM so deal with 2 scenarios:
 # 1) 4:35 -> 04:35
@@ -117,4 +136,3 @@ def isha_convert(time_str):
         # 4) 19:35 -> leave as is just return
         # 5) 22:35 -> leave as is just return
         return time_str
-
