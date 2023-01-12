@@ -1,4 +1,4 @@
-from timeConverters import fajr_convert, zuhr_convert, asr_convert, maghrib_convert
+from timeConverters import fajr_convert, zuhr_convert, asr_convert, maghrib_convert, isha_convert
 
 # =============== fajr_convert Tests ==================
 def test_will_convert_fajr_time_with_missing_0():
@@ -117,3 +117,45 @@ def test_will_return_maghrib_time_if_in_24hrs_already():
     result = maghrib_convert(time)
     # Then
     assert result == "21:35"
+
+
+# =============== isha_convert Tests ==================
+def test_will_return_isha_time_in_24hrs_if_missing_0():
+    # 1) 7:35 -> 19:35
+    # Given
+    time = "7:35"
+    # When
+    result = isha_convert(time)
+    # Then
+    assert result == "19:35"
+
+def test_will_return_maghrib_time_in_24hrs_if_in_12hrs_with_0_in_front():
+    # 2) 07:35 -> 19:35
+    # Given
+    time = "07:35"
+    # When
+    result = isha_convert(time)
+    # Then
+    assert result == "19:35"
+
+def test_will_convert_isha_time_to_24hrs_if_in_12hrs():
+    # 3) 11:15 -> 23:15
+    # Given
+    time = "11:35"
+    # When
+    result = isha_convert(time)
+    # Then
+    assert result == "23:35"
+
+def test_will_return_isha_time_if_already_in_24hrs():
+    # 4) 19:35 -> leave as is just return
+    # 5) 22:35 -> leave as is just return
+    # Given
+    time = "19:35"
+    time2 = "22:15"
+    # When
+    result = isha_convert(time)
+    result2 = isha_convert(time2)
+    # Then
+    assert result == "19:35"
+    assert result2 == "22:15"
