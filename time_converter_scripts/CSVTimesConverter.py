@@ -22,16 +22,10 @@ with open("./Apr-2022.csv", 'r') as file:
     for row in csvreader:
       newRow = {}
       for name in fieldNames:
-        if(name.upper() == "DAY"):
+        if(name.upper() == "DAY" or name.upper() == "DATE"):
           newRow[name] = row[name]
+          # continue to prevent issue with period_to_colon function
           continue
-        print(name)
-        print(row[name])
-        print(len(row[name]))
-        isMissingFront0 = (len(row[name]) == 4)
-        print(row[name][0])
-
-        print(isMissingFront0)
 
         row[name] = period_to_colon(row[name])
         if name.upper() == "FAJR":
@@ -50,5 +44,6 @@ with open("./Apr-2022.csv", 'r') as file:
           newRow[name] = isha_convert(row[name])
 
         else:
+          # TO catch any missing cases
           newRow[name] = row[name]
       csvWriter.writerow(newRow)
