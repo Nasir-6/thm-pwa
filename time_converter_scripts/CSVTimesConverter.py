@@ -13,12 +13,14 @@ if not os.path.exists(newFolderPath):
 # TODO: learn to loop through mosque folder and the individual mosque folders
 # TODO: create a copy of just the folders
 # TODO: Adjust the extracted function to place the new copy in the copied mosque-new folders
-def convertAndCreateAndPlaceANewCSVFile(csvFileName):
+def convertAndCreateAndPlaceANewCSVFile(csvFileName, src_folder_path, target_folder_path):
   print("Inside function")
-  with open("./" + csvFileName, 'r') as file:
+
+  # with open deals with closing file aswell as better exception handling - using open() by itself you need to deal with closing file aswell!
+  with open(os.path.join(src_folder_path, csvFileName), 'r') as file:
     csvreader = csv.DictReader(file)
 
-    with open(os.join.path(newFolderPath, csvFileName), 'w') as newFile:
+    with open(os.path.join(target_folder_path, csvFileName), 'w') as newFile:
       fieldNames = csvreader.fieldnames
       csvWriter = csv.DictWriter(newFile, fieldnames=fieldNames)
       csvWriter.writeheader()
@@ -52,8 +54,9 @@ def convertAndCreateAndPlaceANewCSVFile(csvFileName):
         csvWriter.writerow(newRow)
 
 # Read in one csv file and make a new copy of it and adjust the values by writing to a new csv file
-csvFileName = "Apr-2022.csv"
-print("about to run function")
+
+# csvFileName = "./mosques/Apr-2022.csv"
+# print("about to run function")
 # convertAndCreateAndPlaceANewCSVFile(csvFileName)
 
 print("testing new file function")
@@ -86,28 +89,35 @@ def main():
       for file in os.listdir(path_to_mosque_folder_src):
         if file.endswith(".DS_Store"):
           continue
+
         # Check if file is a .txt address file if, so copy and paste it into target folder
         if file.endswith(".txt"):
           shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+
+        # This is a csv file with the timetable
         elif file.endswith(".csv"):
           print(file)
           print("this is a csv file do convert it")
           # Rather than copy files take csv files and covert
+          convertAndCreateAndPlaceANewCSVFile(file, path_to_mosque_folder_src, path_to_mosque_folder_target)
           shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+
+        # Odd case with an extra folder inside to hold the address
         else:
           print("This is another folder - most likely the masjid address folder go deeper and grab the .txt file")
           print(file)
           extra_masjid_address_folder_path = os.path.join(path_to_mosque_folder_src, file)
           extra_masjid_address_folder_target_path = os.path.join(path_to_mosque_folder_target, file)
+          # Make sure to create the folder! first before copy and pasting the file inside!!
           if not os.path.exists(extra_masjid_address_folder_target_path):
             os.makedirs(extra_masjid_address_folder_target_path)
           for extra_address_file in os.listdir(extra_masjid_address_folder_path):
             if extra_address_file.endswith(".txt"):
               shutil.copy2(os.path.join(extra_masjid_address_folder_path, extra_address_file), extra_masjid_address_folder_target_path)
             else:
+              # Shouldn't see this but just incase!
               print("THIS IS A RANDOM FILE I HAVEN'T ENCOUNTERED")
               print(extra_address_file)
-          # Make sure to create the folder! first before copy and pasting the file inside!!
 
       continue
 
