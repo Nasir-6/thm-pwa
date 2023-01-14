@@ -100,7 +100,6 @@ def main():
           print("this is a csv file do convert it")
           # Rather than copy files take csv files and covert
           convertAndCreateAndPlaceANewCSVFile(file, path_to_mosque_folder_src, path_to_mosque_folder_target)
-          shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
 
         # Odd case with an extra folder inside to hold the address
         else:
