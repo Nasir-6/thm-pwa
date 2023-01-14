@@ -27,7 +27,7 @@ def convertAndCreateAndPlaceANewCSVFile(csvFileName, src_folder_path, target_fol
       for row in csvreader:
         newRow = {}
         for name in fieldNames:
-          if name.upper() == "DAY" or name.upper() == "DATE":
+          if name.upper() == "DAY" or name.upper() == "DATE" or name == "" or row[name] == "":
             newRow[name] = row[name]
             # continue to prevent issue with period_to_colon function
             continue
@@ -91,14 +91,21 @@ def main():
           continue
 
         # Check if file is a .txt address file if, so copy and paste it into target folder
-        if file.endswith(".txt"):
+        # Want to keep cleartemp file incase wp breaks
+        if file.endswith(".txt") or file == "cleartemp" :
           shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
 
         # This is a csv file with the timetable
         elif file.endswith(".csv"):
-          print(file)
-          print("this is a csv file do convert it")
-          # Rather than copy files take csv files and covert
+          # print(file)
+          # print("this is a csv file do convert it")
+          # Rather than copy files take csv files and covert\
+          print("currently converting - " + path_to_mosque_folder_src + file)
+
+          # Deal with the empty csv file - just copy it over incase it breaks wp site
+          if(path_to_mosque_folder_src == "mosques/AberfeldyIslamicCulturalCentre"):
+            shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+            continue
           convertAndCreateAndPlaceANewCSVFile(file, path_to_mosque_folder_src, path_to_mosque_folder_target)
 
         # Odd case with an extra folder inside to hold the address
