@@ -63,6 +63,10 @@ def main():
   mosques_folder_src = "mosques"
   mosques_folder_target = "mosques-new"
   for folder in os.listdir(mosques_folder_src):
+
+    if folder.endswith(".DS_Store"):
+      continue
+
     if folder.endswith(".xml"):
       # Just copy this folder over to new folder
       xml_file = folder
@@ -80,13 +84,31 @@ def main():
 
       # Loop through the src folder
       for file in os.listdir(path_to_mosque_folder_src):
+        if file.endswith(".DS_Store"):
+          continue
+        # Check if file is a .txt address file if, so copy and paste it into target folder
+        if file.endswith(".txt"):
+          shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+        elif file.endswith(".csv"):
+          print(file)
+          print("this is a csv file do convert it")
+          # Rather than copy files take csv files and covert
+          shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+        else:
+          print("This is another folder - most likely the masjid address folder go deeper and grab the .txt file")
+          print(file)
+          extra_masjid_address_folder_path = os.path.join(path_to_mosque_folder_src, file)
+          extra_masjid_address_folder_target_path = os.path.join(path_to_mosque_folder_target, file)
+          if not os.path.exists(extra_masjid_address_folder_target_path):
+            os.makedirs(extra_masjid_address_folder_target_path)
+          for extra_address_file in os.listdir(extra_masjid_address_folder_path):
+            if extra_address_file.endswith(".txt"):
+              shutil.copy2(os.path.join(extra_masjid_address_folder_path, extra_address_file), extra_masjid_address_folder_target_path)
+            else:
+              print("THIS IS A RANDOM FILE I HAVEN'T ENCOUNTERED")
+              print(extra_address_file)
+          # Make sure to create the folder! first before copy and pasting the file inside!!
 
-        print("mosque folder: " + a_mosque_folder)
-        print("a file inside it: " + file)
-        print(os.path.join(path_to_mosque_folder_src, file))
-        print(path_to_mosque_folder_target)
-        # Rather than copy files take csv files and covert
-        shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
       continue
 
 main()
