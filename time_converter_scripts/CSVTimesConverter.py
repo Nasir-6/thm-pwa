@@ -3,6 +3,9 @@ import os
 import shutil
 from timeConverters import fajr_convert, zuhr_convert, asr_convert, maghrib_convert, isha_convert, period_to_colon
 
+# set to true if making files for WP, false if making files for own DB
+isForWordPress = True
+
 
 cd = os.getcwd()
 newFolderPath = cd + "/mosques-new"
@@ -64,7 +67,10 @@ print("testing new file function")
 
 def main():
   mosques_folder_src = "mosques"
-  mosques_folder_target = "mosques-new"
+  if isForWordPress:
+    mosques_folder_target = "mosques-new-WP"
+  else:
+    mosques_folder_target = "mosques-new-DB"
   for folder in os.listdir(mosques_folder_src):
 
     if folder.endswith(".DS_Store"):
@@ -92,21 +98,38 @@ def main():
 
         # Check if file is a .txt address file if, so copy and paste it into target folder
         # Want to keep cleartemp file incase wp breaks
-        if file.endswith(".txt") or file == "cleartemp" :
+        if file.endswith(".txt"):
           shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+          continue
+
+        # Only keep cleartemp file for wp-site
+        if  file == "cleartemp":
+          if isForWordPress:
+            shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+          else:
+            continue
 
         # This is a csv file with the timetable
         elif file.endswith(".csv"):
-          # print(file)
-          # print("this is a csv file do convert it")
-          # Rather than copy files take csv files and covert\
           print("currently converting - " + path_to_mosque_folder_src + file)
 
           # Deal with the empty csv file - just copy it over incase it breaks wp site
+          # Only copy for WP site else leave alone
           if(path_to_mosque_folder_src == "mosques/AberfeldyIslamicCulturalCentre"):
-            shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+            if isForWordPress:
+              shutil.copy2(os.path.join(path_to_mosque_folder_src, file), path_to_mosque_folder_target)
+              continue
+            else:
+              continue
+
+          # Extra if statements so if it's for WP it converts all of them
+          # Else if it's for DB only saves 2023 csv files
+          if file.endswith("2023.csv"):
+            convertAndCreateAndPlaceANewCSVFile(file, path_to_mosque_folder_src, path_to_mosque_folder_target)
+          elif isForWordPress:
+            convertAndCreateAndPlaceANewCSVFile(file, path_to_mosque_folder_src, path_to_mosque_folder_target)
+          else:
             continue
-          convertAndCreateAndPlaceANewCSVFile(file, path_to_mosque_folder_src, path_to_mosque_folder_target)
 
         # Odd case with an extra folder inside to hold the address
         else:
