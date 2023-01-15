@@ -194,30 +194,61 @@ def test_will_return_asr_time_if_in_24hrs_already_and_not_for_wordPress():
 
 
 # =============== maghrib_convert Tests ==================
-def test_will_return_maghrib_time_in_24hrs_if_missing_0():
-    # 1) 9:35 -> 21:35
+
+def test_will_return_maghrib_time_in_12hrs_if_missing_0_and_for_wordPress():
+    # 1a) 9:35 -> 09:35
     # Given
     time = "9:35"
+    isForWordPress = True
     # When
-    result = maghrib_convert(time)
+    result = maghrib_convert(time, isForWordPress)
+    # Then
+    assert result == "09:35"
+def test_will_return_maghrib_time_in_24hrs_if_missing_0_and_not_for_wordPress():
+    # 1b) 9:35 -> 21:35
+    # Given
+    time = "9:35"
+    isForWordPress = False
+    # When
+    result = maghrib_convert(time, isForWordPress)
     # Then
     assert result == "21:35"
 
-def test_will_return_maghrib_time_in_24hrs_if_in_12hrs():
-    # 2) 09:35 -> 21:35
+def test_will_return_maghrib_time_in_12hrs_for_wordPress():
+    # 2a) 09:35 -> 09:35
     # Given
     time = "09:35"
+    isForWordPress = True
     # When
-    result = maghrib_convert(time)
+    result = maghrib_convert(time, isForWordPress)
+    # Then
+    assert result == "09:35"
+def test_will_return_maghrib_time_in_24hrs_if_in_12hrs_and_not_for_wordPress():
+    # 2b) 09:35 -> 21:35
+    # Given
+    time = "09:35"
+    isForWordPress = False
+    # When
+    result = maghrib_convert(time, isForWordPress)
     # Then
     assert result == "21:35"
 
-def test_will_return_maghrib_time_if_in_24hrs_already():
-    # 2) 21:35 -> 21:35
+def test_will_return_maghrib_time__in_12hrs_if_in_24hrs_and_for_wordPress():
+    # 3a) 21:35 -> 09:35
     # Given
     time = "21:35"
+    isForWordPress = True
     # When
-    result = maghrib_convert(time)
+    result = maghrib_convert(time, isForWordPress)
+    # Then
+    assert result == "09:35"
+def test_will_return_maghrib_time_if_in_24hrs_already_and_not_for_wordPress():
+    # 3b) 21:35 -> leave as is just return
+    # Given
+    time = "21:35"
+    isForWordPress = False
+    # When
+    result = maghrib_convert(time, isForWordPress)
     # Then
     assert result == "21:35"
 

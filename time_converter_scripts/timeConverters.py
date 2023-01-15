@@ -119,24 +119,38 @@ def asr_convert(time_str, isForWordPress):
 # IMPORTANT NOTE: The code is exactly the same as asr_converter,
 # but was separated just incase for clarity incase I missed a case
 # Note: all Maghrib times are between 4PM - 9:30PM so deal with 3 scenarios:
-# 1) 9:35 -> 21:35
+# 1a) 9:35 -> 09:35 (Is for WP so leave in 12Hrs)
+# 1b) 9:35 -> 21:35 (Is not for WP so convert to 24hrs)
 # 2) 09:35 -> 21:35
 # 3) 21:35 -> leave as is just return
-def maghrib_convert(time_str):
+def maghrib_convert(time_str, isForWordPress):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
-        # 1) 9:35 -> 21:35
-        time_hr_str = str(int(time_str[0]) + 12)
-        return time_hr_str + time_str[-3:]
+        if isForWordPress:
+            # 1a) 9:35 -> 09:35
+            return "0" + time_str
+        else:
+            # 1b) 9:35 -> 21:35
+            time_hr_str = str(int(time_str[0]) + 12)
+            return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and time_str[0] == "0":
-        # 2) 09:35 -> 21:35
-        time_hr_str = str(int(time_str[1]) + 12)
-        return time_hr_str + time_str[-3:]
+        if isForWordPress:
+            # 2a) 09:35 -> 09:35
+            return time_str
+        else:
+            # 2b) 09:35 -> 21:35
+            time_hr_str = str(int(time_str[1]) + 12)
+            return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and time_str[0] != "0":
-        # 3) 21:35 -> leave as is just return
-        return time_str
+        if isForWordPress:
+            # 3a) 21:35 -> 09:35
+            time_hr_str = "0" + str(int(time_str[:2]) - 12)
+            return time_hr_str + time_str[-3:]
+        else:
+            # 3b) 21:35 -> leave as is just return
+            return time_str
 
 
 
