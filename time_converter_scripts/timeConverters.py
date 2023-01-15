@@ -37,10 +37,14 @@ def fajr_convert(time_str):
 
 # Zuhr/Zohar Converter
 # Note: all Zuhr times are between 11AM - 2PM so deal with 2 scenarios:
-# 1) 1:35 -> 13:35
-# 2) 01:35 -> 13:35
-# 3) 11:35/12:35 -> leave as is just return
-# 4) 13:35 -> Leave as is just return
+# 1a) 1:35 -> 01:35 (ifForWordPress just add a 0)
+# 1b) 1:35 -> 13:35 (if not for WP convert to 24hrs)
+# 2) 13:35 -> 01:35 (if for WP convert back to 12hrs with 0 in front)
+# 3a) 01:35 -> 01:35 (leave as is for WP)
+# 3b) 11:35 -> 11:35 (leave as is for WP)
+# 4) 01:35 -> 13:35 (convert to 24 hrs if not for WP)
+# 5) 11:35/12:35 -> leave as is just return for
+# 6) 13:35 -> Leave as is just return (Not for WP)
 def zuhr_convert(time_str, isForWordPress):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
