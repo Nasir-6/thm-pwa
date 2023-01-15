@@ -159,11 +159,16 @@ def maghrib_convert(time_str, isForWordPress):
 # Isha Converter
 # IMPORTANT NOTE: in csv spelt esha and not isha!
 # Note: all Isha times are between 5:30PM - 11:15 PM so deal with 3 scenarios:
-# 1) 7:35 -> 19:35
-# 2) 07:35 -> 19:35
-# 3) 11:15 -> 23:15
-# 4) 19:35 -> leave as is just return
-# 5) 22:35 -> leave as is just return
+# 1a) 7:35 -> 07:35 (return in 12 hrs as for WP)
+# 1b) 7:35 -> 19:35 (return in 24hrs as not for WP)
+# 2a) 07:35 -> 07:35 (return in 12hrs as for WP)
+# 2b) 07:35 -> 19:35 (return in 24hr as not for WP)
+# 3a) 11:15 -> 11:15 (return in 12hrs for WP)
+# 3b) 11:15 -> 23:15 (return in 24hrs as not for wp)
+# 4a) 19:35 -> 07:35 (return in 12hrs as for wp - also add 0 as before 10PM)
+# 4b) 22:35 -> 10:35 (return in 12hrs as for wp - after 10pm)
+# 5a) 19:35 -> leave as is just return (as not for wp)
+# 5b) 22:35 -> leave as is just return (as not for wp
 def isha_convert(time_str, isForWordPress):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
