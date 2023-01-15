@@ -79,25 +79,38 @@ def zuhr_convert(time_str, isForWordPress):
 
 # Asr Converter
 # Note: all Asr times are between 2PM - 7:30PM so deal with 3 scenarios:
-# 1) 4:35 -> 16:35
+# 1a) 4:35 -> 04:35 (is for WP leave as is)
+# 1b) 4:35 -> 16:35  (Is not for WP so convert to 24hrs)
 # 2) 04:35 -> 16:35
 # 3) 16:35 -> leave as is just return
-def asr_convert(time_str):
+def asr_convert(time_str, isForWordPress):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
-        # 1) 4:35 -> 16:35
-        time_hr_str = str(int(time_str[0]) + 12)
-        return time_hr_str + time_str[-3:]
+        if isForWordPress:
+            # 1a) 4:35 -> 04:35
+            return "0" + time_str
+        else:
+            # 1b) 4:35 -> 16:35
+            time_hr_str = str(int(time_str[0]) + 12)
+            return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and time_str[0] == "0":
-        # 2) 04:35 -> 16:35
-        time_hr_str = str(int(time_str[1]) + 12)
-        return time_hr_str + time_str[-3:]
+        if isForWordPress:
+            # 2a) 04:35 -> 04:35
+            return time_str
+        else:
+            # 2b) 04:35 -> 16:35
+            time_hr_str = str(int(time_str[1]) + 12)
+            return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and time_str[0] != "0":
-        # 3) 16:35 -> leave as is just return
-        return time_str
-
+        if isForWordPress:
+            # 3a) 16:35 -> 04:35
+            time_hr_str = "0" + str(int(time_str[:2]) - 12)
+            return time_hr_str + time_str[-3:]
+        else:
+            # 3b) 16:35 -> leave as is just return
+            return time_str
 
 
 # Maghrib Converter

@@ -133,30 +133,61 @@ def test_will_return_zuhr_time_if_already_24hrs_and_not_for_WordPress():
 
 
 # =============== asr_convert Tests ==================
-def test_will_return_asr_time_in_24hrs_if_missing_0():
-    # 1) 4:35 -> 16:35
+def test_will_return_asr_time_in_12hrs_if_missing_0_for_WordPress():
+    # 1a) 4:35 -> 04:35
     # Given
     time = "4:35"
+    isForWordPress = True
     # When
-    result = asr_convert(time)
+    result = asr_convert(time, isForWordPress)
+    # Then
+    assert result == "04:35"
+
+def test_will_return_asr_time_in_24hrs_if_missing_0_and_not_for_WordPress():
+    # 1b) 4:35 -> 16:35
+    # Given
+    time = "4:35"
+    isForWordPress = False
+    # When
+    result = asr_convert(time, isForWordPress)
     # Then
     assert result == "16:35"
 
-def test_will_return_asr_time_in_24hrs_if_in_12hrs():
-    # 2) 04:35 -> 16:35
+def test_will_return_asr_time_in_12hrs_for_WordPress():
+    # 2a) 04:35 -> 04:35
     # Given
     time = "04:35"
+    isForWordPress = True
     # When
-    result = asr_convert(time)
+    result = asr_convert(time, isForWordPress)
+    # Then
+    assert result == "04:35"
+def test_will_return_asr_time_in_24hrs_if_in_12hrs_and_not_for_WordPress():
+    # 2b) 04:35 -> 16:35
+    # Given
+    time = "04:35"
+    isForWordPress = False
+    # When
+    result = asr_convert(time, isForWordPress)
     # Then
     assert result == "16:35"
 
-def test_will_return_asr_time_if_in_24hrs_already():
-    # 2) 16:35 -> 16:35
+def test_will_return_asr_time_if_in_12hrs_if_in_24hrs_and_for_wordPress():
+    # 3a) 16:35 -> 04:35
     # Given
     time = "16:35"
+    isForWordPress = True
     # When
-    result = asr_convert(time)
+    result = asr_convert(time, isForWordPress)
+    # Then
+    assert result == "04:35"
+def test_will_return_asr_time_if_in_24hrs_already_and_not_for_wordPress():
+    # 3b) 16:35 -> leave as is just return
+    # Given
+    time = "16:35"
+    isForWordPress = False
+    # When
+    result = asr_convert(time, isForWordPress)
     # Then
     assert result == "16:35"
 
