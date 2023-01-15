@@ -254,42 +254,94 @@ def test_will_return_maghrib_time_if_in_24hrs_already_and_not_for_wordPress():
 
 
 # =============== isha_convert Tests ==================
-def test_will_return_isha_time_in_24hrs_if_missing_0():
-    # 1) 7:35 -> 19:35
+
+def test_will_return_isha_time_in_12hrs_if_missing_0_and_for_WordPress():
+    # 1a) 7:35 -> 07:35
     # Given
     time = "7:35"
+    isForWordPress = True
     # When
-    result = isha_convert(time)
+    result = isha_convert(time, isForWordPress)
+    # Then
+    assert result == "07:35"
+def test_will_return_isha_time_in_24hrs_if_missing_0_and_not_for_WordPress():
+    # 1b) 7:35 -> 19:35
+    # Given
+    time = "7:35"
+    isForWordPress = False
+    # When
+    result = isha_convert(time, isForWordPress)
     # Then
     assert result == "19:35"
 
-def test_will_return_maghrib_time_in_24hrs_if_in_12hrs_with_0_in_front():
-    # 2) 07:35 -> 19:35
+def test_will_return_isha_time_in_12hrs_if_in_12hrs_with_0_in_front_and_for_wordPress():
+    # 2a) 07:35 -> 07:35
     # Given
     time = "07:35"
+    isForWordPress = True
     # When
-    result = isha_convert(time)
+    result = isha_convert(time, isForWordPress)
+    # Then
+    assert result == "07:35"
+def test_will_return_isha_time_in_24hrs_if_in_12hrs_with_0_in_front_and_not_for_wordPress():
+    # 2b) 07:35 -> 19:35
+    # Given
+    time = "07:35"
+    isForWordPress = False
+    # When
+    result = isha_convert(time, isForWordPress)
     # Then
     assert result == "19:35"
 
-def test_will_convert_isha_time_to_24hrs_if_in_12hrs():
-    # 3) 11:15 -> 23:15
+def test_will_return_isha_time_in_12hrs_if_in_12hrs_and_for_wordPress():
+    # 3a) 11:15 -> 11:15
     # Given
     time = "11:35"
+    isForWordPress = True
     # When
-    result = isha_convert(time)
+    result = isha_convert(time, isForWordPress)
+    # Then
+    assert result == "11:35"
+def test_will_convert_isha_time_to_24hrs_if_in_12hrs_and_not_for_wordPress():
+    # 3b) 11:15 -> 23:15
+    # Given
+    time = "11:35"
+    isForWordPress = False
+    # When
+    result = isha_convert(time, isForWordPress)
     # Then
     assert result == "23:35"
 
-def test_will_return_isha_time_if_already_in_24hrs():
-    # 4) 19:35 -> leave as is just return
-    # 5) 22:35 -> leave as is just return
+def test_will_return_isha_time_in_12hrs_if_in_24hrs_and_is_for_wordPress_and_before_10PM():
+    # 4a) 19:35 -> 07:35
+    # Given
+    time = "19:35"
+    isForWordPress = True
+    # When
+    result = isha_convert(time, isForWordPress)
+    # Then
+    assert result == "07:35"
+
+def test_will_return_isha_time_in_12hrs_if_in_24hrs_and_is_for_wordPress_and_after_10PM():
+    # 4b) 22:35 -> 10:35
+    # Given
+    time = "22:35"
+    isForWordPress = True
+    # When
+    result = isha_convert(time, isForWordPress)
+    # Then
+    assert result == "10:35"
+
+def test_will_return_isha_time_if_already_in_24hrs_and_is_not_for_wordPress():
+    # 5a) 19:35 -> leave as is just return
+    # 5b) 22:35 -> leave as is just return
     # Given
     time = "19:35"
     time2 = "22:15"
+    isForWordPress = False
     # When
-    result = isha_convert(time)
-    result2 = isha_convert(time2)
+    result = isha_convert(time, isForWordPress)
+    result2 = isha_convert(time2, isForWordPress)
     # Then
     assert result == "19:35"
     assert result2 == "22:15"

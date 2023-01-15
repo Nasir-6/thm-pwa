@@ -164,24 +164,46 @@ def maghrib_convert(time_str, isForWordPress):
 # 3) 11:15 -> 23:15
 # 4) 19:35 -> leave as is just return
 # 5) 22:35 -> leave as is just return
-def isha_convert(time_str):
+def isha_convert(time_str, isForWordPress):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
-        # 1) 7:35 -> 19:35
-        time_hr_str = str(int(time_str[0]) + 12)
-        return time_hr_str + time_str[-3:]
+        if isForWordPress:
+            # 1a) 7:35 -> 07:35
+            return "0" + time_str
+        else:
+            # 1b) 7:35 -> 19:35
+            time_hr_str = str(int(time_str[0]) + 12)
+            return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and time_str[0] == "0":
-        # 2) 07:35 -> 19:35
-        time_hr_str = str(int(time_str[1]) + 12)
-        return time_hr_str + time_str[-3:]
+        if isForWordPress:
+            # 2a) 07:35 -> 07:35
+            return time_str
+        else:
+            # 2b) 07:35 -> 19:35
+            time_hr_str = str(int(time_str[1]) + 12)
+            return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and (time_str[:2] == "10" or time_str[:2] == "11" or time_str[:2] == "12"):
-        # 3) 11:15 -> 23:15
-        time_hr_str = str(int(time_str[:2]) + 12)
-        return time_hr_str + time_str[-3:]
-
+        if isForWordPress:
+            # 3a) 11:15 -> 11:15
+            return time_str
+        else:
+            # 3b) 11:15 -> 23:15
+            time_hr_str = str(int(time_str[:2]) + 12)
+            return time_hr_str + time_str[-3:]
     else:
-        # 4) 19:35 -> leave as is just return
-        # 5) 22:35 -> leave as is just return
-        return time_str
+        if isForWordPress:
+            time_hr_number = int(time_str[:2]) - 12
+            if(time_hr_number < 10):
+                # 4a) 19:35 -> 07:35
+                time_hr_str = "0" + str(int(time_str[:2]) - 12)
+                return time_hr_str + time_str[-3:]
+            else:
+                # 4b) 22:35 -> 10:35
+                time_hr_str = str(int(time_str[:2]) - 12)
+                return time_hr_str + time_str[-3:]
+        else:
+            # 5a) 19:35 -> leave as is just return
+            # 5b) 22:35 -> leave as is just return
+            return time_str
