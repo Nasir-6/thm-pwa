@@ -4,7 +4,7 @@ import shutil
 from timeConverters import fajr_convert, zuhr_convert, asr_convert, maghrib_convert, isha_convert, period_to_colon
 
 # set to true if making files for WP, false if making files for own DB
-isForWordPress = True
+isForWordPress = False
 
 
 cd = os.getcwd()
@@ -36,19 +36,19 @@ def convertAndCreateAndPlaceANewCSVFile(csvFileName, src_folder_path, target_fol
             continue
 
           row[name] = period_to_colon(row[name])
-          if name.upper() == "FAJR":
+          if name.upper() == "FAJR" or name.upper() == "FAJR BEGIN" or name.upper() == "SUNRISE":
             newRow[name] = fajr_convert(row[name])
 
-          elif name.upper() == "ZOHAR":  # Spelt zohar in csvs!
+          elif name.upper() == "ZOHAR" or name.upper() == "ZUHR BEGIN":  # Spelt zohar in csvs!
             newRow[name] = zuhr_convert(row[name], isForWordPress)
 
-          elif name.upper() == "ASR":
+          elif name.upper() == "ASR" or name.upper() == "ASR 1ST MITHL" or name.upper() == "ASR 2ND MITHL":
             newRow[name] = asr_convert(row[name], isForWordPress)
 
-          elif name.upper() == "MAGHRIB":
+          elif name.upper() == "MAGHRIB" or name.upper() == "MAGHRIB BEGIN":
             newRow[name] = maghrib_convert(row[name], isForWordPress)
 
-          elif name.upper() == "ESHA":  # Spelt esha in csvs
+          elif name.upper() == "ESHA" or name.upper() == "ISHA BEGIN":  # Spelt esha in csvs
             newRow[name] = isha_convert(row[name], isForWordPress)
 
           else:
