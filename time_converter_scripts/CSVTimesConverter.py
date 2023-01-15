@@ -40,16 +40,16 @@ def convertAndCreateAndPlaceANewCSVFile(csvFileName, src_folder_path, target_fol
             newRow[name] = fajr_convert(row[name])
 
           elif name.upper() == "ZOHAR":  # Spelt zohar in csvs!
-            newRow[name] = zuhr_convert(row[name])
+            newRow[name] = zuhr_convert(row[name], isForWordPress)
 
           elif name.upper() == "ASR":
-            newRow[name] = asr_convert(row[name])
+            newRow[name] = asr_convert(row[name], isForWordPress)
 
           elif name.upper() == "MAGHRIB":
-            newRow[name] = maghrib_convert(row[name])
+            newRow[name] = maghrib_convert(row[name], isForWordPress)
 
           elif name.upper() == "ESHA":  # Spelt esha in csvs
-            newRow[name] = isha_convert(row[name])
+            newRow[name] = isha_convert(row[name], isForWordPress)
 
           else:
             # TO catch any missing cases

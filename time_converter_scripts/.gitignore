@@ -1,6 +1,8 @@
 # Keep mosque data on local system
 mosques-new
 mosques
+mosques-new-DB
+mosques-new-WP
 
 .idea/
 .DS_Store
