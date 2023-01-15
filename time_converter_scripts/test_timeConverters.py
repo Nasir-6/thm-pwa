@@ -48,42 +48,86 @@ def test_will_return_fajr_time_as_normal_if_already_with_0():
 
 
 # =============== zuhr_convert Tests ==================
-def test_will_return_zuhr_time_24hr_with_missing_0():
-    # 1) 1:35 -> 13:35
+def test_will_return_zuhr_time_in_12hr_with_missing_0_for_WordPress():
+    # 1a) 1:35 -> 01:35
     # Given
     time = "1:35"
+    isForWordPress = True
     # When
-    result = zuhr_convert(time)
+    result = zuhr_convert(time, True)
+    # Then
+    assert result == "01:35"
+
+def test_will_return_zuhr_time_24hr_with_missing_0_and_if_not_for_WordPress():
+    # 1b) 1:35 -> 13:35
+    # Given
+    time = "1:35"
+    isForWordPress = False
+    # When
+    result = zuhr_convert(time, isForWordPress)
     # Then
     assert result == "13:35"
 
-def test_will_return_zuhr_time_in_24hrs_with_0_infront():
-    # 2) 01:35 -> 13:35
+def test_will_return_zuhr_time_in_12hr_for_WordPress_if_after_1PM_and_written_in_24hrs():
+    # 2) 13:35 -> 01:35
+    # Given
+    time = "13:35"
+    isForWordPress = True
+    # When
+    result = zuhr_convert(time, True)
+    # Then
+    assert result == "01:35"
+
+def test_will_return_zuhr_time_in_12hr_for_WordPress_if_after_1PM():
+    # 3a) 01:35 -> 01:35
     # Given
     time = "01:35"
+    isForWordPress = True
     # When
-    result = zuhr_convert(time)
+    result = zuhr_convert(time, True)
+    # Then
+    assert result == "01:35"
+
+def test_will_return_zuhr_time_in_12hr_for_WordPress_if_before_1PM():
+    # 3b) 11:35 -> 11:35
+    # Given
+    time = "11:35"
+    isForWordPress = True
+    # When
+    result = zuhr_convert(time, True)
+    # Then
+    assert result == "11:35"
+
+def test_will_return_zuhr_time_in_24hrs_with_0_infront_and_not_for_Wordpress():
+    # 4) 01:35 -> 13:35
+    # Given
+    time = "01:35"
+    isForWordPress = False
+    # When
+    result = zuhr_convert(time, isForWordPress)
     # Then
     assert result == "13:35"
 
-def test_will_return_zuhr_time_before_1_PM():
-    # 3) 11:35/12:35 -> leave as is just return
+def test_will_return_zuhr_time_before_1_PM_and_is_not_for_WordPress():
+    # 5) 11:35/12:35 -> leave as is just return
     # Given
     time = "11:35"
     time2 = "12:45"
+    isForWordPress = False
     # When
-    result = zuhr_convert(time)
-    result2 = zuhr_convert(time2)
+    result = zuhr_convert(time, isForWordPress)
+    result2 = zuhr_convert(time2, isForWordPress)
     # Then
     assert result == "11:35"
     assert result2 == "12:45"
 
-def test_will_return_zuhr_time_if_already_24hrs():
-    # 4) 13:35 -> Leave as is just return
+def test_will_return_zuhr_time_if_already_24hrs_and_not_for_WordPress():
+    # 6) 13:35 -> Leave as is just return
     # Given
     time = "13:35"
+    isForWordPress = False
     # When
-    result = zuhr_convert(time)
+    result = zuhr_convert(time, isForWordPress)
     # Then
     assert result == "13:35"
 

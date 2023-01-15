@@ -41,21 +41,35 @@ def fajr_convert(time_str):
 # 2) 01:35 -> 13:35
 # 3) 11:35/12:35 -> leave as is just return
 # 4) 13:35 -> Leave as is just return
-def zuhr_convert(time_str):
+def zuhr_convert(time_str, isForWordPress):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
-        # 1) 1:35 -> 13:35
-        time_hr_str = str(int(time_str[0]) + 12)
-        return time_hr_str + time_str[-3:]
+        if isForWordPress:
+            # 1a) 1:35 -> 01:35
+            return "0" + time_str
+        else:
+            # 1b) 1:35 -> 13:35
+            time_hr_str = str(int(time_str[0]) + 12)
+            return time_hr_str + time_str[-3:]
+
+    elif isForWordPress:
+        # for wordpress keep all times in 12hr format BUT add in 0 where needed like first case!
+        if(time_str[:2] == "13"):
+            # 2) 13:35 -> 01:35
+            return "01" + time_str[-3:]
+        else:
+            # 3a) 01:35 -> 01:35
+            # 3b) 11:35 -> 11:35
+            return time_str
 
     elif not is_h_mm_format and time_str[0] == "0":
-        # 2) 01:35 -> 13:35
+        # 4) 01:35 -> 13:35
         time_hr_str = str(int(time_str[1]) + 12)
         return time_hr_str + time_str[-3:]
 
     elif not is_h_mm_format and time_str[0] != "0":
-        # 3) 11:35/12:35 -> leave as is just return
-        # 4) 13:35 -> Leave as is just return
+        # 5) 11:35/12:35 -> leave as is just return
+        # 6) 13:35 -> Leave as is just return
         return time_str
 
 
