@@ -81,8 +81,10 @@ def zuhr_convert(time_str, isForWordPress):
 # Note: all Asr times are between 2PM - 7:30PM so deal with 3 scenarios:
 # 1a) 4:35 -> 04:35 (is for WP leave as is)
 # 1b) 4:35 -> 16:35  (Is not for WP so convert to 24hrs)
-# 2) 04:35 -> 16:35
-# 3) 16:35 -> leave as is just return
+# 2a) 04:35 -> 04:35 (Is for WP so leave it)
+# 2b) 04:35 -> 16:35 (not for WP so convert to 24hrs)
+# 3a) 16:35 -> 04:35 (is for WP so convert back to 12hrs)
+# 3b) 16:35 -> leave as is just return (Not for WP)
 def asr_convert(time_str, isForWordPress):
     is_h_mm_format = (len(time_str) == 4)
     if is_h_mm_format:
