@@ -32,20 +32,20 @@
     "url": "https://www.google.com/maps/place/Baitul+Aman+Mosque+%26+Cultural+Centre/@51.5248787,-0.0530427,21z/data=!4m5!3m4!1s0x48761cd7534c215b:0xbbdc8e8a51512b0e!8m2!3d51.5248761!4d-0.0529117"
   },
   {
-    "Masjid Name": "Baitul Mamur Masjid",
-    "Area Name": "",
-    "Address": "191 Roman Rd, Globe Town, London, E2 0QY",
-    "Latitude": "51.52936009",
-    "Longitude": "-0.04650651957",
-    "url": "https://www.google.com/maps/place/Baitul+Mamur+Academy/@51.5293166,-0.0467156,20.29z/data=!4m5!3m4!1s0x48761cd885ebb13f:0xa83b06957ff64eca!8m2!3d51.5293611!4d-0.0465076"
-  },
-  {
     "Masjid Name": "Baitul Islah Academy",
     "Area Name": "",
     "Address": "16B Blount Street, London, E14 7BZ",
     "Latitude": "51.51447183",
     "Longitude": "-0.0358918853",
     "url": "https://www.google.com/maps/place/16b+Blount+St,+London+E14+7BZ/@51.5144756,-0.0360206,21z/data=!4m5!3m4!1s0x487602d2afcffff9:0xa8a888eac092bbe6!8m2!3d51.5144684!4d-0.03589"
+  },
+  {
+    "Masjid Name": "Baitul Mamur Masjid",
+    "Area Name": "",
+    "Address": "191 Roman Rd, Globe Town, London, E2 0QY",
+    "Latitude": "51.52936009",
+    "Longitude": "-0.04650651957",
+    "url": "https://www.google.com/maps/place/Baitul+Mamur+Academy/@51.5293166,-0.0467156,20.29z/data=!4m5!3m4!1s0x48761cd885ebb13f:0xa83b06957ff64eca!8m2!3d51.5293611!4d-0.0465076"
   },
   {
     "Masjid Name": "BBC Masjid & Community Centre",
@@ -128,7 +128,7 @@
     "url": "https://www.google.com/maps/place/Burhan+Uddin+Masjid/@51.5260794,-0.0663303,20.45z/data=!4m5!3m4!1s0x48761cc6228d8bdb:0xf0892a25d87c71c3!8m2!3d51.5260416!4d-0.0661288"
   },
   {
-    "Masjid Name": "Collingwood Masjid",
+    "Masjid Name": "Collingwood Mosque",
     "Area Name": "",
     "Address": "4 Ashington House, Collingwood Street, London, E1 5RA",
     "Latitude": "51.52321735",
@@ -152,7 +152,7 @@
     "url": "https://www.google.com/maps/place/Darul+Ummah+Masjid/@51.5125357,-0.0670444,15z/data=!3m1!4b1!4m5!3m4!1s0x4876032d794b4283:0xc5fe538e35d5c425!8m2!3d51.5125096!4d-0.0582886"
   },
   {
-    "Masjid Name": "Docklands Community Organisation",
+    "Masjid Name": "Docklands Community Mosque",
     "Area Name": "",
     "Address": "111-113 Mellish Street, London, E14 8PJ",
     "Latitude": "51.49679624",
@@ -174,6 +174,14 @@
     "Latitude": "51.51757166",
     "Longitude": "-0.06548708235",
     "url": "https://www.google.com/maps/place/East+London+Mosque/@51.5175825,-0.0742423,15z/data=!3m2!4b1!5s0x48761ccb7423aaf3:0x56da432f41d8c97a!4m5!3m4!1s0x48761ccb77652f61:0x39fd220ae3d54406!8m2!3d51.5175695!4d-0.0654875"
+  },
+  {
+    "Masjid Name": "Eastside Centre Masjid",
+    "Area Name": "",
+    "Address": "2-4 Boulcott St, London, E1 0HR",
+    "Latitude": "51.51253299",
+    "Longitude": "-0.04207807846",
+    "url": "https://www.google.com/maps/place/Eastside+Centre+Masjid+Railway+Arches/@51.5125483,-0.0507196,15z/data=!3m1!4b1!4m5!3m4!1s0x48760358e5558f37:0xa2c29da587b98028!8m2!3d51.5125323!4d-0.0420783"
   },
   {
     "Masjid Name": "Esha Atul Islam Mosque",
@@ -208,7 +216,7 @@
     "url": "https://www.google.com/maps/place/Hifzul+Quran+%26+Islamic+Education+Centre/@51.5150222,-0.0289089,17z/data=!3m1!4b1!4m5!3m4!1s0x48761d34acb3d20b:0x4465bf8a6a77939e!8m2!3d51.515032!4d-0.0288606"
   },
   {
-    "Masjid Name": "Hindgrove Cultural Centre",
+    "Masjid Name": "Hindgrove Centre Masjid",
     "Area Name": "",
     "Address": "162 Pigott Street, London, E14 7DW",
     "Latitude": "51.51299327",
@@ -288,6 +296,14 @@
     "url": "https://www.google.com/maps/place/Poplar+Mosque+%26+Community+Centre/@51.5110416,-0.0185063,15z/data=!3m1!4b1!4m5!3m4!1s0x487602adb87b660b:0x4194a172172edb2c!8m2!3d51.5110286!4d-0.0097515"
   },
   {
+    "Masjid Name": "Poplar Shahjalal Masjid",
+    "Area Name": "",
+    "Address": "25 Hale St, London, E14 0BF",
+    "Latitude": "51.50946517",
+    "Longitude": "-0.0175336695",
+    "url": "https://www.google.com/maps/place/Shahjalal+Mosque+Poplar/@51.5094638,-0.0175366,17z/data=!3m1!4b1!4m5!3m4!1s0x487602b154cec831:0xe261172718798422!8m2!3d51.5094636!4d-0.017526"
+  },
+  {
     "Masjid Name": "Redcoat Community Centre & Mosque",
     "Area Name": "",
     "Address": "256 Stepney Way, London, E1 3DW",
@@ -352,7 +368,7 @@
     "url": "https://www.google.com/maps/place/Locksley+Masjid+(Mile+End)/@51.5167833,-0.0340606,17z/data=!3m1!4b1!4m5!3m4!1s0x48761d33109ba89b:0x2bec3b5eef98b4c4!8m2!3d51.5167774!4d-0.0318614"
   },
   {
-    "Masjid Name": "Wapping Masjid",
+    "Masjid Name": "Wapping Noorani Masjid",
     "Area Name": "",
     "Address": "19 Prusom Street. London, E1W 3RR",
     "Latitude": "51.50618967",
