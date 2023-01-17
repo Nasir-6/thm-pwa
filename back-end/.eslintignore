@@ -1,0 +1,5 @@
+# Ignore compiled js files and dist folder
+*.js        
+dist
+# Ignore csj file - .eslintrc.cjs
+*.cjs
