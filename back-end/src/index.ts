@@ -1,7 +1,7 @@
-console.log('hello3')
+console.log("hello3");
 
-function printNum(){
-    const num = 2;
-    console.log(num)
-    var a = 4 
-}
+const printNum = () => {
+	let num = 2;
+	console.log(num);
+	const a = 4;
+};
