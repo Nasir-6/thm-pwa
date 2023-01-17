@@ -1,7 +1,7 @@
 console.log("hello3");
+var hello = true;
 
 const printNum = () => {
-	let num = 2;
+	const num = 2;
 	console.log(num);
-	const a = 4;
 };
