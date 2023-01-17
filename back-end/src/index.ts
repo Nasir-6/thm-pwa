@@ -1,3 +1,5 @@
+import { Express } from "express";
+
 const printNum = () => {
 	const num = 2;
 	console.log(num);
