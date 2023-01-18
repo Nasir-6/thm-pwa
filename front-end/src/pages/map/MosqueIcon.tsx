@@ -11,7 +11,7 @@ interface Props {
     };
     address: string;
     url: string;
-  }
+  };
 }
 
 const MosqueIcon: React.FC<Props> = ({ mosque }) => {
@@ -44,7 +44,9 @@ const MosqueIcon: React.FC<Props> = ({ mosque }) => {
     <Marker position={mosque.position} icon={mosqueIcon}>
       <Popup>
         <p>{mosque.name}</p>
-        <a href={mosque.url} target="_blank" >Get Directions</a>
+        <a href={mosque.url} target="_blank" rel="noreferrer">
+          Get Directions
+        </a>
       </Popup>
     </Marker>
   );
