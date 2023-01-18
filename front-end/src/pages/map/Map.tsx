@@ -8,6 +8,9 @@ import mosqueData from '../../data/thm_mosques.json';
 const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
 
 const Map = () => {
+  fetch(`http://localhost:8080/`)
+    .then((response) => console.log(response))
+    .catch((err) => console.log(err));
   // console.log('mosqueData', mosqueData);
   const createMosqueIcons = mosqueData.map((mosque) => {
     // console.log('mosque', mosque);
