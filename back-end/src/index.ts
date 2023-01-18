@@ -1,10 +1,7 @@
-import { Express } from "express";
+import express from "express";
 
-const printNum = () => {
-	const num = 2;
-	console.log(num);
-	const name = "Nasir";
-	return `How are you, ${name}?`;
-};
+const app = express();
 
-printNum();
+const PORT = process.env.PORT || 3000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
