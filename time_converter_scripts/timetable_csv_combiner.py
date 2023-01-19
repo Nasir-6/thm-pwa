@@ -6,7 +6,7 @@ path = 'chatGPT-mosques-new-DB-cleaned'
 # Get all subdirectories in the path
 subdirectories = [f.path for f in os.scandir(path) if f.is_dir()]
 
-isForSalahBeginningFolder = True
+isForSalahBeginningFolder = False
 
 if(isForSalahBeginningFolder):
     # Create a new file in the parent directory to store the combined CSV

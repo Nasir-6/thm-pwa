@@ -43,6 +43,7 @@ def add_mosque_name_and_uid_column_and_remove_empty_header_columns(path, new_fol
 
                         words = name.split()
                         first_letters = [word[0].upper() for word in words]
+                        first_letters[0] = words[0].upper()     #Use WHOLE FIRST WORD - so it is unique - no clashes with Locksley, Lansbury, Docklands, Dorset
                         uid = ''.join(first_letters) + '-' + s
                         rows[singleRowIndex].insert(0, uid)  # insert the folder name at the start of the row
                         rows[singleRowIndex].insert(1, folder_name)  # insert the folder name at the start of the row
