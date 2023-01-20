@@ -4,18 +4,13 @@ import shutil
 from timeConverters import fajr_convert, zuhr_convert, asr_convert, maghrib_convert, isha_convert, period_to_colon
 
 # set to true if making files for WP, false if making files for own DB
-isForWordPress = False
+isForWordPress = True
 
 
 cd = os.getcwd()
 newFolderPath = cd + "/mosques-new"
 if not os.path.exists(newFolderPath):
     os.makedirs(newFolderPath)
-
-# TODO: Extract this part into a function which takes in csvFileName
-# TODO: learn to loop through mosque folder and the individual mosque folders
-# TODO: create a copy of just the folders
-# TODO: Adjust the extracted function to place the new copy in the copied mosque-new folders
 def convertAndCreateAndPlaceANewCSVFile(csvFileName, src_folder_path, target_folder_path):
   print("Inside function")
 
@@ -61,9 +56,6 @@ def convertAndCreateAndPlaceANewCSVFile(csvFileName, src_folder_path, target_fol
 # csvFileName = "./mosques/Apr-2022.csv"
 # print("about to run function")
 # convertAndCreateAndPlaceANewCSVFile(csvFileName)
-
-print("testing new file function")
-
 
 def main():
   mosques_folder_src = "mosques"
