@@ -22,8 +22,9 @@ def add_mosque_name_and_uid_column_and_remove_empty_header_columns(path, new_fol
                 columns_to_remove_index = [i for i, header in enumerate(headers) if len(header) == 0]
                 # print(headers)
                 # print(columns_to_remove)
-                columns_to_remove_index = [i + 2 for i in columns_to_remove_index]
-                columns_to_remove_index.append(2)
+                extra_columns_added = 3
+                columns_to_remove_index = [i + extra_columns_added for i in columns_to_remove_index]
+                columns_to_remove_index.append(extra_columns_added)
                 # L = [1] * 5
                 # >> > [x + 1 for x in L]
                 # [2, 2, 2, 2, 2]
@@ -34,8 +35,9 @@ def add_mosque_name_and_uid_column_and_remove_empty_header_columns(path, new_fol
                 print(rows)
                 for singleRowIndex in range(len(rows)):
                     if(singleRowIndex == 0):
-                        rows[singleRowIndex].insert(0, "uid")
-                        rows[singleRowIndex].insert(1, "mosque")  # insert the folder name at the start of the row
+                        rows[singleRowIndex].insert(0, "timetable_uid")
+                        rows[singleRowIndex].insert(1, "mosque_uid")
+                        rows[singleRowIndex].insert(2, "mosque")  # insert the folder name at the start of the row
                     else:
                         name = folder_name
                         d = datetime.datetime.strptime(rows[singleRowIndex][1], "%d-%b-%y")
@@ -44,9 +46,11 @@ def add_mosque_name_and_uid_column_and_remove_empty_header_columns(path, new_fol
                         words = name.split()
                         first_letters = [word[0].upper() for word in words]
                         first_letters[0] = words[0].upper()     #Use WHOLE FIRST WORD - so it is unique - no clashes with Locksley, Lansbury, Docklands, Dorset
-                        uid = ''.join(first_letters) + '-' + s
-                        rows[singleRowIndex].insert(0, uid)  # insert the folder name at the start of the row
-                        rows[singleRowIndex].insert(1, folder_name)  # insert the folder name at the start of the row
+                        timetable_uid = ''.join(first_letters) + '-' + s
+                        mosque_uid = ''.join(first_letters)
+                        rows[singleRowIndex].insert(0, timetable_uid)  # insert the folder name at the start of the row
+                        rows[singleRowIndex].insert(1, mosque_uid)  # insert the mosque_uid at the start of the row
+                        rows[singleRowIndex].insert(2, folder_name)  # insert the folder name (mosque name) at the start of the row
                 # update the header of the first column
                 # rows[0][0] = "mosque"
                 # remove the columns "day"
