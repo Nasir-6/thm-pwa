@@ -26,6 +26,10 @@ app.get("/pg", async (req, res) => {
 	}
 });
 
+app.all("*", (req, res) => {
+	res.status(404).send("Resource not found");
+});
+
 const PORT = process.env.PORT || 8080;
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
