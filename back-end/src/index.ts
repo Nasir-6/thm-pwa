@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import pool from "./db";
+import mosques from "./routes/mosques";
 
 if (process.env.NODE_ENV !== "production") {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
@@ -11,6 +12,8 @@ if (process.env.NODE_ENV !== "production") {
 
 const app = express();
 app.use(cors());
+
+app.use("/api/mosques", mosques);
 
 app.get("/", async (req, res) => {
 	res.json({ test: "success" });
