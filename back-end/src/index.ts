@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import pool from "./db";
+
+if (process.env.NODE_ENV !== "production") {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+	dotenv.config();
+}
 
 const app = express();
 app.use(cors());
