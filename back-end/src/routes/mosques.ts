@@ -1,13 +1,10 @@
 import express from "express";
+import { getAllMosques, getFullTimetable } from "../controllers/mosques";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-	res.send("MOSQUES SUCCESSFUL");
-});
+router.get("/", getAllMosques);
 
-router.get("/timetable", (req, res) => {
-	res.send("MOSQUES Timetable SUCCESSFUL");
-});
+router.get("/timetable", getFullTimetable);
 
 export default router;
