@@ -18,7 +18,8 @@ app.get("/", async (req, res) => {
 
 app.get("/pg", async (req, res) => {
 	try {
-		const testList = await pool.query("SELECT * FROM pokedex;");
+		// console.log("pool", pool);
+		const testList = await pool.query("SELECT * FROM mosques;");
 		res.json(testList.rows);
 	} catch (err) {
 		console.log("err", err);
