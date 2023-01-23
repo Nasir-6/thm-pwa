@@ -12,6 +12,8 @@ const pool = new Pool({
 	host: "localhost",
 	port: 5432,
 	database: process.env.DB_NAME,
+	// user: decideOnUser,
+	// password: decideOnPswd,
 });
 
 export default pool;
