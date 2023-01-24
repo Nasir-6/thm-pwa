@@ -1,5 +1,5 @@
 import { Pool, QueryResult } from "pg";
-import { MosqueDto } from "../models/mosqueDto";
+import { MosqueDB, MosqueDto } from "../models/mosqueDto";
 import { DailyTimesDto } from "../models/dailyTimesDto";
 
 class Mosque {
@@ -25,13 +25,15 @@ class Mosque {
 
 	async getMosqueDetailsByUid(uid: string): Promise<MosqueDto> {
 		const res = await this.#pool.query("SELECT * FROM mosques WHERE uid = $1", [uid]);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const mosque: MosqueDB = res.rows[0];
 		return {
-			uid: res.rows[0].uid,
-			name: res.rows[0].name,
-			address: res.rows[0].address,
-			latitude: res.rows[0].latitude,
-			longitude: res.rows[0].longitude,
-			googleUrl: res.rows[0].google_url,
+			uid: mosque.uid,
+			name: mosque.name,
+			address: mosque.address,
+			latitude: mosque.latitude,
+			longitude: mosque.longitude,
+			googleUrl: mosque.google_url,
 		};
 	}
 
@@ -56,7 +58,7 @@ class Mosque {
 	private static mapMosqueResult = (
 		res: QueryResult
 	): MosqueDto[] => // projection
-		res.rows.map((r) => ({
+		res.rows.map((r: MosqueDB) => ({
 			uid: r.uid,
 			name: r.name,
 			address: r.address,
