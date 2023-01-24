@@ -6,9 +6,9 @@ export const getAllMosques = async (req: Request, res: Response) => {
 	res.json(results);
 };
 
-export const getMosqueByUid = (req: Request, res: Response) => {
-	console.log("UID", req.params.uid);
-	res.send("getting mosque by uid");
+export const getMosqueByUid = async (req: Request, res: Response) => {
+	const results = await mosque.getMosqueDetailsByUid(req.params.uid);
+	res.json(results);
 };
 
 export const getFullTimetable = (req: Request, res: Response) => {

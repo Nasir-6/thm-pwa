@@ -24,13 +24,14 @@ class Mosque {
 	}
 
 	async getMosqueDetailsByUid(uid: string): Promise<MosqueDto> {
+		const res = await this.#pool.query("SELECT * FROM mosques WHERE uid = $1", [uid]);
 		return {
-			uid,
-			name: "name",
-			address: "address",
-			latitude: 22,
-			longitude: 22,
-			googleUrl: "gUrl",
+			uid: res.rows[0].uid,
+			name: res.rows[0].name,
+			address: res.rows[0].address,
+			latitude: res.rows[0].latitude,
+			longitude: res.rows[0].longitude,
+			googleUrl: res.rows[0].google_url,
 		};
 	}
 
