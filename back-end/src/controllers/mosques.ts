@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import mosque from "../db";
+// TODO: Add service layer - currently using the pg implementation of it!
 
 export const getAllMosques = async (req: Request, res: Response) => {
 	const results = await mosque.getAllMosquesDetails();
