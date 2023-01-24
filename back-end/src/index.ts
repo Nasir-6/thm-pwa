@@ -2,7 +2,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import pool from "./config/db";
+import pool from "./config/pg_db";
 import mosques from "./routes/mosques";
 
 if (process.env.NODE_ENV !== "production") {
