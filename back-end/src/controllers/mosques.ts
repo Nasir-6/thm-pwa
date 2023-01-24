@@ -3,8 +3,7 @@ import mosque from "../db";
 
 export const getAllMosques = async (req: Request, res: Response) => {
 	const results = await mosque.getAllMosquesDetails();
-	console.log(results);
-	res.send("MOSQUES SUCCESSFUL");
+	res.json(results);
 };
 
 export const getMosqueByUid = (req: Request, res: Response) => {
