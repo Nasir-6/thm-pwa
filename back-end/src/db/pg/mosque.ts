@@ -1,4 +1,4 @@
-import { Pool, QueryClient } from "pg";
+import { Pool, QueryResult } from "pg";
 import { MosqueDto } from "../models/mosqueDto";
 import { DailyTimesDto } from "../models/dailyTimesDto";
 
@@ -12,7 +12,15 @@ class Mosque {
 
 	// All the methods
 	async getAllMosquesDetails(): Promise<MosqueDto[]> {
-		return [];
+		// try {
+		const res = await this.#pool.query("SELECT * FROM mosques");
+		return Mosque.mapMosqueResult(res);
+		// } catch (err: unknown) {
+		// return err;
+		// } finally {
+		// console.log("Tried to get all mosques");
+		// }
+		// return [];
 	}
 
 	async getMosqueDetailsByUid(uid: string): Promise<MosqueDto> {
@@ -43,6 +51,18 @@ class Mosque {
 			isha: new Date("2015-03-25"),
 		};
 	}
+
+	private static mapMosqueResult = (
+		res: QueryResult
+	): MosqueDto[] => // projection
+		res.rows.map((r) => ({
+			uid: r.uid,
+			name: r.name,
+			address: r.address,
+			latitude: r.latitude,
+			longitude: r.longitude,
+			googleUrl: r.google_url,
+		}));
 }
 
 export default Mosque;

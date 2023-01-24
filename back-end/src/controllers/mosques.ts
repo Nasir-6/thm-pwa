@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
+import mosque from "../db";
 
-export const getAllMosques = (req: Request, res: Response) => {
+export const getAllMosques = async (req: Request, res: Response) => {
+	const results = await mosque.getAllMosquesDetails();
+	console.log(results);
 	res.send("MOSQUES SUCCESSFUL");
 };
 
