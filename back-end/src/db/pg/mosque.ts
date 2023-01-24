@@ -2,7 +2,7 @@ import { Pool, QueryResult } from "pg";
 import { MosqueDB, MosqueDto } from "../models/mosqueDto";
 import { DailyTimesDto } from "../models/dailyTimesDto";
 
-class Mosque {
+class MosqueDAOPostgres {
 	// Defining property types - # = private property
 	#pool: Pool;
 
@@ -14,7 +14,7 @@ class Mosque {
 	async getAllMosquesDetails(): Promise<MosqueDto[]> {
 		// try {
 		const res = await this.#pool.query("SELECT * FROM mosques");
-		return Mosque.mapMosqueResult(res);
+		return MosqueDAOPostgres.mapMosqueResult(res);
 		// } catch (err: unknown) {
 		// return err;
 		// } finally {
@@ -68,4 +68,4 @@ class Mosque {
 		}));
 }
 
-export default Mosque;
+export default MosqueDAOPostgres;
