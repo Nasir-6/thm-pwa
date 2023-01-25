@@ -9,7 +9,7 @@ const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
 
 const Map = () => {
   // Testing backend api
-  fetch(`http://localhost:8080/`)
+  fetch(`http://localhost:8000/api/mosques`)
     .then((response) => response.json())
     .then((data) => console.log(data))
     .catch((err) => console.log(err));
