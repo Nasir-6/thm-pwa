@@ -1,6 +1,6 @@
 import { Pool, QueryResult } from "pg";
 import { MosqueDB, MosqueDto } from "../models/mosqueDto";
-import { DailyTimesDto } from "../models/dailyTimesDto";
+import { DailyTimesMosqueDto } from "../models/dailyTimesDto";
 
 class MosqueDAOPostgres {
 	// Defining property types - # = private property
@@ -37,11 +37,11 @@ class MosqueDAOPostgres {
 		};
 	}
 
-	async getTimesForAGivenDateForAllMosques(date: Date): Promise<DailyTimesDto[]> {
+	async getTimesForAGivenDateForAllMosques(date: Date): Promise<DailyTimesMosqueDto[]> {
 		return [];
 	}
 
-	async getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesDto> {
+	async getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDto> {
 		return {
 			id: 1,
 			mosqueId,
