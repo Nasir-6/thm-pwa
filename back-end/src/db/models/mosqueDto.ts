@@ -1,5 +1,5 @@
 export type MosqueDto = {
-	uid: string;
+	id: number;
 	name: string;
 	address: string;
 	latitude: number;
@@ -8,7 +8,7 @@ export type MosqueDto = {
 };
 
 export type MosqueDB = {
-	uid: string;
+	id: number;
 	name: string;
 	address: string;
 	latitude: number;

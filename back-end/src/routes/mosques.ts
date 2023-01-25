@@ -1,15 +1,11 @@
 import express from "express";
-import {
-	getAllMosques,
-	getMosqueByUid,
-	getFullTimetable,
-} from "../controllers/mosques";
+import { getAllMosques, getMosqueById, getFullTimetable } from "../controllers/mosques";
 
 const router = express.Router();
 
 router.get("/", getAllMosques);
 
-router.get("/:uid", getMosqueByUid);
+router.get("/:id", getMosqueById);
 
 router.get("/timetable", getFullTimetable);
 

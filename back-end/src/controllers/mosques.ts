@@ -7,8 +7,8 @@ export const getAllMosques = async (req: Request, res: Response) => {
 	res.json(results);
 };
 
-export const getMosqueByUid = async (req: Request, res: Response) => {
-	const results = await mosqueDAO.getMosqueDetailsByUid(req.params.uid);
+export const getMosqueById = async (req: Request, res: Response) => {
+	const results = await mosqueDAO.getMosqueDetailsById(Number(req.params.id));
 	res.json(results);
 };
 

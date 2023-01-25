@@ -1,6 +1,6 @@
 export type DailyTimesDto = {
-	uid: string;
-	mosqueUid: string;
+	id: number;
+	mosqueId: number;
 	mosqueName: string;
 	date: Date;
 	fajr: Date;
