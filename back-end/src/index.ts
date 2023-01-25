@@ -2,7 +2,6 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import pool from "./config/pg_db";
 import mosques from "./routes/mosques";
 
 if (process.env.NODE_ENV !== "production") {
@@ -17,16 +16,6 @@ app.use("/api/mosques", mosques);
 
 app.get("/", async (req, res) => {
 	res.json({ test: "success" });
-});
-
-app.get("/pg", async (req, res) => {
-	try {
-		// console.log("pool", pool);
-		const testList = await pool.query("SELECT * FROM mosques;");
-		res.json(testList.rows);
-	} catch (err) {
-		console.log("err", err);
-	}
 });
 
 app.all("*", (req, res) => {
