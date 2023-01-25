@@ -1,31 +1,32 @@
 import React from 'react';
 import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { useQuery } from 'react-query';
+// eslint-disable-next-line import/no-relative-packages
+import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 import MosqueIcon from './MosqueIcon';
 
-import mosqueData from '../../data/thm_mosques.json';
+// import mosqueData from '../../data/thm_mosques.json';
 
 const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
 
 const Map = () => {
-  // Testing backend api
-  fetch(`http://localhost:8000/api/mosques`)
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
+  const fetchAllMosques = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const mosqueData: MosqueDTO[] = await fetch(`http://localhost:8000/api/mosques`).then((response) => response.json());
+    return mosqueData;
+  };
+  const { data: mosques } = useQuery('mosques', fetchAllMosques);
 
-  // console.log('mosqueData', mosqueData);
-  const createMosqueIcons = mosqueData.map((mosque) => {
-    // console.log('mosque', mosque);
-
+  const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => {
     const mosqueDetails = {
-      name: mosque['Masjid Name'],
+      name: mosque.name,
       position: {
-        lat: Number(mosque.Latitude),
-        lng: Number(mosque.Longitude),
+        lat: Number(mosque.latitude),
+        lng: Number(mosque.longitude),
       },
-      address: mosque.Address,
-      url: mosque.url,
+      address: mosque.address,
+      url: mosque.googleUrl,
     };
     return <MosqueIcon mosque={mosqueDetails} />;
   });
