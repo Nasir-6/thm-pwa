@@ -2,7 +2,7 @@ DROP TABLE mosque_times;
 DROP TABLE mosques;
 
 CREATE TABLE mosques (
-	uid VARCHAR UNIQUE PRIMARY KEY,
+	id SERIAL UNIQUE PRIMARY KEY,
 	name VARCHAR UNIQUE NOT NULL,
 	address VARCHAR UNIQUE NOT NULL,
 	latitude NUMERIC NOT NULL,
@@ -10,14 +10,14 @@ CREATE TABLE mosques (
 	google_url VARCHAR NOT NULL
 );
 
-COPY mosques(uid, name, address, latitude, longitude, google_url)
+COPY mosques(id, name, address, latitude, longitude, google_url)
 FROM '/Users/nasir/thm-pwa/time_converter_scripts/mosques_db.csv'
 DELIMITER ','
 CSV HEADER;
 
 CREATE TABLE mosque_times (
-	uid VARCHAR UNIQUE PRIMARY KEY,
-	mosque_uid VARCHAR REFERENCES mosques(uid),
+	id SERIAL UNIQUE PRIMARY KEY,
+	mosque_id INTEGER REFERENCES mosques(id),
 	name VARCHAR NOT NULL,
 	date DATE NOT NULL,
 	fajr TIME NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE mosque_times (
 );
 
 
-COPY mosque_times(uid, mosque_uid, name, date, fajr, zuhr, asr, maghrib, isha)
+COPY mosque_times(mosque_id, name, date, fajr, zuhr, asr, maghrib, isha)
 FROM '/Users/nasir/thm-pwa/time_converter_scripts/chatGPT-mosques-new-DB-cleaned/all_mosque_combined.csv'
 DELIMITER ','
 CSV HEADER;
@@ -36,7 +36,8 @@ CSV HEADER;
 
 DROP TABLE postcodes;
 CREATE TABLE postcodes (
-	postcode VARCHAR UNIQUE PRIMARY KEY,
+    id SERIAL UNIQUE PRIMARY KEY,
+	postcode VARCHAR UNIQUE,
     latitude NUMERIC NOT NULL,
 	longitude NUMERIC NOT NULL
 );
