@@ -1,4 +1,4 @@
-export type PostcodeDto = {
+export type PostcodeDTO = {
 	id: number;
 	postcode: string;
 	latitude: number;

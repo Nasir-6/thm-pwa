@@ -1,4 +1,4 @@
-export type MosqueDto = {
+export type MosqueDTO = {
 	id: number;
 	name: string;
 	address: string;

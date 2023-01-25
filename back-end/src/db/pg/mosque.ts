@@ -1,6 +1,6 @@
 import { Pool, QueryResult } from "pg";
-import { MosqueDB, MosqueDto } from "../models/mosqueDto";
-import { DailyTimesMosqueDto } from "../models/dailyTimesDto";
+import { MosqueDB, MosqueDTO } from "../models/mosques";
+import { DailyTimesMosqueDTO } from "../models/dailyTimes";
 
 class MosqueDAOPostgres {
 	// Defining property types - # = private property
@@ -11,7 +11,7 @@ class MosqueDAOPostgres {
 	}
 
 	// All the methods
-	async getAllMosquesDetails(): Promise<MosqueDto[]> {
+	async getAllMosquesDetails(): Promise<MosqueDTO[]> {
 		// try {
 		const res = await this.#pool.query("SELECT * FROM mosques");
 		return MosqueDAOPostgres.mapMosqueResult(res);
@@ -23,7 +23,7 @@ class MosqueDAOPostgres {
 		// return [];
 	}
 
-	async getMosqueDetailsById(id: number): Promise<MosqueDto> {
+	async getMosqueDetailsById(id: number): Promise<MosqueDTO> {
 		const res = await this.#pool.query("SELECT * FROM mosques WHERE id = $1", [id]);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const mosque: MosqueDB = res.rows[0];
@@ -37,11 +37,11 @@ class MosqueDAOPostgres {
 		};
 	}
 
-	async getTimesForAGivenDateForAllMosques(date: Date): Promise<DailyTimesMosqueDto[]> {
+	async getTimesForAGivenDateForAllMosques(date: Date): Promise<DailyTimesMosqueDTO[]> {
 		return [];
 	}
 
-	async getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDto> {
+	async getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
 		return {
 			id: 1,
 			mosqueId,
@@ -57,7 +57,7 @@ class MosqueDAOPostgres {
 
 	private static mapMosqueResult = (
 		res: QueryResult
-	): MosqueDto[] => // projection
+	): MosqueDTO[] => // projection
 		res.rows.map((r: MosqueDB) => ({
 			id: r.id,
 			name: r.name,

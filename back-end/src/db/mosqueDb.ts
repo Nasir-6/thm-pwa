@@ -1,9 +1,9 @@
-import { MosqueDto } from "./models/mosqueDto";
-import { DailyTimesMosqueDto } from "./models/dailyTimesDto";
+import { MosqueDTO } from "./models/mosques";
+import { DailyTimesMosqueDTO } from "./models/dailyTimes";
 
 export interface MosqueDAOInterface {
-	getAllMosquesDetails(): Promise<MosqueDto[]>;
-	getMosqueDetailsById(id: number): Promise<MosqueDto>;
-	getTimesForAGivenDateForAllMosques(date: Date): Promise<DailyTimesMosqueDto[]>;
-	getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDto>;
+	getAllMosquesDetails(): Promise<MosqueDTO[]>;
+	getMosqueDetailsById(id: number): Promise<MosqueDTO>;
+	getTimesForAGivenDateForAllMosques(date: Date): Promise<DailyTimesMosqueDTO[]>;
+	getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO>;
 }
