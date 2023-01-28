@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/timetable", (req, res) => {
-	mosqueController.getTimesForAGivenDateForAMosque(req, res).catch((err) => console.log("err", err));
+	mosqueController.getTimesForAMosqueOnAGivenDate(req, res).catch((err) => console.log("err", err));
 });
 
 export default router;

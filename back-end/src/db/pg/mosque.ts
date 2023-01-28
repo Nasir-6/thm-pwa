@@ -33,7 +33,7 @@ class MosqueDAOPostgres {
 		};
 	}
 
-	async getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
+	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
 		return {
 			id: 1,
 			mosqueId,

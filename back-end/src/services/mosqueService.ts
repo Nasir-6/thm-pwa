@@ -21,8 +21,8 @@ class MosqueService {
 		return res;
 	}
 
-	async getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
-		const res = await this.mosqueDAO.getTimesForAGivenDateForAMosque(mosqueId, date);
+	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
+		const res = await this.mosqueDAO.getTimesForAMosqueOnAGivenDate(mosqueId, date);
 		return res;
 	}
 }

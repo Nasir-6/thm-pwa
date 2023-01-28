@@ -41,11 +41,11 @@ class MosqueController {
 		}
 	}
 
-	async getTimesForAGivenDateForAMosque(req: Request, res: Response): Promise<void> {
+	async getTimesForAMosqueOnAGivenDate(req: Request, res: Response): Promise<void> {
 		// TODO: Grab mosqueId and date from Request Body/Params
 		const mosqueId = 1;
 		const date = new Date("2015-03-25");
-		const result = await this.mosqueService.getTimesForAGivenDateForAMosque(mosqueId, date);
+		const result = await this.mosqueService.getTimesForAMosqueOnAGivenDate(mosqueId, date);
 		res.json(result);
 	}
 }
