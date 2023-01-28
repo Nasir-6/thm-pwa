@@ -1,3 +1,12 @@
+// Note on why an additional arrow function was used:
+// First - Had to use dependency injection for controller and service to make them testable!
+// But doing so - meant somehow had to pass in the req and res params into controller
+// Also issue with undefined service when using just mosqueController.getAllMosques - this just gave back the function
+// Wanted to call it - also came across this github issue below which gave the idea of passing in the res and req params into controller
+// https://github.com/graphql/express-graphql/issues/757
+// Did not use next() as the controller middleware is the last so by defualt its fine - also Express 5 uses next() when rejecting promises
+// Just used .catch here in case any other errors fall through - maybe can use logger later on!
+
 import express from "express";
 import MosqueController from "../controllers/mosques";
 // import { getAllMosques, getMosqueById, getFullTimetable } from "../controllers/mosques";
@@ -9,7 +18,6 @@ const mosqueController = new MosqueController(mosqueService);
 
 const router = express.Router();
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/unbound-method
 router.get("/", (req, res) => {
 	mosqueController.getAllMosques(req, res).catch((err) => console.log("err", err));
 });
