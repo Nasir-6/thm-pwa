@@ -8,10 +8,9 @@
 // Just used .catch here in case any other errors fall through - maybe can use logger later on!
 
 import express from "express";
-import MosqueController from "../controllers/mosques";
-// import { getAllMosques, getMosqueById, getFullTimetable } from "../controllers/mosques";
 import mosqueDAO from "../db";
 import MosqueService from "../services/mosqueService";
+import MosqueController from "../controllers/mosques";
 
 const mosqueService = new MosqueService(mosqueDAO);
 const mosqueController = new MosqueController(mosqueService);
