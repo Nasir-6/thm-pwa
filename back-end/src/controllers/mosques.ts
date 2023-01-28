@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Request, Response } from "express";
 import HttpException from "../exceptions/httpExceptions";
 import { MosqueServiceInterface } from "../services/mosqueServiceInterface";
@@ -19,6 +18,7 @@ class MosqueController {
 			if (err instanceof HttpException) {
 				res.status(err.status).send(err.message);
 			} else {
+				// eslint-disable-next-line no-console
 				console.log("THE err", err);
 				res.status(500).send("Some Unknown Error occured");
 			}
@@ -34,6 +34,7 @@ class MosqueController {
 			if (err instanceof HttpException) {
 				res.status(err.status).send(err.message);
 			} else {
+				// eslint-disable-next-line no-console
 				console.log("THE err", err);
 				res.status(500).send("Some Unknown Error occured");
 			}
