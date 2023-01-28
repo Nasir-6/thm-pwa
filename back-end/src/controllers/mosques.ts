@@ -15,8 +15,17 @@ class MosqueController {
 	}
 
 	async getMosqueById(req: Request, res: Response): Promise<void> {
-		const results = await this.mosqueService.getMosqueById(Number(req.params.id));
-		res.json(results);
+		try {
+			if (Number.isNaN(Number(req.params.id))) {
+				res.status(404).send("The id parameter is not a number");
+			} else {
+				const results = await this.mosqueService.getMosqueById(Number(req.params.id));
+				res.json(results);
+			}
+		} catch (err) {
+			console.log("MYerr", err);
+			res.status(500).send("Some Error occured");
+		}
 	}
 
 	async getTimesForAGivenDateForAMosque(req: Request, res: Response): Promise<void> {

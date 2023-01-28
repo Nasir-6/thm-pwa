@@ -18,7 +18,6 @@ class MosqueService {
 
 	async getMosqueById(id: number): Promise<MosqueDTO> {
 		const res = await this.mosqueDAO.getMosqueById(id);
-		// Maybe a check here??
 		return res;
 	}
 
