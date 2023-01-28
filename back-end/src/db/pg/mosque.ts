@@ -11,7 +11,7 @@ class MosqueDAOPostgres {
 	}
 
 	// All the methods
-	async getAllMosquesDetails(): Promise<MosqueDTO[]> {
+	async getAllMosques(): Promise<MosqueDTO[]> {
 		// try {
 		const res = await this.#pool.query("SELECT * FROM mosques");
 		return MosqueDAOPostgres.mapMosqueResult(res);
@@ -23,7 +23,7 @@ class MosqueDAOPostgres {
 		// return [];
 	}
 
-	async getMosqueDetailsById(id: number): Promise<MosqueDTO> {
+	async getMosqueById(id: number): Promise<MosqueDTO> {
 		const res = await this.#pool.query("SELECT * FROM mosques WHERE id = $1", [id]);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const mosque: MosqueDB = res.rows[0];
@@ -35,10 +35,6 @@ class MosqueDAOPostgres {
 			longitude: mosque.longitude,
 			googleUrl: mosque.google_url,
 		};
-	}
-
-	async getTimesForAGivenDateForAllMosques(date: Date): Promise<DailyTimesMosqueDTO[]> {
-		return [];
 	}
 
 	async getTimesForAGivenDateForAMosque(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
