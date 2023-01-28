@@ -11,8 +11,17 @@ class MosqueController {
 	}
 
 	async getAllMosques(req: Request, res: Response): Promise<void> {
-		const results = await this.mosqueService.getAllMosques();
-		res.json(results);
+		try {
+			const results = await this.mosqueService.getAllMosques();
+			res.json(results);
+		} catch (err) {
+			if (err instanceof HttpException) {
+				res.status(err.status).send(err.message);
+			} else {
+				console.log("THE err", err);
+				res.status(500).send("Some Unknown Error occured");
+			}
+		}
 	}
 
 	async getMosqueById(req: Request, res: Response): Promise<void> {
