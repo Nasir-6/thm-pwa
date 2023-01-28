@@ -1,4 +1,5 @@
-import e, { NextFunction, Request, Response } from "express";
+/* eslint-disable no-console */
+import { Request, Response } from "express";
 import HttpException from "../exceptions/httpExceptions";
 import { MosqueServiceInterface } from "../services/mosqueServiceInterface";
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Note on why an additional arrow function was used:
 // First - Had to use dependency injection for controller and service to make them testable!
 // But doing so - meant somehow had to pass in the req and res params into controller
