@@ -26,7 +26,7 @@ class MosqueDAOPostgres {
 
 	async getMosqueById(id: number): Promise<MosqueDTO> {
 		const res = await this.#pool.query("SELECT * FROM mosques WHERE id = $1", [id]);
-		if (res.rowCount === 0) throw new HttpException(404, "Mosque could not be found");
+		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${id} could not be found`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const mosque: MosqueDB = res.rows[0];
 		return {

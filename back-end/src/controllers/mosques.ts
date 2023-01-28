@@ -1,4 +1,5 @@
-import { Request, Response } from "express";
+import e, { NextFunction, Request, Response } from "express";
+import HttpException from "../exceptions/httpExceptions";
 import { MosqueServiceInterface } from "../services/mosqueServiceInterface";
 
 class MosqueController {
@@ -16,15 +17,16 @@ class MosqueController {
 
 	async getMosqueById(req: Request, res: Response): Promise<void> {
 		try {
-			if (Number.isNaN(Number(req.params.id))) {
-				res.status(404).send("The id parameter is not a number");
-			} else {
-				const results = await this.mosqueService.getMosqueById(Number(req.params.id));
-				res.json(results);
-			}
+			if (Number.isNaN(Number(req.params.id))) throw new HttpException(400, `Mosque Id parameter "${req.params.id}" is not a number`);
+			const results = await this.mosqueService.getMosqueById(Number(req.params.id));
+			res.json(results);
 		} catch (err) {
-			console.log("MYerr", err);
-			res.status(500).send("Some Error occured");
+			if (err instanceof HttpException) {
+				res.status(err.status).send(err.message);
+			} else {
+				console.log("THE err", err);
+				res.status(500).send("Some Unknown Error occured");
+			}
 		}
 	}
 
