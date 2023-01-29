@@ -1,6 +1,6 @@
 import { Pool, QueryResult } from "pg";
 import { MosqueDB, MosqueDTO } from "../models/mosques";
-import { DailyTimesMosqueDTO } from "../models/dailyTimes";
+import { DailyTimesMosqueDTO, DailyTimesMosqueDB } from "../models/dailyTimes";
 import HttpException from "../../exceptions/httpExceptions";
 
 class MosqueDAOPostgres {
@@ -34,12 +34,30 @@ class MosqueDAOPostgres {
 	}
 
 	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
+		console.log("dateINDB", date);
+		console.log(date.getMonth());
+		const formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+		console.log("formattedDate", formattedDate);
+
+		const query = "SELECT * FROM mosque_times WHERE mosque_id = $1 AND date = to_date($2, 'YYYY-MM-DD')";
+		const res = await this.#pool.query(query, [mosqueId, formattedDate]);
+
+		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${mosqueId} and date=${formattedDate} could not be found`);
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const mosqueTimes: DailyTimesMosqueDB = res.rows[0];
+		console.log("mosqueTimes.date", mosqueTimes.date);
+		// const dateStr = `${formattedDate}T${mosqueTimes.fajr}`;
+		// console.log("dateStr", dateStr);
+		// const formattedFajr = new Date(dateStr);
+		// console.log("formattedFajr", formattedFajr);
+
 		return {
-			id: 1,
-			mosqueId,
-			mosqueName: "mosqueName",
-			date,
-			fajr: new Date("2015-03-25"),
+			id: mosqueTimes.id,
+			mosqueId: mosqueTimes.mosque_id,
+			mosqueName: mosqueTimes.mosque_name,
+			date: mosqueTimes.date,
+			fajr: new Date(),
 			zuhr: new Date("2015-03-25"),
 			asr: new Date("2015-03-25"),
 			maghrib: new Date("2015-03-25"),
