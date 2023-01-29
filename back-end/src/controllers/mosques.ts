@@ -60,10 +60,6 @@ class MosqueController {
 				res.status(500).send("Some Unknown Error occured");
 			}
 		}
-		const mosqueId = 1;
-		const date = new Date("2015-03-25");
-		const result = await this.mosqueService.getTimesForAMosqueOnAGivenDate(mosqueId, date);
-		res.json(result);
 	}
 }
 
