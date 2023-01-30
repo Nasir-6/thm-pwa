@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== "production") {
 const app = express();
 app.use(cors());
 
-app.use("/api/mosques", mosques);
+app.use("/api/v1/mosques", mosques);
 
 app.get("/", async (req, res) => {
 	res.json({ test: "success" });
