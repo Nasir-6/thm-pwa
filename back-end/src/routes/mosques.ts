@@ -9,37 +9,25 @@
 // Just used .catch here in case any other errors fall through - maybe can use logger later on!
 
 import express from "express";
-import { Response } from "express-serve-static-core";
 import mosqueDAO from "../db";
 import MosqueService from "../services/mosqueService";
 import MosqueController from "../controllers/mosques";
-import HttpException from "../exceptions/httpExceptions";
 
 const mosqueService = new MosqueService(mosqueDAO);
 const mosqueController = new MosqueController(mosqueService);
 
 const router = express.Router();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const errorHandler = (res: Response<any, Record<string, any>, number>, err: any) => {
-	if (err instanceof HttpException) {
-		res.status(err.status).send(err.message);
-	} else {
-		// eslint-disable-next-line no-console
-		console.log("THE err", err);
-		res.status(500).send("Some Unknown Error occured");
-	}
-};
-router.get("/", (req, res) => {
-	mosqueController.getAllMosques(req, res).catch((err) => errorHandler(res, err));
+router.get("/", (req, res, next) => {
+	mosqueController.getAllMosques(req, res).catch((err) => next(err));
 });
 
-router.get("/:id", (req, res) => {
-	mosqueController.getMosqueById(req, res).catch((err) => errorHandler(res, err));
+router.get("/:id", (req, res, next) => {
+	mosqueController.getMosqueById(req, res).catch((err) => next(err));
 });
 
-router.get("/:mosqueId/timetable/:date", (req, res) => {
-	mosqueController.getTimesForAMosqueOnAGivenDate(req, res).catch((err) => errorHandler(res, err));
+router.get("/:mosqueId/timetable/:date", (req, res, next) => {
+	mosqueController.getTimesForAMosqueOnAGivenDate(req, res).catch((err) => next(err));
 });
 
 export default router;

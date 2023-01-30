@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import mosques from "./routes/mosques";
+import ErrorHandler from "./middlewares/ErrorHandler";
 
 if (process.env.NODE_ENV !== "production") {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
@@ -17,6 +18,9 @@ app.use("/api/mosques", mosques);
 app.get("/", async (req, res) => {
 	res.json({ test: "success" });
 });
+
+// Place ErrorHandler middleware last so can pass in next(err)
+app.use(ErrorHandler);
 
 app.all("*", (req, res) => {
 	res.status(404).send("Resource not found");
