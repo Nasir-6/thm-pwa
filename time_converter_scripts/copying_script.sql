@@ -19,7 +19,7 @@ CREATE TABLE mosque_times (
 	id SERIAL UNIQUE PRIMARY KEY,
 	mosque_id INTEGER REFERENCES mosques(id),
 	mosque_name VARCHAR NOT NULL,
-	date DATE NOT NULL,
+	date VARCHAR NOT NULL,
 	fajr TIME NOT NULL,
 	zuhr TIME NOT NULL,
 	asr TIME NOT NULL,
@@ -37,7 +37,7 @@ DROP TABLE salah_beginning_times;
 
 CREATE TABLE salah_beginning_times (
 	id SERIAL UNIQUE PRIMARY KEY,
-	date DATE UNIQUE NOT NULL,
+	date VARCHAR UNIQUE NOT NULL,
 	fajr TIME NOT NULL,
 	zuhr TIME NOT NULL,
 	asr_1st_mithl TIME NOT NULL,
@@ -66,3 +66,5 @@ COPY postcodes(postcode, latitude, longitude)
 FROM '/Users/nasir/thm-pwa/time_converter_scripts/th_postcodes.csv'
 DELIMITER ','
 CSV HEADER;
+
+SELECT * FROM mosque_times WHERE mosque_id = 2 AND date = '01-APR-23';
