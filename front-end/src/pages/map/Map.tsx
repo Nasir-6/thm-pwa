@@ -13,13 +13,11 @@ const { getAllMosques } = useMosqueApi();
 const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
 
 const Map = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { data: response, isSuccess } = useQuery('mosques', () => getAllMosques());
+  const { data: mosques, isSuccess } = useQuery('mosques', () => getAllMosques());
 
-  console.log('mosques', response);
-  // if (isSuccess) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-  const createMosqueIcons = response?.data?.map((mosque: MosqueDTO) => {
+  console.log('mosques', mosques);
+
+  const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => {
     const mosqueDetails = {
       name: mosque.name,
       position: {
@@ -31,9 +29,6 @@ const Map = () => {
     };
     return <MosqueIcon mosque={mosqueDetails} />;
   });
-  // } else {
-
-  // }
 
   return (
     <MapContainer

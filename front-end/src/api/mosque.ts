@@ -6,7 +6,10 @@ import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 const useMosqueApi = () => {
   //   const { authToken } = useStore(state => state)
 
-  const getAllMosques = () => axios.get<MosqueDTO[]>(`http://localhost:8000/api/v1/mosques/`);
+  const getAllMosques = async (): Promise<MosqueDTO[]> => {
+    const res = await axios.get<MosqueDTO[]>(`http://localhost:8000/api/v1/mosques/`);
+    return res.data;
+  };
 
   return {
     getAllMosques,
