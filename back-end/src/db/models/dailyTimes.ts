@@ -2,12 +2,12 @@ export type DailyTimesMosqueDTO = {
 	id: number;
 	mosqueId: number;
 	mosqueName: string;
-	date: Date;
-	fajr: Date;
-	zuhr: Date;
-	asr: Date;
-	maghrib: Date;
-	isha: Date;
+	date: string;
+	fajr: string;
+	zuhr: string;
+	asr: string;
+	maghrib: string;
+	isha: string;
 };
 
 export type DailyTimesMosqueDB = {
@@ -24,14 +24,14 @@ export type DailyTimesMosqueDB = {
 
 export type DailySalahBeginningTimesDTO = {
 	id: number;
-	date: Date;
-	fajr: Date;
-	zuhr: Date;
-	asr1stMithl: Date;
-	asr2ndMithl: Date;
-	maghrib: Date;
-	isha: Date;
-	sunrise: Date;
+	date: string;
+	fajr: string;
+	zuhr: string;
+	asr1stMithl: string;
+	asr2ndMithl: string;
+	maghrib: string;
+	isha: string;
+	sunrise: string;
 };
 
 export type DailySalahBeginningTimesDB = {

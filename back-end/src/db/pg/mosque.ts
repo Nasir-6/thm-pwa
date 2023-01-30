@@ -1,4 +1,5 @@
 import { Pool, QueryResult } from "pg";
+import { format } from "date-fns";
 import { MosqueDB, MosqueDTO } from "../models/mosques";
 import { DailyTimesMosqueDTO, DailyTimesMosqueDB } from "../models/dailyTimes";
 import HttpException from "../../exceptions/httpExceptions";
@@ -34,36 +35,33 @@ class MosqueDAOPostgres {
 	}
 
 	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
-		console.log("dateINDB", date);
-		console.log(date.getMonth());
-		const formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
-		console.log("formattedDate", formattedDate);
-
-		const query = "SELECT * FROM mosque_times WHERE mosque_id = $1 AND date = to_date($2, 'YYYY-MM-DD')";
-		const res = await this.#pool.query(query, [mosqueId, formattedDate]);
-
-		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${mosqueId} and date=${formattedDate} could not be found`);
-
+		const DD_MMM_YY = format(date, "dd-MMM-yy");
+		const query = "SELECT id, mosque_id, mosque_name, date, fajr, zuhr, asr, maghrib, isha FROM mosque_times WHERE mosque_id = $1 AND date = $2";
+		const res = await this.#pool.query(query, [mosqueId, DD_MMM_YY]);
+		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${mosqueId} and date=${DD_MMM_YY} could not be found`);
+		if (res.rowCount !== 1) throw new HttpException(500, `Found more than one time for mosque_id=${mosqueId} and date=${DD_MMM_YY}`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const mosqueTimes: DailyTimesMosqueDB = res.rows[0];
-		console.log("mosqueTimes.date", mosqueTimes.date);
-		// const dateStr = `${formattedDate}T${mosqueTimes.fajr}`;
-		// console.log("dateStr", dateStr);
-		// const formattedFajr = new Date(dateStr);
-		// console.log("formattedFajr", formattedFajr);
-
+		// console.log("res.rows", res.rows);
 		return {
 			id: mosqueTimes.id,
 			mosqueId: mosqueTimes.mosque_id,
 			mosqueName: mosqueTimes.mosque_name,
 			date: mosqueTimes.date,
-			fajr: new Date(),
-			zuhr: new Date("2015-03-25"),
-			asr: new Date("2015-03-25"),
-			maghrib: new Date("2015-03-25"),
-			isha: new Date("2015-03-25"),
+			fajr: mosqueTimes.fajr,
+			zuhr: mosqueTimes.zuhr,
+			asr: mosqueTimes.asr,
+			maghrib: mosqueTimes.maghrib,
+			isha: mosqueTimes.isha,
 		};
 	}
+
+	// private static getISODateString = (date: Date): string => {
+	// 	const YYYY = date.getFullYear();
+	// 	const MM = date.getMonth() < 9 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`; // Month starts at 0 = Jan
+	// 	const DD = date.getDate() < 9 ? `0${date.getDate()}` : `${date.getDate()}`; // Date starts at 1 for 1st of month
+	// 	return `${YYYY}-${MM}-${DD}`;
+	// };
 
 	private static mapMosqueResult = (
 		res: QueryResult
