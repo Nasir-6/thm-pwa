@@ -5,20 +5,21 @@ import { useQuery } from 'react-query';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 import MosqueIcon from './MosqueIcon';
+import useMosqueApi from '../../api/mosque';
 
 // import mosqueData from '../../data/thm_mosques.json';
+const { getAllMosques } = useMosqueApi();
 
 const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
 
 const Map = () => {
-  const fetchAllMosques = async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const mosqueData: MosqueDTO[] = await fetch(`http://localhost:8000/api/mosques`).then((response) => response.json());
-    return mosqueData;
-  };
-  const { data: mosques } = useQuery('mosques', fetchAllMosques);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { data: response, isSuccess } = useQuery('mosques', () => getAllMosques());
 
-  const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => {
+  console.log('mosques', response);
+  // if (isSuccess) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+  const createMosqueIcons = response?.data?.map((mosque: MosqueDTO) => {
     const mosqueDetails = {
       name: mosque.name,
       position: {
@@ -30,6 +31,9 @@ const Map = () => {
     };
     return <MosqueIcon mosque={mosqueDetails} />;
   });
+  // } else {
+
+  // }
 
   return (
     <MapContainer
@@ -42,7 +46,7 @@ const Map = () => {
         attribution=' <a href="https://leafletjs.com/">Leaflet</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://www.hotosm.org/" target="_blank">HOT</a> | <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap Fr</a>'
         url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
       />
-      {createMosqueIcons}
+      {isSuccess && createMosqueIcons}
       <AttributionControl position="bottomright" prefix={false} />
     </MapContainer>
   );
