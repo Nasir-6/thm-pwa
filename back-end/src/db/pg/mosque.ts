@@ -38,11 +38,11 @@ class MosqueDAOPostgres {
 		const DD_MMM_YY = format(date, "dd-MMM-yy");
 		const query = "SELECT id, mosque_id, mosque_name, date, fajr, zuhr, asr, maghrib, isha FROM mosque_times WHERE mosque_id = $1 AND date = $2";
 		const res = await this.#pool.query(query, [mosqueId, DD_MMM_YY]);
+		// FIXME: What about when you want to show that we don't have this data? - Then should we throw error or give an empty array?
 		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${mosqueId} and date=${DD_MMM_YY} could not be found`);
 		if (res.rowCount !== 1) throw new HttpException(500, `Found more than one time for mosque_id=${mosqueId} and date=${DD_MMM_YY}`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const mosqueTimes: DailyTimesMosqueDB = res.rows[0];
-		// console.log("res.rows", res.rows);
 		return {
 			id: mosqueTimes.id,
 			mosqueId: mosqueTimes.mosque_id,

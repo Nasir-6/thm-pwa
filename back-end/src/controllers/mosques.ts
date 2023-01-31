@@ -22,7 +22,6 @@ class MosqueController {
 	}
 
 	async getTimesForAMosqueOnAGivenDate(req: Request, res: Response): Promise<void> {
-		// TODO: Grab mosqueId and date from Request Body/Params
 		const mosqueId = Number(req.params.mosqueId);
 		const date = new Date(req.params.date);
 		if (Number.isNaN(mosqueId)) throw new HttpException(400, `Mosque Id parameter "${req.params.mosqueId}" is not a number`);
