@@ -13,11 +13,12 @@ const { getAllMosques } = useMosqueApi();
 const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
 
 const Map = () => {
-  const { data: mosques, isSuccess } = useQuery('mosques', () => getAllMosques());
+  const { data: mosques, isSuccess } = useQuery({ queryKey: ['mosques'], queryFn: () => getAllMosques(), staleTime: 1000 * 60 * 10 });
 
   console.log('mosques', mosques);
 
   const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => {
+    console.log('typeof mosque.latitude', typeof mosque.latitude);
     const mosqueDetails = {
       name: mosque.name,
       position: {
