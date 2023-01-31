@@ -22,8 +22,8 @@ const Map = () => {
     const mosqueDetails = {
       name: mosque.name,
       position: {
-        lat: Number(mosque.latitude),
-        lng: Number(mosque.longitude),
+        lat: mosque.latitude,
+        lng: mosque.longitude,
       },
       address: mosque.address,
       url: mosque.googleUrl,

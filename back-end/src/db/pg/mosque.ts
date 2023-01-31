@@ -63,15 +63,13 @@ class MosqueDAOPostgres {
 	// 	return `${YYYY}-${MM}-${DD}`;
 	// };
 
-	private static mapMosqueResult = (
-		res: QueryResult
-	): MosqueDTO[] => // projection
+	private static mapMosqueResult = (res: QueryResult): MosqueDTO[] =>
 		res.rows.map((r: MosqueDB) => ({
 			id: r.id,
 			name: r.name,
 			address: r.address,
-			latitude: r.latitude,
-			longitude: r.longitude,
+			latitude: Number(r.latitude), // NOTE: Numeric values in DB are strings in JS
+			longitude: Number(r.longitude),
 			googleUrl: r.google_url,
 		}));
 }
