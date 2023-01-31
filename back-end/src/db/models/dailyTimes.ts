@@ -1,4 +1,4 @@
-export type DailyTimesMosqueDTO = {
+export type MosqueTimesDailyDTO = {
 	id: number;
 	mosqueId: number;
 	mosqueName: string;
@@ -10,7 +10,7 @@ export type DailyTimesMosqueDTO = {
 	isha: string;
 };
 
-export type DailyTimesMosqueDB = {
+export type MosqueTimesDailyDB = {
 	id: number;
 	mosque_id: number;
 	mosque_name: string;
@@ -22,7 +22,7 @@ export type DailyTimesMosqueDB = {
 	isha: string;
 };
 
-export type DailySalahBeginningTimesDTO = {
+export type SalahBeginningTimesDailyDTO = {
 	id: number;
 	date: string;
 	fajr: string;
@@ -34,7 +34,7 @@ export type DailySalahBeginningTimesDTO = {
 	sunrise: string;
 };
 
-export type DailySalahBeginningTimesDB = {
+export type SalahBeginningTimesDailyDB = {
 	id: number;
 	date: string;
 	fajr: string;

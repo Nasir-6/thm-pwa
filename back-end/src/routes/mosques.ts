@@ -26,7 +26,7 @@ router.get("/:id", (req, res, next) => {
 	mosqueController.getMosqueById(req, res).catch((err) => next(err));
 });
 
-router.get("/:mosqueId/timetable/:date", (req, res, next) => {
+router.get("/:mosqueId/timetables/:date", (req, res, next) => {
 	mosqueController.getTimesForAMosqueOnAGivenDate(req, res).catch((err) => next(err));
 });
 

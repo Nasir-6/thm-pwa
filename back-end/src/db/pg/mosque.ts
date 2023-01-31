@@ -1,7 +1,7 @@
 import { Pool, QueryResult } from "pg";
 import { format } from "date-fns";
 import { MosqueDB, MosqueDTO } from "../models/mosques";
-import { DailyTimesMosqueDTO, DailyTimesMosqueDB } from "../models/dailyTimes";
+import { MosqueTimesDailyDTO, MosqueTimesDailyDB } from "../models/dailyTimes";
 import HttpException from "../../exceptions/httpExceptions";
 
 class MosqueDAOPostgres {
@@ -34,7 +34,7 @@ class MosqueDAOPostgres {
 		};
 	}
 
-	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<DailyTimesMosqueDTO> {
+	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO> {
 		const DD_MMM_YY = format(date, "dd-MMM-yy");
 		const query = "SELECT id, mosque_id, mosque_name, date, fajr, zuhr, asr, maghrib, isha FROM mosque_times WHERE mosque_id = $1 AND date = $2";
 		const res = await this.#pool.query(query, [mosqueId, DD_MMM_YY]);
@@ -42,7 +42,7 @@ class MosqueDAOPostgres {
 		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${mosqueId} and date=${DD_MMM_YY} could not be found`);
 		if (res.rowCount !== 1) throw new HttpException(500, `Found more than one time for mosque_id=${mosqueId} and date=${DD_MMM_YY}`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		const mosqueTimes: DailyTimesMosqueDB = res.rows[0];
+		const mosqueTimes: MosqueTimesDailyDB = res.rows[0];
 		return {
 			id: mosqueTimes.id,
 			mosqueId: mosqueTimes.mosque_id,
