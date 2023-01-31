@@ -1,9 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { closestIndexTo } from 'date-fns';
+import { isFuture } from 'date-fns';
 import { getTimesForAMosqueOnAGivenDate } from '../../api/mosques';
-
-const salahArr = ['Fajr', 'Zuhr', 'Asr', 'Maghrib', 'Isha'];
 
 const DateTimeTest = () => {
   const { data: mosqueDailyTimes, isSuccess } = useQuery({
@@ -12,14 +10,20 @@ const DateTimeTest = () => {
     // staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  let closestSalah = 'None';
-  let closestTime = new Date();
+  let nextSalah = {
+    name: 'Fajr - Test',
+    time: new Date(),
+  };
   if (isSuccess) {
-    const { fajr, zuhr, asr, maghrib, isha } = mosqueDailyTimes;
-    const timeArr = [fajr, zuhr, asr, maghrib, isha];
-    const closestIndex = closestIndexTo(new Date(), timeArr);
-    closestSalah = closestIndex ? salahArr[closestIndex] : 'No Closest Salah found!';
-    closestTime = closestIndex ? timeArr[closestIndex] : closestTime;
+    const { id, mosqueId, mosqueName, date, ...salahTimesObj } = mosqueDailyTimes;
+    Object.entries(salahTimesObj).forEach(([name, time]) => {
+      if (isFuture(time)) {
+        nextSalah = {
+          name: name[0].toUpperCase() + name.slice(1),
+          time,
+        };
+      }
+    });
   }
 
   return (
@@ -35,8 +39,8 @@ const DateTimeTest = () => {
           <p>{`Maghrib: ${mosqueDailyTimes.maghrib.toLocaleTimeString()}`}</p>
           <p>{`Isha: ${mosqueDailyTimes.isha.toLocaleTimeString()}`}</p>
           <p>{new Date().toLocaleString()}</p>
-          <p>{`Closest Salah to current time is: ${closestSalah} `}</p>
-          <p>{`Closest Time to current time is: ${closestTime.toLocaleTimeString()} `}</p>
+          <p>{`Closest Salah to current time is: ${nextSalah.name} `}</p>
+          <p>{`Closest Time to current time is: ${nextSalah.time.toLocaleTimeString()} `}</p>
         </div>
       ) : (
         <p>Failed to fetch</p>
