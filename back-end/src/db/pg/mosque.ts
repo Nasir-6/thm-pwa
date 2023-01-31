@@ -28,8 +28,8 @@ class MosqueDAOPostgres {
 			id: mosque.id,
 			name: mosque.name,
 			address: mosque.address,
-			latitude: mosque.latitude,
-			longitude: mosque.longitude,
+			latitude: Number(mosque.latitude),
+			longitude: Number(mosque.longitude),
 			googleUrl: mosque.google_url,
 		};
 	}
