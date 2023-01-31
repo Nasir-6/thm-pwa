@@ -28,7 +28,7 @@ const Map = () => {
       address: mosque.address,
       url: mosque.googleUrl,
     };
-    return <MosqueIcon mosque={mosqueDetails} />;
+    return <MosqueIcon key={mosque.id} mosque={mosqueDetails} />;
   });
 
   return (

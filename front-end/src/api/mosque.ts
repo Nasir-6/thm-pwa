@@ -13,6 +13,7 @@ const useMosqueApi = () => {
   // since this is all in a promise here - any errors thrown by axios (i.e any status != 2xx will throw)
   // This will get thrown to useQuery and dealt with there - otherwise will return the MosquesDTO[]!
   const getAllMosques = async (): Promise<MosqueDTO[]> => {
+    // console.log('FETCHING DATA ++++++++++++++++++++++++++++');
     const res = await axios.get<MosqueDTO[]>(`http://localhost:8000/api/v1/mosques/`);
     return res.data;
   };
