@@ -1,5 +1,5 @@
 // Will use a TS declaration file for front-end ONLY - as not needed in Back-end
-// Also need the models for DTOs when receiving axios response
+// However The back-end models for DTOs are needed when receiving axios response - so import using relative path
 interface MosqueTimesDaily {
   id: number;
   mosqueId: number;
