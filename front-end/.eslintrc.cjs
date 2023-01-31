@@ -3,7 +3,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:@tanstack/eslint-plugin-query/recommended',
     'airbnb',
     'airbnb-typescript',
     'prettier',
