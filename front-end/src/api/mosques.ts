@@ -1,6 +1,6 @@
 /* eslint-disable import/no-relative-packages */
 import axios from 'axios';
-import { format, parse } from 'date-fns';
+import { format, parse } from 'date-fns'; // TODO: Parse function takes up 100k - so maybe worth making own Util Functions
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 import { MosqueTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes';
 
