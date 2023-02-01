@@ -29,7 +29,7 @@ const Navbar = () => {
             </svg>
             {/* <span> Menu </span> */}
           </button>
-          <ul id="primary-navigation" className="primary-navigation text-primary font-semibold" data-visible={isExpanded}>
+          <ul id="primary-navigation" className="primary-navigation text-primary-dark font-semibold" data-visible={isExpanded}>
             <li>
               <a href="/">Home</a>
             </li>
