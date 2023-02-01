@@ -9,7 +9,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className="navbar-container bg-primary text-white flex flex-row p-3">
+      <div className="navbar-container bg-gradient-to-r from-primary-light to-primary-dark text-white flex flex-row p-3">
         {/* Add href to home page once done routes */}
         <a href="/" className="font-logo text-xl cursor-pointer hover:text-accent">
           TOWER HAMLETS <span className="font-bold">MOSQUES</span>
