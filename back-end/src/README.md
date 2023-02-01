@@ -72,6 +72,12 @@ This architecture has 4 main players just like in a business which will be expla
 - You need to provide them the details they need in order to get what you want from them
 - They are kind enough to transform the data from the DB form into a form which can be transferred to the Client (DTO - Data Transfer Object)
 
-Note: There are additional folders/parts added in (middlewares, exceptsion) but the above analogy made it clear to me such that I could start placing certain code blocks in a suitable place/manner.
-All the Controllers/Services/DB/DAO instances can throw errors whenever they want straight to the client when the request is unreasonable which is handled by the ErrorHandler middleware - kind of like a mediator/security guard incase things go crazy.
-This analogy was key to building out the architecture as I had to know the purpose of each part before coding it out and forcing myself to explain it in simple terms definitely helped clear everything up. This is analogy is here for future development incase I forget why things are placed in certain areas.
+### Additional player - Security -> ErrorHandler (Middleware)
+
+- All the Controllers/Services/DB/DAO instances can throw errors whenever they want straight to the client when the request is unreasonable which is handled by the ErrorHandler middleware
+- Kind of like a mediator/security guard incase things go crazy.
+
+### Why the analogy?
+
+- There are additional folders/parts added in (middlewares, exceptsion) but the above analogy made it clear to me such that I could start placing certain code blocks in a suitable place/manner.
+- This was key as I had to know the purpose of each part before coding it out and forcing myself to explain it in simple terms definitely helped clear everything up. This analogy is here for future Me/developers incase I forget why things are placed in certain areas.
