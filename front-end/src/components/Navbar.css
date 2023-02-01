@@ -1,0 +1,107 @@
+/* THIS IS ALL FOR MOBILE FIRST */
+.primary-navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  height: 100vh;
+  width: 200px;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  z-index: 999;
+}
+
+.primary-navigation li {
+  position: relative;
+}
+.primary-navigation li:not(:last-child)::after {
+  content: '';
+  border: 1px solid #e2e2e2;
+  width: 125px;
+  position: absolute;
+  bottom: -0.5rem;
+  left: -5px;
+}
+
+/* Hamburger position and animations */
+.hamburger-btn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  z-index: 1000;
+  transition: stroke 200ms ease-in;
+}
+
+.hamburger-btn .line {
+  transform-origin: center;
+}
+
+.hamburger-btn[aria-expanded='true'] {
+  stroke: theme(colors.slate.900);
+}
+
+.hamburger-btn[aria-expanded='false'] {
+  stroke: white;
+}
+
+.hamburger-btn:hover {
+  stroke: theme(colors.accent.600);
+}
+
+.hamburger-btn[aria-expanded='false'] .line {
+  transition: transform 200ms ease-in 200ms, rotate 200ms ease-in 200ms, opacity 0ms 200ms;
+  stroke: inherit;
+}
+
+.hamburger-btn[aria-expanded='true'] .line {
+  transition: transform 200ms ease-in, rotate 200ms ease-in 200ms, opacity 0ms 200ms;
+}
+
+.hamburger-btn[aria-expanded='true'] .top {
+  transform: translateY(25px);
+  rotate: 45deg;
+}
+
+.hamburger-btn[aria-expanded='true'] .bottom {
+  transform-origin: center;
+  transform: translateY(-25px);
+  rotate: -45deg;
+}
+
+.hamburger-btn[aria-expanded='true'] .middle {
+  opacity: 0;
+}
+
+.primary-navigation[data-visible='true'] {
+  transition: transform 200ms ease-in;
+}
+
+.primary-navigation[data-visible='false'] {
+  transition: transform 200ms ease-in;
+  transform: translateX(200px);
+}
+
+.navbar-container {
+  z-index: 900;
+}
+.dark-overlay[data-visible='true'] {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 990;
+}
+
+.dark-overlay[data-visible='false'] {
+  /* position:absolute;
+  top:0;
+  width:100vw;
+  height:100vh;
+  background-color: rgba(0,0,0,0.5); */
+  z-index: 0;
+}

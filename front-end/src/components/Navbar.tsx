@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
+import './Navbar.css';
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
