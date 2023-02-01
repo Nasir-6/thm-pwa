@@ -14,9 +14,6 @@ module.exports = {
           dark: '#c47f45',
         },
       },
-      fontFamily: {
-        logo: ['"Cormorant Garamond"', 'serif'],
-      },
     },
   },
   plugins: [],
