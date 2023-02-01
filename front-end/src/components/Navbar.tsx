@@ -29,20 +29,20 @@ const Navbar = () => {
             </svg>
             {/* <span> Menu </span> */}
           </button>
-          <ul id="primary-navigation" className="primary-navigation text-primary-dark font-semibold" data-visible={isExpanded}>
-            <li>
+          <ul id="primary-navigation" className="primary-navigation text-primary-dark  font-semibold" data-visible={isExpanded}>
+            <li className=" hover:text-accent-dark">
               <a href="/">Home</a>
             </li>
-            <li>
+            <li className=" hover:text-accent-dark">
               <a href="/">About Us</a>
             </li>
-            <li>
+            <li className=" hover:text-accent-dark">
               <a href="/">Jumu'ah Times</a>
             </li>
-            <li>
+            <li className=" hover:text-accent-dark">
               <a href="/">Contact Us</a>
             </li>
-            <li>
+            <li className=" hover:text-accent-dark">
               <a href="/">Support Us</a>
             </li>
           </ul>
