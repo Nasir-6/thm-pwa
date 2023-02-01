@@ -1,3 +1,5 @@
+const { off } = require('process');
+
 module.exports = {
   extends: [
     'eslint:recommended',
@@ -15,6 +17,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   root: true,
   rules: {
+    'no-plusplus': 0,
     'react/function-component-definition': [
       2,
       {
