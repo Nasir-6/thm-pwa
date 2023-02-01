@@ -36,14 +36,42 @@ It is built on a Route - > Controller -> Service -> DAO/DB architecture with dep
 
 ## Business Analogy for the Architecture
 
-I've come up with an analogy for my future self in case I forget where I should place things for future development. Here it is:
+I've come up with an analogy for my future self in case I forget where I should place things for future development. Here it is.
 This architecture has 4 main players just like in a business which will be explained below:
 
 1. Routes -> Customers/Clients
-2. Controllers -> Manager
-3. Services -> Employee
-4. DB/DAO -> Special Employee who has access to confidential info about the company
+2. Controllers -> Managers
+3. Services -> Employees
+4. DB/DAO -> Data Employee who have access to confidential info about the company
 
 ### Routes -> Customers/Clients
 
-Each Customer/Client has a specific need and requirements with a load of background information. The Routes are similar in the sense this is where a request comes in but with a load of background information (Request Headers/Body). They only want the response and don't care about anything else.
+- Each Customer/Client has a specific need and requirements with a load of background information.
+- The Routes are similar in the sense this is where a request comes in but with a load of background information (Request Headers/Body).
+- They only want the response and don't care about anything else.
+
+### Controllers -> Managers
+
+- The managers get requests from clients about the issues.
+- They still have all the background information and thus you will find them taking in the full req and res objects.
+- They may check if the requests are valid before passing them to the employee to work on and thus checks on the req params and body may be performed here.
+- They then delegate the tasks to the employee defining what information they will be given and what info they expect back - Notice how the employee/service does not get all the information - only the relevant information.
+- Once there is a response it will be passed back to the client through res.json.
+
+### Services -> Employees
+
+- They are the ones handling all the intricate details of the requests
+- They only get info which they need to carry out the tasks (NOT the full req object)
+- They will return the information which the Manager want's not a full blown response object
+- They communicate with other internal services/employees (private services) to get the job done
+- They often need information about the company and so will liase with the DB/DAO/Data Employee to get the information they need to do their job
+
+### DB/DAO -> Data Employee
+
+- They are the ones getting the data about the company/product - which are not accessable by everyone
+- You need to provide them the details they need in order to get what you want from them
+- They are kind enough to transform the data from the DB form into a form which can be transferred to the Client (DTO - Data Transfer Object)
+
+Note: There are additional folders/parts added in (middlewares, exceptsion) but the above analogy made it clear to me such that I could start placing certain code blocks in a suitable place/manner.
+All the Controllers/Services/DB/DAO instances can throw errors whenever they want straight to the client when the request is unreasonable which is handled by the ErrorHandler middleware - kind of like a mediator/security guard incase things go crazy.
+This analogy was key to building out the architecture as I had to know the purpose of each part before coding it out and forcing myself to explain it in simple terms definitely helped clear everything up. This is analogy is here for future development incase I forget why things are placed in certain areas.
