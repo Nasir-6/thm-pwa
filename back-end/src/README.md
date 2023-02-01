@@ -34,7 +34,8 @@ It is built on a Route - > Controller -> Service -> DAO/DB architecture with dep
 - I'm still working my way through the intricate details of how it all works so as my understanding changes so will most of the tests
 - Any future features will be developed using TDD
 
-### Business Analogy for the Architecture
+## Business Analogy for the Architecture
+
 I've come up with an analogy for my future self in case I forget where I should place things for future development. Here it is:
 This architecture has 4 main players just like in a business which will be explained below:
 
@@ -43,6 +44,6 @@ This architecture has 4 main players just like in a business which will be expla
 3. Services -> Employee
 4. DB/DAO -> Special Employee who has access to confidential info about the company
 
-#### Routes -> Customers/Clients
+### Routes -> Customers/Clients
 
 Each Customer/Client has a specific need and requirements with a load of background information. The Routes are similar in the sense this is where a request comes in but with a load of background information (Request Headers/Body). They only want the response and don't care about anything else.
