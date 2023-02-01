@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { isFuture, addDays, intlFormatDistance } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
-import { getTimesForAMosqueOnAGivenDate } from '../../api/mosques';
+import { getTimesForAMosqueOnAGivenDate } from '../../../api/mosques';
 
 const DateTimeTest = () => {
   const { data: mosqueDailyTimes, isSuccess } = useQuery({
@@ -36,7 +36,7 @@ const DateTimeTest = () => {
   }
 
   return (
-    <div>
+    <div className="mosque-results">
       <h1>DateTimeTest</h1>
       {isSuccess ? (
         <div>

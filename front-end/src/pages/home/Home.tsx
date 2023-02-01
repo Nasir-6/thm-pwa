@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { MdOutlineMyLocation } from 'react-icons/md';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import DateTimeTest from './map/DateTimeTest';
-import Map from './map/Map';
-import SearchBar from './map/SearchBar';
+import DateTimeTest from './components/DateTimeTest';
+import Map from './components/Map';
+import SearchBar from './components/SearchBar';
 // import DataProcessor from '../data/DataProcessor';
 
 const Home = () => {
   const [isUsingLocation, setIsUsingLocation] = useState(false);
   const [isMapVisible, setIsMapVisible] = useState(false);
   return (
-    <div className="home-container p-4 flex flex-col justify-center items-center">
+    <div className="home-container py-4 flex flex-col justify-center items-center">
       <div className="control-panel w-full pb-2 flex flex-col items-center">
         <SearchBar />
         <div className="bottom-options flex w-full max-w-xl justify-between py-1 px-2">
