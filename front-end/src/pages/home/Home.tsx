@@ -11,7 +11,7 @@ const Home = () => {
   const [isMapVisible, setIsMapVisible] = useState(false);
   return (
     <div className="home-container py-4 flex flex-col justify-center items-center">
-      <div className="control-panel w-full pb-2 flex flex-col items-center">
+      <div className="control-panel w-full pb-2 px-3 flex flex-col items-center">
         <SearchBar />
         <div className="bottom-options flex w-full max-w-xl justify-between py-1 px-2">
           <button
