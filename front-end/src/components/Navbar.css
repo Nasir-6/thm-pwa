@@ -1,4 +1,5 @@
 /* THIS IS ALL FOR MOBILE FIRST */
+/* Website to convert hex to rbg to form rgba colors - https://color-hex.org/color/1a6271 */
 .navbar-pattern {
   background-image: url('../assets/pattern.svg');
   background-color: rgba(26, 98, 113, 1);
