@@ -1,4 +1,16 @@
 /* THIS IS ALL FOR MOBILE FIRST */
+.navbar-pattern {
+  background-image: url('../assets/pattern.svg');
+  background-color: rgba(26, 98, 113, 1);
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-container {
+  background-image: radial-gradient(circle at -100% -100%, rgba(26, 98, 113, 0.85), rgba(26, 98, 113, 1));
+}
+
 .primary-navigation {
   position: absolute;
   top: 0;
