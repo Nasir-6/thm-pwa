@@ -1,0 +1,35 @@
+/* Mobile first - then override at larger screens using media qs minwidth */
+.home-page-container {
+  display: grid;
+  grid-template-areas:
+    'controls'
+    'map'
+    'mosqueResults';
+}
+
+.control-panel {
+  grid-area: controls;
+}
+
+.map-container {
+  grid-area: map;
+  height: 500px;
+  z-index: 0;
+}
+
+.mosque-results {
+  grid-area: mosqueResults;
+}
+
+@media screen and (min-width: 1024px) {
+  .home-page-container {
+    grid-template-columns: 400px 1fr;
+    grid-template-areas:
+      'controls map'
+      'mosqueResults map'
+      'mosqueResults map';
+  }
+  .map-container {
+    height: calc(100vh - 48px - 52px);
+  }
+}
