@@ -29,6 +29,7 @@
     "react-leaflet": "^4.2.0",
     "react-query": "^3.39.3",
     "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.5",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^6.5.4",

@@ -7,7 +7,7 @@ import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
 import MosqueIcon from './MosqueIcon';
 import { getAllMosques } from '../../../api/mosques';
 
-const position = { lat: 51.51669455487648, lng: -0.04810539546076163 };
+const position = { lat: 51.5167, lng: -0.0481 };
 
 interface Props {
   isMapVisible: boolean;
@@ -36,7 +36,7 @@ const Map: React.FC<Props> = ({ isMapVisible }) => {
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {isMapVisible ? (
+      {isMapVisible && (
         <MapContainer center={position} zoom={13} scrollWheelZoom={false} attributionControl={false} className="map-container">
           <TileLayer
             attribution=' <a href="https://leafletjs.com/">Leaflet</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://www.hotosm.org/" target="_blank">HOT</a> | <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap Fr</a>'
@@ -45,8 +45,6 @@ const Map: React.FC<Props> = ({ isMapVisible }) => {
           {isSuccess && createMosqueIcons}
           <AttributionControl position="bottomright" prefix={false} />
         </MapContainer>
-      ) : (
-        <p>Hellos</p>
       )}
     </>
   );
