@@ -30,6 +30,6 @@
       'mosqueResults map';
   }
   .map-container {
-    height: calc(100vh - 48px - 52px);
+    height: calc(100vh - 52px);
   }
 }
