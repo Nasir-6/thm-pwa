@@ -7,6 +7,13 @@
     'mosqueResults';
 }
 
+.home-page-container--hide-map {
+  display: grid;
+  grid-template-areas:
+    'controls'
+    'mosqueResults';
+}
+
 .control-panel {
   grid-area: controls;
 }
@@ -28,6 +35,11 @@
       'controls map'
       'mosqueResults map'
       'mosqueResults map';
+  }
+  .home-page-container--hide-map {
+    grid-template-areas:
+      'controls'
+      'mosqueResults';
   }
   .map-container {
     height: calc(100vh - 52px);
