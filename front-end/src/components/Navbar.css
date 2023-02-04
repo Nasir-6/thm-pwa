@@ -89,18 +89,37 @@
   opacity: 0;
 }
 
-.primary-navigation[data-visible='true'] {
+/* CSSTransition classes for Ul - START */
+.navigation-exit {
+  transform: translateX(0);
+}
+
+.navigation-exit-active {
+  transform: translateX(200px);
   transition: transform 200ms ease-in;
 }
 
-.primary-navigation[data-visible='false'] {
-  transition: transform 200ms ease-in;
+.navigation-exit-done {
+  display: none;
+}
+
+.navigation-enter {
   transform: translateX(200px);
 }
+
+.navigation-enter-active {
+  transform: translateX(0px);
+  transition: transform 200ms ease-in;
+}
+
+.navigation-enter-done {
+}
+/* CSSTransition classes for Ul --- END */
 
 .navbar-container {
   z-index: 900;
 }
+
 .dark-overlay[data-visible='true'] {
   position: absolute;
   top: 0;
@@ -108,13 +127,4 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 990;
-}
-
-.dark-overlay[data-visible='false'] {
-  /* position:absolute;
-  top:0;
-  width:100vw;
-  height:100vh;
-  background-color: rgba(0,0,0,0.5); */
-  z-index: 0;
 }

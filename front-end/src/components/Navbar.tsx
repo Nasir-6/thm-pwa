@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
 import './Navbar.css';
+import { CSSTransition } from 'react-transition-group';
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -31,24 +32,26 @@ const Navbar = () => {
               </svg>
               {/* <span> Menu </span> */}
             </button>
-            <ul id="primary-navigation" className="primary-navigation text-slate-900 font-semibold" data-visible={isExpanded}>
-              {/* // TODO: Can Map through array so classes are same for all - https://tailwindcss.com/docs/reusing-styles */}
-              <li className=" hover:text-accent-600">
-                <a href="/">Home</a>
-              </li>
-              <li className=" hover:text-accent-600">
-                <a href="/">About Us</a>
-              </li>
-              <li className=" hover:text-accent-600">
-                <a href="/">Jumu'ah Times</a>
-              </li>
-              <li className=" hover:text-accent-600">
-                <a href="/">Contact Us</a>
-              </li>
-              <li className=" hover:text-accent-600">
-                <a href="/">Support Us</a>
-              </li>
-            </ul>
+            <CSSTransition in={isExpanded} timeout={200} classNames="navigation">
+              <ul id="primary-navigation" className="primary-navigation text-slate-900 font-semibold">
+                {/* // TODO: Can Map through array so classes are same for all - https://tailwindcss.com/docs/reusing-styles */}
+                <li className=" hover:text-accent-600">
+                  <a href="/">Home</a>
+                </li>
+                <li className=" hover:text-accent-600">
+                  <a href="/">About Us</a>
+                </li>
+                <li className=" hover:text-accent-600">
+                  <a href="/">Jumu'ah Times</a>
+                </li>
+                <li className=" hover:text-accent-600">
+                  <a href="/">Contact Us</a>
+                </li>
+                <li className=" hover:text-accent-600">
+                  <a href="/">Support Us</a>
+                </li>
+              </ul>
+            </CSSTransition>
           </nav>
         </div>
       </div>
