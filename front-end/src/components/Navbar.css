@@ -26,7 +26,32 @@
   justify-content: flex-start;
   gap: 1rem;
   z-index: 999;
+  transition: transform 200ms ease-in;
+  transform: translateX(200px); /* Start off screen so enter can be a transition to 0px!! */
 }
+
+/* CSSTransition classes for Ul - START */
+
+.navigation-enter {
+}
+.navigation-enter-active,
+.navigation-enter-done {
+  transform: translateX(0px);
+}
+
+.navigation-exit {
+  transform: translateX(0);
+}
+
+.navigation-exit-active {
+  transform: translateX(200px);
+}
+
+.navigation-exit-done {
+  transform: translateX(200px);
+}
+
+/* CSSTransition classes for Ul --- END */
 
 .primary-navigation li {
   position: relative;
@@ -88,33 +113,6 @@
 .hamburger-btn[aria-expanded='true'] .middle {
   opacity: 0;
 }
-
-/* CSSTransition classes for Ul - START */
-.navigation-exit {
-  transform: translateX(0);
-}
-
-.navigation-exit-active {
-  transform: translateX(200px);
-  transition: transform 200ms ease-in;
-}
-
-.navigation-exit-done {
-  display: none;
-}
-
-.navigation-enter {
-  transform: translateX(200px);
-}
-
-.navigation-enter-active {
-  transform: translateX(0px);
-  transition: transform 200ms ease-in;
-}
-
-.navigation-enter-done {
-}
-/* CSSTransition classes for Ul --- END */
 
 .navbar-container {
   z-index: 900;

@@ -1,7 +1,7 @@
-html {
-  overflow-x: hidden;
-}
-
 .App {
+  /* https://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers */
+  /* Bug with overflow being shown when resizing window - fixed with overflow-x and position */
+  overflow-x: hidden;
+  position: relative;
   text-align: center;
 }
