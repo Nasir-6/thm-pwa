@@ -12,7 +12,7 @@
   background-image: radial-gradient(circle at -100% -100%, rgba(26, 98, 113, 0.85), rgba(26, 98, 113, 1));
 }
 
-.primary-navigation {
+.navigation {
   position: absolute;
   top: 0;
   right: 0;
@@ -53,10 +53,10 @@
 
 /* CSSTransition classes for Ul --- END */
 
-.primary-navigation li {
+.navigation li {
   position: relative;
 }
-.primary-navigation li:not(:last-child)::after {
+.navigation li:not(:last-child)::after {
   content: '';
   border: 1px solid #e2e2e2;
   width: 125px;

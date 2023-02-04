@@ -19,12 +19,7 @@ const Navbar = () => {
           </a>
 
           <nav>
-            <button
-              type="button"
-              onClick={handleClick}
-              className="hamburger-btn"
-              aria-controls="primary-navigation"
-              aria-expanded={isExpanded}>
+            <button type="button" onClick={handleClick} className="hamburger-btn" aria-controls="navigation" aria-expanded={isExpanded}>
               <svg className="hamburger" viewBox="0 0 100 100" width={35}>
                 <line className="line top " x1={20} x2={80} y1={25} y2={25} strokeWidth="10" strokeLinecap="round" />
                 <line className="line middle" x1={20} x2={80} y1={50} y2={50} strokeWidth="10" strokeLinecap="round" />
@@ -33,7 +28,7 @@ const Navbar = () => {
               {/* <span> Menu </span> */}
             </button>
             <CSSTransition in={isExpanded} timeout={200} classNames="navigation">
-              <ul id="primary-navigation" className="primary-navigation text-slate-900 font-semibold">
+              <ul id="navigation" className="navigation text-slate-900 font-semibold">
                 {/* // TODO: Can Map through array so classes are same for all - https://tailwindcss.com/docs/reusing-styles */}
                 <li className=" hover:text-accent-600">
                   <a href="/">Home</a>
