@@ -11,7 +11,7 @@ const Home = () => {
   const [isUsingLocation, setIsUsingLocation] = useState(false);
   const [isMapVisible, setIsMapVisible] = useState(false);
   return (
-    <div className={`${isMapVisible ? 'home-page-container' : 'home-page-container--hide-map'}`}>
+    <div className={`home-page-container ${isMapVisible ? '' : 'home-page-container--hide-map'}`}>
       <div className="control-panel w-full py-2 px-3 flex flex-col items-center">
         <SearchBar />
         <div className="bottom-options flex w-full max-w-xl justify-between py-1 px-2">
