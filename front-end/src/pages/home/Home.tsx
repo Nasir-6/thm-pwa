@@ -18,7 +18,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className={`home-page-container ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
+    <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
       {isDesktopView ? (
         <>
           <div className="flex-grow min-w-max p-1">
