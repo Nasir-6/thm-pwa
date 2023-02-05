@@ -1,18 +1,18 @@
 /* Mobile first - then override at larger screens using media qs minwidth */
 .home-page-container {
   display: flex;
-  flex-direction: column;
   transition: all 2000ms;
 }
 
 .map-div {
-  width: 500px;
   height: 500px;
   z-index: 0;
   transition: all 200ms;
+  flex-grow: 100;
 }
 
 .map-div-hide {
+  flex-grow: 0;
   width: 0;
   height: 0;
 }
@@ -24,22 +24,8 @@
   transition: all 200ms;
 }
 
-/* .mosque-results {
-  grid-area: mosqueResults;
-} */
-
+=
 /* @media screen and (min-width: 1024px) {
-  .home-page-container {
-    grid-template-columns: 400px 1fr;
-    grid-template-areas:
-      'controls map'
-      'mosqueResults map'
-      'mosqueResults map';
-  }
-  .home-page-container--hide-map {
-    grid-template-columns: 100vw 0px;
-    transition: all ease-in 1000ms;
-  }
   .map-container {
     height: calc(100vh - 52px);
   }
