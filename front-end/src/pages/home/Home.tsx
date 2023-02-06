@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ControlPanel from './components/ControlPanel';
 import DateTimeTest from './components/DateTimeTest';
 import Map from './components/Map';
+import MosqueCard from './components/MosqueCard';
 // import DataProcessor from '../data/DataProcessor';
 import './Home.css';
 
@@ -23,6 +24,7 @@ const Home = () => {
         <>
           <div className="flex-grow min-w-max p-1">
             <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+            <MosqueCard />
             <DateTimeTest />
           </div>
           <Map isMapVisible={isMapVisible} />
@@ -31,6 +33,7 @@ const Home = () => {
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <Map isMapVisible={isMapVisible} />
+          <MosqueCard />
           <DateTimeTest />
         </>
       )}
