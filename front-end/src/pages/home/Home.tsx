@@ -20,7 +20,7 @@ const Home = () => {
     return () => mediaQuery.removeEventListener('change', () => setIsDesktopView(mediaQuery.matches));
   }, []);
 
-  const { data: mosques } = useQuery({
+  const { data: mosques, isSuccess } = useQuery({
     queryKey: ['mosques'],
     queryFn: () => getAllMosques(),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
@@ -32,9 +32,9 @@ const Home = () => {
         <>
           <div className="flex-grow min-w-max p-1 flex flex-col items-center">
             <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
-            <MosqueCard />
-            <MosqueCard />
-            <MosqueCard />
+            {isSuccess && <MosqueCard mosque={mosques[0]} />}
+            {isSuccess && <MosqueCard mosque={mosques[38]} />}
+            {isSuccess && <MosqueCard mosque={mosques[21]} />}
             {/* <DateTimeTest /> */}
           </div>
           <Map isMapVisible={isMapVisible} mosques={mosques} />
@@ -43,9 +43,9 @@ const Home = () => {
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <Map isMapVisible={isMapVisible} mosques={mosques} />
-          <MosqueCard />
-          <MosqueCard />
-          <MosqueCard />
+          {isSuccess && <MosqueCard mosque={mosques[0]} />}
+          {isSuccess && <MosqueCard mosque={mosques[38]} />}
+          {isSuccess && <MosqueCard mosque={mosques[21]} />}
           {/* <DateTimeTest /> */}
         </>
       )}

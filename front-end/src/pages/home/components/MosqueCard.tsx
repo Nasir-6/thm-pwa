@@ -1,8 +1,13 @@
 import React from 'react';
+// eslint-disable-next-line import/no-relative-packages
+import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
 import { ReactComponent as MapIcon } from '../../../assets/mapIcon.svg';
-// type Props = {}
 
-const MosqueCard = () => {
+type Props = {
+  mosque: MosqueDTO;
+};
+
+const MosqueCard: React.FC<Props> = ({ mosque }) => {
   console.log('Hello');
   return (
     <div className="mosque-card flex gap-3 justify-center px-2 py-3 border-t w-fit self-center">
@@ -13,8 +18,8 @@ const MosqueCard = () => {
       </div>
 
       <div className="mosque-details flex flex-col text-left py-1 gap-0.5 items-start">
-        <h3 className="mosque-name font-semibold">Redcoat Community Center & Mosque</h3>
-        <p className="address text-sm text-slate-400">256 Stepney Way, London, E1 3DW</p>
+        <h3 className="mosque-name font-semibold">{mosque.name}</h3>
+        <p className="address text-sm text-slate-400">{mosque.address}</p>
         <button type="button" className="view-details-btn font-semibold text-accent-700 hover:text-accent-800 text-sm">
           View Details
         </button>
