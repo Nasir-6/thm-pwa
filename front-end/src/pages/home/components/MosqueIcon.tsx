@@ -1,17 +1,11 @@
 import React from 'react';
 import { DivIcon } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
+// eslint-disable-next-line import/no-relative-packages
+import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
 
 interface Props {
-  mosque: {
-    name: string;
-    position: {
-      lat: number;
-      lng: number;
-    };
-    address: string;
-    url: string;
-  };
+  mosque: MosqueDTO;
 }
 
 const MosqueIcon: React.FC<Props> = ({ mosque }) => {
@@ -41,10 +35,10 @@ const MosqueIcon: React.FC<Props> = ({ mosque }) => {
   });
 
   return (
-    <Marker position={mosque.position} icon={mosqueIcon}>
+    <Marker position={{ lat: mosque.latitude, lng: mosque.longitude }} icon={mosqueIcon}>
       <Popup>
         <p>{mosque.name}</p>
-        <a href={mosque.url} target="_blank" rel="noreferrer">
+        <a href={mosque.googleUrl} target="_blank" rel="noreferrer">
           Get Directions
         </a>
       </Popup>

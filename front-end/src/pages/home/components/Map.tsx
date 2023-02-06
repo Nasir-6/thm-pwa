@@ -21,18 +21,7 @@ const Map: React.FC<Props> = ({ isMapVisible }) => {
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => {
-    const mosqueDetails = {
-      name: mosque.name,
-      position: {
-        lat: mosque.latitude,
-        lng: mosque.longitude,
-      },
-      address: mosque.address,
-      url: mosque.googleUrl,
-    };
-    return <MosqueIcon key={mosque.id} mosque={mosqueDetails} />;
-  });
+  const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => <MosqueIcon key={mosque.id} mosque={mosque} />);
 
   const [hasBeenRenderedOnce, setHasBeenRenderedOnce] = useState(false);
 
