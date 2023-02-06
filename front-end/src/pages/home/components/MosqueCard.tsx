@@ -6,7 +6,7 @@ const MosqueCard = () => {
   console.log('Hello');
   return (
     <div className="mosque-card flex gap-2 justify-center px-1 py-3 border-t w-fit self-center">
-      <div className="map-details flex flex-col items-center justify-start px-1 py-2">
+      <div className="map-details flex flex-col items-center justify-center px-1 py-2">
         <MapIcon width="25px" height="30px" />
         <p className="distance text-xs text-slate-500 ">0.79</p>
         <p className="distance text-xs text-slate-500">Miles</p>
