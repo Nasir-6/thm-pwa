@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import ControlPanel from './components/ControlPanel';
 // import DateTimeTest from './components/DateTimeTest';
 import Map from './components/Map';
 import MosqueCard from './components/MosqueCard';
+import { getAllMosques } from '../../api/mosques';
 // import DataProcessor from '../data/DataProcessor';
 import './Home.css';
 
@@ -18,6 +20,12 @@ const Home = () => {
     return () => mediaQuery.removeEventListener('change', () => setIsDesktopView(mediaQuery.matches));
   }, []);
 
+  const { data: mosques } = useQuery({
+    queryKey: ['mosques'],
+    queryFn: () => getAllMosques(),
+    staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
+  });
+
   return (
     <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
       {isDesktopView ? (
@@ -29,12 +37,12 @@ const Home = () => {
             <MosqueCard />
             {/* <DateTimeTest /> */}
           </div>
-          <Map isMapVisible={isMapVisible} />
+          <Map isMapVisible={isMapVisible} mosques={mosques} />
         </>
       ) : (
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
-          <Map isMapVisible={isMapVisible} />
+          <Map isMapVisible={isMapVisible} mosques={mosques} />
           <MosqueCard />
           <MosqueCard />
           <MosqueCard />
