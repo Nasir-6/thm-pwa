@@ -26,6 +26,25 @@ const Home = () => {
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
+  // Code for locations - but haven't calculated distances
+  type Position = {
+    latitude: number;
+    longitude: number;
+  };
+  const [location, setLocation] = useState<Position>({
+    latitude: 51.51757166,
+    longitude: -0.06548708235,
+  });
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    });
+    console.log('location', location);
+  }, [isMapVisible]); // Change this to the useLocation button
+
   const createMosqueCards = mosques?.map((mosque) => <MosqueCard mosque={mosque} />);
 
   return (
