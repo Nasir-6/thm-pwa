@@ -60,7 +60,7 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
     <div className="mosque-card flex gap-3 justify-center px-2 py-3 border-t w-fit self-center">
       <div className="map-details flex flex-col items-center justify-center py-2 text-xs text-slate-400">
         <MapIcon width="25px" height="30px" />
-        <p className="distance">0.79</p>
+        <p className="distance">{mosque.distanceToLocationInMiles}</p>
         <p className="distance">Miles</p>
       </div>
 

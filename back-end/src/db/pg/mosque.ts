@@ -31,6 +31,7 @@ class MosqueDAOPostgres {
 			latitude: Number(mosque.latitude),
 			longitude: Number(mosque.longitude),
 			googleUrl: mosque.google_url,
+			distanceToLocationInMiles: mosque.id,
 		};
 	}
 
@@ -71,6 +72,7 @@ class MosqueDAOPostgres {
 			latitude: Number(r.latitude), // NOTE: Numeric values in DB are strings in JS
 			longitude: Number(r.longitude),
 			googleUrl: r.google_url,
+			distanceToLocationInMiles: r.id,
 		}));
 }
 
