@@ -5,8 +5,11 @@ import ControlPanel from './components/ControlPanel';
 import Map from './components/Map';
 import MosqueCard from './components/MosqueCard';
 import { getAllMosques } from '../../api/mosques';
+import getDistanceToMosqueFromUserLocation from '../../util/location';
 // import DataProcessor from '../data/DataProcessor';
 import './Home.css';
+// eslint-disable-next-line import/no-relative-packages
+import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 
 const Home = () => {
   const [isMapVisible, setIsMapVisible] = useState(false);
@@ -27,16 +30,13 @@ const Home = () => {
   });
 
   // Code for locations - but haven't calculated distances
-  type Position = {
-    latitude: number;
-    longitude: number;
-  };
   const [location, setLocation] = useState<Position>({
     latitude: 51.51757166,
     longitude: -0.06548708235,
   });
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
+      console.log('SETTING TO USERS LOCATION!');
       setLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
@@ -45,7 +45,19 @@ const Home = () => {
     console.log('location', location);
   }, [isMapVisible]); // Change this to the useLocation button
 
-  const createMosqueCards = mosques?.map((mosque) => <MosqueCard mosque={mosque} />);
+  const [sortedMosquesArr, setSortedMosquesArr] = useState<MosqueDTO[] | undefined>();
+  useEffect(() => {
+    if (mosques === undefined) return;
+    const updatedLocationMosques = mosques.map((mosque) => ({
+      ...mosque,
+      distanceToLocationInMiles: getDistanceToMosqueFromUserLocation(location, mosque.latitude, mosque.longitude),
+    }));
+    const sortedMosques = updatedLocationMosques.sort((a, b) => (a.distanceToLocationInMiles > b.distanceToLocationInMiles ? 1 : -1));
+    console.log('sortedMosques', sortedMosques);
+    setSortedMosquesArr(sortedMosques);
+  }, [location]);
+
+  const createMosqueCards = sortedMosquesArr?.map((mosque) => <MosqueCard mosque={mosque} />);
 
   return (
     <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
