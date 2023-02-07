@@ -75,7 +75,7 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
       <div className="next-salah py-1 flex flex-col items-center justify-center min-w-fit">
         <p className="font-bold text-xs text-primary-700">{nextSalah?.name}</p>
         <p className="font-bold text-xs text-primary-700">
-          {nextSalah?.time.toLocaleTimeString('en-GB', {
+          {nextSalah?.time.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: '2-digit',
             hour12: true,
