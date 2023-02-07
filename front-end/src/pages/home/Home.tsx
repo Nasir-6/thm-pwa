@@ -26,15 +26,15 @@ const Home = () => {
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
+  const createMosqueCards = mosques?.map((mosque) => <MosqueCard mosque={mosque} />);
+
   return (
     <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
       {isDesktopView ? (
         <>
           <div className="flex-grow min-w-max p-1 flex flex-col items-center">
             <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
-            {isSuccess && <MosqueCard mosque={mosques[0]} />}
-            {isSuccess && <MosqueCard mosque={mosques[38]} />}
-            {isSuccess && <MosqueCard mosque={mosques[21]} />}
+            {isSuccess && createMosqueCards}
             {/* <DateTimeTest /> */}
           </div>
           <Map isMapVisible={isMapVisible} mosques={mosques} />
@@ -43,9 +43,7 @@ const Home = () => {
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <Map isMapVisible={isMapVisible} mosques={mosques} />
-          {isSuccess && <MosqueCard mosque={mosques[0]} />}
-          {isSuccess && <MosqueCard mosque={mosques[38]} />}
-          {isSuccess && <MosqueCard mosque={mosques[21]} />}
+          {isSuccess && createMosqueCards}
           {/* <DateTimeTest /> */}
         </>
       )}
