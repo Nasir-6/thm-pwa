@@ -28,9 +28,9 @@ const Home = () => {
     queryFn: () => getAllMosques(),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
-
   // Code for locations - but haven't calculated distances
   const [location, setLocation] = useState<Position>({
+    name: 'East London Mosque',
     latitude: 51.51757166,
     longitude: -0.06548708235,
   });
@@ -38,6 +38,7 @@ const Home = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('SETTING TO USERS LOCATION!');
       setLocation({
+        name: 'You',
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });
@@ -55,7 +56,7 @@ const Home = () => {
     const sortedMosques = updatedLocationMosques.sort((a, b) => (a.distanceToLocationInMiles > b.distanceToLocationInMiles ? 1 : -1));
     console.log('sortedMosques', sortedMosques);
     setSortedMosquesArr(sortedMosques);
-  }, [location]);
+  }, [location, mosques]);
 
   const createMosqueCards = sortedMosquesArr?.map((mosque) => <MosqueCard mosque={mosque} />);
 

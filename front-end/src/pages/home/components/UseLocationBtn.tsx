@@ -1,8 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdOutlineMyLocation } from 'react-icons/md';
 
 const UseLocationBtn = () => {
   const [isUsingLocation, setIsUsingLocation] = useState(false);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log('🚀 position', position);
+      console.log('SETTING TO USERS LOCATION!');
+      //   setLocation({
+      //     latitude: position.coords.latitude,
+      //     longitude: position.coords.longitude,
+      //   });
+    });
+  }, [isUsingLocation]); // Change this to the useLocation button
+
   return (
     <button
       type="button"
