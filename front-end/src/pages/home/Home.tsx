@@ -10,11 +10,13 @@ import getDistanceToMosqueFromUserLocation from '../../util/location';
 import './Home.css';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
+import useStore from '../../stores/zustand';
 
 const Home = () => {
   const [isMapVisible, setIsMapVisible] = useState(false);
   const screenBreakPoint = 1024;
   const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > screenBreakPoint);
+  const userLocation = useStore((state) => state.userLocation);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)');
@@ -35,16 +37,9 @@ const Home = () => {
     longitude: -0.06548708235,
   });
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log('SETTING TO USERS LOCATION!');
-      setLocation({
-        name: 'You',
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    });
-    console.log('location', location);
-  }, [isMapVisible]); // Change this to the useLocation button
+    if (userLocation === undefined) return;
+    setLocation(userLocation);
+  }, [userLocation]); // Change this to the useLocation button
 
   const [sortedMosquesArr, setSortedMosquesArr] = useState<MosqueDTO[] | undefined>();
   useEffect(() => {
