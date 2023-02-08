@@ -31,7 +31,7 @@ const UseLocationBtn = () => {
       setIsUsingLocation(false);
     } else {
       setIsLocating(true);
-      navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 5 * 60 * 1000 }); // cache location for 5 mins
+      navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 5 * 60 * 1000 }); // cache location for 5 mins - reduce neeed to geolocate
     }
   }, [isUsingLocation]);
 
