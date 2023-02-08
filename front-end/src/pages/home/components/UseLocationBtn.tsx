@@ -1,15 +1,16 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 import { MdOutlineMyLocation } from 'react-icons/md';
 import useStore from '../../../stores/zustand';
 
 const UseLocationBtn = () => {
-  console.log('RERENDERING USE LOCATION BTN');
   const [isUsingLocation, setIsUsingLocation] = useState(false);
-  // const userLocation = useStore((state) => state.userLocation);
+  const [isLocating, setIsLocating] = useState(false);
   const setUserLocation = useStore((state) => state.setUserLocation);
 
   const onSuccess: PositionCallback = (position) => {
+    setIsLocating(false);
     setUserLocation({
       name: 'You',
       latitude: position.coords.latitude,
@@ -18,16 +19,18 @@ const UseLocationBtn = () => {
   };
 
   const onError: PositionErrorCallback = () => {
+    setIsLocating(false);
     alert("Unable to retrieve your location. Please give the site access to your location if you haven't in order to use this feature.");
     setIsUsingLocation(false);
   };
 
   useEffect(() => {
-    // console.log('userLocation', userLocation);
+    if (!isUsingLocation) return;
     if (!navigator.geolocation) {
       alert('Geolocation is not supported by your browser');
       setIsUsingLocation(false);
     } else {
+      setIsLocating(true);
       navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
   }, [isUsingLocation]);
@@ -40,7 +43,7 @@ const UseLocationBtn = () => {
         isUsingLocation ? 'hover:text-primary-700' : 'hover:text-accent-800'
       }`}>
       <MdOutlineMyLocation className="" />
-      {isUsingLocation ? 'Using Location' : 'Use Location'}
+      {isLocating ? 'Locating...' : isUsingLocation ? 'Using Location' : 'Use Location'}
     </button>
   );
 };

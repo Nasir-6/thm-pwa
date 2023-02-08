@@ -7,7 +7,6 @@ import './Home.css';
 import MosqueCardsContainer from './components/MosqueCardsContainer';
 
 const Home = () => {
-  console.log('RERENDERING HOME');
   const [isMapVisible, setIsMapVisible] = useState(false);
   const screenBreakPoint = 1024;
   const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > screenBreakPoint);
