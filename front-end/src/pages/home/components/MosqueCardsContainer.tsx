@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
 import useStore from '../../../stores/zustand';
-import getDistanceToMosqueFromUserLocation from '../../../util/location';
+import { sortMosquesByDistanceFromLocation } from '../../../util/location';
 import MosqueCard from './MosqueCard';
 
 interface MosqueCardsContainerProps {
@@ -26,12 +26,7 @@ const MosqueCardsContainer: React.FC<MosqueCardsContainerProps> = ({ mosques }) 
   const [sortedMosquesArr, setSortedMosquesArr] = useState<MosqueDTO[] | undefined>();
   useEffect(() => {
     if (mosques === undefined) return;
-    const updatedLocationMosques = mosques.map((mosque) => ({
-      ...mosque,
-      distanceToLocationInMiles: getDistanceToMosqueFromUserLocation(chosenLocation, mosque.latitude, mosque.longitude),
-    }));
-    const sortedMosques = updatedLocationMosques.sort((a, b) => (a.distanceToLocationInMiles > b.distanceToLocationInMiles ? 1 : -1));
-    setSortedMosquesArr(sortedMosques);
+    setSortedMosquesArr(sortMosquesByDistanceFromLocation(mosques, chosenLocation));
   }, [chosenLocation, mosques]);
 
   const createMosqueCards = sortedMosquesArr?.map((mosque) => <MosqueCard mosque={mosque} />);

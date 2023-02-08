@@ -1,4 +1,7 @@
-const getDistanceToMosqueFromUserLocation = (userLocation: Position, mosqueLatitude: number, mosqueLongitude: number): number => {
+// eslint-disable-next-line import/no-relative-packages
+import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+
+export const getDistanceToMosqueFromUserLocation = (userLocation: Position, mosqueLatitude: number, mosqueLongitude: number): number => {
   // The math module contains a function
   // named toRadians which converts from
   // degrees to radians.
@@ -23,4 +26,10 @@ const getDistanceToMosqueFromUserLocation = (userLocation: Position, mosqueLatit
   return parseFloat((c * R).toFixed(2));
 };
 
-export default getDistanceToMosqueFromUserLocation;
+export const sortMosquesByDistanceFromLocation = (mosques: MosqueDTO[], location: Position) => {
+  const updatedLocationMosques = mosques.map((mosque) => ({
+    ...mosque,
+    distanceToLocationInMiles: getDistanceToMosqueFromUserLocation(location, mosque.latitude, mosque.longitude),
+  }));
+  return updatedLocationMosques.sort((a, b) => (a.distanceToLocationInMiles > b.distanceToLocationInMiles ? 1 : -1));
+};
