@@ -8,6 +8,7 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ mosquesPerPage, totalMosques, currentPage, setCurrentPage }) => {
+  // TODO: Deal with edge case when say go to last page (when mosquesPerPage is 5 but then change to 10 - reducing pages to half - but now current page doesn't exist)
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalMosques / mosquesPerPage); i++) {
