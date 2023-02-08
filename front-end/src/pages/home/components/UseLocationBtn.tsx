@@ -4,6 +4,7 @@ import { MdOutlineMyLocation } from 'react-icons/md';
 import useStore from '../../../stores/zustand';
 
 const UseLocationBtn = () => {
+  console.log('RERENDERING USE LOCATION BTN');
   const [isUsingLocation, setIsUsingLocation] = useState(false);
   // const userLocation = useStore((state) => state.userLocation);
   const setUserLocation = useStore((state) => state.setUserLocation);

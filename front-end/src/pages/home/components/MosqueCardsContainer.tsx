@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
+import { getAllMosques } from '../../../api/mosques';
 import useStore from '../../../stores/zustand';
 import { sortMosquesByDistanceFromLocation } from '../../../util/location';
 import MosqueCard from './MosqueCard';
 
-interface MosqueCardsContainerProps {
-  mosques: MosqueDTO[] | undefined;
-}
+// interface MosqueCardsContainerProps {
+// }
 
-const MosqueCardsContainer: React.FC<MosqueCardsContainerProps> = ({ mosques }) => {
+const MosqueCardsContainer = () => {
   const userLocation = useStore((state) => state.userLocation);
   const defaultLocation: Position = {
     name: 'East London Mosque',
@@ -22,6 +23,12 @@ const MosqueCardsContainer: React.FC<MosqueCardsContainerProps> = ({ mosques }) 
     if (userLocation === undefined) return;
     setChosenLocation(userLocation);
   }, [userLocation]);
+
+  const { data: mosques } = useQuery({
+    queryKey: ['mosques'],
+    queryFn: () => getAllMosques(),
+    staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
+  });
 
   const [sortedMosquesArr, setSortedMosquesArr] = useState<MosqueDTO[] | undefined>();
   useEffect(() => {

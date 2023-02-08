@@ -2,6 +2,7 @@
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 
 export const getDistanceToMosqueFromUserLocation = (userLocation: Position, mosqueLatitude: number, mosqueLongitude: number): number => {
+  console.log('Running distance calculator');
   // The math module contains a function
   // named toRadians which converts from
   // degrees to radians.
@@ -31,5 +32,6 @@ export const sortMosquesByDistanceFromLocation = (mosques: MosqueDTO[], location
     ...mosque,
     distanceToLocationInMiles: getDistanceToMosqueFromUserLocation(location, mosque.latitude, mosque.longitude),
   }));
+  console.log('sorting mosques');
   return updatedLocationMosques.sort((a, b) => (a.distanceToLocationInMiles > b.distanceToLocationInMiles ? 1 : -1));
 };

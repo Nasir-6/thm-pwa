@@ -2,18 +2,26 @@ import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Map as LeafletMap } from 'leaflet'; // Need to alias so no issues with Duplicate Map Definition!
+import { useQuery } from 'react-query';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
 import MosqueIcon from './MosqueIcon';
+import { getAllMosques } from '../../../api/mosques';
 
 const position = { lat: 51.5167, lng: -0.0481 };
 
 interface Props {
   isMapVisible: boolean;
-  mosques: MosqueDTO[] | undefined;
 }
 
-const Map: React.FC<Props> = ({ isMapVisible, mosques }) => {
+const Map: React.FC<Props> = ({ isMapVisible }) => {
+  // console.log('RERENDERING MAP');
+  const { data: mosques } = useQuery({
+    queryKey: ['mosques'],
+    queryFn: () => getAllMosques(),
+    staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
+  });
+
   const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => <MosqueIcon key={mosque.id} mosque={mosque} />);
 
   const [hasBeenRenderedOnce, setHasBeenRenderedOnce] = useState(false);
