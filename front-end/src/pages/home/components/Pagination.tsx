@@ -16,7 +16,6 @@ const Pagination: React.FC<PaginationProps> = ({ mosquesPerPage, totalMosques, c
     pageNumbers.push(i);
   }
 
-  //   TODO: Add left and right buttons
   return (
     <div className="pagination flex font-semibold">
       <button
