@@ -49,7 +49,6 @@ const Home = () => {
       distanceToLocationInMiles: getDistanceToMosqueFromUserLocation(location, mosque.latitude, mosque.longitude),
     }));
     const sortedMosques = updatedLocationMosques.sort((a, b) => (a.distanceToLocationInMiles > b.distanceToLocationInMiles ? 1 : -1));
-    console.log('sortedMosques', sortedMosques);
     setSortedMosquesArr(sortedMosques);
   }, [location, mosques]);
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 import { MdOutlineMyLocation } from 'react-icons/md';
 import useStore from '../../../stores/zustand';
@@ -16,7 +17,7 @@ const UseLocationBtn = () => {
   };
 
   const onError: PositionErrorCallback = () => {
-    alert('The App was not given permission to access your location, please allow it in your settings');
+    alert("Unable to retrieve your location. Please give the site access to your location if you haven't in order to use this feature.");
     setIsUsingLocation(false);
   };
 
