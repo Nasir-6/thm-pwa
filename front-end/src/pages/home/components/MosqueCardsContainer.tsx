@@ -4,12 +4,12 @@ import { getAllMosques } from '../../../api/mosques';
 import useStore from '../../../stores/zustand';
 import { sortMosquesByDistanceFromLocation } from '../../../util/location';
 import MosqueCard from './MosqueCard';
+import Pagination from './Pagination';
 
 // interface MosqueCardsContainerProps {
 // }
 
 const MosqueCardsContainer = () => {
-  console.log('ReRendering Mosque Cards Container');
   const userLocation = useStore((state) => state.userLocation);
   const defaultLocation: Position = {
     name: 'East London Mosque',
@@ -35,7 +35,18 @@ const MosqueCardsContainer = () => {
     return sortMosquesByDistanceFromLocation(mosques, chosenLocation);
   }, [mosques, chosenLocation]);
 
-  const createMosqueCards = sortedMosquesArr?.map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
+  // TODO: slice according to selection
+  const [currentPage, setCurrentPage] = useState(1);
+  const [mosquesPerPage, setMosquesPerPage] = useState(5);
+  const indexOfLastMosque = currentPage * mosquesPerPage;
+  const indexOfFirstMosque = indexOfLastMosque - mosquesPerPage;
+
+  const createMosqueCards = sortedMosquesArr
+    ?.slice(indexOfFirstMosque, indexOfLastMosque)
+    .map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
+  if (currentPage !== 1) {
+    setCurrentPage(1);
+  }
   return (
     <>
       <div className="list-info w-full max-w-xl flex justify-between p-3">
@@ -48,7 +59,7 @@ const MosqueCardsContainer = () => {
         <form>
           <label htmlFor="numOfMosques">
             Showing
-            <select id="numOfMosques">
+            <select id="numOfMosques" onChange={(event) => setMosquesPerPage(Number(event.target.value))}>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
@@ -57,6 +68,7 @@ const MosqueCardsContainer = () => {
         </form>
       </div>
       {createMosqueCards}
+      <Pagination />
     </>
   );
 };
