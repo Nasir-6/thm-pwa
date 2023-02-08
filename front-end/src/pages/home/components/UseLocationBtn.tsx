@@ -1,19 +1,34 @@
 import { useEffect, useState } from 'react';
 import { MdOutlineMyLocation } from 'react-icons/md';
+import useStore from '../../../stores/zustand';
 
 const UseLocationBtn = () => {
   const [isUsingLocation, setIsUsingLocation] = useState(false);
+  // const userLocation = useStore((state) => state.userLocation);
+  const setUserLocation = useStore((state) => state.setUserLocation);
+
+  const onSuccess: PositionCallback = (position) => {
+    setUserLocation({
+      name: 'You',
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    });
+  };
+
+  const onError: PositionErrorCallback = () => {
+    alert('The App was not given permission to access your location, please allow it in your settings');
+    setIsUsingLocation(false);
+  };
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log('🚀 position', position);
-      console.log('SETTING TO USERS LOCATION!');
-      //   setLocation({
-      //     latitude: position.coords.latitude,
-      //     longitude: position.coords.longitude,
-      //   });
-    });
-  }, [isUsingLocation]); // Change this to the useLocation button
+    // console.log('userLocation', userLocation);
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+      setIsUsingLocation(false);
+    } else {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+  }, [isUsingLocation]);
 
   return (
     <button
