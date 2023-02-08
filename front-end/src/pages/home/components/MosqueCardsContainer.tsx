@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
-// eslint-disable-next-line import/no-relative-packages
-import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
 import { getAllMosques } from '../../../api/mosques';
 import useStore from '../../../stores/zustand';
 import { sortMosquesByDistanceFromLocation } from '../../../util/location';
@@ -11,6 +9,7 @@ import MosqueCard from './MosqueCard';
 // }
 
 const MosqueCardsContainer = () => {
+  console.log('ReRendering Mosque Cards Container');
   const userLocation = useStore((state) => state.userLocation);
   const defaultLocation: Position = {
     name: 'East London Mosque',
@@ -30,14 +29,13 @@ const MosqueCardsContainer = () => {
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  const [sortedMosquesArr, setSortedMosquesArr] = useState<MosqueDTO[] | undefined>();
-  useEffect(() => {
-    if (mosques === undefined) return;
-    setSortedMosquesArr(sortMosquesByDistanceFromLocation(mosques, chosenLocation));
-  }, [chosenLocation, mosques]);
+  const sortedMosquesArr = useMemo(() => {
+    if (!mosques) return;
+    // eslint-disable-next-line consistent-return
+    return sortMosquesByDistanceFromLocation(mosques, chosenLocation);
+  }, [mosques, chosenLocation]);
 
-  const createMosqueCards = sortedMosquesArr?.map((mosque) => <MosqueCard mosque={mosque} />);
-
+  const createMosqueCards = sortedMosquesArr?.map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
   return (
     <>
       <div className="list-info w-full max-w-xl flex justify-between p-3">
