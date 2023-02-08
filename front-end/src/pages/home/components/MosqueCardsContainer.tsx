@@ -23,7 +23,7 @@ const MosqueCardsContainer = () => {
     setChosenLocation(userLocation);
   }, [userLocation]);
 
-  const { data: mosques } = useQuery({
+  const { data: mosques, isSuccess } = useQuery({
     queryKey: ['mosques'],
     queryFn: () => getAllMosques(),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
@@ -36,7 +36,7 @@ const MosqueCardsContainer = () => {
   }, [mosques, chosenLocation]);
 
   // TODO: slice according to selection
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(6);
   const [mosquesPerPage, setMosquesPerPage] = useState(5);
   const indexOfLastMosque = currentPage * mosquesPerPage;
   const indexOfFirstMosque = indexOfLastMosque - mosquesPerPage;
@@ -44,9 +44,7 @@ const MosqueCardsContainer = () => {
   const createMosqueCards = sortedMosquesArr
     ?.slice(indexOfFirstMosque, indexOfLastMosque)
     .map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
-  if (currentPage !== 1) {
-    setCurrentPage(1);
-  }
+
   return (
     <>
       <div className="list-info w-full max-w-xl flex justify-between p-3">
@@ -68,7 +66,14 @@ const MosqueCardsContainer = () => {
         </form>
       </div>
       {createMosqueCards}
-      <Pagination />
+      {isSuccess && (
+        <Pagination
+          mosquesPerPage={mosquesPerPage}
+          totalMosques={mosques.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </>
   );
 };
