@@ -14,6 +14,8 @@ class MosqueDAOPostgres {
 
 	// All the methods
 	async getAllMosques(): Promise<MosqueDTO[]> {
+		console.log("IM GETTING MOSQUES FROM DB");
+		console.log("#pool", this.#pool);
 		const res = await this.#pool.query("SELECT * FROM mosques");
 		if (res.rowCount === 0) throw new HttpException(404, "Could not retrieve any mosques from the DB");
 		return MosqueDAOPostgres.mapMosqueResult(res);
