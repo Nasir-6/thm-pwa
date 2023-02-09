@@ -4,7 +4,7 @@ import ControlPanel from './components/ControlPanel';
 import Map from './components/Map';
 // import DataProcessor from '../data/DataProcessor';
 import './Home.css';
-import MosqueCardsContainer from './components/MosqueCardsContainer';
+import MosqueResultsContainer from './components/MosqueResultsContainer';
 
 const Home = () => {
   const [isMapVisible, setIsMapVisible] = useState(false);
@@ -24,7 +24,7 @@ const Home = () => {
         <>
           <div className="flex-grow min-w-max p-1 flex flex-col items-center">
             <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
-            <MosqueCardsContainer />
+            <MosqueResultsContainer />
             {/* <DateTimeTest /> */}
           </div>
           <Map isMapVisible={isMapVisible} />
@@ -33,7 +33,7 @@ const Home = () => {
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <Map isMapVisible={isMapVisible} />
-          <MosqueCardsContainer />
+          <MosqueResultsContainer />
           {/* <DateTimeTest /> */}
         </>
       )}

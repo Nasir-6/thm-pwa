@@ -9,7 +9,7 @@ import Pagination from './Pagination';
 // interface MosqueCardsContainerProps {
 // }
 
-const MosqueCardsContainer = () => {
+const MosqueResultsContainer = () => {
   const userLocation = useStore((state) => state.userLocation);
   const defaultLocation: Position = {
     name: 'Redcoat Community Centre & Mosque',
@@ -48,7 +48,7 @@ const MosqueCardsContainer = () => {
   // TODO: Add loading skeletons for when loading mosques
 
   return (
-    <div className="mosque-card-container flex flex-col items-center w-full">
+    <div className="mosque-results-container flex flex-col items-center w-full">
       <div className="list-info w-full max-w-xl flex justify-between p-2 text-left items-baseline">
         {/* Need to sort out loading and empty states!! */}
         {mosques === undefined ? (
@@ -67,7 +67,7 @@ const MosqueCardsContainer = () => {
           </label>
         </form>
       </div>
-      {createMosqueCards}
+      <div className="mosque-cards-container w-full flex flex-col justify-center">{createMosqueCards}</div>
       {isSuccess && (
         <Pagination
           mosquesPerPage={mosquesPerPage}
@@ -80,4 +80,4 @@ const MosqueCardsContainer = () => {
   );
 };
 
-export default MosqueCardsContainer;
+export default MosqueResultsContainer;
