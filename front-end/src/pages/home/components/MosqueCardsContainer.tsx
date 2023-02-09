@@ -45,6 +45,7 @@ const MosqueCardsContainer = () => {
     .map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
 
   // TODO: Make mosqueCards scrollable!
+  // TODO: Add loading skeletons for when loading mosques
 
   return (
     <div className="mosque-card-container flex flex-col items-center">

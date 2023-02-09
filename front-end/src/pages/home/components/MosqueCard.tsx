@@ -56,6 +56,7 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
     setNextSalah(nextSalahObj);
   }, [mosqueTimesToday, mosqueTimesTomorrow]);
 
+  // TODO: Add loading state for nextSalah loading state!
   return (
     <div className="mosque-card flex gap-3 justify-center px-2 py-3 border-t w-full max-w-xl self-center">
       <div className="map-details flex flex-col items-center justify-center py-2 text-xs text-slate-400">
