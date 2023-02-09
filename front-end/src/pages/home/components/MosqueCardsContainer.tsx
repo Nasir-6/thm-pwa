@@ -48,7 +48,7 @@ const MosqueCardsContainer = () => {
   // TODO: Add loading skeletons for when loading mosques
 
   return (
-    <div className="mosque-card-container flex flex-col items-center">
+    <div className="mosque-card-container flex flex-col items-center w-full">
       <div className="list-info w-full max-w-xl flex justify-between p-2 text-left items-baseline">
         {/* Need to sort out loading and empty states!! */}
         {mosques === undefined ? (
