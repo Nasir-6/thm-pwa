@@ -12,9 +12,9 @@ import Pagination from './Pagination';
 const MosqueCardsContainer = () => {
   const userLocation = useStore((state) => state.userLocation);
   const defaultLocation: Position = {
-    name: 'East London Mosque',
-    latitude: 51.51757166,
-    longitude: -0.06548708235,
+    name: 'Redcoat Community Centre & Mosque',
+    latitude: 51.51676049,
+    longitude: -0.04810487669,
   };
   const [chosenLocation, setChosenLocation] = useState<Position>(defaultLocation);
 
