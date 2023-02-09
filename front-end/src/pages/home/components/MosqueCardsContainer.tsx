@@ -46,7 +46,7 @@ const MosqueCardsContainer = () => {
     .map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
 
   return (
-    <>
+    <div className="mosque-card-container flex flex-col items-center">
       <div className="list-info w-full max-w-xl flex justify-between p-3">
         {/* Need to sort out loading and empty states!! */}
         {mosques === undefined ? (
@@ -74,7 +74,7 @@ const MosqueCardsContainer = () => {
           setCurrentPage={setCurrentPage}
         />
       )}
-    </>
+    </div>
   );
 };
 
