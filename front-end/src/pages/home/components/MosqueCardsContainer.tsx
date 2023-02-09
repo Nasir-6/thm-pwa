@@ -48,15 +48,15 @@ const MosqueCardsContainer = () => {
 
   return (
     <div className="mosque-card-container flex flex-col items-center">
-      <div className="list-info w-full max-w-xl flex justify-between p-3">
+      <div className="list-info w-full max-w-xl flex justify-between p-2 text-left items-baseline">
         {/* Need to sort out loading and empty states!! */}
         {mosques === undefined ? (
           <p>No mosques</p>
         ) : (
-          <p className="location-identifier text-slate-500">{`${mosques?.length} Mosques Near "${chosenLocation.name}"`}</p>
+          <p className="location-identifier text-sm text-slate-500">{`${mosques?.length} Mosques Near "${chosenLocation.name}"`}</p>
         )}
         <form>
-          <label htmlFor="numOfMosques">
+          <label htmlFor="numOfMosques" className="text-sm">
             Showing
             <select id="numOfMosques" onChange={(event) => setMosquesPerPage(Number(event.target.value))}>
               <option value="5">5</option>
