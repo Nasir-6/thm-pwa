@@ -1,6 +1,6 @@
 /* Mobile first - then override at larger screens using media qs minwidth */
 .map-div {
-  height: 500px;
+  height: 50vh;
   z-index: 0;
   flex-grow: 100;
   transition: all 200ms;
