@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface PaginationProps {
   mosquesPerPage: number;
@@ -8,13 +8,16 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ mosquesPerPage, totalMosques, currentPage, setCurrentPage }) => {
-  // TODO: Deal with edge case when say go to last page (when mosquesPerPage is 5 but then change to 10 - reducing pages to half - but now current page doesn't exist)
   const pageNumbers = [];
 
   const maxPageNum = Math.ceil(totalMosques / mosquesPerPage);
   for (let i = 1; i <= maxPageNum; i++) {
     pageNumbers.push(i);
   }
+
+  useEffect(() => {
+    if (currentPage > maxPageNum) setCurrentPage(maxPageNum);
+  }, [mosquesPerPage, totalMosques]);
 
   return (
     <div className="pagination flex font-semibold">
