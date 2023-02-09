@@ -35,7 +35,7 @@ const MosqueCardsContainer = () => {
     return sortMosquesByDistanceFromLocation(mosques, chosenLocation);
   }, [mosques, chosenLocation]);
 
-  const [currentPage, setCurrentPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
   const [mosquesPerPage, setMosquesPerPage] = useState(5);
   const indexOfLastMosque = currentPage * mosquesPerPage;
   const indexOfFirstMosque = indexOfLastMosque - mosquesPerPage;
@@ -55,7 +55,7 @@ const MosqueCardsContainer = () => {
         ) : (
           <p className="location-identifier text-sm text-slate-500">{`${mosques?.length} Mosques Near "${chosenLocation.name}"`}</p>
         )}
-        <form>
+        <form className="dropdown w-24">
           <label htmlFor="numOfMosques" className="text-sm">
             Showing
             <select id="numOfMosques" onChange={(event) => setMosquesPerPage(Number(event.target.value))}>
