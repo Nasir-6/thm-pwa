@@ -20,7 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({ mosquesPerPage, totalMosques, c
   }, [mosquesPerPage, totalMosques]);
 
   return (
-    <div className="pagination flex font-semibold">
+    <div className="pagination flex justify-center font-semibold border-t w-full max-w-xl py-2">
       <button
         type="button"
         onClick={() => {
