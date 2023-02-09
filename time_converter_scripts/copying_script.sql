@@ -1,3 +1,6 @@
+-- Create the db first if doesn't exist
+-- CREATE DATABASE thm
+
 DROP TABLE mosque_times;
 DROP TABLE mosques;
 
@@ -67,4 +70,4 @@ FROM '/Users/nasir/thm-pwa/time_converter_scripts/th_postcodes.csv'
 DELIMITER ','
 CSV HEADER;
 
-SELECT * FROM mosque_times WHERE mosque_id = 2 AND date = '01-APR-23';
+SELECT * FROM mosque_times WHERE mosque_id = 2 AND date = '01-Apr-23';
