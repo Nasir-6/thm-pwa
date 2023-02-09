@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getAllMosques } from '../../../api/mosques';
 import useStore from '../../../stores/zustand';
@@ -35,7 +35,6 @@ const MosqueCardsContainer = () => {
     return sortMosquesByDistanceFromLocation(mosques, chosenLocation);
   }, [mosques, chosenLocation]);
 
-  // TODO: slice according to selection
   const [currentPage, setCurrentPage] = useState(6);
   const [mosquesPerPage, setMosquesPerPage] = useState(5);
   const indexOfLastMosque = currentPage * mosquesPerPage;
@@ -44,6 +43,8 @@ const MosqueCardsContainer = () => {
   const createMosqueCards = sortedMosquesArr
     ?.slice(indexOfFirstMosque, indexOfLastMosque)
     .map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
+
+  // TODO: Make mosqueCards scrollable!
 
   return (
     <div className="mosque-card-container flex flex-col items-center">
