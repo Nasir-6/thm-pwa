@@ -11,7 +11,10 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+	origin: "https://staging--startling-twilight-bba940.netlify.app/",
+};
+app.use(cors(corsOptions));
 
 app.use("/api/v1/mosques", mosques);
 
