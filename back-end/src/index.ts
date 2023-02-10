@@ -28,4 +28,4 @@ app.all("*", (req, res) => {
 
 const PORT = process.env.PORT || 8000;
 // eslint-disable-next-line no-console
-app.listen(PORT, () => console.log(`THIS TEST App listening at port ${PORT}`));
+app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
