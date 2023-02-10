@@ -13,6 +13,7 @@ import { MosqueTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes'
 // eslint-disable-next-line import/prefer-default-export
 const URL = process.env.SERVER_URL || 'http://localhost';
 export const getAllMosques = async (): Promise<MosqueDTO[]> => {
+  // eslint-disable-next-line no-console
   console.log('URL', URL);
   const res = await axios.get<MosqueDTO[]>(`${URL}:8000/api/v1/mosques/`);
   return res.data;
