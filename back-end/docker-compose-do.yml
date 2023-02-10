@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  server:
+    container_name: thm-back-end-server
+    image: nasir10/thm-back-end:staging
+    ports:
+      - 8000:8000
+  db:
+    image: "postgres"
+    ports:
+      - "4321:5432"
+    environment:
+      POSTGRES_USER: "docker"
+      POSTGRES_PASSWORD: "1234"
+    volumes:
+      - data:/var/lib/postgresql/data
+      - /root/thm-pwa/back-end/pgDockerVolume:/server/pgDockerVolume
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 thm-back-end-server
+volumes:
+  data:
