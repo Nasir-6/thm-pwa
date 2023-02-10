@@ -2,22 +2,33 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "staging" ]
+    branches: ["staging"]
   pull_request:
-    branches: [ "staging" ]
+    branches: ["staging"]
 
 jobs:
   build-server-and-push-docker-image:
     name: Build Server and push docker image
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Build the Docker image
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_USERNAME }}
-        repository: nasir10/thm-back-end
-        dockerfile: back-end/Dockerfile
-        tags: latest
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: ${{secrets.DOCKER_USERNAME}}/thm-back-end
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
