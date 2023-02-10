@@ -11,8 +11,10 @@ import { MosqueTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes'
 // since this is all in a promise here - any errors thrown by axios (i.e any status != 2xx will throw)
 // This will get thrown to useQuery and dealt with there - otherwise will return the MosquesDTO[]!
 // eslint-disable-next-line import/prefer-default-export
+const URL = process.env.SERVER_URL || 'http://localhost';
 export const getAllMosques = async (): Promise<MosqueDTO[]> => {
-  const res = await axios.get<MosqueDTO[]>(`http://localhost:8000/api/v1/mosques/`);
+  console.log('URL', URL);
+  const res = await axios.get<MosqueDTO[]>(`${URL}:8000/api/v1/mosques/`);
   return res.data;
 };
 
@@ -26,7 +28,7 @@ const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
 // as calculations on DateObj are more frequent than static presentation of the strings
 export const getTimesForAMosqueOnAGivenDate = async (mosqueId: number, date: Date): Promise<MosqueTimesDaily> => {
   const dateUrlFormat = format(date, 'dd-MMM-yy');
-  const res = await axios.get<MosqueTimesDailyDTO>(`http://localhost:8000/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`);
+  const res = await axios.get<MosqueTimesDailyDTO>(`${URL}:8000/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`);
 
   // First parse date string into real Date obj - to use
   const dateObj = parse(res.data.date, 'dd-MMM-yy', new Date());
