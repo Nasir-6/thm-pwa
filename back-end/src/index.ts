@@ -11,9 +11,8 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const app = express();
-// origin: "https://staging--startling-twilight-bba940.netlify.app/",
 const corsOptions = {
-	origin: "*",
+	origin: "https://staging--startling-twilight-bba940.netlify.app/",
 	credentials: true,
 };
 app.use(cors(corsOptions));
