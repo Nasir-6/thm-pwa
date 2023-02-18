@@ -4,8 +4,25 @@ services:
   server:
     container_name: thm-back-end-server
     image: nasir10/thm-back-end:staging
+    restart: unless-stopped
     ports:
       - 8000:8000
+    networks:
+      - app-network
+  proxy:
+    image: nginx:mainline-alpine
+    container_name: nginx-proxy-server
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    depends_on:
+      - thm-back-end-server
+    networks:
+      - app-network
   db:
     image: "postgres"
     ports:
@@ -15,7 +32,9 @@ services:
       POSTGRES_PASSWORD: "1234"
     volumes:
       - data:/var/lib/postgresql/data
-      - /root/thm-pwa/back-end/pgDockerVolume:/server/pgDockerVolume
+      - /home/thm/thm-pwa/back-end/pgDockerVolume:/server/pgDockerVolume
+    networks:
+      - app-network
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
@@ -24,3 +43,8 @@ services:
     command: --interval 30 thm-back-end-server
 volumes:
   data:
+  certbot-etc:
+  certbot-var:
+networks:
+  app-network:
+    driver: bridge
