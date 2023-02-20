@@ -19,6 +19,8 @@ Things to include
 - Will eventually use subdomain e.g api.towerhamletsmosques.co.uk for backend
 - Will probably use app.towerhamletsmosques.co.uk for this app and keep WP site going for a while until this is fully deployed and stable
 
+[cron setup](https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose)
+
 ## Initial Nginx setup
 
 These steps are from the [DO guide](<https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04#step-5-%E2%80%93-setting-up-server-blocks-(recommended)>)
@@ -68,24 +70,29 @@ This will start off only redirecting any default http(80) requests to the server
 sudo ln -s /etc/nginx/sites-available/INSERT_your_domain /etc/nginx/sites-enabled/
 ```
 
-5. Dealing with memory issue
-   Since we are running two nginx servers (default and your_domain) we need to uncomment the server_names_hash_bucket_size line in the nginx.conf file
+5. Check if conf is working
 
-```sh
-sudo vim /etc/nginx/nginx.conf
+If you visit the page and get the default nginx page, it is still using the default.conf so test the new config first:
+
+```
+sudo nginx -t
 ```
 
-Uncomment the line so it looks something like
+Fix any issues, then remove the default config file:
 
-```conf
-...
-http {
-    ...
-    server_names_hash_bucket_size 64;
-    ...
-}
-...
 ```
+sudo rm /etc/nginx/sites-enabled/default
+```
+
+Then reload (-s flag attempts reload if fails it will use continue with old config but will show error in the output):
+
+```
+sudo nginx -s reload
+```
+
+Visit the site and should get a success json that is returned when visiting the API - indicating it is using the api.
+
+Note: If you don't get a response then check postman, if that hangs most likely the docker containers are not running.
 
 ## Certbot and redirecting to HTTPS
 
