@@ -33,7 +33,8 @@ const Map: React.FC<Props> = ({ isMapVisible }) => {
   const mapRef = useRef<LeafletMap>(null);
 
   return (
-    <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
       {hasBeenRenderedOnce && (
         <MapContainer
           center={position}
@@ -55,7 +56,7 @@ const Map: React.FC<Props> = ({ isMapVisible }) => {
           <AttributionControl position="bottomright" prefix={false} />
         </MapContainer>
       )}
-    </div>
+    </>
   );
 };
 

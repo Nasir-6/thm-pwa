@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import ControlPanel from './components/ControlPanel';
 // import DateTimeTest from './components/DateTimeTest';
-import Map from './components/Map';
+// import Map from './components/Map';
 // import DataProcessor from '../data/DataProcessor';
 import './Home.css';
 import MosqueResultsContainer from './components/MosqueResultsContainer';
+
+const Map = lazy(() => import('./components/Map'));
 
 const Home = () => {
   const [isMapVisible, setIsMapVisible] = useState(false);
@@ -27,12 +29,16 @@ const Home = () => {
             <MosqueResultsContainer />
             {/* <DateTimeTest /> */}
           </div>
-          <Map isMapVisible={isMapVisible} />
+          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
+            <Suspense fallback={<h1>Loading...</h1>}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
+          </div>
         </>
       ) : (
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
-          <Map isMapVisible={isMapVisible} />
+          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
+            <Suspense fallback={<h1>Loading...</h1>}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
+          </div>
           <MosqueResultsContainer />
           {/* <DateTimeTest /> */}
         </>
