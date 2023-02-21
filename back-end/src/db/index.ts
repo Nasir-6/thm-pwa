@@ -10,13 +10,20 @@ if (process.env.NODE_ENV !== "production") {
 
 // TODO: Will need to figure out how to pass in .env values to docker container
 // database was undefined as no dot.env file in docker container!!
-const pool = new Pool({
-	host: "db",
-	port: 5432,
-	database: "thm",
-	user: "docker",
-	password: "1234",
-});
+const pool =
+	process.env.NODE_ENV === "production"
+		? new Pool({
+				host: "db",
+				port: 5432,
+				database: "thm",
+				user: "docker",
+				password: "1234",
+		  })
+		: new Pool({
+				host: "localhost",
+				port: 5432,
+				database: "thmdev",
+		  });
 
 const mosqueDAO: MosqueDAOInterface = new MosqueDAOPostgres(pool);
 export default mosqueDAO;
