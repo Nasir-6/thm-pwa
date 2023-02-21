@@ -23,11 +23,8 @@ const DATE_REGEX = /^\d{2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{
 
 // eslint-disable-next-line import/prefer-default-export, @typescript-eslint/naming-convention
 export const parse_dd_MMM_yy_str_into_date = (dateStr: string) => {
-  if (!DATE_REGEX.test(dateStr)) {
-    console.log(`Invalid date string: ${dateStr}`);
-    return null;
-    // throw new Error(`Invalid date string: ${dateStr}`);
-  }
+  if (!DATE_REGEX.test(dateStr)) return null;
+
   const castedDateStr = dateStr as DateString;
   const dateParts = castedDateStr.split('-');
   const day = parseInt(dateParts[0], 10);
