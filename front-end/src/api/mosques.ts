@@ -11,7 +11,13 @@ import { MosqueTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes'
 // since this is all in a promise here - any errors thrown by axios (i.e any status != 2xx will throw)
 // This will get thrown to useQuery and dealt with there - otherwise will return the MosquesDTO[]!
 // eslint-disable-next-line import/prefer-default-export
-const URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8000';
+
+let URL: string;
+if (process.env.NODE_ENV === 'production') {
+  URL = process.env.REACT_APP_SERVER_URL ? process.env.REACT_APP_SERVER_URL : 'http://localhost:8000';
+} else {
+  URL = 'http://localhost:8000';
+}
 export const getAllMosques = async (): Promise<MosqueDTO[]> => {
   // eslint-disable-next-line no-console
   console.log('URL', URL);
