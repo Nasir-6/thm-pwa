@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 interface MonthAbbreviations {
   [key: string]: number;
 }
@@ -21,7 +22,6 @@ type MonthStr = 'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 
 type DateString = `${number}-${MonthStr}-${number}`;
 const DATE_REGEX = /^\d{2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{2}$/;
 
-// eslint-disable-next-line import/prefer-default-export, @typescript-eslint/naming-convention
 export const parse_dd_MMM_yy_str_into_date = (dateStr: string) => {
   if (!DATE_REGEX.test(dateStr)) return null;
 
@@ -39,3 +39,17 @@ export const parse_dd_MMM_yy_str_into_date = (dateStr: string) => {
 };
 
 // Add tests
+
+export const formatDateIntoISOFormat = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+export const format_date_as_dd_MMM_yy_str = (date: Date): string => {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = String(date.getFullYear()).slice(-2);
+  return `${day}-${month}-${year}`;
+};

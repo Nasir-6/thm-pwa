@@ -1,9 +1,8 @@
 /* eslint-disable import/no-relative-packages */
 import axios from 'axios';
-import { format } from 'date-fns';
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 import { MosqueTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes';
-import { parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
+import { formatDateIntoISOFormat, format_date_as_dd_MMM_yy_str, parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
 
 // NOTE: Why did I return res.data rather than just the axiosResponse?
 // I wanted the data from useQuery to be the MosqueDTO[] not the axios response
@@ -27,7 +26,7 @@ export const getAllMosques = async (): Promise<MosqueDTO[]> => {
 };
 
 const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
-  const ISODate = format(date, 'yyyy-MM-dd');
+  const ISODate = formatDateIntoISOFormat(date);
   const newDateObj = new Date(`${ISODate}T${time}`);
   return newDateObj;
 };
@@ -35,7 +34,7 @@ const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
 // Note: All date/time strings are converted into DateObj here -
 // as calculations on DateObj are more frequent than static presentation of the strings
 export const getTimesForAMosqueOnAGivenDate = async (mosqueId: number, date: Date): Promise<MosqueTimesDaily> => {
-  const dateUrlFormat = format(date, 'dd-MMM-yy');
+  const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
   const res = await axios.get<MosqueTimesDailyDTO>(`${URL}/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`);
 
   // First parse date string into real Date obj - to use
