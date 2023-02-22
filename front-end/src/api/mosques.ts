@@ -3,7 +3,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 import { MosqueTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes';
-import { parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
+import { formatDateIntoISOFormat, parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
 
 // NOTE: Why did I return res.data rather than just the axiosResponse?
 // I wanted the data from useQuery to be the MosqueDTO[] not the axios response
@@ -27,7 +27,7 @@ export const getAllMosques = async (): Promise<MosqueDTO[]> => {
 };
 
 const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
-  const ISODate = format(date, 'yyyy-MM-dd');
+  const ISODate = formatDateIntoISOFormat(date);
   const newDateObj = new Date(`${ISODate}T${time}`);
   return newDateObj;
 };
