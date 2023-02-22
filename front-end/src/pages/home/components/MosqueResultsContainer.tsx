@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getAllMosques } from '../../../api/mosques';
+import Skeleton from '../../../components/skeletons/Skeleton';
 import useStore from '../../../stores/zustand';
 import { sortMosquesByDistanceFromLocation } from '../../../util/location';
 import MosqueCard from './MosqueCard';
@@ -50,6 +51,8 @@ const MosqueResultsContainer = () => {
   return (
     <div className="mosque-results-container flex flex-col items-center w-full">
       <div className="list-info w-full max-w-xl flex justify-between p-2 text-left items-baseline">
+        <Skeleton type="text-sm" width={2} />
+        <Skeleton type="map-icon" />
         {/* Need to sort out loading and empty states!! */}
         {mosques === undefined ? (
           <p>No mosques</p>
