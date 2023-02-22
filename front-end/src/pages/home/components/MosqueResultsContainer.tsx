@@ -56,9 +56,9 @@ const MosqueResultsContainer = () => {
         ) : (
           <p className="location-identifier text-sm text-slate-500">{`${mosques?.length} Mosques Near "${chosenLocation.name}"`}</p>
         )}
-        <form className="dropdown w-24">
+        <form className="dropdown w-fit">
           <label htmlFor="numOfMosques" className="text-sm">
-            Showing
+            Show
             <select id="numOfMosques" onChange={(event) => setMosquesPerPage(Number(event.target.value))}>
               <option value="5">5</option>
               <option value="10">10</option>
