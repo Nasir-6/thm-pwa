@@ -1,7 +1,7 @@
 import './Skeleton.css';
 
 interface SkeletonProps {
-  type: 'text' | 'text-xs' | 'text-sm' | 'map-icon';
+  type: 'text' | 'text-xs' | 'text-sm' | 'map-icon' | 'map';
   width?: number;
   lines?: number;
 }
@@ -11,6 +11,7 @@ const Skeleton: React.FC<SkeletonProps> = ({ type, width, lines = 1 }) => {
   const margin = '2px 0'; // set top and bottom margin to 20px for all skeletons
 
   if (type === 'map-icon') return <div className={`skeleton ${type}`} style={{ margin }} />;
+  if (type === 'map') return <div className={`skeleton ${type}`} />;
 
   const scale = 16; // width scales by 16px
   const scaledWidth = width ? `${width * scale}px` : '100%';

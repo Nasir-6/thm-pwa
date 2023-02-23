@@ -5,6 +5,7 @@ import ControlPanel from './components/ControlPanel';
 // import DataProcessor from '../data/DataProcessor';
 import './Home.css';
 import MosqueResultsContainer from './components/MosqueResultsContainer';
+import Skeleton from '../../components/skeletons/Skeleton';
 
 const Map = lazy(() => import('./components/Map'));
 
@@ -30,14 +31,14 @@ const Home = () => {
             {/* <DateTimeTest /> */}
           </div>
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
-            <Suspense fallback={<h1>Loading...</h1>}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
+            <Suspense fallback={<Skeleton type="map" />}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
           </div>
         </>
       ) : (
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
-            <Suspense fallback={<h1>Loading...</h1>}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
+            <Suspense fallback={<Skeleton type="map" />}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
           </div>
           <MosqueResultsContainer />
           {/* <DateTimeTest /> */}
