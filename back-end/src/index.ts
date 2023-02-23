@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const app = express();
 const corsOptions = {
-	origin: process.env.NODE_ENV === "production" ? "https://thm-staging.netlify.app" : "http://localhost:3000",
+	origin: process.env.NODE_ENV === "production" ? "https://app-thm.netlify.app" : "http://localhost:3000",
 	credentials: true,
 };
 app.use(cors(corsOptions));
