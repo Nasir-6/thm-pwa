@@ -5,6 +5,7 @@ import { isFuture, addDays } from 'date-fns'; // TODO: Improvements - Make own u
 import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
 import { ReactComponent as MapIcon } from '../../../assets/mapIcon.svg';
 import { getTimesForAMosqueOnAGivenDate } from '../../../api/mosques';
+import NextSalahSkeleton from './skeletons/NextSalahSkeleton';
 
 type Props = {
   mosque: MosqueDTO;
@@ -56,7 +57,6 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
     setNextSalah(nextSalahObj);
   }, [mosqueTimesToday, mosqueTimesTomorrow]);
 
-  // TODO: Add loading state for nextSalah loading state!
   return (
     <div className="mosque-card flex gap-3 justify-center px-2 py-3 border-t w-full max-w-xl self-center">
       <div className="map-details flex flex-col items-center justify-center py-2 text-xs text-slate-400">
@@ -73,16 +73,20 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
         </button>
       </div>
 
-      <div className="next-salah py-1 flex flex-col items-center justify-center min-w-fit">
-        <p className="font-bold text-xs text-primary-700">{nextSalah?.name}</p>
-        <p className="font-bold text-xs text-primary-700">
-          {nextSalah?.time.toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true,
-          })}
-        </p>
-      </div>
+      {isTodayLoaded && isTomorrowLoaded ? (
+        <div className="next-salah py-1 flex flex-col items-center justify-center min-w-fit">
+          <p className="font-bold text-xs text-primary-700">{nextSalah?.name}</p>
+          <p className="font-bold text-xs text-primary-700">
+            {nextSalah?.time.toLocaleTimeString('en-US', {
+              hour: 'numeric',
+              minute: '2-digit',
+              hour12: true,
+            })}
+          </p>
+        </div>
+      ) : (
+        <NextSalahSkeleton />
+      )}
     </div>
   );
 };

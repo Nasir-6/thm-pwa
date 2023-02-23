@@ -1,15 +1,3 @@
-.skeleton.text-xs {
-  height: 16px;
-}
-
-.skeleton.text-sm {
-  height: 20px;
-}
-
-.skeleton.text {
-  height: 24px;
-}
-
 .skeleton.map-icon {
   width: 25px;
   height: 30px;
@@ -38,8 +26,6 @@
   position: relative;
   overflow: hidden;
   z-index: 1; /* Necessary for overflow: hidden to work correctly in Safari */
-
-  align-self: center;
 }
 
 .skeleton::after {

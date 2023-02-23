@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getAllMosques } from '../../../api/mosques';
-import Skeleton from '../../../components/skeletons/Skeleton';
+// import Skeleton from '../../../components/skeletons/Skeleton';
 import useStore from '../../../stores/zustand';
 import { sortMosquesByDistanceFromLocation } from '../../../util/location';
 import MosqueCard from './MosqueCard';
 import Pagination from './Pagination';
+import MosqueResultsContainerSkeleton from './skeletons/MosqueResultsContainerSkeleton';
 
 // interface MosqueCardsContainerProps {
 // }
@@ -24,7 +25,11 @@ const MosqueResultsContainer = () => {
     setChosenLocation(userLocation);
   }, [userLocation]);
 
-  const { data: mosques, isSuccess } = useQuery({
+  const {
+    data: mosques,
+    isSuccess,
+    isLoading,
+  } = useQuery({
     queryKey: ['mosques'],
     queryFn: () => getAllMosques(),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
@@ -45,14 +50,13 @@ const MosqueResultsContainer = () => {
     ?.slice(indexOfFirstMosque, indexOfLastMosque)
     .map((mosque) => <MosqueCard key={mosque.id} mosque={mosque} />);
 
-  // TODO: Make mosqueCards scrollable!
-  // TODO: Add loading skeletons for when loading mosques
+  if (isLoading) return <MosqueResultsContainerSkeleton />;
 
   return (
     <div className="mosque-results-container flex flex-col items-center w-full">
       <div className="list-info w-full max-w-xl flex justify-between p-2 text-left items-baseline">
-        <Skeleton type="text-sm" width={2} />
-        <Skeleton type="map-icon" />
+        {/* <Skeleton type="text-sm" width={2} />
+        <Skeleton type="map-icon" /> */}
         {/* Need to sort out loading and empty states!! */}
         {mosques === undefined ? (
           <p>No mosques</p>
