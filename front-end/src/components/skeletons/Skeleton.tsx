@@ -8,14 +8,14 @@ interface SkeletonProps {
 
 // eslint-disable-next-line react/prop-types
 const Skeleton: React.FC<SkeletonProps> = ({ type, width, lines = 1 }) => {
-  const margin = '2px 0';
+  const margin = '2px 0'; // set top and bottom margin to 20px for all skeletons
 
-  if (type === 'map-icon') return <div className={`skeleton ${type}`} style={{ margin: '2px 0' }} />;
+  if (type === 'map-icon') return <div className={`skeleton ${type}`} style={{ margin }} />;
 
   const scale = 16; // width scales by 16px
   const scaledWidth = width ? `${width * scale}px` : '100%';
 
-  let height = 1;
+  let height = 0;
 
   switch (type) {
     case 'text-xs':
