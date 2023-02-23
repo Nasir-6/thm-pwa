@@ -3,6 +3,8 @@
   height: 30px;
 }
 
+/* Based off of react-loading-skeleton css code */
+
 @keyframes loading-skeleton {
   100% {
     transform: translateX(100%);
