@@ -31,7 +31,7 @@ const Skeleton: React.FC<SkeletonProps> = ({ type, width, lines = 1 }) => {
   }
   const scaledHeight = `${height * lines}px`;
 
-  return <div className={`skeleton ${type}`} style={{ width: scaledWidth, height: scaledHeight, margin }} />;
+  return <div className="skeleton" style={{ width: scaledWidth, height: scaledHeight, margin }} />;
 };
 
 export default Skeleton;
