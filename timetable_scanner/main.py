@@ -73,6 +73,7 @@ showImgInWindow(im, "Final image with contour")
 # print("Printing coordinates")
 # print(cordinates)
 print("Printing ocr results")
+# MAKE SURE NOT TO set to digits only - as need to identify ":" character!!!
 custom_config = r'--psm 6 tessedit_char_whitelist=0123456789:'
 i = 1
 row = []
@@ -80,6 +81,7 @@ time_arr = []
 dayNum = 1
 indexes_to_grab = [4, 7, 9, 11, 13]
 
+# TODO: Figure out how to get correct order i.e top left to bottom right when looping through coordinates
 for x, y, w, h in cordinates:
     if(i == 1):
         if dayNum < 10:
