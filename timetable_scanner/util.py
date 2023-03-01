@@ -33,3 +33,17 @@ def showImgAndReturnIfMeetsCriteria(pil_img, filename):
 
 def returnGrayscaleImg(img):
     return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+def checkIfUserInputIsANumber(userInput):
+    if userInput.isdigit():
+        return True
+    else:
+        print("User Input is not a number! Please try again")
+        return False
+
+def getThresholdFromUserInput():
+    isValidThreshold = False
+    while not isValidThreshold:
+        usrThreshold = input("Please pick a new threshold: ")
+        isValidThreshold = checkIfUserInputIsANumber(usrThreshold)
+    return int(usrThreshold)
