@@ -2,22 +2,7 @@ import cv2
 from PIL import Image, ImageOps
 import pytesseract
 import numpy as np
-
-
-def showImgInWindow(pil_img, filename):
-    # Convert to numpy array
-    # im_arr = np.asarray(pil_img)
-    # Display image using OpenCV
-    cv2.imshow(filename, pil_img)
-    # Closing image
-    cv2.waitKey(0)  # Wait for a key press before checking for user input
-    cv2.destroyAllWindows()  # Close the OpenCV window
-    # NEED TO ADD this so it waits for a sec!! and finsihes up closing
-    # https://stackoverflow.com/questions/22274789/cv2-imshow-function-is-opening-a-window-that-always-says-not-responding-pyth
-    cv2.waitKey(1)
-
-def grayscale(img):
-    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+from util import showImgInWindow, grayscale
 
 img_path = "IMG_4350.JPG"
 
@@ -55,7 +40,10 @@ showImgInWindow(dilated_value, "Dilated img")
 
 
 # Draw contours on original image
-contours, hierarchy = cv2.findContours(dilated_value, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+# Dont use RETR_TREE - as will give hierachal order
+# USE cv2.RETR_EXTERNAL - so only takes the outermost cotour - ignoring children
+# Can also use cv2.RETR_LIST - Just returns any and every contour as a list
+contours, hierarchy = cv2.findContours(dilated_value, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 cordinates = []
 for cnt in contours:
     x, y, w, h = cv2.boundingRect(cnt)
@@ -63,11 +51,13 @@ for cnt in contours:
     if x > 100 and y > 300 and w > 50 and h > 50 and y < (im_h - 400) :
         cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 3)
         # Only append the ones we want/drew boxes around!!!
-        # cordinates.append((x, y, w, h))
-        cordinates.insert(0, (x, y, w, h))
+        cordinates.append((x, y, w, h))
+        # cordinates.insert(0, (x, y, w, h))
 
 showImgInWindow(im, "Final image with contour")
 
+# Sort the contours so reading row by row top to bottom
+cordinates_sorted = sorted(cordinates, key=lambda x: (x[1], x[0]))
 ## Now use contours to read each time
 
 # print("Printing coordinates")
@@ -82,7 +72,7 @@ dayNum = 1
 indexes_to_grab = [4, 7, 9, 11, 13]
 
 # TODO: Figure out how to get correct order i.e top left to bottom right when looping through coordinates
-for x, y, w, h in cordinates:
+for x, y, w, h in cordinates_sorted:
     if(i == 1):
         if dayNum < 10:
             row = ["0" + str(dayNum) + "-Feb-23"]
@@ -94,8 +84,8 @@ for x, y, w, h in cordinates:
         dilated_value = cv2.dilate(roi, kernel, iterations=1)
         ocr_result = pytesseract.image_to_string(dilated_value, config=custom_config)
 
-        print(ocr_result)
-        showImgInWindow(dilated_value, ocr_result)
+        # print(ocr_result)
+        # showImgInWindow(dilated_value, ocr_result)
         row.append(ocr_result)
 
     if i == 13:
