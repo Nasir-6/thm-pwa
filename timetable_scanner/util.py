@@ -12,6 +12,24 @@ def showImgInWindow(pil_img, filename):
     # https://stackoverflow.com/questions/22274789/cv2-imshow-function-is-opening-a-window-that-always-says-not-responding-pyth
     cv2.waitKey(1)
 
+def showImgAndReturnIfMeetsCriteria(pil_img, filename):
+    while True:
+        cv2.imshow(filename, pil_img)
+        print("Does img meet criteria? Press q to quit, r to redo, Enter to move on")
+        # Wait for a key press
+        key = cv2.waitKey(0)
+        # Close the OpenCV window - after input
+        cv2.destroyAllWindows()
+        # Add a small delay to allow the window to close properly
+        cv2.waitKey(1)
+        if key == 13:  # Enter key
+            return True
+        elif key == ord('q'):  # 'q' key
+            cv2.destroyAllWindows()
+            exit()  # Stop the process
+        elif key == ord('r'):  # 'r' key
+            return False
+
 
 def returnGrayscaleImg(img):
     return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
