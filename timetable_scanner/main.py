@@ -1,3 +1,11 @@
+# This method attempts to grab each of the times as a seperate contour/box
+# Issue with this method is ordering the contours fails since boxes are slightly misalgined vertically
+# So say Asr time which is slightly above will come first before Zuhr time since the time is slightly below!
+# Proposed solutions:
+# 1) Try to draw in the table lines and make them as horizontally/vertically straight so can order properly
+# 2) Or first idenify the rows and then within each row identify columns
+# Another Issue to bear in mind is how do we identify calendars where the text is inverted (e.g Redcoat for March DST)?
+# I believe drawing the lines means when analysing can invert if on a specific row/ or if can't read
 import cv2
 from PIL import Image, ImageOps
 import pytesseract
