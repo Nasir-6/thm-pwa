@@ -2,7 +2,7 @@ import cv2
 from PIL import Image, ImageOps
 import pytesseract
 import numpy as np
-from util import showImgInWindow, grayscale
+from util import showImgInWindow, returnGrayscaleImg
 
 img_path = "IMG_4350.JPG"
 
@@ -22,7 +22,7 @@ showImgInWindow(im, "pre-processed PIL img")
 # if(usr_res == "n"):
 #     exit("NOPE IMAGE IS NOT GOOD")
 
-gray_img = grayscale(im)
+gray_img = returnGrayscaleImg(im)
 showImgInWindow(gray_img, "greyscaled Image")
 # usr_res = input("Does the greyscale image look fine? Enter n to stop: ")
 # if(usr_res == "n"):
