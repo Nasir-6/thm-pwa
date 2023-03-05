@@ -34,8 +34,8 @@ while not imgMeetsCriteria:
 
 
 # Step 3: Dilate all the text horizontally so as to produce singular blob allowing for row identification
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (50, 5))     # Use 50 to spread in x and join times, but 5 in y so as to add padding in y to box
-dilated_value = cv2.dilate(thresh_value,kernel,iterations = 5)
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (100, 1))     # Use 50 to spread in x and join times, but 5 in y so as to add padding in y to box
+dilated_value = cv2.dilate(thresh_value,kernel,iterations = 1)
 showImgInWindow(dilated_value, "Dilated img")
 
 # Draw contours
@@ -44,7 +44,7 @@ cordinates = []
 for cnt in contours:
     x, y, w, h = cv2.boundingRect(cnt)
     # bounding the images
-    if w > im_w * 0.95:
+    if w > im_w * 0.90:# and h > 50:
         cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 3)
         # Only append the ones we want/drew boxes around!!!
         cordinates.append((x, y, w, h))

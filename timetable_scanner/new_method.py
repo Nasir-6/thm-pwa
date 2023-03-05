@@ -58,7 +58,7 @@ vertical_horizontal_lines = cv2.erode(~vertical_horizontal_lines, kernel, iterat
 
 
 thresh, vertical_horizontal_lines = cv2.threshold(vertical_horizontal_lines,128,255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-b_image = cv2.bitwise_not(cv2.bitwise_xor(im,vertical_horizontal_lines))
+b_image = cv2.bitwise_not(cv2.bitwise_xor(im,thresh))
 
 showImgInWindow(vertical_horizontal_lines, "combo")
 
