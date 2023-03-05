@@ -6,7 +6,7 @@ def showImgInWindow(pil_img, filename):
     # Display image using OpenCV
     cv2.imshow(filename, pil_img)
     # Closing image
-    cv2.waitKey(0)  # Wait for a key press before checking for user input
+    # cv2.waitKey(0)  # Wait for a key press before checking for user input
     # cv2.destroyAllWindows()  # Close the OpenCV window
     # NEED TO ADD this so it waits for a sec!! and finsihes up closing
     # https://stackoverflow.com/questions/22274789/cv2-imshow-function-is-opening-a-window-that-always-says-not-responding-pyth
