@@ -39,11 +39,11 @@ sorted_lines = sorted(horizontal_lines, key=lambda x: x[0][1])
 filtered_list = []
 prev_line = []
 pixels_from_top_of_image = 180
-pixels_from_bottom_of_image = 100
+pixels_from_bottom_of_image = 10
 max_y_difference = 30
 for line in sorted_lines:
     current_line = line[0]  # To make code more readable later - Only need the array - as no longer clusters
-    if current_line[1] < pixels_from_top_of_image:
+    if current_line[1] < pixels_from_top_of_image or current_line[1] > im_h - pixels_from_bottom_of_image:
         continue
     if len(prev_line) == 0:
         prev_line = current_line
@@ -69,6 +69,8 @@ for row_line in filtered_list:
 # Display the result
 cv2.imshow("Horizontal lines", im)
 
+
+## Now extracting each row using lines
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
