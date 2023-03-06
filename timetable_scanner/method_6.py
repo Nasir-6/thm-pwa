@@ -5,7 +5,7 @@ from util import deskew
 from PIL import Image, ImageOps
 
 img_path = 'Redcoat-Mar-23.jpg'
-img_path = 'IMG_4350.JPG'
+# img_path = 'IMG_4350.JPG'
 
 
 im = Image.open(img_path)
@@ -63,7 +63,8 @@ lines = sorted(horizontal_lines, key=lambda x: x[0][1])
 # Group the lines into clusters based on their y-coordinates
 clusters = []
 current_cluster = []
-y_starting_value = 212
+y_starting_value = 180
+max_slope_difference = 25
 for line in lines:
     if line[0][1] < y_starting_value:
         continue
@@ -72,7 +73,7 @@ for line in lines:
     else:
         y1 = current_cluster[-1][0][1]
         y2 = line[0][3]
-        if abs(y1 - y2) < 100:
+        if abs(y1 - y2) < max_slope_difference:
             print(line)
             # Set y2 of current cluster to line if not a new row - as want to accomadate for slightly skewed lines
             current_cluster[-1][0][3] = y2
