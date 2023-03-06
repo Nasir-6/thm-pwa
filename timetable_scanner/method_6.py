@@ -5,6 +5,8 @@ from util import deskew
 from PIL import Image, ImageOps
 
 img_path = 'Redcoat-Mar-23.jpg'
+img_path = 'IMG_4350.JPG'
+
 
 im = Image.open(img_path)
 # To prevent img from being auto rotated due to exif value
@@ -15,7 +17,7 @@ im = ImageOps.exif_transpose(im)
 im = np.asarray(im)
 
 # Read the image
-img = cv2.imread('Redcoat-Mar-23.jpg')
+img = cv2.imread(img_path)
 im = deskew(im)
 im = np.asarray(img)
 base_image = im.copy()
@@ -29,7 +31,7 @@ blur = cv2.GaussianBlur(gray, (5, 5), 0)
 cv2.imshow('blur', blur)
 
 # Detect edges
-edges = cv2.Canny(blur, 50, 100, apertureSize=3)
+edges = cv2.Canny(blur, 20, 100, apertureSize=3)
 cv2.imshow('edges', edges)
 # Detect lines
 lines = cv2.HoughLinesP(edges, 1, np.pi/180, 100, minLineLength=100, maxLineGap=8)
@@ -61,15 +63,19 @@ lines = sorted(horizontal_lines, key=lambda x: x[0][1])
 # Group the lines into clusters based on their y-coordinates
 clusters = []
 current_cluster = []
+y_starting_value = 212
 for line in lines:
-    if line[0][1] < 200:
+    if line[0][1] < y_starting_value:
         continue
     if not current_cluster:
         current_cluster.append(line)
     else:
         y1 = current_cluster[-1][0][1]
-        y2 = line[0][1]
-        if abs(y1 - y2) < 70:
+        y2 = line[0][3]
+        if abs(y1 - y2) < 100:
+            print(line)
+            # Set y2 of current cluster to line if not a new row - as want to accomadate for slightly skewed lines
+            current_cluster[-1][0][3] = y2
             print("Dont store as it is not the next row line!")
             # current_cluster.append(line)
         else:
