@@ -10,7 +10,7 @@ from util import showImgInWindow, returnGrayscaleImg, showImgAndReturnIfMeetsCri
 
 # Step 1 : First read in file and make grayscale, also grab img shape, copy and store a base_img for later, show img
 # img_path = "IMG_4350.JPG"
-img_path = "Redcoat-Mar-23.jpg"
+img_path = "../Redcoat-Mar-23.jpg"
 
 im = Image.open(img_path)
 im = ImageOps.exif_transpose(im)
@@ -25,12 +25,12 @@ gray_img = returnGrayscaleImg(im)
 showImgInWindow(gray_img, "greyscaled Image")
 
 # Step 2: Binarise img - pick a threshold such that table lines can be seen!
-imgMeetsCriteria = False
-while not imgMeetsCriteria:
-    usrThreshold = getThresholdFromUserInput()
-    ret, thresh_value = cv2.threshold(gray_img, usrThreshold, 255, cv2.THRESH_BINARY_INV)
-    print("Does current threshold of '" + str(usrThreshold) + "' meet the criteria?")
-    imgMeetsCriteria = showImgAndReturnIfMeetsCriteria(thresh_value, "Binary Img")
+
+
+
+
+ret, thresh_value = cv2.threshold(gray_img, 180, 255, cv2.THRESH_BINARY_INV)
+imgMeetsCriteria = showImgInWindow(thresh_value, "Binary Img")
 
 
 # Step 3: Extract all vertical lines by eroding anything apart from vertical lines
@@ -38,15 +38,15 @@ while not imgMeetsCriteria:
 
 horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (np.array(im).shape[1] // 150, 1))
 eroded_image = cv2.erode(thresh_value, horizontal_kernel, iterations=1)
-showImgAndReturnIfMeetsCriteria(eroded_image, "eroded img")
+showImgInWindow(eroded_image, "Horizontally eroded img")
 
 thick_horizontal_kernal = horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1,10))
 horizontal_lines = cv2.dilate(eroded_image, thick_horizontal_kernal, iterations=1)
-showImgInWindow(horizontal_lines, "Vertical lines after dilation")
+showImgInWindow(horizontal_lines, "Horizontal lines after dilation")
 
 vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2, im_w//150))
 eroded_image = cv2.erode(thresh_value, vertical_kernel, iterations=1)
-showImgAndReturnIfMeetsCriteria(eroded_image, "eroded img")
+showImgInWindow(eroded_image, "Vertically eroded img")
 
 thick_vertical_kernal = horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (10,1))
 vertical_lines = cv2.dilate(eroded_image, thick_vertical_kernal, iterations=1)
@@ -59,31 +59,29 @@ vertical_horizontal_lines = cv2.addWeighted(vertical_lines, 0.5, horizontal_line
 vertical_horizontal_lines = cv2.erode(~vertical_horizontal_lines, kernel, iterations=3)
 
 
-thresh, vertical_horizontal_lines = cv2.threshold(vertical_horizontal_lines,128,255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-b_image = cv2.bitwise_not(cv2.bitwise_xor(im,thresh))
+thresh, vertical_horizontal_lines = cv2.threshold(vertical_horizontal_lines,150,255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+
+# b_image = cv2.bitwise_not(cv2.bitwise_xor(im,thresh))
+# showImgInWindow(b_image, "b_image")
 
 
-showImgInWindow(b_image, "b_image")
-showImgInWindow(vertical_horizontal_lines, "combo")
+showImgInWindow(~vertical_horizontal_lines, "combo")
 
-inverted_combo = cv2.bitwise_not(vertical_horizontal_lines)
-showImgInWindow(inverted_combo, "Inverted combo")
-
-canny = cv2.Canny(inverted_combo, 125, 175)
-cv2.imshow('Inverted Canny', canny)
+# canny = cv2.Canny(inverted_combo, 125, 175)
+# cv2.imshow('Inverted Canny', canny)
 # canny = cv2.GaussianBlur(vertical_horizontal_lines, (7,7), cv2.BORDER_DEFAULT)
 # cv2.imshow('BLURRED Lines', canny)
 
-# canny = cv2.Canny(vertical_horizontal_lines, 125, 175)
-# cv2.imshow('Canny Edges', canny)
+canny = cv2.Canny(vertical_horizontal_lines, 10, 255)
+cv2.imshow('Canny Edges', canny)
 
 # Draw contours
-contours, hierarchy = cv2.findContours(canny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+contours, hierarchy = cv2.findContours(vertical_horizontal_lines, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 cordinates = []
 for cnt in contours:
     x, y, w, h = cv2.boundingRect(cnt)
     # bounding the images
-    if True and w > im_w * 0.7:
+    if True or w > im_w * 0.7:
         cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 3)
         # Only append the ones we want/drew boxes around!!!
         cordinates.append((x, y, w, h))

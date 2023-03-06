@@ -10,7 +10,7 @@ from util import showImgInWindow, returnGrayscaleImg, showImgAndReturnIfMeetsCri
 
 # Step 1 : First read in file and make grayscale, also grab img shape, copy and store a base_img for later, show img
 # img_path = "IMG_4350.JPG"
-img_path = "Redcoat-Mar-23.jpg"
+img_path = "../Redcoat-Mar-23.jpg"
 im = Image.open(img_path)
 im = ImageOps.exif_transpose(im)
 

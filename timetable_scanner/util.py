@@ -1,4 +1,12 @@
 import cv2
+from PIL import Image, ImageOps
+import numpy as np
+def openAndReturnImageArray(img_path):
+    im = Image.open(img_path)
+    # To prevent img from being auto rotated due to exif value
+    # https://github.com/python-pillow/Pillow/issues/4703
+    im = ImageOps.exif_transpose(im)
+    return np.asarray(im)
 
 def showImgInWindow(pil_img, filename):
     # Convert to numpy array
