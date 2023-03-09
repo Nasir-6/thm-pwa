@@ -1,5 +1,5 @@
 import Skeleton from '../../../../components/skeletons/Skeleton';
-import NextSalahSkeleton from './NextSalahSkeleton';
+// import NextSalahSkeleton from './NextSalahSkeleton';
 
 const MosqueCardSkeleton = () => (
   <div className="mosque-card flex gap-3 justify-center px-2 py-3 border-t w-full max-w-xl self-center">
@@ -14,7 +14,7 @@ const MosqueCardSkeleton = () => (
       <Skeleton type="text-sm" width={5} />
     </div>
 
-    <NextSalahSkeleton />
+    {/* <NextSalahSkeleton /> */}
   </div>
 );
 
