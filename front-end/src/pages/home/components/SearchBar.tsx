@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
 
 const SearchBar = () => (
