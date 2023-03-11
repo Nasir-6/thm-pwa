@@ -1,5 +1,13 @@
 /* THIS IS ALL FOR MOBILE FIRST */
 /* Website to convert hex to rbg to form rgba colors - https://color-hex.org/color/1a6271 */
+/* 
+  z-indexes explained
+  Lowest layer 
+  1) navbar-container = 5
+  2) dark-overlay = 9 (Needs to be above the navbar when shown
+  3) navigation = 10 (needs to be above the overlay)
+  4) hamburger-btn = 15 (needs to be above the nav panel so can click the cross version of it)
+*/
 .navbar-pattern {
   background-image: url('../assets/pattern.svg');
   background-color: rgba(26, 98, 113, 1);
@@ -25,7 +33,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1rem;
-  z-index: 999;
+  z-index: 10;
   transition: transform 200ms ease-in;
   transform: translateX(200px); /* Start off screen so enter can be a transition to 0px!! */
 }
@@ -70,7 +78,7 @@
   position: absolute;
   right: 20px;
   top: 10px;
-  z-index: 1000;
+  z-index: 15;
   transition: stroke 200ms ease-in;
 }
 
@@ -115,7 +123,7 @@
 }
 
 .navbar-container {
-  z-index: 900;
+  z-index: 5;
 }
 
 .dark-overlay[data-visible='true'] {
@@ -124,5 +132,5 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 990;
+  z-index: 9;
 }
