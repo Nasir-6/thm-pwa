@@ -55,9 +55,6 @@ const MosqueResultsContainer = () => {
   return (
     <div className="mosque-results-container flex flex-col items-center w-full">
       <div className="list-info w-full max-w-xl flex justify-between p-2 text-left items-baseline">
-        {/* <Skeleton type="text-sm" width={2} />
-        <Skeleton type="map-icon" /> */}
-        {/* Need to sort out loading and empty states!! */}
         {mosques === undefined ? (
           <p>No mosques</p>
         ) : (
@@ -74,6 +71,11 @@ const MosqueResultsContainer = () => {
           </label>
         </form>
       </div>
+      <button
+        type="button"
+        className="bg-transparent hover:bg-accent-600 text-accent-600 font-semibold hover:text-white py-2 px-16 border border-accent-600 hover:border-transparent rounded-full mb-3 mx-5 max-w-lg">
+        Salah Beginning Times
+      </button>
       <div className="mosque-cards-container w-full flex flex-col justify-center">{createMosqueCards}</div>
       {isSuccess && (
         <Pagination
