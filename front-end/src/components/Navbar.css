@@ -5,7 +5,7 @@
   Lowest layer 
   1) navbar-container = 5
   2) dark-overlay = 9 (Needs to be above the navbar when shown
-  3) navigation = 10 (needs to be above the overlay)
+  3) navigation-panel = 10 (needs to be above the overlay)
   4) hamburger-btn = 15 (needs to be above the nav panel so can click the cross version of it)
 */
 .navbar-pattern {
@@ -20,7 +20,7 @@
   background-image: radial-gradient(circle at -100% -100%, rgba(26, 98, 113, 0.85), rgba(26, 98, 113, 1));
 }
 
-.navigation {
+.navigation-panel {
   position: absolute;
   top: 0;
   right: 0;
@@ -40,31 +40,31 @@
 
 /* CSSTransition classes for Ul - START */
 
-.navigation-enter {
+.navigation-panel-enter {
 }
-.navigation-enter-active,
-.navigation-enter-done {
+.navigation-panel-enter-active,
+.navigation-panel-enter-done {
   transform: translateX(0px);
 }
 
-.navigation-exit {
+.navigation-panel-exit {
   transform: translateX(0);
 }
 
-.navigation-exit-active {
+.navigation-panel-exit-active {
   transform: translateX(200px);
 }
 
-.navigation-exit-done {
+.navigation-panel-exit-done {
   transform: translateX(200px);
 }
 
 /* CSSTransition classes for Ul --- END */
 
-.navigation li {
+.navigation-panel li {
   position: relative;
 }
-.navigation li:not(:last-child)::after {
+.navigation-panel li:not(:last-child)::after {
   content: '';
   border: 1px solid #e2e2e2;
   width: 125px;
