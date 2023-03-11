@@ -6,6 +6,7 @@ import useStore from '../../../stores/zustand';
 import { sortMosquesByDistanceFromLocation } from '../../../util/location';
 import MosqueCard from './MosqueCard';
 import Pagination from './Pagination';
+import SalahBeginningBtn from './SalahBeginningBtn';
 import MosqueResultsContainerSkeleton from './skeletons/MosqueResultsContainerSkeleton';
 
 // interface MosqueCardsContainerProps {
@@ -71,11 +72,7 @@ const MosqueResultsContainer = () => {
           </label>
         </form>
       </div>
-      <button
-        type="button"
-        className="bg-transparent hover:bg-accent-600 text-accent-600 font-semibold hover:text-white py-2 px-16 border border-accent-600 hover:border-transparent rounded-full mb-3 mx-5 max-w-lg">
-        Salah Beginning Times
-      </button>
+      <SalahBeginningBtn />
       <div className="mosque-cards-container w-full flex flex-col justify-center">{createMosqueCards}</div>
       {isSuccess && (
         <Pagination
