@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { isFuture, addDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 // eslint-disable-next-line import/no-relative-packages
-import { MosqueDTO } from '../../../../../back-end/src/db/models/mosques';
+import { MosqueDTO } from '../../../../../../back-end/src/db/models/mosques';
 import { ReactComponent as MapIcon } from '../../../assets/mapIcon.svg';
-import { getTimesForAMosqueOnAGivenDate } from '../../../api/mosques';
-import NextSalahSkeleton from './skeletons/NextSalahSkeleton';
+import { getTimesForAMosqueOnAGivenDate } from '../../../../api/mosques';
+import NextSalahSkeleton from '../skeletons/NextSalahSkeleton';
 
 type Props = {
   mosque: MosqueDTO;
