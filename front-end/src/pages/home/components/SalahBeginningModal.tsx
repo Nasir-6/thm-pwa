@@ -82,6 +82,42 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   console.log('currentSalah', currentSalah);
   console.log('nextSalah', nextSalah);
   setIsModalShown(true);
+
+  const salahTimesRows = salahBeginningTimesToday
+    ? Object.entries(salahBeginningTimesToday)?.map((row) => {
+        if (row[0] === 'id' || row[0] === 'date' || row === null || row === undefined) {
+          console.log('NOT A SALAH', row);
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          return <></>;
+        }
+
+        const salahName = (row[0][0].toUpperCase() +
+          row[0]
+            .slice(1)
+            .split(/(?=[A-Z]|[0-9])/)
+            .join(' ')) as SalahName;
+        const salahTimeObj: SalahObj = {
+          name: salahName,
+          time: row[1] as Date,
+        };
+        console.log('row', row);
+        return (
+          <div>
+            <p>Icon</p>
+            <p>{salahTimeObj.name}</p>
+            <p>
+              {salahTimeObj.time?.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true,
+              })}
+            </p>
+          </div>
+        );
+      })
+    : null;
+
+  console.log('salahTimesRows', salahTimesRows);
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
     <div
@@ -102,42 +138,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           </div>
           <div className="date-picker">Date Picker Here</div>
         </div>
-
-        <div className="fajr">
-          <p>Icon</p>
-          <p>Fajr</p>
-          <p>Time</p>
-        </div>
-        <div className="fajr">
-          <p>Icon</p>
-          <p>Fajr</p>
-          <p>Time</p>
-        </div>
-        <div className="fajr">
-          <p>Icon</p>
-          <p>Fajr</p>
-          <p>Time</p>
-        </div>
-        <div className="fajr">
-          <p>Icon</p>
-          <p>Fajr</p>
-          <p>Time</p>
-        </div>
-        <div className="fajr">
-          <p>Icon</p>
-          <p>Fajr</p>
-          <p>Time</p>
-        </div>
-        <div className="fajr">
-          <p>Icon</p>
-          <p>Fajr</p>
-          <p>Time</p>
-        </div>
-        <div className="fajr">
-          <p>Icon</p>
-          <p>Fajr</p>
-          <p>Time</p>
-        </div>
+        {salahBeginningTimesToday && salahTimesRows}
       </div>
     </div>,
     document.body
