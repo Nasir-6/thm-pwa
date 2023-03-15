@@ -1,5 +1,5 @@
 import { MosqueDTO } from "../db/models/mosques";
-import { MosqueTimesDailyDTO } from "../db/models/dailyTimes";
+import { MosqueTimesDailyDTO, SalahBeginningTimesDailyDTO } from "../db/models/dailyTimes";
 import { MosqueDAOInterface } from "../db/mosqueDb";
 import HttpException from "../exceptions/httpExceptions";
 
@@ -28,6 +28,11 @@ class MosqueService {
 		if (mosque.id !== mosqueId) throw new HttpException(500, `returned mosque id ${mosque.id} did not match the id ${mosqueId}!`);
 
 		const res = await this.mosqueDAO.getTimesForAMosqueOnAGivenDate(mosqueId, date);
+		return res;
+	}
+
+	async getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO> {
+		const res = await this.mosqueDAO.getSalahBeginningTimesOnAGivenDate(date);
 		return res;
 	}
 }

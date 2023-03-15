@@ -27,3 +27,5 @@ const pool =
 
 const mosqueDAO: MosqueDAOInterface = new MosqueDAOPostgres(pool);
 export default mosqueDAO;
+
+// TODO: Maybe have another DAO for salah beginning times if it is big enough

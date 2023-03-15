@@ -29,6 +29,13 @@ class MosqueController {
 		const results = await this.mosqueService.getTimesForAMosqueOnAGivenDate(mosqueId, date);
 		res.json(results);
 	}
+
+	async getSalahBeginningTimesOnAGivenDate(req: Request, res: Response): Promise<void> {
+		const date = new Date(req.params.date);
+		if (date.toDateString() === "Invalid Date") throw new HttpException(400, `Date parameter ${req.params.date} is not a valid date`);
+		const results = await this.mosqueService.getSalahBeginningTimesOnAGivenDate(date);
+		res.json(results);
+	}
 }
 
 export default MosqueController;

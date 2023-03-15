@@ -1,7 +1,7 @@
 import { Pool, QueryResult } from "pg";
 import { format } from "date-fns";
 import { MosqueDB, MosqueDTO } from "../models/mosques";
-import { MosqueTimesDailyDTO, MosqueTimesDailyDB } from "../models/dailyTimes";
+import { MosqueTimesDailyDTO, MosqueTimesDailyDB, SalahBeginningTimesDailyDTO, SalahBeginningTimesDailyDB } from "../models/dailyTimes";
 import HttpException from "../../exceptions/httpExceptions";
 
 class MosqueDAOPostgres {
@@ -14,7 +14,7 @@ class MosqueDAOPostgres {
 
 	// All the methods
 	async getAllMosques(): Promise<MosqueDTO[]> {
-		console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+		// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 		// console.log("IM GETTING MOSQUES FROM DB");
 		// console.log("#pool", this.#pool);
 		const res = await this.#pool.query("SELECT * FROM mosques");
@@ -57,6 +57,29 @@ class MosqueDAOPostgres {
 			asr: mosqueTimes.asr,
 			maghrib: mosqueTimes.maghrib,
 			isha: mosqueTimes.isha,
+		};
+	}
+
+	async getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO> {
+		const DD_MMM_YY = format(date, "dd-MMM-yy");
+		const query = "SELECT id, date, fajr, sunrise, zuhr, asr_1st_mithl, asr_2nd_mithl, maghrib, isha FROM salah_beginning_times WHERE date = $1";
+		const res = await this.#pool.query(query, [DD_MMM_YY]);
+		// FIXME: What about when you want to show that we don't have this data? - Then should we throw error or give an empty array?
+		if (res.rowCount === 0) throw new HttpException(404, `Salah Beginning Times with date=${DD_MMM_YY} could not be found`);
+		// if (res.rowCount !== 1) throw new HttpException(500, `Found more than one time for mosque_id=${mosqueId} and date=${DD_MMM_YY}`);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const salahBeginningTimes: SalahBeginningTimesDailyDB = res.rows[0];
+		console.log("salahBeginningTimes", salahBeginningTimes);
+		return {
+			id: salahBeginningTimes.id,
+			date: salahBeginningTimes.date,
+			fajr: salahBeginningTimes.fajr,
+			sunrise: salahBeginningTimes.sunrise,
+			zuhr: salahBeginningTimes.zuhr,
+			asr1stMithl: salahBeginningTimes.asr_1st_mithl,
+			asr2ndMithl: salahBeginningTimes.asr_2nd_mithl,
+			maghrib: salahBeginningTimes.maghrib,
+			isha: salahBeginningTimes.isha,
 		};
 	}
 

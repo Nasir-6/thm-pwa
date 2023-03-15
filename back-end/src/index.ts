@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import mosques from "./routes/mosques";
+import salah from "./routes/salah";
 import ErrorHandler from "./middlewares/ErrorHandler";
 
 if (process.env.NODE_ENV !== "production") {
@@ -18,6 +19,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/api/v1/mosques", mosques);
+app.use("/api/v1/salah", salah);
 
 app.get("/", async (req, res) => {
 	res.json({ test: "success" });
