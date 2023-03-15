@@ -1,11 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useQuery } from 'react-query';
+import { getSalahBeginningTimesOnAGivenDate } from '../../../api/mosques';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalShown }) => {
+  const { data: salahBeginningTimes } = useQuery({
+    queryKey: ['salahBeginningTimes', 'today'], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
+    queryFn: () => getSalahBeginningTimesOnAGivenDate(new Date()),
+    staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
+  });
+
+  console.log('salahBeginningTimes', salahBeginningTimes);
+
   setIsModalShown(true);
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
