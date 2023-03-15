@@ -11,3 +11,15 @@ interface MosqueTimesDaily {
   maghrib: Date;
   isha: Date;
 }
+
+interface SalahTimesDaily {
+  id: number;
+  date: Date;
+  sunrise: Date;
+  fajr: Date;
+  zuhr: Date;
+  asr1stMithl: Date;
+  asr2ndMithl: Date;
+  maghrib: Date;
+  isha: Date;
+}
