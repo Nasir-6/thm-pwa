@@ -30,13 +30,13 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   console.log('salahBeginningTimesTomorrow', salahBeginningTimesTomorrow);
 
   type SalahName = 'Fajr' | 'Sunrise' | 'Zuhr' | 'Asr1stMithl' | 'Asr2ndMithl' | 'Maghrib' | 'Isha';
-  type SalahObj = {
+  type SalahObject = {
     name: SalahName;
     time: Date;
   };
 
-  const [currentSalah, setCurrentSalah] = useState<SalahObj | undefined>();
-  const [nextSalah, setNextSalah] = useState<SalahObj | undefined>();
+  const [currentSalah, setCurrentSalah] = useState<SalahObject | undefined>();
+  const [nextSalah, setNextSalah] = useState<SalahObject | undefined>();
 
   useEffect(() => {
     if (
@@ -47,11 +47,11 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     )
       return;
 
-    let nextSalahObj: SalahObj = {
+    let nextSalahObj: SalahObject = {
       name: 'Fajr',
       time: salahBeginningTimesTomorrow?.fajr,
     };
-    let currentSalahObj: SalahObj = {
+    let currentSalahObj: SalahObject = {
       name: 'Isha',
       time: salahBeginningTimesYesterday?.isha,
     };
@@ -83,6 +83,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   console.log('nextSalah', nextSalah);
   setIsModalShown(true);
 
+  // TODO: Convert the below into a component that returns all the divs as rows - with designs
   const salahTimesRows = salahBeginningTimesToday
     ? Object.entries(salahBeginningTimesToday)?.map((row) => {
         if (row[0] === 'id' || row[0] === 'date' || row === null || row === undefined) {
@@ -90,13 +91,12 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           // eslint-disable-next-line react/jsx-no-useless-fragment
           return <></>;
         }
-
         const salahName = (row[0][0].toUpperCase() +
           row[0]
             .slice(1)
             .split(/(?=[A-Z]|[0-9])/)
             .join(' ')) as SalahName;
-        const salahTimeObj: SalahObj = {
+        const salahTimeObj: SalahObject = {
           name: salahName,
           time: row[1] as Date,
         };
