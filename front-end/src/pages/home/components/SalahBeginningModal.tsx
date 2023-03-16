@@ -120,14 +120,16 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   console.log('salahTimesRows', salahTimesRows);
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
-    <div
-      onClick={() => setIsModalShown(false)}
-      aria-hidden="true"
-      role="button"
-      className="dark-overlay bg-slate-900 bg-opacity-25 fixed w-full h-full top-0 z-20 flex justify-center items-center overflow-hidden">
-      <div className="salah-beginning-modal absolute bg-white max-w-lg w-full">
-        <div className="header flex">
-          <h2 className="">Salah Beginning Times</h2>
+    <div className="flex justify-center items-center">
+      <div
+        onClick={() => setIsModalShown(false)}
+        aria-hidden="true"
+        role="button"
+        className="dark-overlay bg-slate-900 bg-opacity-25 fixed w-full h-full top-0 z-20 flex justify-center items-center overflow-hidden"
+      />
+      <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30">
+        <div className="header flex justify-between px-3 py-2 text-lg font-bold">
+          <h2 className=" text-lg font-bold">Salah Beginning Times</h2>
           <p>X</p>
         </div>
         <div className="current-info">
