@@ -95,7 +95,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           time: row[1] as Date,
         };
         return (
-          <div className={`${currentSalah?.time === salahTimeObj.time ? 'current' : ''} flex justify-between p-3`}>
+          <div className={`${currentSalah?.time === salahTimeObj.time ? 'current' : ''} flex justify-between px-4 py-5 border-t`}>
             <div className="lhs flex gap-2">
               <p>Icon</p>
               <p>{salahTimeObj.name}</p>
@@ -159,7 +159,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           <h2 className=" text-lg font-bold">Salah Beginning Times</h2>
           <p>X</p>
         </div>
-        <div className="current-info flex justify-between p-3 bg-primary-700 text-white">
+        <div className="current-info flex justify-between px-4 py-5 bg-primary-700 text-white">
           <div className="next-salah">
             <p>Icon {new Date().toLocaleTimeString()}</p>
             <p>{getTimeToNextSalahString()}</p>
