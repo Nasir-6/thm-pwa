@@ -102,11 +102,14 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
               <p>{salahTimeObj.name}</p>
             </div>
             <p>
-              {salahTimeObj.time?.toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true,
-              })}
+              {salahTimeObj.time
+                ?.toLocaleTimeString('en-US', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  // hour12: true,
+                })
+                .replace(/\s?[AP]M/, '')}
+              {/* Remove AM/PM with replace function! */}
             </p>
           </div>
         );
