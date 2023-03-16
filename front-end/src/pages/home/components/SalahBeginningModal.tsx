@@ -132,7 +132,16 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     const diffInSecondsStr = diffInSeconds < 10 ? `0${diffInSeconds}` : `${diffInSeconds}`;
     milliSecondsLeft -= diffInSeconds * 1000;
 
-    const str = `${diffInHoursStr}:${diffInMinutesStr}:${diffInSecondsStr} left until ${nextSalah?.name}`;
+    let nextSalahNameStr = nextSalah?.name as string;
+    // eslint-disable-next-line no-unsafe-optional-chaining
+    nextSalahNameStr =
+      nextSalahNameStr[0].toUpperCase() +
+      nextSalahNameStr
+        .slice(1)
+        .split(/(?=[A-Z]|[0-9])/)
+        .join(' ');
+
+    const str = `${diffInHoursStr}:${diffInMinutesStr}:${diffInSecondsStr} left until ${nextSalahNameStr}`;
     return str;
   };
 
