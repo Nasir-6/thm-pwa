@@ -26,9 +26,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  console.log('salahBeginningTimesToday', salahBeginningTimesToday);
-  console.log('salahBeginningTimesTomorrow', salahBeginningTimesTomorrow);
-
   type SalahName = 'Fajr' | 'Sunrise' | 'Zuhr' | 'Asr1stMithl' | 'Asr2ndMithl' | 'Maghrib' | 'Isha';
   type SalahObject = {
     name: SalahName;
@@ -79,8 +76,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     setNextSalah(nextSalahObj);
   }, [salahBeginningTimesToday, salahBeginningTimesTomorrow]);
 
-  console.log('currentSalah', currentSalah);
-  console.log('nextSalah', nextSalah);
   setIsModalShown(true);
 
   // TODO: Convert the below into a component that returns all the divs as rows - with designs
@@ -117,6 +112,30 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
       })
     : null;
 
+  const getTimeToNextSalahString = (): string => {
+    if (!nextSalah) return '';
+    const date1: Date = new Date();
+    const date2: Date = nextSalah?.time;
+
+    const diffInMilliSeconds = Math.abs(date2.valueOf() - date1.valueOf());
+    let milliSecondsLeft = diffInMilliSeconds;
+
+    const diffInHours = Math.floor(milliSecondsLeft / (1000 * 60 * 60));
+    const diffInHoursStr = diffInHours < 10 ? `0${diffInHours}` : `${diffInHours}`;
+    milliSecondsLeft -= diffInHours * (1000 * 60 * 60);
+
+    const diffInMinutes = Math.floor(milliSecondsLeft / (1000 * 60));
+    const diffInMinutesStr = diffInMinutes < 10 ? `0${diffInMinutes}` : `${diffInMinutes}`;
+    milliSecondsLeft -= diffInMinutes * (1000 * 60);
+
+    const diffInSeconds = Math.floor(milliSecondsLeft / 1000);
+    const diffInSecondsStr = diffInSeconds < 10 ? `0${diffInSeconds}` : `${diffInSeconds}`;
+    milliSecondsLeft -= diffInSeconds * 1000;
+
+    const str = `${diffInHoursStr}:${diffInMinutesStr}:${diffInSecondsStr} left until ${nextSalah?.name}`;
+    return str;
+  };
+
   console.log('salahTimesRows', salahTimesRows);
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
@@ -132,11 +151,10 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           <h2 className=" text-lg font-bold">Salah Beginning Times</h2>
           <p>X</p>
         </div>
-        <div className="current-info">
+        <div className="current-info flex justify-between p-3 bg-primary-700 text-white">
           <div className="next-salah">
-            <p>Icon</p>
-            <p>Time Now</p>
-            <p>Time to Next Salaah</p>
+            <p>Icon {new Date().toLocaleTimeString()}</p>
+            <p>{getTimeToNextSalahString()}</p>
           </div>
           <div className="date-picker">Date Picker Here</div>
         </div>
