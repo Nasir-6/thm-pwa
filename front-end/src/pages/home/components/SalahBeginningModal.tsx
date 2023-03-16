@@ -142,7 +142,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
         .split(/(?=[A-Z]|[0-9])/)
         .join(' ');
 
-    const str = `${diffInHoursStr}:${diffInMinutesStr}:${diffInSecondsStr} left until ${nextSalahNameStr}`;
+    const str = `${diffInHoursStr}h ${diffInMinutesStr}m ${diffInSecondsStr}s left until ${nextSalahNameStr}`;
     return str;
   };
 
