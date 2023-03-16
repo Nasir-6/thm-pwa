@@ -97,7 +97,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
         };
         console.log('row', row);
         return (
-          <div>
+          <div className={`${currentSalah?.time === salahTimeObj.time ? 'current' : ''}`}>
             <p>Icon</p>
             <p>{salahTimeObj.name}</p>
             <p>
