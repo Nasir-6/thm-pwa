@@ -55,7 +55,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
 
     const { id, date, ...salahBeginningTimesObj } = salahBeginningTimesToday;
     const salahInfoArr = Object.entries(salahBeginningTimesObj);
-    console.log('salahInfoArr', salahInfoArr);
     for (let i = 0; i < salahInfoArr.length; i++) {
       const [name, time] = salahInfoArr[i];
       const salahName = (name[0].toUpperCase() + name.slice(1)) as SalahName;
@@ -82,7 +81,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   const salahTimesRows = salahBeginningTimesToday
     ? Object.entries(salahBeginningTimesToday)?.map((row) => {
         if (row[0] === 'id' || row[0] === 'date' || row === null || row === undefined) {
-          console.log('NOT A SALAH', row);
+          //   console.log('NOT A SALAH', row);
           // eslint-disable-next-line react/jsx-no-useless-fragment
           return <></>;
         }
@@ -95,7 +94,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           name: salahName,
           time: row[1] as Date,
         };
-        console.log('row', row);
         return (
           <div className={`${currentSalah?.time === salahTimeObj.time ? 'current' : ''} flex justify-between p-3`}>
             <div className="lhs flex gap-2">
@@ -147,7 +145,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     return str;
   };
 
-  console.log('salahTimesRows', salahTimesRows);
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
     <div className="flex justify-center items-center">
