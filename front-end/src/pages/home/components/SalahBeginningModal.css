@@ -1,0 +1,4 @@
+.current {
+  background-color: theme(colors.accent.600);
+  color: white;
+}

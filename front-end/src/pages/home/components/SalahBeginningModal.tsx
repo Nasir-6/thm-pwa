@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { useQuery } from 'react-query';
 import { isFuture, addDays, subDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import { getSalahBeginningTimesOnAGivenDate } from '../../../api/mosques';
+import './SalahBeginningModal.css';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
