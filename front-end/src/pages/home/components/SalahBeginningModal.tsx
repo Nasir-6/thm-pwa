@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { useQuery } from 'react-query';
 import { isFuture, addDays, subDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import { getSalahBeginningTimesOnAGivenDate } from '../../../api/mosques';
+import { ReactComponent as FajrIcon } from '../../../assets/sunrise.svg';
 import './SalahBeginningModal.css';
 
 interface SalahBeginningModalProps {
@@ -95,10 +96,11 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           name: salahName,
           time: row[1] as Date,
         };
+        // if (salahName === 'Fajr')
         return (
           <div className={`${currentSalah?.time === salahTimeObj.time ? 'current' : ''} flex justify-between px-4 py-5 border-t`}>
             <div className="lhs flex gap-2">
-              <p>Icon</p>
+              <FajrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />
               <p>{salahTimeObj.name}</p>
             </div>
             <p>
