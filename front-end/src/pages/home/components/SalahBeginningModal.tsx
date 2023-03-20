@@ -4,6 +4,10 @@ import { useQuery } from 'react-query';
 import { isFuture, addDays, subDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import { getSalahBeginningTimesOnAGivenDate } from '../../../api/mosques';
 import { ReactComponent as FajrIcon } from '../../../assets/sunrise.svg';
+import { ReactComponent as ZuhrIcon } from '../../../assets/sun.svg';
+import { ReactComponent as AsrIcon } from '../../../assets/cloudy_sun.svg';
+import { ReactComponent as MaghribIcon } from '../../../assets/cloudy_moon.svg';
+import { ReactComponent as IshaIcon } from '../../../assets/moon.svg';
 import './SalahBeginningModal.css';
 
 interface SalahBeginningModalProps {
@@ -28,7 +32,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  type SalahName = 'Fajr' | 'Sunrise' | 'Zuhr' | 'Asr1stMithl' | 'Asr2ndMithl' | 'Maghrib' | 'Isha';
+  type SalahName = 'Fajr' | 'Sunrise' | 'Zuhr' | 'Asr 1st Mithl' | 'Asr 2nd Mithl' | 'Maghrib' | 'Isha';
   type SalahObject = {
     name: SalahName;
     time: Date;
@@ -96,11 +100,18 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           name: salahName,
           time: row[1] as Date,
         };
-        // if (salahName === 'Fajr')
+        let icon;
+        if (salahName === 'Fajr' || salahName === 'Sunrise')
+          icon = <FajrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
+        if (salahName === 'Zuhr') icon = <ZuhrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
+        if (salahName === 'Asr 1st Mithl' || salahName === 'Asr 2nd Mithl')
+          icon = <AsrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
+        if (salahName === 'Maghrib') icon = <MaghribIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
+        if (salahName === 'Isha') icon = <IshaIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
         return (
           <div className={`${currentSalah?.time === salahTimeObj.time ? 'current' : ''} flex justify-between px-4 py-5 border-t`}>
             <div className="lhs flex gap-2">
-              <FajrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />
+              {icon}
               <p>{salahTimeObj.name}</p>
             </div>
             <p>
