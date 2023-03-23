@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useQuery } from 'react-query';
 import { isFuture, addDays, subDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
-import { getSalahBeginningTimesOnAGivenDate } from '../../../api/mosques';
+import { getSalahBeginningTimesOnAGivenDate } from '../../../../api/mosques';
 import { ReactComponent as FajrIcon } from '../../../assets/sunrise.svg';
 import { ReactComponent as ZuhrIcon } from '../../../assets/sun.svg';
 import { ReactComponent as AsrIcon } from '../../../assets/cloudy_sun.svg';
