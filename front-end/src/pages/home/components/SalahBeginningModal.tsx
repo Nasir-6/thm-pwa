@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useQuery } from 'react-query';
-import { isFuture, addDays, subDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
+import { isFuture, subDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import { getSalahBeginningTimesOnAGivenDate } from '../../../api/mosques';
 import { ReactComponent as FajrIcon } from '../../../assets/sunrise.svg';
 import { ReactComponent as ZuhrIcon } from '../../../assets/sun.svg';
@@ -26,12 +26,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  const { data: salahBeginningTimesTomorrow, isSuccess: isTomorrowLoaded } = useQuery({
-    queryKey: ['salahBeginningTimes', 'tomorrow'], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
-    queryFn: () => getSalahBeginningTimesOnAGivenDate(addDays(new Date(), 1)),
-    staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
-  });
-
   type SalahName = 'Fajr' | 'Sunrise' | 'Zuhr' | 'Asr 1st Mithl' | 'Asr 2nd Mithl' | 'Maghrib' | 'Isha';
   type SalahObject = {
     name: SalahName;
@@ -39,21 +33,11 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   };
 
   const [currentSalah, setCurrentSalah] = useState<SalahObject | undefined>();
-  const [nextSalah, setNextSalah] = useState<SalahObject | undefined>();
 
   useEffect(() => {
-    if (
-      (!isYesterdayLoaded && !isTodayLoaded && !isTomorrowLoaded) ||
-      salahBeginningTimesYesterday === undefined ||
-      salahBeginningTimesToday === undefined ||
-      salahBeginningTimesTomorrow === undefined
-    )
+    if ((!isYesterdayLoaded && !isTodayLoaded) || salahBeginningTimesYesterday === undefined || salahBeginningTimesToday === undefined)
       return;
 
-    let nextSalahObj: SalahObject = {
-      name: 'Fajr',
-      time: salahBeginningTimesTomorrow?.fajr,
-    };
     let currentSalahObj: SalahObject = {
       name: 'Isha',
       time: salahBeginningTimesYesterday?.isha,
@@ -65,10 +49,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
       const [name, time] = salahInfoArr[i];
       const salahName = (name[0].toUpperCase() + name.slice(1)) as SalahName;
       if (isFuture(time)) {
-        nextSalahObj = {
-          name: salahName,
-          time,
-        };
         break;
       }
       currentSalahObj = {
@@ -78,8 +58,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     }
 
     setCurrentSalah(currentSalahObj);
-    setNextSalah(nextSalahObj);
-  }, [salahBeginningTimesToday, salahBeginningTimesTomorrow]);
+  }, [salahBeginningTimesToday]);
 
   setIsModalShown(true);
 
@@ -129,39 +108,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
       })
     : null;
 
-  const getTimeToNextSalahString = (): string => {
-    if (!nextSalah) return '';
-    const date1: Date = new Date();
-    const date2: Date = nextSalah?.time;
-
-    const diffInMilliSeconds = Math.abs(date2.valueOf() - date1.valueOf());
-    let milliSecondsLeft = diffInMilliSeconds;
-
-    const diffInHours = Math.floor(milliSecondsLeft / (1000 * 60 * 60));
-    const diffInHoursStr = diffInHours < 10 ? `0${diffInHours}` : `${diffInHours}`;
-    milliSecondsLeft -= diffInHours * (1000 * 60 * 60);
-
-    const diffInMinutes = Math.floor(milliSecondsLeft / (1000 * 60));
-    const diffInMinutesStr = diffInMinutes < 10 ? `0${diffInMinutes}` : `${diffInMinutes}`;
-    milliSecondsLeft -= diffInMinutes * (1000 * 60);
-
-    const diffInSeconds = Math.floor(milliSecondsLeft / 1000);
-    const diffInSecondsStr = diffInSeconds < 10 ? `0${diffInSeconds}` : `${diffInSeconds}`;
-    milliSecondsLeft -= diffInSeconds * 1000;
-
-    let nextSalahNameStr = nextSalah?.name as string;
-    // eslint-disable-next-line no-unsafe-optional-chaining
-    nextSalahNameStr =
-      nextSalahNameStr[0].toUpperCase() +
-      nextSalahNameStr
-        .slice(1)
-        .split(/(?=[A-Z]|[0-9])/)
-        .join(' ');
-
-    const str = `${diffInHoursStr}h ${diffInMinutesStr}m ${diffInSecondsStr}s left until ${nextSalahNameStr}`;
-    return str;
-  };
-
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
     <div className="flex justify-center items-center">
@@ -181,7 +127,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
         <div className="current-info flex justify-between px-4 py-5 bg-primary-700 text-white">
           <div className="next-salah">
             <p>Icon {new Date().toLocaleTimeString()}</p>
-            <p>{getTimeToNextSalahString()}</p>
           </div>
           <div className="date-picker">Date Picker Here</div>
         </div>
