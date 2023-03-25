@@ -125,10 +125,25 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           </button>
         </div>
         <div className="current-info flex justify-between px-4 py-5 bg-primary-700 text-white">
-          <div className="next-salah">
-            <p>Icon {new Date().toLocaleTimeString()}</p>
+          <h1>{'<'}</h1>
+          <div className="center flex flex-col justify-center items-center">
+            <p>
+              {new Date()?.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                // hour12: true,
+              })}
+            </p>
+            <div className="date-picker">
+              {new Date()?.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </div>
           </div>
-          <div className="date-picker">Date Picker Here</div>
+          <h1>{'>'}</h1>
         </div>
         {salahBeginningTimesToday && salahTimesRows}
       </div>
