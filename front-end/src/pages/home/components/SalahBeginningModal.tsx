@@ -127,14 +127,14 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
         <div className="current-info flex justify-between px-4 py-5 bg-primary-700 text-white">
           <h1>{'<'}</h1>
           <div className="center flex flex-col justify-center items-center">
-            <p>
+            <p className="time text-3xl">
               {new Date()?.toLocaleTimeString('en-US', {
                 hour: '2-digit',
                 minute: '2-digit',
                 // hour12: true,
               })}
             </p>
-            <div className="date-picker">
+            <div className="date">
               {new Date()?.toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
