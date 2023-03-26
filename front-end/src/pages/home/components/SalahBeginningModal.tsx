@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useQuery } from 'react-query';
-import { isFuture, subDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
+import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import { getSalahBeginningTimesOnAGivenDate } from '../../../api/mosques';
 import { ReactComponent as FajrIcon } from '../../../assets/sunrise.svg';
 import { ReactComponent as ZuhrIcon } from '../../../assets/sun.svg';
@@ -33,6 +33,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   };
 
   const [currentSalah, setCurrentSalah] = useState<SalahObject | undefined>();
+  const [chosenDate, setChosenDate] = useState(new Date());
 
   useEffect(() => {
     if ((!isYesterdayLoaded && !isTodayLoaded) || salahBeginningTimesYesterday === undefined || salahBeginningTimesToday === undefined)
@@ -135,7 +136,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
               })}
             </p>
             <div className="date">
-              {new Date()?.toLocaleDateString('en-US', {
+              {chosenDate?.toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
@@ -143,7 +144,9 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
               })}
             </div>
           </div>
-          <h1>{'>'}</h1>
+          <button type="button" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
+            {'>'}
+          </button>
         </div>
         {salahBeginningTimesToday && salahTimesRows}
       </div>
