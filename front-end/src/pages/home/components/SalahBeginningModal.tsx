@@ -126,7 +126,9 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           </button>
         </div>
         <div className="current-info flex justify-between px-4 py-5 bg-primary-700 text-white">
-          <h1>{'<'}</h1>
+          <button type="button" onClick={() => setChosenDate(subDays(chosenDate, 1))}>
+            {'<'}
+          </button>
           <div className="center flex flex-col justify-center items-center">
             <p className="time text-3xl">
               {new Date()?.toLocaleTimeString('en-US', {
