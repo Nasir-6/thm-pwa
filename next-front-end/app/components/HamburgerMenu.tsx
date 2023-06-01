@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
@@ -24,20 +25,20 @@ const HamburgerMenu = () => {
         <ul id="navigation-panel" className="navigation-panel text-slate-900 font-semibold">
           {/* // TODO: Can Map through array so classes are same for all - https://tailwindcss.com/docs/reusing-styles */}
           <li className=" hover:text-accent-600">
-            <a href="/">Home</a>
+            <Link href="/">Home</Link>
           </li>
           <li className=" hover:text-accent-600">
-            <a href="/">About Us</a>
+            <Link href="/">About Us</Link>
           </li>
           <li className=" hover:text-accent-600">
             {/* eslint-disable-next-line react/no-unescaped-entities */}
-            <a href="/">Jumu'ah Times</a>
+            <Link href="/">Jumu'ah Times</Link>
           </li>
           <li className=" hover:text-accent-600">
-            <a href="/">Contact Us</a>
+            <Link href="/">Contact Us</Link>
           </li>
           <li className=" hover:text-accent-600">
-            <a href="/">Support Us</a>
+            <Link href="/">Support Us</Link>
           </li>
         </ul>
       </CSSTransition>
