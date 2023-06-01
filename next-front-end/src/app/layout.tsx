@@ -1,6 +1,7 @@
 import React from 'react';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Footer from './Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,11 +15,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         {/* These links are for pwa - but not active yet! will wait until normal site is done - hopefully a pwa solution is out by then */}
+        {/* Last thing I searched about next js v13 and next-pwa */}
+        {/* https://github.com/shadowwalker/next-pwa/issues/424 */}
+        {/* newer package?  */}
+        {/* https://www.npmjs.com/package/@ducanh2912/next-pwa */}
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <meta name="theme-color" content="#fff" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      {/* TODO: Place Navbar here */}
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
