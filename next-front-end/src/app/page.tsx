@@ -1,9 +1,13 @@
-import React from 'react';
+'use client';
+
+import ControlPanel from '@/components/ControlPanel';
+import React, { useState } from 'react';
 
 export default function Home() {
+  const [isMapVisible, setisMapVisible] = useState(false);
   return (
     <main className="flex">
-      <h1>Next.js App</h1>
+      <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setisMapVisible} />
     </main>
   );
 }
