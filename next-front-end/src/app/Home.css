@@ -1,0 +1,35 @@
+/* Mobile first - then override at larger screens using media qs minwidth */
+.map-div {
+  height: 50vh;
+  z-index: 0;
+  flex-grow: 100;
+  transition: all 200ms;
+}
+
+.map-div-hide {
+  flex-grow: 0;
+  width: 0;
+  height: 0;
+}
+
+.leaflet-map-container {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: all 200ms;
+  /* Will follow the parent as 100% which is the map-div - so need to smoothen transition! */
+}
+
+@media screen and (min-width: 1024px) {
+  .map-div,
+  .desktop-left-panel,
+  .home-page-container {
+    height: calc(100vh - 52px);
+    /* overflow: scroll; */
+  }
+
+  .mosque-results-container {
+    height: calc(100vh - 52px - 92px);
+    overflow: scroll;
+  }
+}

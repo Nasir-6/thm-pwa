@@ -3,6 +3,12 @@
 import ControlPanel from '@/components/ControlPanel';
 import Skeleton from '@/components/skeletons/Skeleton';
 import React, { Suspense, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import './Home.css';
+
+const Map = dynamic(() => import('@/components/Map'), {
+  ssr: false,
+});
 
 export default function Home() {
   const [isMapVisible, setIsMapVisible] = useState(false);
@@ -28,24 +34,14 @@ export default function Home() {
             {/* <MosqueResultsContainer /> */}
           </div>
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
-            <Suspense fallback={<Skeleton type="map" />}>
-              {
-                isMapVisible && <h1>Map would go here</h1>
-                // <Map isMapVisible={isMapVisible} />
-              }
-            </Suspense>
+            <Suspense fallback={<Skeleton type="map" />}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
           </div>
         </>
       ) : (
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
-            <Suspense fallback={<Skeleton type="map" />}>
-              {
-                isMapVisible && <h1>Map would go here</h1>
-                // <Map isMapVisible={isMapVisible} />
-              }
-            </Suspense>
+            <Suspense fallback={<Skeleton type="map" />}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</Suspense>
           </div>
           <h1>MosqueResultsContainer would go here</h1>
           {/* <MosqueResultsContainer /> */}
