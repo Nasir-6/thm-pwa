@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { DivIcon } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';

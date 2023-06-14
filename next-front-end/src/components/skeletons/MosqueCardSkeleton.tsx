@@ -1,4 +1,4 @@
-import Skeleton from '../../../../components/skeletons/Skeleton';
+import Skeleton from './Skeleton';
 // import NextSalahSkeleton from './NextSalahSkeleton';
 
 const MosqueCardSkeleton = () => (
