@@ -1,49 +1,14 @@
-'use client';
+import MosquesByArea from '@/components/MosquesByArea';
+import { getAllMosques } from '@/lib/mosques';
+import HomeClientComp from './HomeClientComp';
 
-import ControlPanel from '@/components/ControlPanel';
-import Skeleton from '@/components/skeletons/Skeleton';
-import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-import './Home.css';
-
-const Map = dynamic(() => import('@/components/Map'), {
-  ssr: false,
-  loading: () => <Skeleton type="map" />,
-});
-
-export default function Home() {
-  const [isMapVisible, setIsMapVisible] = useState(false);
-  const screenBreakPoint = 1024;
-  const [isDesktopView, setIsDesktopView] = useState(false);
-
-  useEffect(() => {
-    // Can only access window here in useEffect as this is run on client side on mount
-    setIsDesktopView(window.innerWidth > screenBreakPoint);
-    const mediaQuery = window.matchMedia('(min-width: 1024px)');
-    mediaQuery.addEventListener('change', () => setIsDesktopView(mediaQuery.matches));
-    // this is the cleanup function to remove the listener
-    return () => mediaQuery.removeEventListener('change', () => setIsDesktopView(mediaQuery.matches));
-  }, []);
-
+export default async function HomePage() {
+  // Abstract the HomeClientComp so can fetch mosques on server
+  const mosques = await getAllMosques();
   return (
-    <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
-      {isDesktopView ? (
-        <>
-          <div className="flex-grow min-w-max p-1 flex flex-col items-center">
-            <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
-            <h1>MosqueResultsContainer would go here</h1>
-            {/* <MosqueResultsContainer /> */}
-          </div>
-          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</div>
-        </>
-      ) : (
-        <>
-          <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
-          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map isMapVisible={isMapVisible} />}</div>
-          <h1>MosqueResultsContainer would go here</h1>
-          {/* <MosqueResultsContainer /> */}
-        </>
-      )}
-    </div>
+    <HomeClientComp mosques={mosques}>
+      {/* Pass in MosquesByArea as a child so can utilise SSR for it */}
+      <MosquesByArea mosques={mosques} />
+    </HomeClientComp>
   );
 }
