@@ -2,7 +2,7 @@ import os
 import csv
 import datetime
 from mosque_id_dictionary import mosque_id_dictionary
-print(mosque_id_dictionary["Aberfeldy Islamic Cultural Centre"])
+print(mosque_id_dictionary["Aberfeldy Masjid"])
 print(mosque_id_dictionary["Al Aqsa Masjid"])
 
 

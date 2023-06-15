@@ -1,9 +1,11 @@
 export type MosqueDTO = {
 	id: number;
 	name: string;
+	area: string;
 	address: string;
 	latitude: number;
 	longitude: number;
+	urlSlug: string;
 	googleUrl: string;
 	distanceToLocationInMiles: number; // THIS IS set to the id as a placeholder!
 };
@@ -12,8 +14,10 @@ export type MosqueDTO = {
 export type MosqueDB = {
 	id: number;
 	name: string;
+	area: string;
 	address: string;
 	latitude: string;
 	longitude: string;
+	url_slug: string;
 	google_url: string;
 };

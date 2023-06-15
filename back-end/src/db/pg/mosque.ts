@@ -30,9 +30,11 @@ class MosqueDAOPostgres {
 		return {
 			id: mosque.id,
 			name: mosque.name,
+			area: mosque.area,
 			address: mosque.address,
 			latitude: Number(mosque.latitude),
 			longitude: Number(mosque.longitude),
+			urlSlug: mosque.url_slug,
 			googleUrl: mosque.google_url,
 			distanceToLocationInMiles: mosque.id,
 		};
@@ -94,9 +96,11 @@ class MosqueDAOPostgres {
 		res.rows.map((r: MosqueDB) => ({
 			id: r.id,
 			name: r.name,
+			area: r.area,
 			address: r.address,
 			latitude: Number(r.latitude), // NOTE: Numeric values in DB are strings in JS
 			longitude: Number(r.longitude),
+			urlSlug: r.url_slug,
 			googleUrl: r.google_url,
 			distanceToLocationInMiles: r.id,
 		}));

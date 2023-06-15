@@ -7,10 +7,12 @@ DROP TABLE mosques;
 CREATE TABLE mosques (
 	id SERIAL UNIQUE PRIMARY KEY,
 	name VARCHAR UNIQUE NOT NULL,
+	area VARCHAR NOT NULL,
 	address VARCHAR UNIQUE NOT NULL,
 	latitude NUMERIC NOT NULL,
 	longitude NUMERIC NOT NULL,
-	google_url VARCHAR NOT NULL
+	url_slug VARCHAR UNIQUE NOT NULL,
+	google_url VARCHAR UNIQUE NOT NULL
 );
 
 COPY mosques(id, name, address, latitude, longitude, google_url)
