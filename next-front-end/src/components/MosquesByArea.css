@@ -1,0 +1,7 @@
+.area-toggle {
+  background-color: red;
+}
+
+.area-toggle:checked ~ ul {
+  display: none;
+}
