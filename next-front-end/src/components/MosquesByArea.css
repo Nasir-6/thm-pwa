@@ -1,7 +1,14 @@
-.area-toggle {
+ul {
+  min-height: 0;
+}
+.wrapper {
   background-color: red;
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 500ms;
 }
 
-.area-toggle:checked ~ ul {
-  display: none;
+.area-toggle:checked + .wrapper {
+  grid-template-rows: 1fr;
 }

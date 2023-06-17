@@ -29,11 +29,19 @@ const MosquesByArea = ({ mosques }: Props) => {
         Stepney
       </label>
       <input type="checkbox" id={inputId} className="area-toggle" />
-      <ul className="flex flex-col">
-        <Link href="https://www.towerhamletsmosques.co.uk/redcoatmasjid">Redcoat</Link>
-        <Link href="https://www.towerhamletsmosques.co.uk/redcoatmasjid">Redcoat</Link>
-        <Link href="https://www.towerhamletsmosques.co.uk/redcoatmasjid">Redcoat</Link>
-      </ul>
+      <div className="wrapper">
+        <ul className="">
+          <li>
+            <Link href="https://www.towerhamletsmosques.co.uk/redcoatmasjid">Redcoat</Link>
+          </li>
+          <li>
+            <Link href="https://www.towerhamletsmosques.co.uk/redcoatmasjid">Redcoat</Link>
+          </li>
+          <li>
+            <Link href="https://www.towerhamletsmosques.co.uk/redcoatmasjid">Redcoat</Link>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };
