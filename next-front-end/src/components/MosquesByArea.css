@@ -1,14 +1,18 @@
+/* Drop down animation - https://www.youtube.com/shorts/3gNOoYzarNo */
+.area-toggle {
+  display: none;
+}
+
 ul {
   min-height: 0;
 }
 .wrapper {
-  background-color: red;
   display: grid;
-  grid-template-rows: 0fr;
+  grid-template-rows: 1fr;
   overflow: hidden;
   transition: grid-template-rows 500ms;
 }
 
 .area-toggle:checked + .wrapper {
-  grid-template-rows: 1fr;
+  grid-template-rows: 0fr;
 }

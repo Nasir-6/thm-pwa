@@ -36,7 +36,7 @@ export default function HomeClientComp({ mosques, children: serverRenderedMosque
     <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
       {isDesktopView ? (
         <>
-          <div className="flex-grow min-w-max p-1 flex flex-col items-center">
+          <div className="flex-grow p-1 flex flex-col items-center">
             <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
             {serverRenderedMosqueList}
             {/* <MosqueResultsContainer /> */}
