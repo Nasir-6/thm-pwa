@@ -24,7 +24,7 @@ const MosquesByArea = ({ mosques }: Props) => {
     .sort()
     .map((area) => <AreaDropdown area={area} mosques={areaObj[area]} />);
 
-  return <div className="flex flex-wrap max-w-full">{mosquesByArea}</div>;
+  return <div className="mosque-by-area-container">{mosquesByArea}</div>;
 };
 
 export default MosquesByArea;

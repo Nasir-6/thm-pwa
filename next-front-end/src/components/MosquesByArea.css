@@ -16,3 +16,11 @@ ul {
 .area-toggle:checked + .wrapper {
   grid-template-rows: 0fr;
 }
+
+.mosque-by-area-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 330px);
+  justify-content: space-between;
+  overflow-y: scroll;
+  max-width: 100%;
+}

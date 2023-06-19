@@ -33,7 +33,7 @@ export default function HomeClientComp({ mosques, children: serverRenderedMosque
   }, []);
 
   return (
-    <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col'}`}>
+    <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col items-center'} `}>
       {isDesktopView ? (
         <>
           <div className="flex-grow p-1 flex flex-col items-center">
