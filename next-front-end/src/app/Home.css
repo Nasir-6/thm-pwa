@@ -3,7 +3,7 @@
   height: 50vh;
   z-index: 0;
   flex-grow: 100;
-  min-width: 65vw;
+  min-width: 100vw;
   transition: all 200ms;
 }
 
@@ -21,6 +21,10 @@
   .home-page-container {
     height: calc(100vh - 52px);
     /* overflow: scroll; */
+  }
+
+  .map-div {
+    min-width: 65vw;
   }
 
   .mosque-results-container {
