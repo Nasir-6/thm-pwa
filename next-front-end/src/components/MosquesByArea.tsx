@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 // This is a serverComponent - as mosques should have been fetched on server
 // Will use only CSS to make dropdown (eliminate need to make this a client component due to JS)
 // eslint-disable-next-line import/no-relative-packages
@@ -11,20 +10,20 @@ interface Props {
 }
 
 const MosquesByArea = ({ mosques }: Props) => {
-  const areaObj: { [area: string]: MosqueDTO[] } = {};
+  const areas: { [area: string]: MosqueDTO[] } = {};
   mosques.forEach((mosque) => {
-    if (mosque.area in areaObj) {
-      areaObj[mosque.area].push(mosque);
+    if (mosque.area in areas) {
+      areas[mosque.area].push(mosque);
     } else {
-      areaObj[mosque.area] = [mosque];
+      areas[mosque.area] = [mosque];
     }
   });
 
-  const mosquesByArea = Object.keys(areaObj)
+  const mosquesByAreaDropdowns = Object.keys(areas)
     .sort()
-    .map((area) => <AreaDropdown area={area} mosques={areaObj[area]} />);
+    .map((area) => <AreaDropdown area={area} mosques={areas[area]} />);
 
-  return <div className="mosque-by-area-container">{mosquesByArea}</div>;
+  return <div className="mosque-by-area-container">{mosquesByAreaDropdowns}</div>;
 };
 
 export default MosquesByArea;

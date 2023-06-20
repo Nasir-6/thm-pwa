@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 // This is a serverComponent - as mosques should have been fetched on server
 // Will use only CSS to make dropdown (eliminate need to make this a client component due to JS)
-/* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
