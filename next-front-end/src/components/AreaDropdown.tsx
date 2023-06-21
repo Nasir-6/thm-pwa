@@ -22,7 +22,7 @@ const AreaDropdown = ({ area, mosques }: Props) => {
       </label>
       <input type="checkbox" id={`${area}-area-toggle`} className="area-toggle" />
       <div className="wrapper mt-2">
-        <ul className="pl-5 text-primary-500 font-medium max-h-[140px] overflow-scroll">{mosqueLinks}</ul>
+        <ul className="pl-5 text-primary-500 font-medium max-h-[134px] overflow-scroll">{mosqueLinks}</ul>
       </div>
     </div>
   );
