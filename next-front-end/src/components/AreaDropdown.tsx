@@ -16,7 +16,7 @@ const AreaDropdown = ({ area, mosques }: Props) => {
     </li>
   ));
   return (
-    <div className="area-container p-5 min-w-[330px]">
+    <div className="area-container px-3 py-2 min-w-[330px]">
       <label htmlFor={`${area}-area-toggle`} className="area-toggle-label text-3xl font-semibold cursor-pointer">
         {area}
       </label>
