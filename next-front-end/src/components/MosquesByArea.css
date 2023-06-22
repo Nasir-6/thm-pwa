@@ -24,3 +24,11 @@ ul {
   overflow-y: scroll;
   width: min(100%, 1439px);
 }
+
+.dropdown-icon-svg {
+  transition: transform 500ms;
+}
+.area-toggle-label:has(+ .area-toggle:checked) .dropdown-icon-svg {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
