@@ -3,6 +3,7 @@
 import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+import DropdownIcon from './DropdownIcon';
 import './MosquesByArea.css';
 // import { ReactComponent as DropdownIcon } from './dropdown-icon.svg';
 
@@ -21,10 +22,7 @@ const AreaDropdown = ({ area, mosques }: Props) => {
       <label
         htmlFor={`${area}-area-toggle`}
         className="area-toggle-label text-3xl font-medium cursor-pointer flex flex-row items-center gap-1">
-        <svg className="dropdown-icon-svg" viewBox="0 0 100 100" height="25px" stroke="black">
-          <line x1="5" y1="75" x2="50" y2="25" strokeWidth="10" strokeLinecap="round" />
-          <line x1="50" y1="25" x2="95" y2="75" strokeWidth="10" strokeLinecap="round" />
-        </svg>
+        <DropdownIcon />
         {area}
       </label>
       <input type="checkbox" id={`${area}-area-toggle`} className="area-toggle" />
