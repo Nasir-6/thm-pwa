@@ -25,9 +25,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#fff" />
       </head>
       <body className={inter.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <div className="overflow-x-hidden w-screen relative">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
