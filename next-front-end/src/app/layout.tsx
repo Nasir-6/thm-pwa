@@ -25,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#fff" />
       </head>
       <body className={inter.className}>
+        {/* https://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers */}
         <div className="overflow-x-hidden w-screen relative">
           <Navbar />
           {children}
