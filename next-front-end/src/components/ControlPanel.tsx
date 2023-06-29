@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import SearchBar from './SearchBar';
@@ -29,6 +30,7 @@ const ControlPanel: React.FC<Props> = ({ isMapVisible, setIsMapVisible }) => (
           </>
         )}
       </button>
+      <Link href="/findnearestmosque">Find Nearest Mosque</Link>
     </div>
   </div>
 );
