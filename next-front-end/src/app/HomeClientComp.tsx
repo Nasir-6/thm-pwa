@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import './Home.css';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+import SalahBeginningBtn from '@/components/SalahBeginningBtn';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
@@ -38,6 +39,7 @@ export default function HomeClientComp({ mosques, children: serverRenderedMosque
         <>
           <div className="flex-grow p-1 flex flex-col items-center">
             <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+            <SalahBeginningBtn />
             {serverRenderedMosqueList}
             {/* <MosqueResultsContainer /> */}
           </div>
@@ -48,6 +50,7 @@ export default function HomeClientComp({ mosques, children: serverRenderedMosque
       ) : (
         <>
           <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+          <SalahBeginningBtn />
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
             {isMapVisible && <Map mosques={mosques} isMapVisible={isMapVisible} />}
           </div>
