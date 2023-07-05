@@ -34,6 +34,8 @@ class MosqueDAOPostgres {
 			address: mosque.address,
 			latitude: Number(mosque.latitude),
 			longitude: Number(mosque.longitude),
+			hasFemaleFacilities: Boolean(mosque.has_female_facilities),
+			hasWheelchairAccess: Boolean(mosque.has_wheelchair_access),
 			urlSlug: mosque.url_slug,
 			googleUrl: mosque.google_url,
 			distanceToLocationInMiles: mosque.id,
@@ -100,6 +102,8 @@ class MosqueDAOPostgres {
 			address: r.address,
 			latitude: Number(r.latitude), // NOTE: Numeric values in DB are strings in JS
 			longitude: Number(r.longitude),
+			hasFemaleFacilities: Boolean(r.has_female_facilities),
+			hasWheelchairAccess: Boolean(r.has_wheelchair_access),
 			urlSlug: r.url_slug,
 			googleUrl: r.google_url,
 			distanceToLocationInMiles: r.id,

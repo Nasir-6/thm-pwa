@@ -5,6 +5,8 @@ export type MosqueDTO = {
 	address: string;
 	latitude: number;
 	longitude: number;
+	hasFemaleFacilities: boolean;
+	hasWheelchairAccess: boolean;
 	urlSlug: string;
 	googleUrl: string;
 	distanceToLocationInMiles: number; // THIS IS set to the id as a placeholder!
@@ -18,6 +20,8 @@ export type MosqueDB = {
 	address: string;
 	latitude: string;
 	longitude: string;
+	has_female_facilities: boolean;
+	has_wheelchair_access: boolean;
 	url_slug: string;
 	google_url: string;
 };

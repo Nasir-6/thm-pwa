@@ -11,11 +11,13 @@ CREATE TABLE mosques (
 	address VARCHAR UNIQUE NOT NULL,
 	latitude NUMERIC NOT NULL,
 	longitude NUMERIC NOT NULL,
+	has_female_facilities BOOLEAN NOT NULL,
+	has_wheelchair_access BOOLEAN NOT NULL,
 	url_slug VARCHAR UNIQUE NOT NULL,
 	google_url VARCHAR UNIQUE NOT NULL
 );
 
-COPY mosques(id, name, address, latitude, longitude, google_url)
+COPY mosques(id, name, area, address, latitude, longitude, has_female_facilities, has_wheelchair_access, url_slug, google_url)
 FROM '/Users/nasir/thm-pwa/time_converter_scripts/mosques_db.csv'
 DELIMITER ','
 CSV HEADER;
@@ -44,12 +46,12 @@ CREATE TABLE salah_beginning_times (
 	id SERIAL UNIQUE PRIMARY KEY,
 	date VARCHAR UNIQUE NOT NULL,
 	fajr TIME NOT NULL,
+	sunrise TIME NOT NULL,
 	zuhr TIME NOT NULL,
 	asr_1st_mithl TIME NOT NULL,
 	asr_2nd_mithl TIME NOT NULL,
 	maghrib TIME NOT NULL,
-	isha TIME NOT NULL,
-	sunrise TIME NOT NULL
+	isha TIME NOT NULL
 );
 
 COPY salah_beginning_times(date, fajr, zuhr, asr_1st_mithl, maghrib, isha, sunrise, asr_2nd_mithl)
@@ -72,4 +74,8 @@ FROM '/Users/nasir/thm-pwa/time_converter_scripts/th_postcodes.csv'
 DELIMITER ','
 CSV HEADER;
 
+
 SELECT * FROM mosque_times WHERE mosque_id = 2 AND date = '01-Apr-23';
+SELECT * FROM mosque_times WHERE mosque_id = 2 AND date LIKE '%Apr-23%';
+
+SELECT id, date, fajr, sunrise, zuhr, asr_1st_mithl, asr_2nd_mithl, maghrib, isha FROM salah_beginning_times WHERE date = '15-Mar-23';
