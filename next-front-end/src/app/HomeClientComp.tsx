@@ -5,9 +5,9 @@ import Skeleton from '@/components/skeletons/Skeleton';
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import './Home.css';
+import SalahBeginningBtn from '@/components/SalahBeginningBtn';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-import SalahBeginningBtn from '@/components/SalahBeginningBtn';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
