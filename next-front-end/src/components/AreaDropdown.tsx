@@ -4,6 +4,7 @@ import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 import DropdownIcon from './DropdownIcon';
+import FemaleIcon from './FemaleIcon';
 import './MosquesByArea.css';
 import WheelchairIcon from './WheelchairIcon';
 // import { ReactComponent as DropdownIcon } from './dropdown-icon.svg';
@@ -16,6 +17,7 @@ const AreaDropdown = ({ area, mosques }: Props) => {
   const mosqueLinks = mosques.map((mosque) => (
     <li className="hover:text-accent-600 flex gap-1">
       <Link href={`https://www.towerhamletsmosques.co.uk/${mosque.urlSlug}`}>{mosque.name}</Link>
+      {mosque.hasFemaleFacilities ? <FemaleIcon /> : null}
       {mosque.hasWheelchairAccess ? <WheelchairIcon /> : null}
     </li>
   ));
