@@ -10,9 +10,12 @@ type Props = {
 };
 
 const ControlPanel: React.FC<Props> = ({ isMapVisible, setIsMapVisible }) => (
+  // TODO: Split component
+
   <div className="control-panel w-full py-2 px-3 flex flex-col items-center">
     <SearchBar />
     <div className="bottom-options flex w-full max-w-xl justify-between py-1 px-2">
+      {/* TODO: Replace UseLocationBtn with arrow and findNearestMosque Link */}
       <UseLocationBtn />
       <button
         type="button"
