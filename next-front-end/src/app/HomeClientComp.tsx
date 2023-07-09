@@ -38,7 +38,7 @@ export default function HomeClientComp({ mosques, children: serverRenderedMosque
       {isDesktopView ? (
         <>
           <div className="flex-grow p-1 flex flex-col items-center">
-            <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+            <ControlPanel mosques={mosques} isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
             <SalahBeginningBtn />
             {serverRenderedMosqueList}
             {/* <MosqueResultsContainer /> */}
@@ -49,7 +49,7 @@ export default function HomeClientComp({ mosques, children: serverRenderedMosque
         </>
       ) : (
         <>
-          <ControlPanel isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+          <ControlPanel mosques={mosques} isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <SalahBeginningBtn />
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
             {isMapVisible && <Map mosques={mosques} isMapVisible={isMapVisible} />}
