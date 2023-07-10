@@ -20,6 +20,7 @@ type Props = {
 
 const SearchBar = ({ mosques }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     // TODO: Add search functionality here - Do it for mosques only - for home page
@@ -33,9 +34,11 @@ const SearchBar = ({ mosques }: Props) => {
           placeholder="Search by Mosque name"
           className=" pl-8 py-2 w-full rounded-full"
           onChange={(e) => setSearchQuery(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
       </div>
-      {searchQuery.trim().length !== 0 && <QueryResultsDropdown mosques={mosques} searchQuery={searchQuery} />}
+      {searchQuery.trim().length !== 0 && isFocused && <QueryResultsDropdown mosques={mosques} searchQuery={searchQuery} />}
     </div>
   );
 };
