@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
-import Fuse from 'fuse.js';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 import QueryResultsDropdown from './QueryResultsDropdown';
@@ -11,26 +10,8 @@ type Props = {
   mosques: MosqueDTO[];
 };
 
-const fuseOptions = {
-  // isCaseSensitive: false,
-  // includeScore: false,
-  // shouldSort: true,
-  includeMatches: true,
-  // findAllMatches: false,
-  // minMatchCharLength: 1,
-  // location: 0,
-  threshold: 0.3,
-  // distance: 100,
-  // useExtendedSearch: false,
-  ignoreLocation: true,
-  // ignoreFieldNorm: false,
-  // fieldNormWeight: 1,
-  keys: ['name', 'area', 'address'],
-};
-
 const SearchBar = ({ mosques }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const fuse = new Fuse(mosques, fuseOptions);
 
   console.log('mosques', mosques);
 
@@ -48,7 +29,7 @@ const SearchBar = ({ mosques }: Props) => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <QueryResultsDropdown searchQuery={searchQuery} queryResults={fuse.search(searchQuery).slice(0, 5)} />
+      <QueryResultsDropdown mosques={mosques} searchQuery={searchQuery} />
     </div>
   );
 };
