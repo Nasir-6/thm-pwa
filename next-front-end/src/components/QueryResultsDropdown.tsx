@@ -33,7 +33,7 @@ const QueryResultsDropdown = ({ mosques, searchQuery }: Props) => {
     .search(searchQuery)
     .slice(0, 5)
     .map((result) => (
-      <div className="flex">
+      <div key={result.item.name} className="flex">
         <Link href={`https://www.towerhamletsmosques.co.uk/${result.item.urlSlug}`} className="p-4 w-full" target="_blank">
           <div className="flex justify-between">
             <h1>{result.item.name}</h1>
@@ -43,11 +43,11 @@ const QueryResultsDropdown = ({ mosques, searchQuery }: Props) => {
         </Link>
       </div>
     ));
-  return searchQuery.trim().length !== 0 ? (
+  return (
     <div className="absolute mt-1 rounded-md bg-white divide-y shadow-md border w-full max-w-xl">
       {queryResults.length !== 0 ? queryResults : <h1 className="p-4">No results found</h1>}
     </div>
-  ) : null;
+  );
 };
 
 export default QueryResultsDropdown;

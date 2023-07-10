@@ -2,9 +2,17 @@
 
 import { useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-import QueryResultsDropdown from './QueryResultsDropdown';
+
+const QueryResultsDropdown = dynamic(() => import('./QueryResultsDropdown'), {
+  loading: () => (
+    <div className="absolute mt-1 rounded-md bg-white divide-y shadow-md border w-full max-w-xl">
+      <h1 className="p-4">Loading...</h1>
+    </div>
+  ),
+});
 
 type Props = {
   mosques: MosqueDTO[];
@@ -12,8 +20,6 @@ type Props = {
 
 const SearchBar = ({ mosques }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
-
-  console.log('mosques', mosques);
 
   return (
     // TODO: Add search functionality here - Do it for mosques only - for home page
@@ -29,7 +35,7 @@ const SearchBar = ({ mosques }: Props) => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <QueryResultsDropdown mosques={mosques} searchQuery={searchQuery} />
+      {searchQuery.trim().length !== 0 && <QueryResultsDropdown mosques={mosques} searchQuery={searchQuery} />}
     </div>
   );
 };
