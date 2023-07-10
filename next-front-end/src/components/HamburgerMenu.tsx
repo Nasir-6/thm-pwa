@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
 
 const HamburgerMenu = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -21,27 +20,25 @@ const HamburgerMenu = () => {
         </svg>
         {/* <span> Menu </span> */}
       </button>
-      <CSSTransition in={isExpanded} timeout={200} classNames="navigation-panel">
-        <ul id="navigation-panel" className="navigation-panel text-slate-900 font-semibold">
-          {/* // TODO: Can Map through array so classes are same for all - https://tailwindcss.com/docs/reusing-styles */}
-          <li className=" hover:text-accent-600">
-            <Link href="/">Home</Link>
-          </li>
-          <li className=" hover:text-accent-600">
-            <Link href="/">About Us</Link>
-          </li>
-          <li className=" hover:text-accent-600">
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            <Link href="/">Jumu'ah Times</Link>
-          </li>
-          <li className=" hover:text-accent-600">
-            <Link href="/">Contact Us</Link>
-          </li>
-          <li className=" hover:text-accent-600">
-            <Link href="/">Support Us</Link>
-          </li>
-        </ul>
-      </CSSTransition>
+      <ul id="navigation-panel" className="navigation-panel text-slate-900 font-semibold">
+        {/* // TODO: Can Map through array so classes are same for all - https://tailwindcss.com/docs/reusing-styles */}
+        <li className=" hover:text-accent-600">
+          <Link href="/">Home</Link>
+        </li>
+        <li className=" hover:text-accent-600">
+          <Link href="/">About Us</Link>
+        </li>
+        <li className=" hover:text-accent-600">
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          <Link href="/">Jumu'ah Times</Link>
+        </li>
+        <li className=" hover:text-accent-600">
+          <Link href="/">Contact Us</Link>
+        </li>
+        <li className=" hover:text-accent-600">
+          <Link href="/">Support Us</Link>
+        </li>
+      </ul>
       <div className="dark-overlay" data-visible={isExpanded} onClick={() => setIsExpanded(false)} aria-hidden="true" />
     </nav>
   );
