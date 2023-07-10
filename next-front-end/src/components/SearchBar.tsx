@@ -48,7 +48,7 @@ const SearchBar = ({ mosques }: Props) => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <QueryResultsDropdown queryResults={fuse.search(searchQuery).slice(0, 5)} />
+      <QueryResultsDropdown searchQuery={searchQuery} queryResults={fuse.search(searchQuery).slice(0, 5)} />
     </div>
   );
 };
