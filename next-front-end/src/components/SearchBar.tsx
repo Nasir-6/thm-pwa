@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
+import Fuse from 'fuse.js';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 
@@ -9,9 +10,30 @@ type Props = {
   mosques: MosqueDTO[];
 };
 
+const fuseOptions = {
+  // isCaseSensitive: false,
+  // includeScore: false,
+  // shouldSort: true,
+  includeMatches: true,
+  // findAllMatches: false,
+  // minMatchCharLength: 1,
+  // location: 0,
+  threshold: 0.3,
+  // distance: 100,
+  // useExtendedSearch: false,
+  ignoreLocation: true,
+  // ignoreFieldNorm: false,
+  // fieldNormWeight: 1,
+  keys: ['name', 'area', 'address'],
+};
+
 const SearchBar = ({ mosques }: Props) => {
   const [input, setInput] = useState('');
+  const fuse = new Fuse(mosques, fuseOptions);
+
   console.log('input :>> ', input);
+  console.log('fuse.search(input) :>> ', fuse.search(input));
+  console.log('fuse', fuse);
   console.log('mosques', mosques);
   return (
     // TODO: Add search functionality here - Do it for mosques only - for home page
