@@ -3,6 +3,8 @@ import Fuse from 'fuse.js';
 import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+import FemaleIcon from './FemaleIcon';
+import WheelchairIcon from './WheelchairIcon';
 
 type Props = {
   mosques: MosqueDTO[];
@@ -36,7 +38,11 @@ const QueryResultsDropdown = ({ mosques, searchQuery }: Props) => {
       <div key={result.item.name} className="flex z-20 border-y border-x hover:border-accent-400">
         <Link href={`https://www.towerhamletsmosques.co.uk/${result.item.urlSlug}`} className="p-4 w-full" target="_blank">
           <div className="flex justify-between">
-            <h1>{result.item.name}</h1>
+            <div className="flex gap-1">
+              <h1>{result.item.name}</h1>
+              {result.item.hasFemaleFacilities && <FemaleIcon />}
+              {result.item.hasWheelchairAccess && <WheelchairIcon />}
+            </div>
             <p className=" text-gray-400">{result.item.area}</p>
           </div>
           <p className="text-gray-500 text-sm">{result.item.address}</p>
