@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 // eslint-disable-next-line import/no-relative-packages
@@ -22,9 +22,23 @@ const SearchBar = ({ mosques }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
+  // onClick event to replace onBlur which didn't take into account QueryResults as that was using position:absolute
+  // https://stackoverflow.com/questions/71529999/how-to-prevent-child-with-position-absolute-from-triggering-onblur-event-of
+  const inputAndResultsContainer = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handler = (event: { target: any }) => {
+      if (inputAndResultsContainer.current === null) return;
+      if (!inputAndResultsContainer.current.contains(event.target)) setIsFocused(false);
+    };
+    document.addEventListener('click', handler);
+    return () => {
+      document.removeEventListener('click', handler);
+    };
+  }, []);
+
   return (
     // TODO: Add search functionality here - Do it for mosques only - for home page
-    <div className="relative w-full max-w-xl">
+    <div className="relative bg-red-600 w-full max-w-xl" ref={inputAndResultsContainer}>
       <div className="searchBox relative border-2 rounded-full flex gap-1 items-center w-full max-w-xl">
         <FaSearchLocation className=" absolute left-2 text-slate-400" />
         <input
@@ -35,7 +49,6 @@ const SearchBar = ({ mosques }: Props) => {
           className=" pl-8 py-2 w-full rounded-full"
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
         />
       </div>
       {searchQuery.trim().length !== 0 && isFocused && <QueryResultsDropdown mosques={mosques} searchQuery={searchQuery} />}
