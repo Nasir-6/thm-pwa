@@ -28,7 +28,7 @@ const fuseOptions = {
   keys: ['name', 'area', 'address'],
 };
 
-const QueryResultsDropdown = ({ mosques, searchQuery }: Props) => {
+const QueryResults = ({ mosques, searchQuery }: Props) => {
   const fuse = new Fuse(mosques, fuseOptions);
 
   const queryResults = fuse
@@ -56,4 +56,4 @@ const QueryResultsDropdown = ({ mosques, searchQuery }: Props) => {
   );
 };
 
-export default QueryResultsDropdown;
+export default QueryResults;
