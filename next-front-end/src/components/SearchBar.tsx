@@ -50,7 +50,7 @@ const SearchBar = ({ mosques }: Props) => {
           onFocus={() => setIsFocused(true)}
         />
       </div>
-      {searchQuery.trim().length !== 0 && isFocused && <QueryResults mosques={mosques} searchQuery={searchQuery} />}
+      {searchQuery.trim().length !== 0 && isFocused && <QueryResults mosques={mosques} searchQuery={searchQuery} isFocused={isFocused} />}
     </div>
   );
 };
