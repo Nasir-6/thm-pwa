@@ -22,10 +22,6 @@ const SearchBar = ({ mosques }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
-  const queryResultsDiv = useRef<HTMLDivElement>(null);
-  console.log('queryResultsDiv :>> ', queryResultsDiv);
-  const [selectedMosqueIndex, setSelectedMosqueIndex] = useState(-1);
-
   // onClick event to replace onBlur which didn't take into account QueryResults as that was using position:absolute
   // https://stackoverflow.com/questions/71529999/how-to-prevent-child-with-position-absolute-from-triggering-onblur-event-of
   const inputAndResultsContainer = useRef<HTMLDivElement>(null);
@@ -40,11 +36,11 @@ const SearchBar = ({ mosques }: Props) => {
     };
   }, []);
 
+  // Code for handling ability to use keyboard for choosing queryResults
+  const [selectedMosqueIndex, setSelectedMosqueIndex] = useState(-1);
+  // Used queryResultsDiv so can access the number of results without requiring fuse being imported here, plus can access anchor tag and redirect to link
+  const queryResultsDiv = useRef<HTMLDivElement>(null);
   const handleKeyDown = (event: { key: string }) => {
-    console.log('event :>> ', event);
-    console.log('queryResultsDiv :>> ', queryResultsDiv);
-    console.log('queryResultsDiv.current.children.length', queryResultsDiv?.current?.children.length);
-    console.log('selectedMosqueIndex :>> ', selectedMosqueIndex);
     if (!isFocused || queryResultsDiv.current === null) {
       setSelectedMosqueIndex(-1);
     } else if (event.key === 'ArrowUp' && selectedMosqueIndex >= 0) {
