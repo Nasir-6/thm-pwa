@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import Fuse from 'fuse.js';
 import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
@@ -10,6 +10,7 @@ type Props = {
   mosques: MosqueDTO[];
   searchQuery: string;
   selectedMosqueIndex: number;
+  setSelectedMosqueIndex: (value: SetStateAction<number>) => void;
 };
 
 const fuseOptions = {
@@ -29,7 +30,7 @@ const fuseOptions = {
   keys: ['name', 'area', 'address'],
 };
 
-const QueryResults = ({ mosques, searchQuery, selectedMosqueIndex }: Props) => {
+const QueryResults = ({ mosques, searchQuery, selectedMosqueIndex, setSelectedMosqueIndex }: Props) => {
   const fuse = new Fuse(mosques, fuseOptions);
   const queryResults = fuse
     .search(searchQuery)
@@ -37,7 +38,9 @@ const QueryResults = ({ mosques, searchQuery, selectedMosqueIndex }: Props) => {
     .map((result, index) => (
       <div
         key={result.item.name}
-        className={`flex z-20 border-y border-x hover:border-accent-400 ${selectedMosqueIndex === index ? 'border-accent-400' : ''}`}>
+        className={`flex z-20 border-y border-x hover:border-accent-400 ${selectedMosqueIndex === index ? 'border-accent-400' : ''}`}
+        onMouseEnter={() => setSelectedMosqueIndex(index)}
+        onMouseLeave={() => setSelectedMosqueIndex(-1)}>
         <Link href={`https://www.towerhamletsmosques.co.uk/${result.item.urlSlug}`} className="p-4 w-full" target="_blank">
           <div className="flex justify-between">
             <div className="flex gap-1">
