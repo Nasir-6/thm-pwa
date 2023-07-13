@@ -22,6 +22,10 @@ const SearchBar = ({ mosques }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
+  const queryResultsDiv = useRef<HTMLDivElement>(null);
+  console.log('queryResultsDiv :>> ', queryResultsDiv);
+  const [selectedMosqueIndex, setSelectedMosqueIndex] = useState(-1);
+
   // onClick event to replace onBlur which didn't take into account QueryResults as that was using position:absolute
   // https://stackoverflow.com/questions/71529999/how-to-prevent-child-with-position-absolute-from-triggering-onblur-event-of
   const inputAndResultsContainer = useRef<HTMLDivElement>(null);
@@ -36,6 +40,24 @@ const SearchBar = ({ mosques }: Props) => {
     };
   }, []);
 
+  const handleKeyDown = (event: { key: string }) => {
+    console.log('event :>> ', event);
+    console.log('queryResultsDiv :>> ', queryResultsDiv);
+    console.log('queryResultsDiv.current.children.length', queryResultsDiv?.current?.children.length);
+    console.log('selectedMosqueIndex :>> ', selectedMosqueIndex);
+    if (!isFocused || queryResultsDiv.current === null) {
+      setSelectedMosqueIndex(-1);
+    } else if (event.key === 'ArrowUp' && selectedMosqueIndex >= 0) {
+      setSelectedMosqueIndex((prev) => prev - 1);
+    } else if (event.key === 'ArrowDown' && selectedMosqueIndex < queryResultsDiv.current.children.length - 1) {
+      setSelectedMosqueIndex((prev) => prev + 1);
+    } else if (event.key === 'Enter' && selectedMosqueIndex >= 0) {
+      const aTag = queryResultsDiv.current.children[selectedMosqueIndex].children[0];
+      const aTagHref = aTag.getAttribute('href');
+      if (aTagHref !== null) window.open(aTagHref);
+    }
+  };
+
   return (
     <div className="relative w-full max-w-xl" ref={inputAndResultsContainer}>
       <div className="searchBox relative border-2 rounded-full flex gap-1 items-center w-full max-w-xl">
@@ -48,9 +70,14 @@ const SearchBar = ({ mosques }: Props) => {
           className=" pl-8 py-2 w-full rounded-full"
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
+          onKeyDown={handleKeyDown}
         />
       </div>
-      {searchQuery.trim().length !== 0 && isFocused && <QueryResults mosques={mosques} searchQuery={searchQuery} isFocused={isFocused} />}
+      {searchQuery.trim().length !== 0 && isFocused && (
+        <div className="absolute mt-1 rounded-md bg-white shadow-md w-full max-w-xl" ref={queryResultsDiv}>
+          <QueryResults mosques={mosques} searchQuery={searchQuery} selectedMosqueIndex={selectedMosqueIndex} />
+        </div>
+      )}
     </div>
   );
 };
