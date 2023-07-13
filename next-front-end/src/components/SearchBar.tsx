@@ -48,9 +48,8 @@ const SearchBar = ({ mosques }: Props) => {
     } else if (event.key === 'ArrowDown' && selectedMosqueIndex < queryResultsDiv.current.children.length - 1) {
       setSelectedMosqueIndex((prev) => prev + 1);
     } else if (event.key === 'Enter' && selectedMosqueIndex >= 0) {
-      const aTag = queryResultsDiv.current.children[selectedMosqueIndex].children[0];
-      const aTagHref = aTag.getAttribute('href');
-      if (aTagHref !== null) window.open(aTagHref);
+      const aTag = queryResultsDiv.current.children[selectedMosqueIndex].firstChild as HTMLElement;
+      aTag.click();
     }
   };
 
@@ -71,6 +70,7 @@ const SearchBar = ({ mosques }: Props) => {
       </div>
       {searchQuery.trim().length !== 0 && isFocused && (
         <div className="absolute mt-1 rounded-md bg-white shadow-md w-full max-w-xl" ref={queryResultsDiv}>
+          {/* TODO: Can resuse same Search Bar - but can use a nearestmosque design for Query Results using a boolean flag */}
           <QueryResults mosques={mosques} searchQuery={searchQuery} selectedMosqueIndex={selectedMosqueIndex} />
         </div>
       )}
