@@ -38,7 +38,7 @@ const QueryResults = ({ mosques, searchQuery, selectedMosqueIndex, setSelectedMo
     .map((result, index) => (
       <div
         key={result.item.name}
-        className={`flex z-20 border ${selectedMosqueIndex === index ? 'border-2 border-accent-400' : ''}`}
+        className={`flex border ${selectedMosqueIndex === index ? 'border-2 border-accent-400' : ''}`}
         onMouseEnter={() => setSelectedMosqueIndex(index)}
         onMouseLeave={() => setSelectedMosqueIndex(-1)}>
         <Link href={`https://www.towerhamletsmosques.co.uk/${result.item.urlSlug}`} className="p-4 w-full" target="_blank">

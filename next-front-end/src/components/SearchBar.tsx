@@ -69,7 +69,7 @@ const SearchBar = ({ mosques }: Props) => {
         />
       </div>
       {searchQuery.trim().length !== 0 && isFocused && (
-        <div className="absolute mt-1 rounded-md bg-white shadow-md w-full max-w-xl" ref={queryResultsDiv}>
+        <div className="absolute mt-1 rounded-md bg-white shadow-md w-full max-w-xl z-10" ref={queryResultsDiv}>
           {/* TODO: Can resuse same Search Bar - but can use a nearestmosque design for Query Results using a boolean flag */}
           <QueryResults
             mosques={mosques}
