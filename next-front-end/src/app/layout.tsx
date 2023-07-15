@@ -3,6 +3,7 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import Providers from '@/lib/providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* https://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers */}
         <div className="overflow-x-hidden w-screen relative">
           <Navbar />
-          {children}
+          <Providers>{children}</Providers>
           <Footer />
         </div>
       </body>
