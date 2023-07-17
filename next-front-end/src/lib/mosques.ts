@@ -1,8 +1,11 @@
 /* eslint-disable import/no-relative-packages */
 // import axios from 'axios';
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-// import { MosqueTimesDailyDTO, SalahBeginningTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes';
-// import { formatDateIntoISOFormat, format_date_as_dd_MMM_yy_str, parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
+import {
+  // MosqueTimesDailyDTO,
+  SalahBeginningTimesDailyDTO,
+} from '../../../back-end/src/db/models/dailyTimes';
+import { formatDateIntoISOFormat, format_date_as_dd_MMM_yy_str, parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
 
 // NOTE: Why did I return res.data rather than just the axiosResponse?
 // I wanted the data from useQuery to be the MosqueDTO[] not the axios response
@@ -38,11 +41,11 @@ export const getAllMosques = async (): Promise<MosqueDTO[]> => {
   //   return res.data;
 };
 
-// const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
-//   const ISODate = formatDateIntoISOFormat(date);
-//   const newDateObj = new Date(`${ISODate}T${time}`);
-//   return newDateObj;
-// };
+const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
+  const ISODate = formatDateIntoISOFormat(date);
+  const newDateObj = new Date(`${ISODate}T${time}`);
+  return newDateObj;
+};
 
 // // Note: All date/time strings are converted into DateObj here -
 // // as calculations on DateObj are more frequent than static presentation of the strings
@@ -68,23 +71,29 @@ export const getAllMosques = async (): Promise<MosqueDTO[]> => {
 // };
 
 // // TODO: In future turn this into seperate API File?
-// export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<SalahTimesDaily> => {
-//   const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
-//   const res = await axios.get<SalahBeginningTimesDailyDTO>(`${URL}/api/v1/salah/${dateUrlFormat}`);
+export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<SalahTimesDaily> => {
+  const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
+  // const res = await axios.get<SalahBeginningTimesDailyDTO>(`${URL}/api/v1/salah/${dateUrlFormat}`);
+  const res = await fetch(`${URL}/api/v1/salah/${dateUrlFormat}`).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json() as Promise<SalahBeginningTimesDailyDTO>;
+  });
 
-//   // First parse date string into real Date obj - to use
-//   const dateObj = parse_dd_MMM_yy_str_into_date(res.data.date);
-//   if (dateObj === null) throw new Error(`Invalid date string from DB: ${res.data.date}`);
+  //   // First parse date string into real Date obj - to use
+  const dateObj = parse_dd_MMM_yy_str_into_date(res.date);
+  if (dateObj === null) throw new Error(`Invalid date string from DB: ${res.date}`);
 
-//   return {
-//     id: res.data.id,
-//     date: dateObj,
-//     fajr: createDateObjFromDateObjAndTimeString(dateObj, res.data.fajr),
-//     sunrise: createDateObjFromDateObjAndTimeString(dateObj, res.data.sunrise),
-//     zuhr: createDateObjFromDateObjAndTimeString(dateObj, res.data.zuhr),
-//     asr1stMithl: createDateObjFromDateObjAndTimeString(dateObj, res.data.asr1stMithl),
-//     asr2ndMithl: createDateObjFromDateObjAndTimeString(dateObj, res.data.asr2ndMithl),
-//     maghrib: createDateObjFromDateObjAndTimeString(dateObj, res.data.maghrib),
-//     isha: createDateObjFromDateObjAndTimeString(dateObj, res.data.isha),
-//   };
-// };
+  return {
+    id: res.id,
+    date: dateObj,
+    fajr: createDateObjFromDateObjAndTimeString(dateObj, res.fajr),
+    sunrise: createDateObjFromDateObjAndTimeString(dateObj, res.sunrise),
+    zuhr: createDateObjFromDateObjAndTimeString(dateObj, res.zuhr),
+    asr1stMithl: createDateObjFromDateObjAndTimeString(dateObj, res.asr1stMithl),
+    asr2ndMithl: createDateObjFromDateObjAndTimeString(dateObj, res.asr2ndMithl),
+    maghrib: createDateObjFromDateObjAndTimeString(dateObj, res.maghrib),
+    isha: createDateObjFromDateObjAndTimeString(dateObj, res.isha),
+  };
+};
