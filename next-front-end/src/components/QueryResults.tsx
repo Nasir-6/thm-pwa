@@ -3,8 +3,8 @@ import Fuse from 'fuse.js';
 import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-import FemaleIcon from './FemaleIcon';
-import WheelchairIcon from './WheelchairIcon';
+import FemaleIcon from '../icons/FemaleIcon';
+import WheelchairIcon from '../icons/WheelchairIcon';
 
 type Props = {
   mosques: MosqueDTO[];

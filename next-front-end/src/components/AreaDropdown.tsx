@@ -4,7 +4,7 @@ import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 import DropdownIcon from './DropdownIcon';
-import FemaleIcon from './FemaleIcon';
+import FemaleIcon from '../icons/FemaleIcon';
 import './MosquesByArea.css';
 import WheelchairIcon from './WheelchairIcon';
 // import { ReactComponent as DropdownIcon } from './dropdown-icon.svg';
