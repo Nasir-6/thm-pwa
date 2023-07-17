@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-// import SalahBeginningModal from './SalahBeginningModal';
+import SalahBeginningModal from './SalahBeginningModal';
 
 const SalahBeginningBtn = () => {
   const [isModalShown, setIsModalShown] = useState(false);
@@ -14,10 +14,7 @@ const SalahBeginningBtn = () => {
         Salah Beginning Times
       </button>
       {/* TODO: Use Lazy loading here! */}
-      {
-        isModalShown && <h1>Show Salah Beginning Modal here</h1>
-        // <SalahBeginningModal setIsModalShown={setIsModalShown} />
-      }
+      {isModalShown && <SalahBeginningModal setIsModalShown={setIsModalShown} />}
     </>
   );
 };
