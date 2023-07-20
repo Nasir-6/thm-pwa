@@ -25,7 +25,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   const [currentSalahTime, setCurrentSalahTime] = useState<Date | null>(null);
   const [chosenDate, setChosenDate] = useState(new Date());
 
-  const { data: salahBeginningTimesOnChosenDate, isSuccess: isChosenDateLoaded } = useQuery({
+  const { data: salahBeginningTimesOnChosenDate } = useQuery({
     queryKey: ['salahBeginningTimes', chosenDate], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getSalahBeginningTimesOnAGivenDate(chosenDate),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
@@ -47,6 +47,14 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
 
     setCurrentSalahTime(currentSalahTimeHolder);
   }, [salahBeginningTimesToday, salahBeginningTimesYesterday, isTodayLoaded, isYesterdayLoaded]);
+
+  const [currentTime, setCurrentTime] = useState(new Date());
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
@@ -70,7 +78,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           </button>
           <div className="center flex flex-col justify-center items-center">
             <p className="time text-3xl">
-              {new Date()?.toLocaleTimeString('en-US', {
+              {currentTime.toLocaleTimeString('en-US', {
                 hour: '2-digit',
                 minute: '2-digit',
                 // hour12: true,
