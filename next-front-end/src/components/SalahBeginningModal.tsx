@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import { useQuery } from '@tanstack/react-query';
 import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
-// import { ReactComponent as FajrIcon } from '../../../assets/sunrise.svg';
+// import {} from '../../public/assets/sunrise.svg';
+import SunriseIcon from '../icons/SunriseIcon';
+// import { ReactComponent as FajrIcon } from '../../public/assets/sunrise.svg';
 // import { ReactComponent as ZuhrIcon } from '../../../assets/sun.svg';
 // import { ReactComponent as AsrIcon } from '../../../assets/cloudy_sun.svg';
 // import { ReactComponent as MaghribIcon } from '../../../assets/cloudy_moon.svg';
@@ -81,9 +83,9 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           time: row[1] as Date,
         };
         let icon;
-        // if (salahName === 'Fajr' || salahName === 'Sunrise')
+        const isCurrentSalahTime = currentSalah?.time === salahTimeObj.time;
+        if (salahName === 'Fajr' || salahName === 'Sunrise') icon = <SunriseIcon isCurrentSalahTime={isCurrentSalahTime} />;
         // if (salahName === 'Asr 1st Mithl' || salahName === 'Asr 2nd Mithl')
-        // icon = <FajrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
         // if (salahName === 'Zuhr') icon = <ZuhrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
         // icon = <AsrIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;
         // if (salahName === 'Maghrib') icon = <MaghribIcon className={`${currentSalah?.time === salahTimeObj.time ? 'active-svg' : ''}`} />;

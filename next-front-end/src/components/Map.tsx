@@ -5,7 +5,7 @@ import { Map as LeafletMap } from 'leaflet'; // Need to alias so no issues with 
 // import { useQuery } from 'react-query';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-import MosqueIcon from './MosqueIcon';
+import MosqueIcon from '../icons/MosqueIcon';
 // import { getAllMosques } from '../../../api/mosques';
 
 const position = { lat: 51.5167, lng: -0.0481 };
