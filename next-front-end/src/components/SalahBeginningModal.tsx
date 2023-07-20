@@ -42,8 +42,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     setCurrentSalahTime(currentSalahTimeHolder);
   }, [salahBeginningTimesToday, salahBeginningTimesYesterday, isTodayLoaded, isYesterdayLoaded]);
 
-  setIsModalShown(true);
-
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
     <div className="flex justify-center items-center">
