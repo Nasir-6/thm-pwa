@@ -30,7 +30,9 @@ const SalahTimesRows = ({ salahTimes, currentSalahTime }: Props) => (
         time: row[1] as Date,
       };
       let icon;
-      const isCurrentSalahTime = currentSalahTime === salahTimeObj.time;
+      // https://kb.narrative.io/what-is-unix-time - Will need to have alternative for after year 2038
+      // https://www.freecodecamp.org/news/javascript-date-comparison-how-to-compare-dates-in-js/
+      const isCurrentSalahTime = currentSalahTime?.getTime() === salahTimeObj.time.getTime();
       if (salahName === 'Fajr' || salahName === 'Sunrise') icon = <SunriseIcon isCurrentSalahTime={isCurrentSalahTime} />;
       if (salahName === 'Zuhr') icon = <SunIcon isCurrentSalahTime={isCurrentSalahTime} />;
       if (salahName === 'Asr 1st Mithl' || salahName === 'Asr 2nd Mithl') icon = <CloudySunIcon isCurrentSalahTime={isCurrentSalahTime} />;
