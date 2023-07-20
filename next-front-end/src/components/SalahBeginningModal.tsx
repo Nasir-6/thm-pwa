@@ -2,19 +2,9 @@ import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useQuery } from '@tanstack/react-query';
 import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
-import SunIcon from '@/icons/salah_times_icons/SunIcon';
-import SunriseIcon from '@/icons/salah_times_icons/SunriseIcon';
-import CloudySunIcon from '@/icons/salah_times_icons/CloudySunIcon';
-import CloudyMoonIcon from '@/icons/salah_times_icons/CloudyMoonIcon';
-import MoonIcon from '@/icons/salah_times_icons/MoonIcon';
 import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
-// import {} from '../../public/assets/sunrise.svg';
-// import { ReactComponent as FajrIcon } from '../../public/assets/sunrise.svg';
-// import { ReactComponent as ZuhrIcon } from '../../../assets/sun.svg';
-// import { ReactComponent as AsrIcon } from '../../../assets/cloudy_sun.svg';
-// import { ReactComponent as MaghribIcon } from '../../../assets/cloudy_moon.svg';
-// import { ReactComponent as IshaIcon } from '../../../assets/moon.svg';
 import './SalahBeginningModal.css';
+import SalahTimesRows from './SalahTimesRows';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,7 +28,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     time: Date;
   };
 
-  const [currentSalah, setCurrentSalah] = useState<SalahObject | undefined>();
+  const [currentSalah, setCurrentSalah] = useState<SalahObject | null>(null);
   const [chosenDate, setChosenDate] = useState(new Date());
 
   useEffect(() => {
@@ -68,52 +58,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   }, [salahBeginningTimesToday]);
 
   setIsModalShown(true);
-
-  // TODO: Convert the below into a component that returns all the divs as rows - with designs
-  const salahTimesRows = salahBeginningTimesToday
-    ? Object.entries(salahBeginningTimesToday)?.map((row) => {
-        if (row[0] === 'id' || row[0] === 'date' || row === null || row === undefined) {
-          //   console.log('NOT A SALAH', row);
-          // eslint-disable-next-line react/jsx-no-useless-fragment
-          return <></>;
-        }
-        const salahName = (row[0][0].toUpperCase() +
-          row[0]
-            .slice(1)
-            .split(/(?=[A-Z]|[0-9])/)
-            .join(' ')) as SalahName;
-        const salahTimeObj: SalahObject = {
-          name: salahName,
-          time: row[1] as Date,
-        };
-        let icon;
-        const isCurrentSalahTime = currentSalah?.time === salahTimeObj.time;
-        if (salahName === 'Fajr' || salahName === 'Sunrise') icon = <SunriseIcon isCurrentSalahTime={isCurrentSalahTime} />;
-        if (salahName === 'Zuhr') icon = <SunIcon isCurrentSalahTime={isCurrentSalahTime} />;
-        if (salahName === 'Asr 1st Mithl' || salahName === 'Asr 2nd Mithl')
-          icon = <CloudySunIcon isCurrentSalahTime={isCurrentSalahTime} />;
-        if (salahName === 'Maghrib') icon = <CloudyMoonIcon isCurrentSalahTime={isCurrentSalahTime} />;
-        if (salahName === 'Isha') icon = <MoonIcon isCurrentSalahTime={isCurrentSalahTime} />;
-        return (
-          <div className={`${currentSalah?.time === salahTimeObj.time ? 'current' : ''} flex justify-between px-4 py-5 border-t`}>
-            <div className="lhs flex gap-2">
-              {icon}
-              <p>{salahTimeObj.name}</p>
-            </div>
-            <p>
-              {salahTimeObj.time
-                ?.toLocaleTimeString('en-US', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  // hour12: true,
-                })
-                .replace(/\s?[AP]M/, '')}
-              {/* Remove AM/PM with replace function! */}
-            </p>
-          </div>
-        );
-      })
-    : null;
 
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return ReactDOM.createPortal(
@@ -156,7 +100,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             {'>'}
           </button>
         </div>
-        {salahBeginningTimesToday && salahTimesRows}
+        {salahBeginningTimesToday && <SalahTimesRows salahTimes={salahBeginningTimesToday} currentSalah={currentSalah} />}
       </div>
     </div>,
     document.body
