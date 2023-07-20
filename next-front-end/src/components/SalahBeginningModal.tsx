@@ -22,40 +22,25 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  type SalahName = 'Fajr' | 'Sunrise' | 'Zuhr' | 'Asr 1st Mithl' | 'Asr 2nd Mithl' | 'Maghrib' | 'Isha';
-  type SalahObject = {
-    name: SalahName;
-    time: Date;
-  };
-
-  const [currentSalah, setCurrentSalah] = useState<SalahObject | null>(null);
+  const [currentSalahTime, setCurrentSalahTime] = useState<Date | null>(null);
   const [chosenDate, setChosenDate] = useState(new Date());
 
   useEffect(() => {
     if ((!isYesterdayLoaded && !isTodayLoaded) || salahBeginningTimesYesterday === undefined || salahBeginningTimesToday === undefined)
       return;
 
-    let currentSalahObj: SalahObject = {
-      name: 'Isha',
-      time: salahBeginningTimesYesterday?.isha,
-    };
+    let currentSalahTimeHolder = salahBeginningTimesYesterday.isha;
 
     const { id, date, ...salahBeginningTimesObj } = salahBeginningTimesToday;
-    const salahInfoArr = Object.entries(salahBeginningTimesObj);
-    for (let i = 0; i < salahInfoArr.length; i++) {
-      const [name, time] = salahInfoArr[i];
-      const salahName = (name[0].toUpperCase() + name.slice(1)) as SalahName;
-      if (isFuture(time)) {
-        break;
-      }
-      currentSalahObj = {
-        name: salahName,
-        time,
-      };
+    const salahTimesArr = Object.values(salahBeginningTimesObj);
+    for (let i = 0; i < salahTimesArr.length; i++) {
+      const time = salahTimesArr[i];
+      if (isFuture(time)) break;
+      currentSalahTimeHolder = time;
     }
 
-    setCurrentSalah(currentSalahObj);
-  }, [salahBeginningTimesToday]);
+    setCurrentSalahTime(currentSalahTimeHolder);
+  }, [salahBeginningTimesToday, salahBeginningTimesYesterday, isTodayLoaded, isYesterdayLoaded]);
 
   setIsModalShown(true);
 
@@ -100,7 +85,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             {'>'}
           </button>
         </div>
-        {salahBeginningTimesToday && <SalahTimesRows salahTimes={salahBeginningTimesToday} currentSalah={currentSalah} />}
+        {salahBeginningTimesToday && <SalahTimesRows salahTimes={salahBeginningTimesToday} currentSalahTime={currentSalahTime} />}
       </div>
     </div>,
     document.body

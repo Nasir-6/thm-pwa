@@ -7,7 +7,7 @@ import MoonIcon from '@/icons/salah_times_icons/MoonIcon';
 
 type Props = {
   salahTimes: SalahTimesDaily;
-  currentSalah: SalahObject | null;
+  currentSalahTime: Date | null;
 };
 
 type SalahName = 'Fajr' | 'Sunrise' | 'Zuhr' | 'Asr 1st Mithl' | 'Asr 2nd Mithl' | 'Maghrib' | 'Isha';
@@ -16,7 +16,7 @@ type SalahObject = {
   time: Date;
 };
 
-const SalahTimesRows = ({ salahTimes, currentSalah }: Props) => (
+const SalahTimesRows = ({ salahTimes, currentSalahTime }: Props) => (
   <>
     {Object.entries(salahTimes).map((row: [string, Date | number]) => {
       if (row[0] === 'id' || row[0] === 'date') return null;
@@ -30,7 +30,7 @@ const SalahTimesRows = ({ salahTimes, currentSalah }: Props) => (
         time: row[1] as Date,
       };
       let icon;
-      const isCurrentSalahTime = currentSalah?.time === salahTimeObj.time;
+      const isCurrentSalahTime = currentSalahTime === salahTimeObj.time;
       if (salahName === 'Fajr' || salahName === 'Sunrise') icon = <SunriseIcon isCurrentSalahTime={isCurrentSalahTime} />;
       if (salahName === 'Zuhr') icon = <SunIcon isCurrentSalahTime={isCurrentSalahTime} />;
       if (salahName === 'Asr 1st Mithl' || salahName === 'Asr 2nd Mithl') icon = <CloudySunIcon isCurrentSalahTime={isCurrentSalahTime} />;
