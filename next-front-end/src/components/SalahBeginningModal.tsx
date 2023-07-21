@@ -5,6 +5,7 @@ import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - M
 import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
 import './SalahBeginningModal.css';
 import SalahTimesRows from './SalahTimesRows';
+import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,7 +26,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   const [currentSalahTime, setCurrentSalahTime] = useState<Date | null>(null);
   const [chosenDate, setChosenDate] = useState(new Date());
 
-  const { data: salahBeginningTimesOnChosenDate } = useQuery({
+  const { data: salahBeginningTimesOnChosenDate, isLoading: isLoadingSalahBeginningTimesOnChosenDate } = useQuery({
     queryKey: ['salahBeginningTimes', chosenDate], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getSalahBeginningTimesOnAGivenDate(chosenDate),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
@@ -97,8 +98,12 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             {'>'}
           </button>
         </div>
-        {salahBeginningTimesOnChosenDate && (
-          <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
+        {isLoadingSalahBeginningTimesOnChosenDate ? (
+          <SalahTimesRowsSkeleton />
+        ) : (
+          salahBeginningTimesOnChosenDate && (
+            <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
+          )
         )}
       </div>
     </div>,
