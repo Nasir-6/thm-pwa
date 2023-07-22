@@ -6,6 +6,7 @@ import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
 import './SalahBeginningModal.css';
 import SalahTimesRows from './SalahTimesRows';
 import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
+import CalendarIcon from '@/icons/salah_times_icons/CalendarIcon';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -85,7 +86,8 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
                 // hour12: true,
               })}
             </p>
-            <div className="date">
+            <div className="date flex items-center gap-1">
+              <CalendarIcon />
               {chosenDate?.toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
