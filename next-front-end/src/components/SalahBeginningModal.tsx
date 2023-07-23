@@ -86,7 +86,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
                 // hour12: true,
               })}
             </p>
-            <div className="date flex items-center gap-1">
+            <button type="button" className="date flex items-center gap-1">
               <CalendarIcon />
               {chosenDate?.toLocaleDateString('en-US', {
                 weekday: 'long',
@@ -94,7 +94,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
                 month: 'long',
                 day: 'numeric',
               })}
-            </div>
+            </button>
           </div>
           <button type="button" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
             {'>'}
