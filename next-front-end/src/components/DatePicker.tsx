@@ -28,7 +28,7 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
         role="button"
         className="date-picker-overlay dark-overlay bg-slate-900 bg-opacity-25 fixed w-full h-full top-0 z-30 flex justify-center items-center"
       />
-      <div className="fixed p-10 bg-red-500 z-30">Calendar</div>
+      <div className="fixed top-32 p-10 bg-red-500 z-30">Calendar</div>
     </div>,
     document.body
   );

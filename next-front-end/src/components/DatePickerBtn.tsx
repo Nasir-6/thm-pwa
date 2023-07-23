@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import CalendarIcon from '@/icons/salah_times_icons/CalendarIcon';
-import DatePicker from './DatePicker';
+
+const DatePicker = dynamic(() => import('./DatePicker'), {
+  loading: () => <p>Loading...</p>, // TODO: Update loading state
+});
 
 type Props = {
   chosenDate: Date;
@@ -14,7 +18,7 @@ const DatePickerBtn = ({ chosenDate }: Props) => {
       <button type="button" className="date flex items-center gap-1" onClick={() => setDatePickerShown(true)}>
         <CalendarIcon />
         {chosenDate?.toLocaleDateString('en-US', {
-          weekday: 'long',
+          weekday: 'short',
           year: 'numeric',
           month: 'long',
           day: 'numeric',

@@ -1,7 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import SalahBeginningModal from './SalahBeginningModal';
+import dynamic from 'next/dynamic';
+
+const SalahBeginningModal = dynamic(() => import('./SalahBeginningModal'), {
+  loading: () => <p>Loading...</p>, // TODO: Update loading state
+});
 
 const SalahBeginningBtn = () => {
   const [isModalShown, setIsModalShown] = useState(false);
