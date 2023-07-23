@@ -3,16 +3,17 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@tanstack/react-query';
 import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import './SalahBeginningModal.css';
-import CalendarIcon from '@/icons/salah_times_icons/CalendarIcon';
 import SalahTimesRows from './SalahTimesRows';
 import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
 import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
+import DatePickerBtn from './DatePickerBtn';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalShown }) => {
+  console.log('Modal rerendered');
   const { data: salahBeginningTimesYesterday, isSuccess: isYesterdayLoaded } = useQuery({
     queryKey: ['salahBeginningTimes', 'yesterday'], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getSalahBeginningTimesOnAGivenDate(subDays(new Date(), 1)),
@@ -53,10 +54,13 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   const [currentTime, setCurrentTime] = useState(new Date());
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
+      const newTime = new Date();
+      const minutesHaveChanged = newTime.getMinutes() !== currentTime.getMinutes();
+      if (minutesHaveChanged) setCurrentTime(new Date());
     }, 1000);
     return () => clearInterval(intervalId);
-  }, []);
+    // put currentTime as a dependency so it clears and updates  setInterval
+  }, [currentTime]);
 
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
   return createPortal(
@@ -86,15 +90,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
                 // hour12: true,
               })}
             </p>
-            <button type="button" className="date flex items-center gap-1">
-              <CalendarIcon />
-              {chosenDate?.toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </button>
+            <DatePickerBtn chosenDate={chosenDate} />
           </div>
           <button type="button" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
             {'>'}
