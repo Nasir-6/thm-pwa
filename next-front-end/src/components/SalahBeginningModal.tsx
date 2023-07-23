@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import { useQuery } from '@tanstack/react-query';
 import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
-import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
 import './SalahBeginningModal.css';
+import CalendarIcon from '@/icons/salah_times_icons/CalendarIcon';
 import SalahTimesRows from './SalahTimesRows';
 import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
-import CalendarIcon from '@/icons/salah_times_icons/CalendarIcon';
+import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -59,7 +59,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   }, []);
 
   //   TODO: Use ReactDom.createPortal instead - https://www.youtube.com/watch?v=LyLa7dU5tp8&ab_channel=WebDevSimplified
-  return ReactDOM.createPortal(
+  return createPortal(
     <div className="flex justify-center items-center">
       <div
         onClick={() => setIsModalShown(false)}
