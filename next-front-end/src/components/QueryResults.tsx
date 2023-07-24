@@ -44,7 +44,7 @@ const QueryResults = ({ mosques, searchQuery, selectedMosqueIndex, setSelectedMo
         <Link href={`https://www.towerhamletsmosques.co.uk/${result.item.urlSlug}`} className="p-4 w-full" target="_blank">
           <div className="flex justify-between">
             <div className="flex gap-1">
-              <h1>{result.item.name}</h1>
+              <h1 className="font-medium">{result.item.name}</h1>
               {result.item.hasFemaleFacilities && <FemaleIcon />}
               {result.item.hasWheelchairAccess && <WheelchairIcon />}
             </div>
