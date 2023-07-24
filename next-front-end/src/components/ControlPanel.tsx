@@ -19,14 +19,14 @@ const ControlPanel = ({ mosques, isMapVisible, setIsMapVisible }: Props) => (
     <SearchBar mosques={mosques} />
     <div className="bottom-options flex w-full max-w-xl justify-between py-1 px-2">
       {/* TODO: Replace UseLocationBtn with arrow and findNearestMosque Link */}
-      <Link href="/findnearestmosque" className="font-semibold text-accent-700 hover:text-accent-800">
+      <Link href="/findnearestmosque" className="font-semibold text-accent-600 hover:text-accent-700">
         Find Nearest Mosque
       </Link>
       {/* <UseLocationBtn /> */}
       <button
         type="button"
         onClick={() => setIsMapVisible(!isMapVisible)}
-        className="show-map flex gap-1 items-center font-semibold text-accent-700 hover:text-accent-800">
+        className="show-map flex gap-1 items-center font-semibold text-accent-600 hover:text-accent-700">
         {isMapVisible ? (
           <>
             <FiEyeOff className="" />
