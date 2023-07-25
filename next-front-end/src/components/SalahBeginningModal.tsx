@@ -3,12 +3,12 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@tanstack/react-query';
 import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - Make own util functions and get rid of date-fns if not used a lot!
 import './SalahBeginningModal.css';
+import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
+import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 import SalahTimesRows from './SalahTimesRows';
 import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
 import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
 import DatePickerBtn from './DatePickerBtn';
-import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
-import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
