@@ -78,62 +78,58 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
         role="button"
         className="date-picker-overlay dark-overlay bg-slate-900 bg-opacity-25 fixed w-full h-full top-0 z-30 flex justify-center items-center"
       />
-      <div className="pt-16 fixed top-32 p-10 bg-white z-30">
-        <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
-          <div className="md:pr-14">
-            <div className="flex items-center">
-              <h2 className="flex-auto font-semibold text-gray-900">
-                {`${months[firstDayCurrentMonth.getMonth()]} ${firstDayCurrentMonth.getFullYear()}`}
-              </h2>
+      <div className="fixed top-32 p-10 bg-white z-30 px-4 ">
+        <div className="flex items-center">
+          <h2 className="flex-auto font-semibold text-gray-900">
+            {`${months[firstDayCurrentMonth.getMonth()]} ${firstDayCurrentMonth.getFullYear()}`}
+          </h2>
+          <button
+            type="button"
+            onClick={previousMonth}
+            className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 stroke-black w-8">
+            <span className="sr-only">Previous month</span>
+            <LeftChevronIcon />
+            {/* <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" /> */}
+          </button>
+          <button
+            onClick={nextMonth}
+            type="button"
+            className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 stroke-black w-8">
+            <span className="sr-only">Next month</span>
+            <RightChevronIcon />
+            {/* <ChevronRightIcon className="w-5 h-5" aria-hidden="true" /> */}
+          </button>
+        </div>
+        <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
+          <div>S</div>
+          <div>M</div>
+          <div>T</div>
+          <div>W</div>
+          <div>T</div>
+          <div>F</div>
+          <div>S</div>
+        </div>
+        <div className="grid grid-cols-7 mt-2 text-sm">
+          {days.map((day, dayIdx) => (
+            <div key={day.toString()} className={classNames(dayIdx === 0 && colStartClasses[getDay(day)], 'py-1.5')}>
               <button
                 type="button"
-                onClick={previousMonth}
-                className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 stroke-black w-8">
-                <span className="sr-only">Previous month</span>
-                <LeftChevronIcon />
-                {/* <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" /> */}
+                onClick={() => setSelectedDay(day)}
+                className={classNames(
+                  isEqual(day, selectedDay) && 'text-white',
+                  !isEqual(day, selectedDay) && isToday(day) && 'text-red-500',
+                  !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDayCurrentMonth) && 'text-gray-900',
+                  !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDayCurrentMonth) && 'text-gray-400',
+                  isEqual(day, selectedDay) && isToday(day) && 'bg-red-500',
+                  isEqual(day, selectedDay) && !isToday(day) && 'bg-gray-900',
+                  !isEqual(day, selectedDay) && 'hover:bg-gray-200',
+                  (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
+                  'mx-auto flex h-8 w-8 items-center justify-center rounded-full'
+                )}>
+                <time dateTime={`${day.getFullYear()}-${`0${day.getMonth() + 1}`.slice(-2)}-${day.getDate()}`}>{day.getDate()}</time>
               </button>
-              <button
-                onClick={nextMonth}
-                type="button"
-                className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 stroke-black w-8">
-                <span className="sr-only">Next month</span>
-                <RightChevronIcon />
-                {/* <ChevronRightIcon className="w-5 h-5" aria-hidden="true" /> */}
-              </button>
             </div>
-            <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
-              <div>S</div>
-              <div>M</div>
-              <div>T</div>
-              <div>W</div>
-              <div>T</div>
-              <div>F</div>
-              <div>S</div>
-            </div>
-            <div className="grid grid-cols-7 mt-2 text-sm">
-              {days.map((day, dayIdx) => (
-                <div key={day.toString()} className={classNames(dayIdx === 0 && colStartClasses[getDay(day)], 'py-1.5')}>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedDay(day)}
-                    className={classNames(
-                      isEqual(day, selectedDay) && 'text-white',
-                      !isEqual(day, selectedDay) && isToday(day) && 'text-red-500',
-                      !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDayCurrentMonth) && 'text-gray-900',
-                      !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDayCurrentMonth) && 'text-gray-400',
-                      isEqual(day, selectedDay) && isToday(day) && 'bg-red-500',
-                      isEqual(day, selectedDay) && !isToday(day) && 'bg-gray-900',
-                      !isEqual(day, selectedDay) && 'hover:bg-gray-200',
-                      (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
-                      'mx-auto flex h-8 w-8 items-center justify-center rounded-full'
-                    )}>
-                    <time dateTime={`${day.getFullYear()}-${`0${day.getMonth() + 1}`.slice(-2)}-${day.getDate()}`}>{day.getDate()}</time>
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>,
