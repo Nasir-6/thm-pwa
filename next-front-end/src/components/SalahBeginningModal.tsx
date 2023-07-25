@@ -7,6 +7,8 @@ import SalahTimesRows from './SalahTimesRows';
 import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
 import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
 import DatePickerBtn from './DatePickerBtn';
+import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
+import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -79,8 +81,8 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           </button>
         </div>
         <div className="current-info flex justify-between px-4 py-5 bg-primary-700 text-white">
-          <button type="button" onClick={() => setChosenDate(subDays(chosenDate, 1))}>
-            {'<'}
+          <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(subDays(chosenDate, 1))}>
+            <LeftChevronIcon />
           </button>
           <div className="center flex flex-col justify-center items-center">
             <p className="time text-3xl">
@@ -92,8 +94,8 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             </p>
             <DatePickerBtn chosenDate={chosenDate} />
           </div>
-          <button type="button" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
-            {'>'}
+          <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
+            <RightChevronIcon />
           </button>
         </div>
         {isLoadingSalahBeginningTimesOnChosenDate ? (
