@@ -42,13 +42,13 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 
 type Props = {
   setDatePickerShown: React.Dispatch<React.SetStateAction<boolean>>;
+  chosenDate: Date;
   setChosenDate: React.Dispatch<React.SetStateAction<Date>>;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const DatePicker = ({ setDatePickerShown, setChosenDate }: Props) => {
-  const today = startOfToday();
-  const [selectedDay, setSelectedDay] = useState(today);
+const DatePicker = ({ setDatePickerShown, chosenDate, setChosenDate }: Props) => {
+  const [selectedDay, setSelectedDay] = useState(chosenDate);
   const [currentMonth, setCurrentMonth] = useState(`${months[selectedDay.getMonth()]}-${selectedDay.getFullYear()}`);
   const firstDayCurrentMonth = parseDateInMMMMyyyyFormat(currentMonth);
 

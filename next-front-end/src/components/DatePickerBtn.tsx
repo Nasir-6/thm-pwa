@@ -25,7 +25,7 @@ const DatePickerBtn = ({ chosenDate, setChosenDate }: Props) => {
           day: 'numeric',
         })}
       </button>
-      {datePickerShown && <DatePicker setDatePickerShown={setDatePickerShown} setChosenDate={setChosenDate} />}
+      {datePickerShown && <DatePicker setDatePickerShown={setDatePickerShown} chosenDate={chosenDate} setChosenDate={setChosenDate} />}
     </>
   );
 };
