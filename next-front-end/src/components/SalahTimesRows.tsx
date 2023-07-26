@@ -56,7 +56,6 @@ const SalahTimesRows = ({ salahTimes, currentSalahTime }: Props) => (
                 // hour12: true,
               })
               .replace(/\s?[AP]M/, '')}
-
             {/* Remove AM/PM with replace function! */}
           </p>
         </div>
