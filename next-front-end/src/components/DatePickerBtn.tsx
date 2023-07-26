@@ -13,10 +13,12 @@ type Props = {
 
 const DatePickerBtn = ({ chosenDate, setChosenDate }: Props) => {
   const [datePickerShown, setDatePickerShown] = useState(false);
-  console.log('Date picker Btn rerendered');
   return (
     <>
-      <button type="button" className="date flex items-center gap-1" onClick={() => setDatePickerShown(true)}>
+      <button
+        type="button"
+        className="date flex items-center gap-1 bg-gradient-to-r from-accent-600 to-accent-300 hover:to-accent-600 bg-clip-text text-transparent fill-accent-600"
+        onClick={() => setDatePickerShown(true)}>
         <CalendarIcon />
         {chosenDate?.toLocaleDateString('en-US', {
           weekday: 'short',
