@@ -8,9 +8,10 @@ const DatePicker = dynamic(() => import('./DatePicker'), {
 
 type Props = {
   chosenDate: Date;
+  setChosenDate: React.Dispatch<React.SetStateAction<Date>>;
 };
 
-const DatePickerBtn = ({ chosenDate }: Props) => {
+const DatePickerBtn = ({ chosenDate, setChosenDate }: Props) => {
   const [datePickerShown, setDatePickerShown] = useState(false);
   console.log('Date picker Btn rerendered');
   return (
@@ -24,7 +25,7 @@ const DatePickerBtn = ({ chosenDate }: Props) => {
           day: 'numeric',
         })}
       </button>
-      {datePickerShown && <DatePicker setDatePickerShown={setDatePickerShown} />}
+      {datePickerShown && <DatePicker setDatePickerShown={setDatePickerShown} setChosenDate={setChosenDate} />}
     </>
   );
 };

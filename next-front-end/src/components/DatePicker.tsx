@@ -42,10 +42,11 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 
 type Props = {
   setDatePickerShown: React.Dispatch<React.SetStateAction<boolean>>;
+  setChosenDate: React.Dispatch<React.SetStateAction<Date>>;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const DatePicker = ({ setDatePickerShown }: Props) => {
+const DatePicker = ({ setDatePickerShown, setChosenDate }: Props) => {
   const today = startOfToday();
   const [selectedDay, setSelectedDay] = useState(today);
   const [currentMonth, setCurrentMonth] = useState(`${months[selectedDay.getMonth()]}-${selectedDay.getFullYear()}`);
@@ -129,11 +130,16 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
         <div className="flex justify-between pt-2">
           <button
             type="button"
+            onClick={() => setDatePickerShown(false)}
             className="bg-gradient-to-r from-gray-600 to-gray-400 hover:to-gray-600 px-4 py-1 rounded-full text-white font-semibold shadow">
             Close
           </button>
           <button
             type="button"
+            onClick={() => {
+              setChosenDate(selectedDay);
+              setDatePickerShown(false);
+            }}
             className="bg-gradient-to-r from-accent-600 to-accent-400 hover:to-accent-600 px-4 py-1 rounded-full text-white font-semibold shadow">
             Set Date
           </button>
