@@ -39,7 +39,11 @@ const SalahTimesRows = ({ salahTimes, currentSalahTime }: Props) => (
       if (salahName === 'Maghrib') icon = <CloudyMoonIcon isCurrentSalahTime={isCurrentSalahTime} />;
       if (salahName === 'Isha') icon = <MoonIcon isCurrentSalahTime={isCurrentSalahTime} />;
       return (
-        <div key={salahName} className={`flex justify-between px-4 py-5 border-t ${isCurrentSalahTime ? 'current' : ''}`}>
+        <div
+          key={salahName}
+          className={`flex justify-between px-4 py-5 border-t ${
+            isCurrentSalahTime ? 'bg-gradient-to-r from-accent-600 to-accent-400 text-white' : ''
+          }`}>
           <div className="lhs flex gap-2">
             {icon}
             <p>{salahTimeObj.name}</p>
