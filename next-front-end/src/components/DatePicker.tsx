@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
 import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 
-import { add, eachDayOfInterval, endOfWeek, getDay, isEqual, isSameMonth, isToday, startOfWeek } from 'date-fns';
+import { add, eachDayOfInterval, endOfWeek, getDay, isSameDay, isSameMonth, isToday, startOfWeek } from 'date-fns';
 
 const colStartClasses = ['', 'col-start-2', 'col-start-3', 'col-start-4', 'col-start-5', 'col-start-6', 'col-start-7'];
 
@@ -111,14 +111,14 @@ const DatePicker = ({ setDatePickerShown, chosenDate, setChosenDate }: Props) =>
                 type="button"
                 onClick={() => setSelectedDay(day)}
                 className={classNames(
-                  isEqual(day, selectedDay) && 'text-white',
-                  !isEqual(day, selectedDay) && isToday(day) && 'text-accent-500',
-                  !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDayCurrentMonth) && 'text-gray-900',
-                  !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDayCurrentMonth) && 'text-gray-400',
-                  isEqual(day, selectedDay) && isToday(day) && 'bg-gradient-to-r from-accent-600 to-accent-400',
-                  isEqual(day, selectedDay) && !isToday(day) && 'bg-gradient-to-r from-primary-600 to-primary-400',
-                  !isEqual(day, selectedDay) && 'hover:bg-gray-200',
-                  (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
+                  isSameDay(day, selectedDay) && 'text-white',
+                  !isSameDay(day, selectedDay) && isToday(day) && 'text-accent-500',
+                  !isSameDay(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDayCurrentMonth) && 'text-gray-900',
+                  !isSameDay(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDayCurrentMonth) && 'text-gray-400',
+                  isSameDay(day, selectedDay) && isToday(day) && 'bg-gradient-to-r from-accent-600 to-accent-400',
+                  isSameDay(day, selectedDay) && !isToday(day) && 'bg-gradient-to-r from-primary-600 to-primary-400',
+                  !isSameDay(day, selectedDay) && 'hover:bg-gray-200',
+                  (isSameDay(day, selectedDay) || isToday(day)) && 'font-semibold',
                   'mx-auto flex h-8 w-8 items-center justify-center rounded-full'
                 )}>
                 <time dateTime={`${day.getFullYear()}-${`0${day.getMonth() + 1}`.slice(-2)}-${day.getDate()}`}>{day.getDate()}</time>
@@ -130,9 +130,12 @@ const DatePicker = ({ setDatePickerShown, chosenDate, setChosenDate }: Props) =>
         <div className="flex justify-between pt-2">
           <button
             type="button"
-            onClick={() => setDatePickerShown(false)}
+            onClick={() => {
+              setChosenDate(new Date());
+              setSelectedDay(new Date());
+            }}
             className="bg-gradient-to-r from-gray-600 to-gray-400 hover:to-gray-600 px-4 py-1 rounded-full text-white font-semibold shadow">
-            Close
+            Reset
           </button>
           <button
             type="button"
