@@ -79,10 +79,7 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
         className="date-picker-overlay dark-overlay bg-slate-900 bg-opacity-25 fixed w-full h-full top-0 z-30 flex justify-center items-center"
       />
       <div className="fixed top-32 p-10 bg-white z-30 px-4 ">
-        <div className="flex items-center">
-          <h2 className="flex-auto font-semibold text-gray-900">
-            {`${months[firstDayCurrentMonth.getMonth()]} ${firstDayCurrentMonth.getFullYear()}`}
-          </h2>
+        <div className="flex items-center text-center">
           <button
             type="button"
             onClick={previousMonth}
@@ -91,6 +88,9 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
             <LeftChevronIcon />
             {/* <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" /> */}
           </button>
+          <h2 className="flex-auto font-semibold text-gray-900">
+            {`${months[firstDayCurrentMonth.getMonth()]} ${firstDayCurrentMonth.getFullYear()}`}
+          </h2>
           <button
             onClick={nextMonth}
             type="button"
