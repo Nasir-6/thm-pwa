@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
 import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 
-import { add, eachDayOfInterval, endOfMonth, endOfWeek, getDay, isEqual, isSameMonth, isToday, startOfToday, startOfWeek } from 'date-fns';
+import { add, eachDayOfInterval, endOfMonth, endOfWeek, getDay, isEqual, isSameMonth, isToday, startOfWeek } from 'date-fns';
 
 const colStartClasses = ['', 'col-start-2', 'col-start-3', 'col-start-4', 'col-start-5', 'col-start-6', 'col-start-7'];
 
