@@ -80,7 +80,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             X
           </button>
         </div>
-        <div className="current-info flex justify-between px-4 py-5 bg-primary-700 text-white">
+        <div className="current-info flex justify-between px-4 py-5 bg-gradient-to-r from-primary-700 to-primary-600 text-white">
           <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(subDays(chosenDate, 1))}>
             <LeftChevronIcon />
           </button>
