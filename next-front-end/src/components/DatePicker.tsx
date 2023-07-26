@@ -8,7 +8,7 @@ import { add, eachDayOfInterval, endOfMonth, endOfWeek, getDay, isEqual, isSameM
 const colStartClasses = ['', 'col-start-2', 'col-start-3', 'col-start-4', 'col-start-5', 'col-start-6', 'col-start-7'];
 
 function classNames(...classes: (string | boolean)[]) {
-  console.log('classes', classes);
+  // console.log('classes', classes);
   return classes.filter(Boolean).join(' ');
 }
 
@@ -78,12 +78,9 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
         role="button"
         className="date-picker-overlay dark-overlay bg-slate-900 bg-opacity-25 fixed w-full h-full top-0 z-30 flex justify-center items-center"
       />
-      <div className="fixed top-32 p-10 bg-white z-30 px-4 ">
+      <div className="fixed top-32 p-5 bg-white z-30  rounded-md">
         <div className="flex items-center text-center">
-          <button
-            type="button"
-            onClick={previousMonth}
-            className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 stroke-black w-8">
+          <button type="button" onClick={previousMonth} className="p-1.5 stroke-gray-400 hover:stroke-gray-500 w-8">
             <span className="sr-only">Previous month</span>
             <LeftChevronIcon />
             {/* <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" /> */}
@@ -91,37 +88,34 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
           <h2 className="flex-auto font-semibold text-gray-900">
             {`${months[firstDayCurrentMonth.getMonth()]} ${firstDayCurrentMonth.getFullYear()}`}
           </h2>
-          <button
-            onClick={nextMonth}
-            type="button"
-            className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 stroke-black w-8">
+          <button onClick={nextMonth} type="button" className="p-1.5 stroke-gray-400 hover:stroke-gray-500 w-8">
             <span className="sr-only">Next month</span>
             <RightChevronIcon />
             {/* <ChevronRightIcon className="w-5 h-5" aria-hidden="true" /> */}
           </button>
         </div>
-        <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
-          <div>S</div>
-          <div>M</div>
-          <div>T</div>
-          <div>W</div>
-          <div>T</div>
-          <div>F</div>
-          <div>S</div>
+        <div className="grid grid-cols-7 mt-5 leading-6 text-center font-bold">
+          <div>Su</div>
+          <div>Mo</div>
+          <div>Tu</div>
+          <div>We</div>
+          <div>Th</div>
+          <div>Fr</div>
+          <div>Sa</div>
         </div>
-        <div className="grid grid-cols-7 mt-2 text-sm">
+        <div className="grid grid-cols-7 mt-2">
           {days.map((day, dayIdx) => (
-            <div key={day.toString()} className={classNames(dayIdx === 0 && colStartClasses[getDay(day)], 'py-1.5')}>
+            <div key={day.toString()} className={classNames(dayIdx === 0 && colStartClasses[getDay(day)], 'p-1')}>
               <button
                 type="button"
                 onClick={() => setSelectedDay(day)}
                 className={classNames(
                   isEqual(day, selectedDay) && 'text-white',
-                  !isEqual(day, selectedDay) && isToday(day) && 'text-red-500',
+                  !isEqual(day, selectedDay) && isToday(day) && 'text-accent-500',
                   !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDayCurrentMonth) && 'text-gray-900',
                   !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDayCurrentMonth) && 'text-gray-400',
-                  isEqual(day, selectedDay) && isToday(day) && 'bg-red-500',
-                  isEqual(day, selectedDay) && !isToday(day) && 'bg-gray-900',
+                  isEqual(day, selectedDay) && isToday(day) && 'bg-gradient-to-r from-accent-600 to-accent-400',
+                  isEqual(day, selectedDay) && !isToday(day) && 'bg-gradient-to-r from-primary-600 to-primary-400',
                   !isEqual(day, selectedDay) && 'hover:bg-gray-200',
                   (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
                   'mx-auto flex h-8 w-8 items-center justify-center rounded-full'
@@ -130,6 +124,19 @@ const DatePicker = ({ setDatePickerShown }: Props) => {
               </button>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-between pt-2">
+          <button
+            type="button"
+            className="bg-gradient-to-r from-gray-600 to-gray-400 hover:to-gray-600 px-4 py-1 rounded-full text-white font-semibold shadow">
+            Close
+          </button>
+          <button
+            type="button"
+            className="bg-gradient-to-r from-accent-600 to-accent-400 hover:to-accent-600 px-4 py-1 rounded-full text-white font-semibold shadow">
+            Set Date
+          </button>
         </div>
       </div>
     </div>,
