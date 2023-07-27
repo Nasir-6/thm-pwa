@@ -64,12 +64,13 @@ class MosqueDAOPostgres {
 		};
 	}
 
-	async getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO> {
+	async getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO | null> {
 		const DD_MMM_YY = format(date, "dd-MMM-yy");
 		const query = "SELECT id, date, fajr, sunrise, zuhr, asr_1st_mithl, asr_2nd_mithl, maghrib, isha FROM salah_beginning_times WHERE date = $1";
 		const res = await this.#pool.query(query, [DD_MMM_YY]);
 		// FIXME: What about when you want to show that we don't have this data? - Then should we throw error or give an empty array?
-		if (res.rowCount === 0) throw new HttpException(404, `Salah Beginning Times with date=${DD_MMM_YY} could not be found`);
+		if (res.rowCount === 0) return null;
+		// throw new HttpException(404, `Salah Beginning Times with date=${DD_MMM_YY} could not be found`);
 		// if (res.rowCount !== 1) throw new HttpException(500, `Found more than one time for mosque_id=${mosqueId} and date=${DD_MMM_YY}`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const salahBeginningTimes: SalahBeginningTimesDailyDB = res.rows[0];

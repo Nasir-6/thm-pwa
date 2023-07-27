@@ -31,7 +31,7 @@ class MosqueService {
 		return res;
 	}
 
-	async getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO> {
+	async getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO | null> {
 		const res = await this.mosqueDAO.getSalahBeginningTimesOnAGivenDate(date);
 		return res;
 	}
