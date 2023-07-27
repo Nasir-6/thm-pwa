@@ -101,6 +101,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
         {isLoadingSalahBeginningTimesOnChosenDate ? (
           <SalahTimesRowsSkeleton />
         ) : (
+          // TODO: Add Empty state for days with no times
           salahBeginningTimesOnChosenDate && (
             <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
           )

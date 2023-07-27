@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import CalendarIcon from '@/icons/salah_times_icons/CalendarIcon';
 
 const DatePicker = dynamic(() => import('./DatePicker'), {
-  loading: () => <p>Loading...</p>, // TODO: Update loading state
+  // loading: () => <p>Loading...</p>, // TODO: Update loading state
 });
 
 type Props = {
