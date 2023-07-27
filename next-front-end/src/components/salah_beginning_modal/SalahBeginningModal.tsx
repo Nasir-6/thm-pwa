@@ -6,8 +6,8 @@ import './SalahBeginningModal.css';
 import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
 import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 import SalahTimesRows from './SalahTimesRows';
-import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
-import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
+import SalahTimesRowsSkeleton from '../skeletons/SalahTimesRowsSkeleton';
+import { getSalahBeginningTimesOnAGivenDate } from '../../lib/mosques';
 import DatePickerBtn from './DatePickerBtn';
 import SalahTimesRowsEmptyState from './SalahTimesRowsEmptyState';
 
