@@ -15,7 +15,6 @@ interface SalahBeginningModalProps {
 }
 
 const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalShown }) => {
-  console.log('Modal rerendered');
   const { data: salahBeginningTimesYesterday, isSuccess: isYesterdayLoaded } = useQuery({
     queryKey: ['salahBeginningTimes', 'yesterday'], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getSalahBeginningTimesOnAGivenDate(subDays(new Date(), 1)),
@@ -37,8 +36,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
   });
 
   useEffect(() => {
-    if ((!isYesterdayLoaded && !isTodayLoaded) || salahBeginningTimesYesterday === undefined || salahBeginningTimesToday === undefined)
-      return;
+    if ((!isYesterdayLoaded && !isTodayLoaded) || !salahBeginningTimesYesterday || !salahBeginningTimesToday) return;
 
     let currentSalahTimeHolder = salahBeginningTimesYesterday.isha;
 
@@ -98,13 +96,11 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             <RightChevronIcon />
           </button>
         </div>
-        {isLoadingSalahBeginningTimesOnChosenDate ? (
-          <SalahTimesRowsSkeleton />
-        ) : (
-          // TODO: Add Empty state for days with no times
-          salahBeginningTimesOnChosenDate && (
-            <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
-          )
+        {isLoadingSalahBeginningTimesOnChosenDate && <SalahTimesRowsSkeleton />}
+        {/* TODO: make empty state */}
+        {salahBeginningTimesOnChosenDate === null && <p>EMPTY STATE HERE</p>}
+        {salahBeginningTimesOnChosenDate && (
+          <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
         )}
       </div>
     </div>,

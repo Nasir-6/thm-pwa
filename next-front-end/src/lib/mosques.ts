@@ -71,16 +71,17 @@ const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
 // };
 
 // // TODO: In future turn this into seperate API File?
-export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<SalahTimesDaily> => {
+export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<SalahTimesDaily | null> => {
   const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
   // const res = await axios.get<SalahBeginningTimesDailyDTO>(`${URL}/api/v1/salah/${dateUrlFormat}`);
   const res = await fetch(`${URL}/api/v1/salah/${dateUrlFormat}`).then((response) => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    return response.json() as Promise<SalahBeginningTimesDailyDTO>;
+    return response.json() as Promise<SalahBeginningTimesDailyDTO | null>;
   });
 
+  if (res === null) return null;
   //   // First parse date string into real Date obj - to use
   const dateObj = parse_dd_MMM_yy_str_into_date(res.date);
   if (dateObj === null) throw new Error(`Invalid date string from DB: ${res.date}`);
