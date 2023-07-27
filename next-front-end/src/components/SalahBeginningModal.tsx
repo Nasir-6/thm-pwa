@@ -9,6 +9,7 @@ import SalahTimesRows from './SalahTimesRows';
 import SalahTimesRowsSkeleton from './skeletons/SalahTimesRowsSkeleton';
 import { getSalahBeginningTimesOnAGivenDate } from '../lib/mosques';
 import DatePickerBtn from './DatePickerBtn';
+import SalahTimesRowsEmptyState from './SalahTimesRowsEmptyState';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -98,7 +99,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
         </div>
         {isLoadingSalahBeginningTimesOnChosenDate && <SalahTimesRowsSkeleton />}
         {/* TODO: make empty state */}
-        {salahBeginningTimesOnChosenDate === null && <p>EMPTY STATE HERE</p>}
+        {salahBeginningTimesOnChosenDate === null && <SalahTimesRowsEmptyState />}
         {salahBeginningTimesOnChosenDate && (
           <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
         )}
