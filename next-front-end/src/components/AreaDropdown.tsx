@@ -22,7 +22,7 @@ const AreaDropdown = ({ area, mosques }: Props) => {
     </li>
   ));
   return (
-    <div className="area-container px-3 py-2 min-w-[330px]">
+    <div className="area-container px-3 pb-5 min-w-[330px]">
       <label
         htmlFor={`${area}-area-toggle`}
         className="area-toggle-label text-3xl font-medium cursor-pointer flex flex-row items-center gap-1">
@@ -31,7 +31,7 @@ const AreaDropdown = ({ area, mosques }: Props) => {
       </label>
       <input type="checkbox" id={`${area}-area-toggle`} className="area-toggle" />
       <div className="wrapper mt-2">
-        <ul className="pl-5 text-primary-500 max-h-[134px] overflow-scroll">{mosqueLinks}</ul>
+        <ul className="pl-9 text-primary-500 max-h-[134px] overflow-scroll">{mosqueLinks}</ul>
       </div>
     </div>
   );

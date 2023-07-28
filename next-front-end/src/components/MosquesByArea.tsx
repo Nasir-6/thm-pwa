@@ -23,7 +23,7 @@ const MosquesByArea = ({ mosques }: Props) => {
     .sort()
     .map((area) => <AreaDropdown area={area} mosques={areas[area]} />);
 
-  return <div className="mosque-by-area-container">{mosquesByAreaDropdowns}</div>;
+  return <div className="mosque-by-area-container py-3 ">{mosquesByAreaDropdowns}</div>;
 };
 
 export default MosquesByArea;
