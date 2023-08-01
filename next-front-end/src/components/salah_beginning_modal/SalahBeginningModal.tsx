@@ -75,6 +75,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
       <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30 rounded-t-md">
         <div className="header flex justify-between px-4 py-4 text-lg font-extrabold">
           <h2 className=" text-xl font-bold">Salah Beginning Times</h2>
+          {/* TODO: Use an cross svg */}
           <button type="button" onClick={() => setIsModalShown(false)}>
             X
           </button>
@@ -84,6 +85,8 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             <LeftChevronIcon />
           </button>
           <div className="center flex flex-col justify-center items-center">
+            {/* TODO: use time html element - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time */}
+            {/* TODO: Allow for 12/24 hrs changes */}
             <p className="time text-3xl">
               {currentTime.toLocaleTimeString('en-US', {
                 hour: '2-digit',
@@ -98,7 +101,6 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
           </button>
         </div>
         {isLoadingSalahBeginningTimesOnChosenDate && <SalahTimesRowsSkeleton />}
-        {/* TODO: make empty state */}
         {salahBeginningTimesOnChosenDate === null && <SalahTimesRowsEmptyState />}
         {salahBeginningTimesOnChosenDate && (
           <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />

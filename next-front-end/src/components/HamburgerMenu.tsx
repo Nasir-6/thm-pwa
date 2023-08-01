@@ -39,6 +39,7 @@ const HamburgerMenu = () => {
           <Link href="/">Support Us</Link>
         </li>
       </ul>
+      {/* TODO: Add donate button */}
       <div className="dark-overlay" data-visible={isExpanded} onClick={() => setIsExpanded(false)} aria-hidden="true" />
     </nav>
   );
