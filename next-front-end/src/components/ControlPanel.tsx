@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
 import SearchBar from './SearchBar';
 // import UseLocationBtn from './UseLocationBtn';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+import ShowMapBtn from './ShowMapBtn';
 
 type Props = {
   mosques: MosqueDTO[];
@@ -25,22 +25,7 @@ const ControlPanel = ({ mosques, isMapVisible, setIsMapVisible }: Props) => (
         Find Nearest Mosque
       </Link>
       {/* <UseLocationBtn /> */}
-      <button
-        type="button"
-        onClick={() => setIsMapVisible(!isMapVisible)}
-        className="show-map flex gap-1 items-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-accent-400 hover:text-accent-600">
-        {isMapVisible ? (
-          <>
-            <FiEyeOff className=" text-accent-600" />
-            <p>Hide Map</p>
-          </>
-        ) : (
-          <>
-            <FiEye className="text-accent-600" />
-            <p>Show Map</p>
-          </>
-        )}
-      </button>
+      <ShowMapBtn isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
     </div>
   </div>
 );
