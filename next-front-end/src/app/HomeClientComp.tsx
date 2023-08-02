@@ -43,17 +43,13 @@ export default function HomeClientComp({ mosques, children: serverRenderedMosque
             {serverRenderedMosqueList}
             {/* <MosqueResultsContainer /> */}
           </div>
-          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
-            {isMapVisible && <Map mosques={mosques} isMapVisible={isMapVisible} />}
-          </div>
+          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map mosques={mosques} />}</div>
         </>
       ) : (
         <>
           <ControlPanel mosques={mosques} isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
           <SalahBeginningBtn />
-          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>
-            {isMapVisible && <Map mosques={mosques} isMapVisible={isMapVisible} />}
-          </div>
+          <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map mosques={mosques} />}</div>
           {serverRenderedMosqueList}
           {/* <MosqueResultsContainer /> */}
         </>
