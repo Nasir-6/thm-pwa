@@ -1,14 +1,16 @@
 import { getAllMosques } from '@/lib/mosques';
+import { dehydrate, Hydrate } from '@tanstack/react-query';
+import getQueryClient from '../../lib/getQueryClient';
+import FindNearestMosquePage from './FindNearestMosquePage';
 
-export default async function FindNearestMosquePage() {
-  // Abstract the HomeClientComp so can fetch mosques on server
-  const mosques = await getAllMosques();
-  const mosqueNamesList = mosques.map((mosque) => <h2>{mosque.name}</h2>);
+export default async function HydratedFindNearestMosquePage() {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(['mosques'], getAllMosques);
+  const dehydratedState = dehydrate(queryClient);
+
   return (
-    // TODO: Attempt same layout as with HomePage - but without JS 
-    <div>
-      <h1>Find Nearest Mosque Page</h1>
-      {mosqueNamesList}
-    </div>
+    <Hydrate state={dehydratedState}>
+      <FindNearestMosquePage />
+    </Hydrate>
   );
 }

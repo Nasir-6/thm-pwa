@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
@@ -39,7 +41,7 @@ const UseLocationBtn = () => {
     <button
       type="button"
       onClick={() => setIsUsingLocation(!isUsingLocation)}
-      className={`use-location flex gap-1 items-center font-semibold ${isUsingLocation ? 'text-primary-500' : 'text-accent-700'} ${
+      className={`use-location-btn flex gap-1 items-center font-semibold ${isUsingLocation ? 'text-primary-500' : 'text-accent-700'} ${
         isUsingLocation ? 'hover:text-primary-700' : 'hover:text-accent-800'
       }`}>
       <MdOutlineMyLocation className="" />

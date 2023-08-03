@@ -1,37 +1,24 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import ControlPanel from '@/components/ControlPanel';
-import Skeleton from '@/components/skeletons/Skeleton';
-import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-import './Home.css';
+import { useState, useEffect } from 'react';
+// import { getAllMosques } from '@/lib/mosques';
 import SalahBeginningBtn from '@/components/salah_beginning_modal/SalahBeginningBtn';
+import Map from '@/components/Map';
+import UseLocationBtn from '@/components/UseLocationBtn';
+import ShowMapBtn from '@/components/ShowMapBtn';
+import '../Home.css';
+import { useQuery } from '@tanstack/react-query';
 import { getAllMosques } from '@/lib/mosques';
-// eslint-disable-next-line import/no-relative-packages
-import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+import SearchBar from '@/components/SearchBar';
 
-const Map = dynamic(() => import('@/components/Map'), {
-  ssr: false,
-  loading: () => <Skeleton type="map" />,
-});
+export default function FindNearestMosquePage() {
+  // Abstract the HomeClientComp so can fetch mosques on server
+  // TODO: setup useQuery with hydration! - so can use the same getAllMosques list when page is changed!!
+  // const mosques = await getAllMosques();
 
-interface Props {
-  initialMosques: MosqueDTO[];
-  children: React.ReactNode;
-}
-
-export default function HomeClientComp({ initialMosques, children: serverRenderedMosqueList }: Props) {
   const [isMapVisible, setIsMapVisible] = useState(false);
   const screenBreakPoint = 1024;
   const [isDesktopView, setIsDesktopView] = useState(false);
-
-  // const mosques = initialMosques;
-  const { data: mosques } = useQuery({
-    queryKey: ['mosques'],
-    queryFn: getAllMosques,
-    initialData: initialMosques,
-  });
 
   useEffect(() => {
     // Can only access window here in useEffect as this is run on client side on mount
@@ -42,24 +29,43 @@ export default function HomeClientComp({ initialMosques, children: serverRendere
     return () => mediaQuery.removeEventListener('change', () => setIsDesktopView(mediaQuery.matches));
   }, []);
 
+  const { data: mosques } = useQuery({
+    queryKey: ['mosques'],
+    queryFn: getAllMosques,
+  });
+
+  if (!mosques) return null;
+
+  const mosqueNamesList = mosques?.map((mosque) => <h2>{mosque.name}</h2>);
+
+  const controlPanel = (
+    <div className="control-panel w-full py-2 px-3 flex flex-col items-center">
+      <SearchBar mosques={mosques} />
+      <div className="bottom-options flex w-full max-w-xl justify-between py-1 px-2">
+        <UseLocationBtn />
+        <ShowMapBtn isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+      </div>
+    </div>
+  );
+
   return (
     <div className={`home-page-container flex ${isDesktopView ? 'flex-row' : 'flex-col items-center'} `}>
       {isDesktopView ? (
         <>
           <div className="flex-grow p-1 flex flex-col items-center">
-            <ControlPanel mosques={mosques} isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+            {controlPanel}
             <SalahBeginningBtn />
-            {serverRenderedMosqueList}
+            {mosqueNamesList}
             {/* <MosqueResultsContainer /> */}
           </div>
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map mosques={mosques} />}</div>
         </>
       ) : (
         <>
-          <ControlPanel mosques={mosques} isMapVisible={isMapVisible} setIsMapVisible={setIsMapVisible} />
+          {controlPanel}
           <SalahBeginningBtn />
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map mosques={mosques} />}</div>
-          {serverRenderedMosqueList}
+          {mosqueNamesList}
           {/* <MosqueResultsContainer /> */}
         </>
       )}
