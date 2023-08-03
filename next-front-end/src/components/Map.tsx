@@ -5,7 +5,7 @@ import { Map as LeafletMap } from 'leaflet'; // Need to alias so no issues with 
 // import { useQuery } from 'react-query';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-import MosqueIcon from '../icons/MosqueIcon';
+import LeafletMapIcon from '../icons/LeafletMapIcon';
 // import { getAllMosques } from '../../../api/mosques';
 
 const position = { lat: 51.5167, lng: -0.0481 };
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Map = ({ mosques }: Props) => {
-  const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => <MosqueIcon key={mosque.id} mosque={mosque} />);
+  const createMosqueIcons = mosques?.map((mosque: MosqueDTO) => <LeafletMapIcon key={mosque.id} mosque={mosque} />);
 
   const mapRef = useRef<LeafletMap>(null);
 
