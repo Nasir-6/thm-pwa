@@ -10,6 +10,7 @@ import SearchBar from '@/components/SearchBar';
 import Skeleton from '@/components/skeletons/Skeleton';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
+import MosqueResultsContainer from './MosqueResultsContainer';
 
 const Map = dynamic(() => import('@/components/Map'), {
   ssr: false,
@@ -34,8 +35,6 @@ export default function FindNearestMosquePage({ mosques }: Props) {
     return () => mediaQuery.removeEventListener('change', () => setIsDesktopView(mediaQuery.matches));
   }, []);
 
-  const mosqueNamesList = mosques?.map((mosque) => <h2>{mosque.name}</h2>);
-
   const controlPanel = (
     <div className="control-panel w-full py-2 px-3 flex flex-col items-center">
       <SearchBar mosques={mosques} />
@@ -53,8 +52,7 @@ export default function FindNearestMosquePage({ mosques }: Props) {
           <div className="flex-grow p-1 flex flex-col items-center">
             {controlPanel}
             <SalahBeginningBtn />
-            {mosqueNamesList}
-            {/* <MosqueResultsContainer /> */}
+            <MosqueResultsContainer />
           </div>
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map mosques={mosques} />}</div>
         </>
@@ -63,8 +61,7 @@ export default function FindNearestMosquePage({ mosques }: Props) {
           {controlPanel}
           <SalahBeginningBtn />
           <div className={`map-div ${isMapVisible ? '' : 'map-div-hide'}`}>{isMapVisible && <Map mosques={mosques} />}</div>
-          {mosqueNamesList}
-          {/* <MosqueResultsContainer /> */}
+          <MosqueResultsContainer />
         </>
       )}
     </div>

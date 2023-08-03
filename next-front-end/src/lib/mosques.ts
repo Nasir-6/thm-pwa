@@ -1,10 +1,7 @@
 /* eslint-disable import/no-relative-packages */
 // import axios from 'axios';
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-import {
-  // MosqueTimesDailyDTO,
-  SalahBeginningTimesDailyDTO,
-} from '../../../back-end/src/db/models/dailyTimes';
+import { MosqueTimesDailyDTO, SalahBeginningTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes';
 import { formatDateIntoISOFormat, format_date_as_dd_MMM_yy_str, parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
 
 // NOTE: Why did I return res.data rather than just the axiosResponse?
@@ -35,8 +32,7 @@ export const getAllMosques = async (): Promise<MosqueDTO[]> => {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to All Mosques');
   }
-  //   console.log('res', res);
-  //   console.log('res.json()', res.json());
+
   return res.json();
   //   return res.data;
 };
@@ -49,26 +45,33 @@ const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
 
 // // Note: All date/time strings are converted into DateObj here -
 // // as calculations on DateObj are more frequent than static presentation of the strings
-// export const getTimesForAMosqueOnAGivenDate = async (mosqueId: number, date: Date): Promise<MosqueTimesDaily> => {
-//   const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
-//   const res = await axios.get<MosqueTimesDailyDTO>(`${URL}/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`);
+export const getTimesForAMosqueOnAGivenDate = async (mosqueId: number, date: Date): Promise<MosqueTimesDaily> => {
+  const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
+  // const res = await axios.get<MosqueTimesDailyDTO>(`${URL}/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`);
+  const res: MosqueTimesDailyDTO = await fetch(`${URL}/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`).then((response) => {
+    if (!response.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to All Mosques');
+    }
+    return response.json();
+  });
 
-//   // First parse date string into real Date obj - to use
-//   const dateObj = parse_dd_MMM_yy_str_into_date(res.data.date);
-//   if (dateObj === null) throw new Error(`Invalid date string from DB: ${res.data.date}`);
+  // First parse date string into real Date obj - to use
+  const dateObj = parse_dd_MMM_yy_str_into_date(res.date);
+  if (dateObj === null) throw new Error(`Invalid date string from DB: ${res.date}`);
 
-//   return {
-//     id: res.data.id,
-//     mosqueId: res.data.mosqueId,
-//     mosqueName: res.data.mosqueName,
-//     date: dateObj,
-//     fajr: createDateObjFromDateObjAndTimeString(dateObj, res.data.fajr),
-//     zuhr: createDateObjFromDateObjAndTimeString(dateObj, res.data.zuhr),
-//     asr: createDateObjFromDateObjAndTimeString(dateObj, res.data.asr),
-//     maghrib: createDateObjFromDateObjAndTimeString(dateObj, res.data.maghrib),
-//     isha: createDateObjFromDateObjAndTimeString(dateObj, res.data.isha),
-//   };
-// };
+  return {
+    id: res.id,
+    mosqueId: res.mosqueId,
+    mosqueName: res.mosqueName,
+    date: dateObj,
+    fajr: createDateObjFromDateObjAndTimeString(dateObj, res.fajr),
+    zuhr: createDateObjFromDateObjAndTimeString(dateObj, res.zuhr),
+    asr: createDateObjFromDateObjAndTimeString(dateObj, res.asr),
+    maghrib: createDateObjFromDateObjAndTimeString(dateObj, res.maghrib),
+    isha: createDateObjFromDateObjAndTimeString(dateObj, res.isha),
+  };
+};
 
 // // TODO: In future turn this into seperate API File?
 export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<SalahTimesDaily | null> => {
