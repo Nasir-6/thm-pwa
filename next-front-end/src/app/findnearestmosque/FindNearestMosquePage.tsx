@@ -1,21 +1,26 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// import { getAllMosques } from '@/lib/mosques';
 import SalahBeginningBtn from '@/components/salah_beginning_modal/SalahBeginningBtn';
-import Map from '@/components/Map';
+import dynamic from 'next/dynamic';
 import UseLocationBtn from '@/components/UseLocationBtn';
 import ShowMapBtn from '@/components/ShowMapBtn';
 import '../Home.css';
-import { useQuery } from '@tanstack/react-query';
-import { getAllMosques } from '@/lib/mosques';
 import SearchBar from '@/components/SearchBar';
+import Skeleton from '@/components/skeletons/Skeleton';
+// eslint-disable-next-line import/no-relative-packages
+import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 
-export default function FindNearestMosquePage() {
-  // Abstract the HomeClientComp so can fetch mosques on server
-  // TODO: setup useQuery with hydration! - so can use the same getAllMosques list when page is changed!!
-  // const mosques = await getAllMosques();
+const Map = dynamic(() => import('@/components/Map'), {
+  ssr: false,
+  loading: () => <Skeleton type="map" />,
+});
 
+type Props = {
+  mosques: MosqueDTO[];
+};
+
+export default function FindNearestMosquePage({ mosques }: Props) {
   const [isMapVisible, setIsMapVisible] = useState(false);
   const screenBreakPoint = 1024;
   const [isDesktopView, setIsDesktopView] = useState(false);
@@ -28,13 +33,6 @@ export default function FindNearestMosquePage() {
     // this is the cleanup function to remove the listener
     return () => mediaQuery.removeEventListener('change', () => setIsDesktopView(mediaQuery.matches));
   }, []);
-
-  const { data: mosques } = useQuery({
-    queryKey: ['mosques'],
-    queryFn: getAllMosques,
-  });
-
-  if (!mosques) return null;
 
   const mosqueNamesList = mosques?.map((mosque) => <h2>{mosque.name}</h2>);
 

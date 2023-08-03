@@ -1,13 +1,11 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
 import ControlPanel from '@/components/ControlPanel';
 import Skeleton from '@/components/skeletons/Skeleton';
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import './Home.css';
 import SalahBeginningBtn from '@/components/salah_beginning_modal/SalahBeginningBtn';
-import { getAllMosques } from '@/lib/mosques';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 
@@ -17,21 +15,14 @@ const Map = dynamic(() => import('@/components/Map'), {
 });
 
 interface Props {
-  initialMosques: MosqueDTO[];
+  mosques: MosqueDTO[];
   children: React.ReactNode;
 }
 
-export default function HomeClientComp({ initialMosques, children: serverRenderedMosqueList }: Props) {
+export default function HomeClientComp({ mosques, children: serverRenderedMosqueList }: Props) {
   const [isMapVisible, setIsMapVisible] = useState(false);
   const screenBreakPoint = 1024;
   const [isDesktopView, setIsDesktopView] = useState(false);
-
-  // const mosques = initialMosques;
-  const { data: mosques } = useQuery({
-    queryKey: ['mosques'],
-    queryFn: getAllMosques,
-    initialData: initialMosques,
-  });
 
   useEffect(() => {
     // Can only access window here in useEffect as this is run on client side on mount
