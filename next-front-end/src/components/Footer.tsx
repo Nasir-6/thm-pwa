@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => (
-  <footer className="footer bg-gradient-to-r from-primary-600 to-primary-800 text-white p-4 flex flex-col sm:flex-row gap-2 justify-center items-center">
+  <footer className="footer mt-auto bg-gradient-to-r from-primary-600 to-primary-800 text-white p-4 flex flex-col sm:flex-row gap-2 justify-center items-center">
     {/* TODO: Add dua */}
     <p className="copyright-text text-xs font-bold">Copyright © 2016 Tower Hamlets Mosques, All rights reserved.</p>
     <div className="social-icons flex">
