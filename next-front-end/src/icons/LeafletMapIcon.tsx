@@ -3,6 +3,7 @@ import { DivIcon } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+import Link from 'next/link';
 
 interface Props {
   mosque: MosqueDTO;
@@ -26,10 +27,16 @@ const LeafletMapIcon: React.FC<Props> = ({ mosque }) => {
   return (
     <Marker position={{ lat: mosque.latitude, lng: mosque.longitude }} icon={mosqueIcon}>
       <Popup>
-        <p>{mosque.name}</p>
-        <a href={mosque.googleUrl} target="_blank" rel="noreferrer">
-          Get Directions
-        </a>
+        <h2 className="text-lg font-bold">{mosque.name}</h2>
+        <p className="">{mosque.address}</p>
+        <Link href={mosque.googleUrl} target="_blank">
+          {/* Make it a button so can adjust the color - without .leaflet-container a {} overwriting it */}
+          <button
+            type="button"
+            className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-accent-400 hover:text-accent-600">
+            Get Directions
+          </button>
+        </Link>
       </Popup>
     </Marker>
   );
