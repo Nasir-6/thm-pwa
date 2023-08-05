@@ -41,10 +41,10 @@ const UseLocationBtn = () => {
     <button
       type="button"
       onClick={() => setIsUsingLocation(!isUsingLocation)}
-      className={`use-location-btn flex gap-1 items-center font-semibold ${isUsingLocation ? 'text-primary-500' : 'text-accent-700'} ${
-        isUsingLocation ? 'hover:text-primary-700' : 'hover:text-accent-800'
+      className={`use-location-btn flex gap-1 items-center font-semibold ${isUsingLocation ? 'text-primary-500' : 'text-gradient-gold'} ${
+        isUsingLocation && 'hover:text-primary-700'
       }`}>
-      <MdOutlineMyLocation className="" />
+      <MdOutlineMyLocation className={`${isUsingLocation ? 'text-primary-500' : 'text-accent-600'}`} />
       {isLocating ? 'Locating...' : isUsingLocation ? 'Using Location' : 'Use Location'}
     </button>
   );
