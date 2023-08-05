@@ -71,7 +71,7 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
       <div className="mosque-details flex flex-col text-left py-1 gap-0.5 items-start w-full">
         <h3 className="mosque-name font-semibold">{mosque.name}</h3>
         <p className="address text-sm text-slate-400">{mosque.address}</p>
-        <button type="button" className="view-details-btn font-semibold text-accent-700 hover:text-accent-800 text-sm">
+        <button type="button" className="text-gradient-gold view-details-btn font-semibold text-sm">
           View Details
         </button>
       </div>
