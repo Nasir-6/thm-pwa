@@ -29,14 +29,22 @@ const LeafletMapIcon: React.FC<Props> = ({ mosque }) => {
       <Popup>
         <h2 className="text-lg font-bold">{mosque.name}</h2>
         <p className="">{mosque.address}</p>
-        <Link href={mosque.googleUrl} target="_blank">
-          {/* Make it a button so can adjust the color - without .leaflet-container a {} overwriting it */}
+
+        <div className="flex gap-2">
           <button
             type="button"
             className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-accent-400 hover:text-accent-600">
-            Get Directions
+            View Details
           </button>
-        </Link>
+          <Link href={mosque.googleUrl} target="_blank">
+            {/* Make it a button so can adjust the color - without .leaflet-container a {} overwriting it */}
+            <button
+              type="button"
+              className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400 hover:text-primary-600">
+              Get Directions
+            </button>
+          </Link>
+        </div>
       </Popup>
     </Marker>
   );
