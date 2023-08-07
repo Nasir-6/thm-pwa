@@ -33,8 +33,8 @@ const HamburgerMenu = () => {
           </Link>
         </li>
         <li className=" hover:text-accent-600">
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
           <Link prefetch={false} href="/">
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             Jumu'ah Times
           </Link>
         </li>
