@@ -14,7 +14,7 @@ import { formatDateIntoISOFormat, format_date_as_dd_MMM_yy_str, parse_dd_MMM_yy_
 
 let URL: string;
 if (process.env.NODE_ENV === 'production') {
-  URL = process.env.REACT_APP_SERVER_URL ? process.env.REACT_APP_SERVER_URL : 'http://localhost:8000';
+  URL = process.env.NEXT_PUBLIC_SERVER_URL ? process.env.NEXT_PUBLIC_SERVER_URL : 'http://localhost:8000';
 } else {
   URL = 'http://localhost:8000';
 }
