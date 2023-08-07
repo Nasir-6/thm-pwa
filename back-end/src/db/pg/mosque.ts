@@ -19,6 +19,7 @@ class MosqueDAOPostgres {
 		// console.log("#pool", this.#pool);
 		const res = await this.#pool.query("SELECT * FROM mosques");
 		if (res.rowCount === 0) throw new HttpException(404, "Could not retrieve any mosques from the DB");
+		console.log("get ALL MOSQUE response from pgDB ", res);
 		return MosqueDAOPostgres.mapMosqueResult(res);
 	}
 
