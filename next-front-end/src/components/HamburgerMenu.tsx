@@ -23,20 +23,30 @@ const HamburgerMenu = () => {
       <ul id="navigation-panel" className="navigation-panel text-slate-900 font-semibold">
         {/* // TODO: Can Map through array so classes are same for all - https://tailwindcss.com/docs/reusing-styles */}
         <li className=" hover:text-accent-600">
-          <Link href="/">Home</Link>
+          <Link prefetch={false} href="/">
+            Home
+          </Link>
         </li>
         <li className=" hover:text-accent-600">
-          <Link href="/">About Us</Link>
+          <Link prefetch={false} href="/">
+            About Us
+          </Link>
         </li>
         <li className=" hover:text-accent-600">
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <Link href="/">Jumu'ah Times</Link>
+          <Link prefetch={false} href="/">
+            Jumu'ah Times
+          </Link>
         </li>
         <li className=" hover:text-accent-600">
-          <Link href="/">Contact Us</Link>
+          <Link prefetch={false} href="/">
+            Contact Us
+          </Link>
         </li>
         <li className=" hover:text-accent-600">
-          <Link href="/">Support Us</Link>
+          <Link prefetch={false} href="/">
+            Support Us
+          </Link>
         </li>
       </ul>
       {/* TODO: Add donate button */}

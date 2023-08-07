@@ -20,6 +20,7 @@ const ControlPanel = ({ mosques, isMapVisible, setIsMapVisible }: Props) => (
     <div className="bottom-options flex w-full max-w-xl justify-between py-1 px-2">
       {/* TODO: Replace UseLocationBtn with arrow and findNearestMosque Link */}
       <Link
+        prefetch={false}
         href="/findnearestmosque"
         className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-accent-400 hover:text-accent-600">
         Find Nearest Mosque
