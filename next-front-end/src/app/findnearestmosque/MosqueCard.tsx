@@ -4,6 +4,7 @@ import { isFuture, addDays } from 'date-fns'; // TODO: Improvements - Make own u
 import { getTimesForAMosqueOnAGivenDate } from '@/lib/mosques';
 import NextSalahSkeleton from '@/components/skeletons/NextSalahSkeleton';
 import MosqueIcon from '@/icons/salah_times_icons/MosqueIcon';
+import MosqueDetailsBtn from '@/components/mosque_details_modal/MosqueDetailsBtn';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 // import { ReactComponent as MapIcon } from '../../../assets/mapIcon.svg';
@@ -71,9 +72,7 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
       <div className="mosque-details flex flex-col text-left py-1 gap-0.5 items-start w-full">
         <h3 className="mosque-name font-semibold">{mosque.name}</h3>
         <p className="address text-sm text-slate-400">{mosque.address}</p>
-        <button type="button" className="text-gradient-gold view-details-btn font-semibold text-sm">
-          View Details
-        </button>
+        <MosqueDetailsBtn mosque={mosque} />
       </div>
 
       {isTodayLoaded && isTomorrowLoaded ? (
