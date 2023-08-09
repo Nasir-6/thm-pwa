@@ -21,7 +21,7 @@ const MosqueDetailsBtn = ({ mosque }: Props) => {
         className="text-gradient-gold view-details-btn font-semibold text-sm">
         View Details
       </button>
-      {isModalShown && <MosqueDetailsModal mosque={mosque} />}
+      {isModalShown && <MosqueDetailsModal mosque={mosque} setIsModalShown={setIsModalShown} />}
     </>
   );
 };
