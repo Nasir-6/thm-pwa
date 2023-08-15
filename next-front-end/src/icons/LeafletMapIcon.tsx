@@ -4,6 +4,7 @@ import { Marker, Popup } from 'react-leaflet';
 import Link from 'next/link';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
+import MosqueDetailsBtn from '@/components/mosque_details_modal/MosqueDetailsBtn';
 
 interface Props {
   mosque: MosqueDTO;
@@ -31,11 +32,7 @@ const LeafletMapIcon: React.FC<Props> = ({ mosque }) => {
         <p className="">{mosque.address}</p>
 
         <div className="flex gap-2">
-          <button
-            type="button"
-            className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-accent-400 hover:text-accent-600">
-            View Details
-          </button>
+          <MosqueDetailsBtn mosque={mosque} />
           <Link href={mosque.googleUrl} target="_blank">
             {/* Make it a button so can adjust the color - without .leaflet-container a {} overwriting it */}
             <button
