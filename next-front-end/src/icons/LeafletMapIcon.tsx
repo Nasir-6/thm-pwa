@@ -31,13 +31,13 @@ const LeafletMapIcon: React.FC<Props> = ({ mosque }) => {
         <h2 className="text-lg font-bold">{mosque.name}</h2>
         <p className="">{mosque.address}</p>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <MosqueDetailsBtn mosque={mosque} />
           <Link href={mosque.googleUrl} target="_blank">
             {/* Make it a button so can adjust the color - without .leaflet-container a {} overwriting it */}
             <button
               type="button"
-              className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400 hover:text-primary-600">
+              className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400 hover:text-primary-600">
               Get Directions
             </button>
           </Link>
