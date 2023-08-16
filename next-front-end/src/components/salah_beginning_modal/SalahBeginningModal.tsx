@@ -10,6 +10,7 @@ import SalahTimesRowsSkeleton from '../skeletons/SalahTimesRowsSkeleton';
 import { getSalahBeginningTimesOnAGivenDate } from '../../lib/mosques';
 import DatePickerBtn from './DatePickerBtn';
 import SalahTimesRowsEmptyState from './SalahTimesRowsEmptyState';
+import CrossIcon from '@/icons/CrossIcon';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -76,8 +77,8 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
         <div className="header flex justify-between px-4 py-4 text-lg font-extrabold">
           <h2 className=" text-xl font-bold">Salah Beginning Times</h2>
           {/* TODO: Use an cross svg */}
-          <button type="button" onClick={() => setIsModalShown(false)}>
-            X
+          <button type="button" className="w-5 stroke-black hover:stroke-accent-600" onClick={() => setIsModalShown(false)}>
+            <CrossIcon />
           </button>
         </div>
         <div className="current-info flex justify-between px-4 py-5 bg-gradient-to-r from-primary-700 to-primary-600 text-white">

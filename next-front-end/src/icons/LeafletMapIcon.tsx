@@ -2,9 +2,9 @@ import React from 'react';
 import { DivIcon } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 import Link from 'next/link';
+import MosqueDetailsBtn from '@/components/mosque_details_modal/MosqueDetailsBtn';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
-import MosqueDetailsBtn from '@/components/mosque_details_modal/MosqueDetailsBtn';
 
 interface Props {
   mosque: MosqueDTO;
