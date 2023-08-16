@@ -5,12 +5,12 @@ import { isFuture, subDays, addDays } from 'date-fns'; // TODO: Improvements - M
 import './SalahBeginningModal.css';
 import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
 import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
+import CrossIcon from '@/icons/CrossIcon';
 import SalahTimesRows from './SalahTimesRows';
 import SalahTimesRowsSkeleton from '../skeletons/SalahTimesRowsSkeleton';
 import { getSalahBeginningTimesOnAGivenDate } from '../../lib/mosques';
 import DatePickerBtn from './DatePickerBtn';
 import SalahTimesRowsEmptyState from './SalahTimesRowsEmptyState';
-import CrossIcon from '@/icons/CrossIcon';
 
 interface SalahBeginningModalProps {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;

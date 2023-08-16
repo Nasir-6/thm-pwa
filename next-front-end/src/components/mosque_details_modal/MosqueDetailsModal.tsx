@@ -1,5 +1,6 @@
 'use client';
 
+import CrossIcon from '@/icons/CrossIcon';
 import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
 import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 import { addDays } from 'date-fns';
@@ -42,8 +43,8 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
         <div className="header flex justify-between px-4 py-4 text-lg font-extrabold">
           <h2 className=" text-xl font-bold">{mosque.name}</h2>
           {/* TODO: Use an cross svg */}
-          <button type="button" onClick={() => setIsModalShown(false)}>
-            X
+          <button type="button" className="w-5 stroke-black hover:stroke-accent-600" onClick={() => setIsModalShown(false)}>
+            <CrossIcon />
           </button>
         </div>
         <div className="current-info flex justify-between px-4 py-5 bg-gradient-to-r from-primary-700 to-primary-600 text-white">
