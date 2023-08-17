@@ -6,6 +6,7 @@ import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 import { addDays } from 'date-fns';
 // import { subDays } from 'date-fns';
 import subDays from 'date-fns/subDays';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 // eslint-disable-next-line import/no-relative-packages
@@ -40,10 +41,16 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
         className="dark-overlay bg-slate-900 bg-opacity-25 fixed w-full h-full top-0 z-20 flex justify-center items-center"
       />
       <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30 rounded-t-md">
-        <div className="header flex justify-between px-4 py-4 text-lg font-extrabold">
-          <h2 className=" text-xl font-bold">{mosque.name}</h2>
-          {/* TODO: Use an cross svg */}
-          <button type="button" className="w-5 stroke-black hover:stroke-accent-600" onClick={() => setIsModalShown(false)}>
+        <div className="flex items-start p-3">
+          <div className="mosque-img">Place Image here</div>
+          <div className="mosque-details">
+            <h2 className=" text-xl font-bold">{mosque.name}</h2>
+            <p>{mosque.address}</p>
+            <Link href={mosque.googleUrl} target="_blank" className="text-gradient-gold font-bold">
+              Get Directions
+            </Link>
+          </div>
+          <button type="button" className="w-5 stroke-black hover:stroke-accent-600 ml-auto" onClick={() => setIsModalShown(false)}>
             <CrossIcon />
           </button>
         </div>
