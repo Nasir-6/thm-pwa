@@ -62,7 +62,7 @@
   right: 20px;
   top: 10px;
   z-index: 15;
-  transition: stroke 200ms ease-in;
+  transition: stroke 100ms ease-in;
 }
 
 .hamburger-btn .line {
@@ -82,12 +82,12 @@
 }
 
 .hamburger-btn[aria-expanded='false'] .line {
-  transition: transform 200ms ease-in 200ms, rotate 200ms ease-in 200ms, opacity 0ms 200ms;
+  transition: transform 100ms ease-in 100ms, rotate 100ms ease-in 100ms, opacity 0ms 100ms;
   stroke: inherit;
 }
 
 .hamburger-btn[aria-expanded='true'] .line {
-  transition: transform 200ms ease-in, rotate 200ms ease-in 200ms, opacity 0ms 200ms;
+  transition: transform 100ms ease-in, rotate 100ms ease-in 100ms, opacity 0ms 100ms;
 }
 
 .hamburger-btn[aria-expanded='true'] .top {

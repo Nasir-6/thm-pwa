@@ -14,9 +14,9 @@ const HamburgerMenu = () => {
     <nav>
       <button type="button" onClick={handleClick} className="hamburger-btn" aria-controls="navigation-panel" aria-expanded={isExpanded}>
         <svg className="hamburger" viewBox="0 0 100 100" width={35}>
-          <line className="line top " x1={20} x2={80} y1={25} y2={25} strokeWidth="10" strokeLinecap="round" />
-          <line className="line middle" x1={20} x2={80} y1={50} y2={50} strokeWidth="10" strokeLinecap="round" />
-          <line className="line bottom" x1={20} x2={80} y1={75} y2={75} strokeWidth="10" strokeLinecap="round" />
+          <line className="line top " x1={20} x2={80} y1={25} y2={25} strokeWidth="7" strokeLinecap="round" />
+          <line className="line middle" x1={20} x2={80} y1={50} y2={50} strokeWidth="7" strokeLinecap="round" />
+          <line className="line bottom" x1={20} x2={80} y1={75} y2={75} strokeWidth="7" strokeLinecap="round" />
         </svg>
         {/* <span> Menu </span> */}
       </button>
