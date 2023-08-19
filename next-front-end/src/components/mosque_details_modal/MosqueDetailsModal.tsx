@@ -42,7 +42,13 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
       />
       <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30 rounded-t-md">
         <div className="flex items-start p-3">
-          <div className="mosque-img">Place Image here</div>
+          {/* TODO: Figure out how to get and store image */}
+          <img
+            src="https://res.cloudinary.com/londonmosques/image/upload/v1641449688/londonmosques-image/vi1syif3sx0dqvtnfays.png"
+            alt=""
+            width={95}
+            className="mr-3 rounded"
+          />
           <div className="mosque-details">
             <h2 className=" text-xl font-bold">{mosque.name}</h2>
             <p>{mosque.address}</p>
