@@ -32,6 +32,8 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
   console.log('mosqueSalahTimesOnChosenDate', mosqueSalahTimesOnChosenDate);
   console.log('isLoadingMosqueSalahTimesOnChosenDate :>> ', isLoadingMosqueSalahTimesOnChosenDate);
 
+  // TODO: Highlight next salah time - break and return when first isFuture is found
+
   const [currentTime, setCurrentTime] = useState(new Date());
   useEffect(() => {
     const intervalId = setInterval(() => {
