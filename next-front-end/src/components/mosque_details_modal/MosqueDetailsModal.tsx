@@ -3,6 +3,8 @@
 import CrossIcon from '@/icons/CrossIcon';
 import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
 import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
+import { getTimesForAMosqueOnAGivenDate } from '@/lib/mosques';
+import { useQuery } from '@tanstack/react-query';
 import { addDays } from 'date-fns';
 // import { subDays } from 'date-fns';
 import subDays from 'date-fns/subDays';
@@ -20,6 +22,15 @@ type Props = {
 
 const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
   const [chosenDate, setChosenDate] = useState(new Date());
+
+  const { data: mosqueSalahTimesOnChosenDate, isLoading: isLoadingMosqueSalahTimesOnChosenDate } = useQuery({
+    queryKey: [`mosqueSalahTimes-${mosque.id}`, chosenDate], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
+    queryFn: () => getTimesForAMosqueOnAGivenDate(mosque.id, chosenDate),
+    staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
+  });
+
+  console.log('mosqueSalahTimesOnChosenDate', mosqueSalahTimesOnChosenDate);
+  console.log('isLoadingMosqueSalahTimesOnChosenDate :>> ', isLoadingMosqueSalahTimesOnChosenDate);
 
   const [currentTime, setCurrentTime] = useState(new Date());
   useEffect(() => {
