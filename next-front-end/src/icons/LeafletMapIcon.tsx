@@ -1,6 +1,6 @@
 import React from 'react';
 import { DivIcon } from 'leaflet';
-import { Marker, Popup } from 'react-leaflet';
+import { Marker, Popup, Tooltip } from 'react-leaflet';
 import Link from 'next/link';
 import MosqueDetailsBtn from '@/components/mosque_details_modal/MosqueDetailsBtn';
 // eslint-disable-next-line import/no-relative-packages
@@ -27,6 +27,7 @@ const LeafletMapIcon: React.FC<Props> = ({ mosque }) => {
 
   return (
     <Marker position={{ lat: mosque.latitude, lng: mosque.longitude }} icon={mosqueIcon}>
+      <Tooltip>{mosque.name}</Tooltip>
       <Popup>
         <h2 className="text-lg font-bold">{mosque.name}</h2>
         <p className="">{mosque.address}</p>
