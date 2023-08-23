@@ -23,7 +23,7 @@ const Map = ({ mosques }: Props) => {
     <MapContainer
       center={position}
       zoom={13}
-      scrollWheelZoom={false}
+      // scrollWheelZoom={true}
       attributionControl={false}
       className="leaflet-map-container"
       whenReady={() => {
