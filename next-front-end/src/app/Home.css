@@ -15,6 +15,13 @@
   /* Will follow the parent as 100% which is the map-div - so need to smoothen transition! */
 }
 
+/* To hide tooltip on mobile when popup is opened */
+@media (hover: none) {
+  .leaflet-tooltip-pane {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .map-div,
   .desktop-left-panel,

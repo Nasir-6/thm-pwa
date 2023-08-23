@@ -27,7 +27,7 @@ const LeafletMapIcon: React.FC<Props> = ({ mosque }) => {
 
   return (
     <Marker position={{ lat: mosque.latitude, lng: mosque.longitude }} icon={mosqueIcon}>
-      <Tooltip>{mosque.name}</Tooltip>
+      <Tooltip offset={[0, -5]}>{mosque.name}</Tooltip>
       <Popup>
         <h2 className="text-lg font-bold">{mosque.name}</h2>
         <p className="">{mosque.address}</p>
