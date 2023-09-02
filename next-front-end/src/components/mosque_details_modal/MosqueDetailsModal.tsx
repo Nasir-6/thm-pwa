@@ -66,7 +66,7 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
             <h2 className=" text-xl font-bold">{mosque.name}</h2>
             <p>{mosque.address}</p>
             <Link href={mosque.googleUrl} target="_blank" className="text-gradient-gold font-bold">
-              Get Directions
+              ↳ Get Directions
             </Link>
           </div>
           <button type="button" className="w-5 stroke-black hover:stroke-accent-600 ml-auto" onClick={() => setIsModalShown(false)}>
