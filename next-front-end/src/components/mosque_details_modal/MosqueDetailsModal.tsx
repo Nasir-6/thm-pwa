@@ -13,6 +13,7 @@ import { createPortal } from 'react-dom';
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 import DatePickerBtn from '../salah_beginning_modal/DatePickerBtn';
 import MosqueModalHeader from './MosqueModalHeader';
+import MosqueModalTabs from './MosqueModalTabs';
 
 type Props = {
   mosque: MosqueDTO;
@@ -54,6 +55,7 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
       />
       <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30 rounded-t-md">
         <MosqueModalHeader mosque={mosque} setIsModalShown={setIsModalShown} />
+        <MosqueModalTabs />
         <div className="current-info flex justify-between px-4 py-5 bg-gradient-to-r from-primary-700 to-primary-600 text-white">
           <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(subDays(chosenDate, 1))}>
             <LeftChevronIcon />
