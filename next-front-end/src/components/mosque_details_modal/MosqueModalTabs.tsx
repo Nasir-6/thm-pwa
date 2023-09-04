@@ -1,13 +1,15 @@
 import React from 'react';
 
-// type Props = {};
+type Props = {
+  setTabToShow: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const MosqueModalTabs = () => (
+const MosqueModalTabs = ({ setTabToShow }: Props) => (
   <div className="flex justify-around">
-    <button type="button" onClick={() => console.log('Salah Times')}>
+    <button type="button" onClick={() => setTabToShow('Salah Times')}>
       Salah Times
     </button>
-    <button type="button" onClick={() => console.log("Jumu'ah Times")}>
+    <button type="button" onClick={() => setTabToShow("Jumu'ah Times")}>
       Jumu'ah Times
     </button>
   </div>

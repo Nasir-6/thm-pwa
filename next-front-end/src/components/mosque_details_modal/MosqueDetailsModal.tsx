@@ -14,6 +14,7 @@ import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 import DatePickerBtn from '../salah_beginning_modal/DatePickerBtn';
 import MosqueModalHeader from './MosqueModalHeader';
 import MosqueModalTabs from './MosqueModalTabs';
+import MosqueSalahTimes from './MosqueSalahTimes';
 
 type Props = {
   mosque: MosqueDTO;
@@ -21,29 +22,7 @@ type Props = {
 };
 
 const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
-  const [chosenDate, setChosenDate] = useState(new Date());
-
-  const { data: mosqueSalahTimesOnChosenDate, isLoading: isLoadingMosqueSalahTimesOnChosenDate } = useQuery({
-    queryKey: [`mosqueSalahTimes-${mosque.id}`, chosenDate], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
-    queryFn: () => getTimesForAMosqueOnAGivenDate(mosque.id, chosenDate),
-    staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
-  });
-
-  console.log('mosqueSalahTimesOnChosenDate', mosqueSalahTimesOnChosenDate);
-  console.log('isLoadingMosqueSalahTimesOnChosenDate :>> ', isLoadingMosqueSalahTimesOnChosenDate);
-
-  // TODO: Highlight next salah time - break and return when first isFuture is found
-
-  const [currentTime, setCurrentTime] = useState(new Date());
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const newTime = new Date();
-      const minutesHaveChanged = newTime.getMinutes() !== currentTime.getMinutes();
-      if (minutesHaveChanged) setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(intervalId);
-    // put currentTime as a dependency so it clears and updates  setInterval
-  }, [currentTime]);
+  const [tabToShow, setTabToShow] = useState('Salah Times');
 
   return createPortal(
     <div className="flex justify-center items-center">
@@ -55,32 +34,8 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
       />
       <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30 rounded-t-md">
         <MosqueModalHeader mosque={mosque} setIsModalShown={setIsModalShown} />
-        <MosqueModalTabs />
-        <div className="current-info flex justify-between px-4 py-5 bg-gradient-to-r from-primary-700 to-primary-600 text-white">
-          <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(subDays(chosenDate, 1))}>
-            <LeftChevronIcon />
-          </button>
-          <div className="center flex flex-col justify-center items-center">
-            {/* TODO: use time html element - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time */}
-            {/* TODO: Allow for 12/24 hrs changes */}
-            <p className="time text-3xl">
-              {currentTime.toLocaleTimeString('en-US', {
-                hour: '2-digit',
-                minute: '2-digit',
-                // hour12: true,
-              })}
-            </p>
-            <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} />
-          </div>
-          <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
-            <RightChevronIcon />
-          </button>
-        </div>
-        {/* {isLoadingSalahBeginningTimesOnChosenDate && <SalahTimesRowsSkeleton />}
-        {salahBeginningTimesOnChosenDate === null && <SalahTimesRowsEmptyState />}
-        {salahBeginningTimesOnChosenDate && (
-          <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
-        )} */}
+        <MosqueModalTabs setTabToShow={setTabToShow} />
+        {tabToShow === 'Salah Times' && <MosqueSalahTimes />}
       </div>
     </div>,
     document.body
