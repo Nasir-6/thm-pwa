@@ -12,6 +12,7 @@ import { createPortal } from 'react-dom';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 import DatePickerBtn from '../salah_beginning_modal/DatePickerBtn';
+import MosqueJumuahTimes from './MosqueJumuahTimes';
 import MosqueModalHeader from './MosqueModalHeader';
 import MosqueModalTabs from './MosqueModalTabs';
 import MosqueSalahTimes from './MosqueSalahTimes';
@@ -36,6 +37,7 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
         <MosqueModalHeader mosque={mosque} setIsModalShown={setIsModalShown} />
         <MosqueModalTabs setTabToShow={setTabToShow} />
         {tabToShow === 'Salah Times' && <MosqueSalahTimes />}
+        {tabToShow === "Jumu'ah Times" && <MosqueJumuahTimes />}
       </div>
     </div>,
     document.body
