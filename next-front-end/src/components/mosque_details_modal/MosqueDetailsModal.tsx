@@ -1,17 +1,8 @@
 'use client';
-
-import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
-import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
-import { getTimesForAMosqueOnAGivenDate } from '@/lib/mosques';
-import { useQuery } from '@tanstack/react-query';
-import { addDays } from 'date-fns';
-// import { subDays } from 'date-fns';
-import subDays from 'date-fns/subDays';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
-import DatePickerBtn from '../salah_beginning_modal/DatePickerBtn';
 import MosqueJumuahTimes from './MosqueJumuahTimes';
 import MosqueModalHeader from './MosqueModalHeader';
 import MosqueModalTabs from './MosqueModalTabs';
