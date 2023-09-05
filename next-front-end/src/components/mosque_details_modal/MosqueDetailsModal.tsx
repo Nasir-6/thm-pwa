@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 // eslint-disable-next-line import/no-relative-packages
@@ -26,7 +27,7 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
       />
       <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30 rounded-t-md">
         <MosqueModalHeader mosque={mosque} setIsModalShown={setIsModalShown} />
-        <MosqueModalTabs setTabToShow={setTabToShow} />
+        <MosqueModalTabs tabToShow={tabToShow} setTabToShow={setTabToShow} />
         {tabToShow === 'Salah Times' && <MosqueSalahTimes />}
         {tabToShow === "Jumu'ah Times" && <MosqueJumuahTimes />}
       </div>
