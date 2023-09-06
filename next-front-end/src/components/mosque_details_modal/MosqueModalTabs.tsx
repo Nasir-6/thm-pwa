@@ -7,16 +7,16 @@ type Props = {
 };
 
 const MosqueModalTabs = ({ tabToShow, setTabToShow }: Props) => (
-  <div className="flex justify-around font-semibold text-gray-400 hover:text-primary-600">
+  <div className="tab flex justify-between font-semibold text-gray-400">
     <button
-      className={`hover:text-primary-600 ${tabToShow === 'Salah Times' && 'tab-active'}`}
+      className={`hover:text-primary-600 flex-1 p-1 ${tabToShow === 'Salah Times' && 'tab-active'}`}
       type="button"
       onClick={() => setTabToShow('Salah Times')}>
       Salah Times
     </button>
     <button
       type="button"
-      className={`hover:text-primary-600 ${tabToShow === "Jumu'ah Times" && 'tab-active'}`}
+      className={`hover:text-primary-600 flex-1 p-1 ${tabToShow === "Jumu'ah Times" && 'tab-active'}`}
       onClick={() => setTabToShow("Jumu'ah Times")}>
       Jumu'ah Times
     </button>
