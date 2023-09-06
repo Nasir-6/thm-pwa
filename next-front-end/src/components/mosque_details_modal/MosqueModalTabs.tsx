@@ -1,4 +1,5 @@
 import React from 'react';
+import './MosqueModalTabs.css';
 
 type Props = {
   tabToShow: string;
@@ -6,11 +7,17 @@ type Props = {
 };
 
 const MosqueModalTabs = ({ tabToShow, setTabToShow }: Props) => (
-  <div className="flex justify-around">
-    <button className={tabToShow === 'Salah Times' ? 'font-bold' : ''} type="button" onClick={() => setTabToShow('Salah Times')}>
+  <div className="flex justify-around font-semibold text-gray-400 hover:text-primary-600">
+    <button
+      className={`hover:text-primary-600 ${tabToShow === 'Salah Times' && 'tab-active'}`}
+      type="button"
+      onClick={() => setTabToShow('Salah Times')}>
       Salah Times
     </button>
-    <button type="button" className={tabToShow === "Jumu'ah Times" ? 'font-bold' : ''} onClick={() => setTabToShow("Jumu'ah Times")}>
+    <button
+      type="button"
+      className={`hover:text-primary-600 ${tabToShow === "Jumu'ah Times" && 'tab-active'}`}
+      onClick={() => setTabToShow("Jumu'ah Times")}>
       Jumu'ah Times
     </button>
   </div>
