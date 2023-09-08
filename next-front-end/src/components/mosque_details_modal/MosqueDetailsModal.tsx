@@ -28,7 +28,7 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
       <div className="salah-beginning-modal fixed top-4 bg-white max-w-lg w-11/12 z-30 rounded-t-md">
         <MosqueModalHeader mosque={mosque} setIsModalShown={setIsModalShown} />
         <MosqueModalTabs tabToShow={tabToShow} setTabToShow={setTabToShow} />
-        {tabToShow === 'Salah Times' && <MosqueSalahTimes />}
+        {tabToShow === 'Salah Times' && <MosqueSalahTimes mosqueId={mosque.id} />}
         {tabToShow === "Jumu'ah Times" && <MosqueJumuahTimes />}
       </div>
     </div>,
