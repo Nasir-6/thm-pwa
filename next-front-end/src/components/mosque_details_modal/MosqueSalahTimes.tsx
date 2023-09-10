@@ -62,9 +62,12 @@ const MosqueSalahTimes = ({ mosqueId }: Props) => {
   }, [currentTime]);
 
   return (
-    <div className="salah-beginning-modal bg-white max-w-lg w-11/12 z-30 rounded-t-md">
-      <div className="current-info flex justify-between px-4 py-5 bg-gradient-to-r from-primary-700 to-primary-600 text-white">
-        <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(subDays(chosenDate, 1))}>
+    <div className="mosque-salah-times">
+      <div className="current-info flex justify-between px-4 py-5 ">
+        <button
+          type="button"
+          className="w-8 stroke-primary-700 hover:stroke-primary-500"
+          onClick={() => setChosenDate(subDays(chosenDate, 1))}>
           <LeftChevronIcon />
         </button>
         <div className="center flex flex-col justify-center items-center">
@@ -79,7 +82,10 @@ const MosqueSalahTimes = ({ mosqueId }: Props) => {
           </p>
           <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} />
         </div>
-        <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
+        <button
+          type="button"
+          className="w-8 stroke-primary-700 hover:stroke-primary-500"
+          onClick={() => setChosenDate(addDays(chosenDate, 1))}>
           <RightChevronIcon />
         </button>
       </div>
