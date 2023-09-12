@@ -17,7 +17,7 @@ const DatePickerBtn = ({ chosenDate, setChosenDate }: Props) => {
     <>
       <button
         type="button"
-        className="date flex items-center gap-1 font-semibold bg-gradient-to-r from-accent-600 to-accent-300 hover:to-accent-600 bg-clip-text text-transparent fill-accent-600"
+        className="date flex items-center gap-1 font-semibold bg-gradient-to-r from-primary-600 to-primary-300 hover:to-accent-600 bg-clip-text text-transparent fill-primary-600"
         onClick={() => setDatePickerShown(true)}>
         <CalendarIcon />
         {chosenDate?.toLocaleDateString('en-US', {

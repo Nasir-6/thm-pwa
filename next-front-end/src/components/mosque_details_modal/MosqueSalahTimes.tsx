@@ -66,7 +66,7 @@ const MosqueSalahTimes = ({ mosqueId }: Props) => {
       <div className="current-info flex justify-between px-4 py-5 ">
         <button
           type="button"
-          className="w-8 stroke-primary-700 hover:stroke-primary-500"
+          className="w-8 stroke-primary-500 hover:stroke-primary-600"
           onClick={() => setChosenDate(subDays(chosenDate, 1))}>
           <LeftChevronIcon />
         </button>
@@ -84,7 +84,7 @@ const MosqueSalahTimes = ({ mosqueId }: Props) => {
         </div>
         <button
           type="button"
-          className="w-8 stroke-primary-700 hover:stroke-primary-500"
+          className="w-8 stroke-primary-500 hover:stroke-primary-600"
           onClick={() => setChosenDate(addDays(chosenDate, 1))}>
           <RightChevronIcon />
         </button>
