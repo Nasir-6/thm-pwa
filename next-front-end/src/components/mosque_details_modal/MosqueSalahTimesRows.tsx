@@ -8,6 +8,7 @@ import MoonIcon from '@/icons/salah_times_icons/MoonIcon';
 type Props = {
   salahTimes: MosqueTimesDaily;
   currentSalahTime: Date | null;
+  setTabToShow: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type SalahName = 'Fajr' | 'Zuhr' | 'Asr' | 'Maghrib' | 'Isha';
@@ -16,7 +17,7 @@ type SalahObject = {
   time: Date;
 };
 
-const MosqueSalahTimesRows = ({ salahTimes, currentSalahTime }: Props) => {
+const MosqueSalahTimesRows = ({ salahTimes, currentSalahTime, setTabToShow }: Props) => {
   const isFriday = salahTimes.date.getDay() === 5;
   return (
     <>
@@ -51,7 +52,9 @@ const MosqueSalahTimesRows = ({ salahTimes, currentSalahTime }: Props) => {
               <p>{salahTimeObj.name}</p>
             </div>
             {isFriday && salahTimeObj.name === 'Zuhr' ? (
-              <p>See Jumu'ah Times</p>
+              <button type="button" onClick={() => setTabToShow("Jumu'ah Times")}>
+                See Jumu'ah Times
+              </button>
             ) : (
               <p>
                 {salahTimeObj.time

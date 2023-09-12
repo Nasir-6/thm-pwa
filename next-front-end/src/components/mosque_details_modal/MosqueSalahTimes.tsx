@@ -11,9 +11,10 @@ import MosqueSalahTimesRows from './MosqueSalahTimesRows';
 
 type Props = {
   mosqueId: number;
+  setTabToShow: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const MosqueSalahTimes = ({ mosqueId }: Props) => {
+const MosqueSalahTimes = ({ mosqueId, setTabToShow }: Props) => {
   const { data: salahTimesToday, isSuccess: isTodayLoaded } = useQuery({
     queryKey: ['salahTimes', 'today', mosqueId], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getTimesForAMosqueOnAGivenDate(mosqueId, new Date()),
@@ -91,7 +92,9 @@ const MosqueSalahTimes = ({ mosqueId }: Props) => {
       </div>
       {isLoadingSalahTimesOnChosenDate && <SalahTimesRowsSkeleton />}
       {salahTimesOnChosenDate === null && <SalahTimesRowsEmptyState />}
-      {salahTimesOnChosenDate && <MosqueSalahTimesRows salahTimes={salahTimesOnChosenDate} currentSalahTime={currentSalahTime} />}
+      {salahTimesOnChosenDate && (
+        <MosqueSalahTimesRows salahTimes={salahTimesOnChosenDate} currentSalahTime={currentSalahTime} setTabToShow={setTabToShow} />
+      )}
     </div>
   );
 };
