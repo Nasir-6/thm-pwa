@@ -80,7 +80,7 @@ const MosqueSalahTimes = ({ mosqueId }: Props) => {
               // hour12: true,
             })}
           </p>
-          <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} />
+          <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} isWhiteBackground={true} />
         </div>
         <button
           type="button"

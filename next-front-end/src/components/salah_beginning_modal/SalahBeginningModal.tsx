@@ -95,7 +95,7 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
                 // hour12: true,
               })}
             </p>
-            <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} />
+            <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} isWhiteBackground={false} />
           </div>
           <button type="button" className="w-8 stroke-white hover:stroke-accent-500" onClick={() => setChosenDate(addDays(chosenDate, 1))}>
             <RightChevronIcon />
