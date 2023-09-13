@@ -92,6 +92,7 @@ const MosqueSalahTimes = ({ mosqueId, setTabToShow }: Props) => {
       </div>
       {isLoadingSalahTimesOnChosenDate && <SalahTimesRowsSkeleton />}
       {salahTimesOnChosenDate === null && <SalahTimesRowsEmptyState />}
+      {/* TODO: Add links to page and also email so can have alternatives to empty state */}
       {salahTimesOnChosenDate && (
         <MosqueSalahTimesRows salahTimes={salahTimesOnChosenDate} currentSalahTime={currentSalahTime} setTabToShow={setTabToShow} />
       )}
