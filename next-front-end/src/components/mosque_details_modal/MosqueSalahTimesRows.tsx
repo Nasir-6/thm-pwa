@@ -52,7 +52,10 @@ const MosqueSalahTimesRows = ({ salahTimes, currentSalahTime, setTabToShow }: Pr
               <p>{salahTimeObj.name}</p>
             </div>
             {isFriday && salahTimeObj.name === 'Zuhr' ? (
-              <button type="button" onClick={() => setTabToShow("Jumu'ah Times")}>
+              <button
+                type="button"
+                onClick={() => setTabToShow("Jumu'ah Times")}
+                className="font-semibold hover:text-primary-700 underline underline-offset-2">
                 See Jumu'ah Times
               </button>
             ) : (
