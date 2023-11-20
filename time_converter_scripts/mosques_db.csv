@@ -1,50 +1,50 @@
-id,Name,Area Name,Address,Latitude,Longitude,hasFemaleFacilities,hasWheelchairAccess,Url Slug,Google Url
-1,Aberfeldy Masjid,Poplar,"36-38 Aberfeldy St, E14 ONU",51.51340674,-0.005054263288,false,false,aberfeldymasjid,https://goo.gl/maps/WSewLSSRT8js9wtK8
-2,Al Aqsa Masjid,Docklands,"3 Thorne House, Launch St, E14 3LU",51.49637303,-0.01243047924,false,false,alaqsa,https://goo.gl/maps/p8uWfFKzs5XHf2uQ9
-3,Ashaadibi Masjid,Shadwell,"167 Cannon St Rd, E1 2LX",51.51397957,-0.06181783676,false,false,ashaadibi,https://goo.gl/maps/8N7gcXTxqE9xYuyh9
-4,Baitul Aman Mosque,Bethnal Green,"101 Braintree St, E2 0FT",51.52487641,-0.05291259288,false,false,baitulaman,https://goo.gl/maps/BgZfLVWyyDtXsA159
-5,Baitul Islah Academy,Limehouse,"16B Blount St, E14 7BZ",51.51447183,-0.0358918853,false,false,baitulislah,https://goo.gl/maps/7tPhL7yDQYhihqhc6
-6,Baitul Mamur Masjid,Bethnal Green,"191 Roman Rd, E2 0QY",51.52936009,-0.04650651957,false,false,baitulmamur,https://goo.gl/maps/T3UMLPeGWT4rzeoS9
-7,BBC Masjid,Shoreditch,"16 Toynbee St, E1 7NR",51.51777688,-0.07460615506,false,false,bbcmasjid,https://goo.gl/maps/9osW1m8upTm2KU2G8
-8,Bishops Way Mosque,Bethnal Green,"73 Bishops Way, E2 9HF",51.53305125,-0.0542677366,false,false,bishopsway,https://goo.gl/maps/pc89aahELRh7tTqe7
-9,Bow Central Mosque,Bow,"246 Bow Rd, E3 3AP",51.52925432,-0.01455892895,true,false,bowcentralmosque,https://goo.gl/maps/qTdBzNNif5nE4k2v6
-10,Bow Common Masjid,Bow,"208-210 Devons Rd, E3 3PN",51.52191513,-0.01915013947,false,false,bowcommonmasjid,https://goo.gl/maps/xSJjvh37XEDDDzad9
-11,Bow Muslim Community Centre,Bow,"515b-517 Roman Rd, E3 5EL",51.53254607,-0.0317094006,false,false,bmcc,https://goo.gl/maps/6KvQUwiPRDQ6cVU28
-12,Brick Lane Jamme Masjid,Shoreditch,"59 Brick Lane, E1 6QL",51.51954025,-0.07189501382,true,false,bricklanemasjid,https://goo.gl/maps/47nKdarwjKuDTPJ3A
-13,British Estate Masjid,Bow,"31 Merchant Street, E3 4PZ",51.52542981,-0.02619418198,false,false,britishestatemasjid,https://goo.gl/maps/7d1ZG967JtLYoso6A
-14,Bromley By Bow Masjid,Bow,"Powis Road, E3 3HJ",51.52616108,-0.014352584,false,false,bbbmasjid,https://goo.gl/maps/4BYNcoR356h8nonS6
-15,Burdett Estate Mosque,Poplar,"Masjid Lane, E14 7UD",51.51699822,-0.02644601476,false,false,bbcamasjid,https://goo.gl/maps/PU8KN8BuKjGXkrh59
-16,Burhan Uddin Mosque,Bethnal Green,"8 Buckfast St, E2 6EY",51.52604305,-0.06612903431,false,false,burhanuddinmasjid,https://goo.gl/maps/aftba8SQzt4RJgZa7
-17,Collingwood Masjid,Whitechapel,"4 Ashington House, E1 5RA",51.52321735,-0.05836130094,false,false,collingwoodmasjid,https://goo.gl/maps/BnM12HXGUpL8AFx76
-18,Coventry Cross Mosque,Bow,"6 Broxbourne House, Devas St, E3 3LJ",51.52293333,-0.01461007912,false,false,coventrycrossmasjid,https://goo.gl/maps/41jaJVEmSqzC8Gk49
-19,Darul Ummah Jamme Masjid,Shadwell,"56 Bigland St, E1 2ND",51.51251182,-0.0582869955,true,false,darulummah,https://goo.gl/maps/t96GLuJBvbRNTHoA9
-20,Docklands Community Mosque,Docklands,"111-113 Mellish St, E14 8PJ",51.49679624,-0.02127621637,false,false,dco,https://goo.gl/maps/AEBkt5ivA6d54odx5
-21,Dorset Masjid,Bethnal Green,"Diss St, E2 7QX",51.53001714,-0.07238230804,false,false,dorsetmasjid,https://goo.gl/maps/dGNtfQs64QW9jfWW7
-22,East London Mosque,Whitechapel,"92 Whitechapel Rd, E1 1JQ",51.51757166,-0.06548708235,true,true,elm,https://goo.gl/maps/DdMQ53yKaNDUUR1M9
-23,Eastside Centre Masjid,Limehouse,"2-4 Boulcott St, E1 0HR",51.51253299,-0.04207807846,false,false,alhuda,https://goo.gl/maps/DhCtHNeVXdDEQ2Ai8
-24,Esha Atul Islam Mosque,Whitechapel,"16 Ford Square, E1 2HS",51.51595565,-0.05654396888,false,false,eshaatulislam,https://goo.gl/maps/wNJrFk2kCmNZXahP9
-25,Globe Town Mosque,Bethnal Green,"100 Roman Rd, E2 0RN",51.52869157,-0.04821843951,false,false,globetownmasjid,https://goo.gl/maps/hwuYsiidzzx19cTp8
-26,Hamlets Way Masjid,Mile End,"97-101 Hamlets Way, E3 4TL",51.52335176,-0.03362084195,false,false,hamletswaymasjid,https://goo.gl/maps/oSB8VfS928GRkWyr5
-27,Hifzul Qur'an Masjid,Limehouse,"304 Burdett Rd, E14 7DQ",51.51503138,-0.02885774297,false,false,hifzulquran,https://goo.gl/maps/gNKHUC2DLasjicc47
-28,Hindgrove Masjid,Poplar,"162 Pigott St, E14 7DW",51.51299327,-0.02547935131,false,false,hindgrovemasjid,https://goo.gl/maps/VFMuvuiQHQtdAyZm6
-29,Lansbury Estate Masjid,Poplar,"20 Alton St, E14 6BZ",51.51513331,-0.01822684862,false,false,lansburymasjid,https://goo.gl/maps/N13u2BtTvvZFHbXG9
-30,Limehouse Masjid,Limehouse,"304-306 Stocks Place, E14 8AE",51.51014177,-0.02830659904,false,false,limehousemasjid,https://goo.gl/maps/iYS4LD5jxzRFJ4i78
-31,Locksley Estate Mosque,Limehouse,"7 Lydbrook Place, E14 7TU",51.51390834,-0.03302752863,false,false,locksleymasjid,https://goo.gl/maps/uDNKLtTk4fMsbvj99
-32,Madina Jamme Masjid,Docklands,"248 Westferry Road, E14 3AG",51.48856283,-0.01947428283,false,false,madinamasjid,https://goo.gl/maps/aZpR8g1NyNxChAjM8
-33,Markazi Masjid,Whitechapel,"9-11 Christian St, E1 1SE",51.51166006,-0.06434334719,false,false,markazimasjid,https://goo.gl/maps/KdC3h6tadtiC783J7
-34,Mazahirul Uloom London,Mile End,"241-243 Mile End Road, E1 4AA",51.52231152,-0.04440924182,false,false,mazahirululoom,https://goo.gl/maps/AxzKYMcFQG4z455EA
-35,Mimbar Academy,Bow,"71 Smeed Rd, E3 2NE",51.53919667,-0.02422559545,false,false,mimbar,https://goo.gl/maps/AjaJMpNaF75qNXmK9
-36,Poplar Central Mosque,Poplar,"253 East India Dock Rd, E14 0EG",51.51149348,-0.00983350768,false,false,poplarcentralmasjid,https://goo.gl/maps/3hNNi3ynvfaNHzNE7
-37,Poplar Mosque & CC,Poplar,"6 Webber Path, E14 0FZ",51.51102911,-0.009751529447,true,false,pmcc,https://goo.gl/maps/A4gqYmuDnpU3uXVi6
-38,Poplar Shahjalal Masjid,Poplar,"25 Hale St, E14 0BF",51.50946517,-0.0175336695,false,false,poplarshahjalal,https://goo.gl/maps/x7LXYPpQ513Fk9XZ8
-39,Redcoat Masjid,Stepney,"256 Stepney Way, E1 3DW",51.51676049,-0.04810487669,false,false,redcoatmasjid,https://goo.gl/maps/e4Lnk6tvgo4cvKSUA
-40,Shadwell Gardens Masjid,Shadwell,"129 Shadwell Gardens, E1 2QL",51.51127421,-0.05599101509,false,false,shadwellgardensmasjid,https://goo.gl/maps/C2v4VGVdA9nbmMcA7
-41,Shadwell Jamme Masjid,Shadwell,"143-145 Martha St, E1 2PG",51.51200447,-0.05563821722,false,false,shadwellmasjid,https://goo.gl/maps/n4pwKwsW8PkGaSyQ8
-42,Shahporan Masjid,Bethnal Green,"444 Hackney Rd, E2 6QL",51.53189661,-0.06031452235,false,false,shahporanmasjid,https://goo.gl/maps/VG7MgpSossU7zx9t6
-43,Shoreditch Masjid,Shoreditch,"53-55 Redchurch St, E2 7DJ",51.52451121,-0.07469531622,false,false,shoreditchmasjid,https://goo.gl/maps/gHBfVdjPz4Biwc9S6
-44,Stepney Shahjalal Mosque,Stepney,"81 Ducket St, E1 4TD",51.52012702,-0.04099274904,false,false,ssmacc,https://goo.gl/maps/D6b9DDkntBpjeZnHA
-45,Teviot Masjid,Poplar,"181 Teviot St, E14 6PY",51.51880714,-0.0118015736,false,false,teviotmasjid,https://goo.gl/maps/KNaPxLEFCKxEjnDU7
-46,Turners Road Masjid,Limehouse,"42 Turners Rd, E3 4LE",51.51677758,-0.03186352299,false,false,turnersmasjid,https://goo.gl/maps/sETaFdaUmht7WfDS9
-47,Wapping Masjid,Wapping,"19 Prusom St, E1W 3RR",51.50618967,-0.05655914748,false,false,wappingmasjid,https://goo.gl/maps/4Zeu51ngwsMWSMyB8
-48,Weavers Fields Masjid,Whitechapel,"3a Railway Arch, Brady St, E1 5DT",51.52561251,-0.05603330636,false,false,weaversmasjid,https://goo.gl/maps/SthHW8jarZN1E8bh8
-49,Westferry Community Masjid,Docklands,"2 The Quarterdeck, E14 8SJ",51.49814366,-0.02459666575,false,false,wco,https://goo.gl/maps/bsmeSbQDLtj4dnN4A
+id,Name,Area Name,Borough,Address,Latitude,Longitude,hasFemaleFacilities,hasWheelchairAccess,Url Slug,Google Url
+1,Aberfeldy Masjid,Poplar,Tower Hamlets,"36-38 Aberfeldy St, E14 ONU",51.51340674,-0.005054263288,false,false,aberfeldymasjid,https://goo.gl/maps/WSewLSSRT8js9wtK8
+2,Al Aqsa Masjid,Docklands,Tower Hamlets,"3 Thorne House, Launch St, E14 3LU",51.49637303,-0.01243047924,false,false,alaqsa,https://goo.gl/maps/p8uWfFKzs5XHf2uQ9
+3,Ashaadibi Masjid,Shadwell,Tower Hamlets,"167 Cannon St Rd, E1 2LX",51.51397957,-0.06181783676,false,false,ashaadibi,https://goo.gl/maps/8N7gcXTxqE9xYuyh9
+4,Baitul Aman Mosque,Bethnal Green,Tower Hamlets,"101 Braintree St, E2 0FT",51.52487641,-0.05291259288,false,false,baitulaman,https://goo.gl/maps/BgZfLVWyyDtXsA159
+5,Baitul Islah Academy,Limehouse,Tower Hamlets,"16B Blount St, E14 7BZ",51.51447183,-0.0358918853,false,false,baitulislah,https://goo.gl/maps/7tPhL7yDQYhihqhc6
+6,Baitul Mamur Masjid,Bethnal Green,Tower Hamlets,"191 Roman Rd, E2 0QY",51.52936009,-0.04650651957,false,false,baitulmamur,https://goo.gl/maps/T3UMLPeGWT4rzeoS9
+7,BBC Masjid,Shoreditch,Tower Hamlets,"16 Toynbee St, E1 7NR",51.51777688,-0.07460615506,false,false,bbcmasjid,https://goo.gl/maps/9osW1m8upTm2KU2G8
+8,Bishops Way Mosque,Bethnal Green,Tower Hamlets,"73 Bishops Way, E2 9HF",51.53305125,-0.0542677366,false,false,bishopsway,https://goo.gl/maps/pc89aahELRh7tTqe7
+9,Bow Central Mosque,Bow,Tower Hamlets,"246 Bow Rd, E3 3AP",51.52925432,-0.01455892895,true,false,bowcentralmosque,https://goo.gl/maps/qTdBzNNif5nE4k2v6
+10,Bow Common Masjid,Bow,Tower Hamlets,"208-210 Devons Rd, E3 3PN",51.52191513,-0.01915013947,false,false,bowcommonmasjid,https://goo.gl/maps/xSJjvh37XEDDDzad9
+11,Bow Muslim Community Centre,Bow,Tower Hamlets,"515b-517 Roman Rd, E3 5EL",51.53254607,-0.0317094006,false,false,bmcc,https://goo.gl/maps/6KvQUwiPRDQ6cVU28
+12,Brick Lane Jamme Masjid,Shoreditch,Tower Hamlets,"59 Brick Lane, E1 6QL",51.51954025,-0.07189501382,true,false,bricklanemasjid,https://goo.gl/maps/47nKdarwjKuDTPJ3A
+13,British Estate Masjid,Bow,Tower Hamlets,"31 Merchant Street, E3 4PZ",51.52542981,-0.02619418198,false,false,britishestatemasjid,https://goo.gl/maps/7d1ZG967JtLYoso6A
+14,Bromley By Bow Masjid,Bow,Tower Hamlets,"Powis Road, E3 3HJ",51.52616108,-0.014352584,false,false,bbbmasjid,https://goo.gl/maps/4BYNcoR356h8nonS6
+15,Burdett Estate Mosque,Poplar,Tower Hamlets,"Masjid Lane, E14 7UD",51.51699822,-0.02644601476,false,false,bbcamasjid,https://goo.gl/maps/PU8KN8BuKjGXkrh59
+16,Burhan Uddin Mosque,Bethnal Green,Tower Hamlets,"8 Buckfast St, E2 6EY",51.52604305,-0.06612903431,false,false,burhanuddinmasjid,https://goo.gl/maps/aftba8SQzt4RJgZa7
+17,Collingwood Masjid,Whitechapel,Tower Hamlets,"4 Ashington House, E1 5RA",51.52321735,-0.05836130094,false,false,collingwoodmasjid,https://goo.gl/maps/BnM12HXGUpL8AFx76
+18,Coventry Cross Mosque,Bow,Tower Hamlets,"6 Broxbourne House, Devas St, E3 3LJ",51.52293333,-0.01461007912,false,false,coventrycrossmasjid,https://goo.gl/maps/41jaJVEmSqzC8Gk49
+19,Darul Ummah Jamme Masjid,Shadwell,Tower Hamlets,"56 Bigland St, E1 2ND",51.51251182,-0.0582869955,true,false,darulummah,https://goo.gl/maps/t96GLuJBvbRNTHoA9
+20,Docklands Community Mosque,Docklands,Tower Hamlets,"111-113 Mellish St, E14 8PJ",51.49679624,-0.02127621637,false,false,dco,https://goo.gl/maps/AEBkt5ivA6d54odx5
+21,Dorset Masjid,Bethnal Green,Tower Hamlets,"Diss St, E2 7QX",51.53001714,-0.07238230804,false,false,dorsetmasjid,https://goo.gl/maps/dGNtfQs64QW9jfWW7
+22,East London Mosque,Whitechapel,Tower Hamlets,"92 Whitechapel Rd, E1 1JQ",51.51757166,-0.06548708235,true,true,elm,https://goo.gl/maps/DdMQ53yKaNDUUR1M9
+23,Eastside Centre Masjid,Limehouse,Tower Hamlets,"2-4 Boulcott St, E1 0HR",51.51253299,-0.04207807846,false,false,alhuda,https://goo.gl/maps/DhCtHNeVXdDEQ2Ai8
+24,Esha Atul Islam Mosque,Whitechapel,Tower Hamlets,"16 Ford Square, E1 2HS",51.51595565,-0.05654396888,false,false,eshaatulislam,https://goo.gl/maps/wNJrFk2kCmNZXahP9
+25,Globe Town Mosque,Bethnal Green,Tower Hamlets,"100 Roman Rd, E2 0RN",51.52869157,-0.04821843951,false,false,globetownmasjid,https://goo.gl/maps/hwuYsiidzzx19cTp8
+26,Hamlets Way Masjid,Mile End,Tower Hamlets,"97-101 Hamlets Way, E3 4TL",51.52335176,-0.03362084195,false,false,hamletswaymasjid,https://goo.gl/maps/oSB8VfS928GRkWyr5
+27,Hifzul Qur'an Masjid,Limehouse,Tower Hamlets,"304 Burdett Rd, E14 7DQ",51.51503138,-0.02885774297,false,false,hifzulquran,https://goo.gl/maps/gNKHUC2DLasjicc47
+28,Hindgrove Masjid,Poplar,Tower Hamlets,"162 Pigott St, E14 7DW",51.51299327,-0.02547935131,false,false,hindgrovemasjid,https://goo.gl/maps/VFMuvuiQHQtdAyZm6
+29,Lansbury Estate Masjid,Poplar,Tower Hamlets,"20 Alton St, E14 6BZ",51.51513331,-0.01822684862,false,false,lansburymasjid,https://goo.gl/maps/N13u2BtTvvZFHbXG9
+30,Limehouse Masjid,Limehouse,Tower Hamlets,"304-306 Stocks Place, E14 8AE",51.51014177,-0.02830659904,false,false,limehousemasjid,https://goo.gl/maps/iYS4LD5jxzRFJ4i78
+31,Locksley Estate Mosque,Limehouse,Tower Hamlets,"7 Lydbrook Place, E14 7TU",51.51390834,-0.03302752863,false,false,locksleymasjid,https://goo.gl/maps/uDNKLtTk4fMsbvj99
+32,Madina Jamme Masjid,Docklands,Tower Hamlets,"248 Westferry Road, E14 3AG",51.48856283,-0.01947428283,false,false,madinamasjid,https://goo.gl/maps/aZpR8g1NyNxChAjM8
+33,Markazi Masjid,Whitechapel,Tower Hamlets,"9-11 Christian St, E1 1SE",51.51166006,-0.06434334719,false,false,markazimasjid,https://goo.gl/maps/KdC3h6tadtiC783J7
+34,Mazahirul Uloom London,Mile End,Tower Hamlets,"241-243 Mile End Road, E1 4AA",51.52231152,-0.04440924182,false,false,mazahirululoom,https://goo.gl/maps/AxzKYMcFQG4z455EA
+35,Mimbar Academy,Bow,Tower Hamlets,"71 Smeed Rd, E3 2NE",51.53919667,-0.02422559545,false,false,mimbar,https://goo.gl/maps/AjaJMpNaF75qNXmK9
+36,Poplar Central Mosque,Poplar,Tower Hamlets,"253 East India Dock Rd, E14 0EG",51.51149348,-0.00983350768,false,false,poplarcentralmasjid,https://goo.gl/maps/3hNNi3ynvfaNHzNE7
+37,Poplar Mosque & CC,Poplar,Tower Hamlets,"6 Webber Path, E14 0FZ",51.51102911,-0.009751529447,true,false,pmcc,https://goo.gl/maps/A4gqYmuDnpU3uXVi6
+38,Poplar Shahjalal Masjid,Poplar,Tower Hamlets,"25 Hale St, E14 0BF",51.50946517,-0.0175336695,false,false,poplarshahjalal,https://goo.gl/maps/x7LXYPpQ513Fk9XZ8
+39,Redcoat Masjid,Stepney,Tower Hamlets,"256 Stepney Way, E1 3DW",51.51676049,-0.04810487669,false,false,redcoatmasjid,https://goo.gl/maps/e4Lnk6tvgo4cvKSUA
+40,Shadwell Gardens Masjid,Shadwell,Tower Hamlets,"129 Shadwell Gardens, E1 2QL",51.51127421,-0.05599101509,false,false,shadwellgardensmasjid,https://goo.gl/maps/C2v4VGVdA9nbmMcA7
+41,Shadwell Jamme Masjid,Shadwell,Tower Hamlets,"143-145 Martha St, E1 2PG",51.51200447,-0.05563821722,false,false,shadwellmasjid,https://goo.gl/maps/n4pwKwsW8PkGaSyQ8
+42,Shahporan Masjid,Bethnal Green,Tower Hamlets,"444 Hackney Rd, E2 6QL",51.53189661,-0.06031452235,false,false,shahporanmasjid,https://goo.gl/maps/VG7MgpSossU7zx9t6
+43,Shoreditch Masjid,Shoreditch,Tower Hamlets,"53-55 Redchurch St, E2 7DJ",51.52451121,-0.07469531622,false,false,shoreditchmasjid,https://goo.gl/maps/gHBfVdjPz4Biwc9S6
+44,Stepney Shahjalal Mosque,Stepney,Tower Hamlets,"81 Ducket St, E1 4TD",51.52012702,-0.04099274904,false,false,ssmacc,https://goo.gl/maps/D6b9DDkntBpjeZnHA
+45,Teviot Masjid,Poplar,Tower Hamlets,"181 Teviot St, E14 6PY",51.51880714,-0.0118015736,false,false,teviotmasjid,https://goo.gl/maps/KNaPxLEFCKxEjnDU7
+46,Turners Road Masjid,Limehouse,Tower Hamlets,"42 Turners Rd, E3 4LE",51.51677758,-0.03186352299,false,false,turnersmasjid,https://goo.gl/maps/sETaFdaUmht7WfDS9
+47,Wapping Masjid,Wapping,Tower Hamlets,"19 Prusom St, E1W 3RR",51.50618967,-0.05655914748,false,false,wappingmasjid,https://goo.gl/maps/4Zeu51ngwsMWSMyB8
+48,Weavers Fields Masjid,Whitechapel,Tower Hamlets,"3a Railway Arch, Brady St, E1 5DT",51.52561251,-0.05603330636,false,false,weaversmasjid,https://goo.gl/maps/SthHW8jarZN1E8bh8
+49,Westferry Community Masjid,Docklands,Tower Hamlets,"2 The Quarterdeck, E14 8SJ",51.49814366,-0.02459666575,false,false,wco,https://goo.gl/maps/bsmeSbQDLtj4dnN4A

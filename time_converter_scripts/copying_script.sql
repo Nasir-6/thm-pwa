@@ -2,12 +2,14 @@
 -- CREATE DATABASE thm
 
 DROP TABLE mosque_times;
+DROP TABLE jumuah_times;
 DROP TABLE mosques;
 
 CREATE TABLE mosques (
 	id SERIAL UNIQUE PRIMARY KEY,
 	name VARCHAR UNIQUE NOT NULL,
 	area VARCHAR NOT NULL,
+	borough VARCHAR NOT NULL,
 	address VARCHAR UNIQUE NOT NULL,
 	latitude NUMERIC NOT NULL,
 	longitude NUMERIC NOT NULL,
@@ -17,7 +19,7 @@ CREATE TABLE mosques (
 	google_url VARCHAR UNIQUE NOT NULL
 );
 
-COPY mosques(id, name, area, address, latitude, longitude, has_female_facilities, has_wheelchair_access, url_slug, google_url)
+COPY mosques(id, name, area, borough, address, latitude, longitude, has_female_facilities, has_wheelchair_access, url_slug, google_url)
 FROM '/Users/nasir/thm-pwa/time_converter_scripts/mosques_db.csv'
 DELIMITER ','
 CSV HEADER;
@@ -82,7 +84,7 @@ SELECT id, date, fajr, sunrise, zuhr, asr_1st_mithl, asr_2nd_mithl, maghrib, ish
 
 CREATE TABLE jumuah_times (
     id SERIAL UNIQUE PRIMARY KEY,
-    mosque_name VARCHAR NOT NULL,
+    mosque_name VARCHAR UNIQUE NOT NULL,
     mosque_id INTEGER REFERENCES mosques(id),
     first_time TIME NOT NULL,
     second_time TIME,
