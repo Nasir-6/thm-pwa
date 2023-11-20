@@ -1,0 +1,60 @@
+id,mosque_name,mosque_id,1st,2nd,Area,Borough
+1,Baitul Mamur Masjid,6,13:00,13:20,Bethnal Green,Tower Hamlets
+2,Burhan Uddin Mosque,16,12:45,13:15,Bethnal Green,Tower Hamlets
+3,Globe Town Mosque,25,13:00,13:30,Bethnal Green,Tower Hamlets
+4,Baitul Aman Mosque,4,13:00,,Bethnal Green,Tower Hamlets
+5,Bishops Way Mosque,8,12:45,13:15,Bethnal Green,Tower Hamlets
+6,Shahporan Masjid,42,12:10,12:50,Bethnal Green,Tower Hamlets
+7,Dorset Masjid,21,13:00,13:25,Bethnal Green,Tower Hamlets
+8,"Cranbrook Comm Centre, Mace St.",,13:15,,Bethnal Green,Tower Hamlets
+9,Bow Muslim Community Centre,11,12:45,13:15,Bow,Tower Hamlets
+10,Bow Common Masjid,10,12:30,13:15,Bow,Tower Hamlets
+11,Bow Central Mosque,9,13:00,,Bow,Tower Hamlets
+12,Bromley By Bow Masjid,14,13:00,,Bow,Tower Hamlets
+13,Coventry Cross Mosque,18,12:30,13:15,Bow,Tower Hamlets
+14,Mimbar Academy,35,13:00,13:30,Bow,Tower Hamlets
+15,Regents Lake Hall (BWO),,13:25,,Bow,Tower Hamlets
+16,SAMA Centre (544 Roman Rd),,13:00,,Bow,Tower Hamlets
+17,Dar Al Arqam (Kitcat Terrace),,12:45,,Bow,Tower Hamlets
+18,Al Aqsa Masjid,2,12:40,13:20,Docklands,Tower Hamlets
+19,Docklands Community Mosque,20,12:40,13:10,Docklands,Tower Hamlets
+20,Madina Jamme Masjid,32,12:30,13:10,Docklands,Tower Hamlets
+21,Westferry Community Masjid,49,12:45,13:15,Docklands,Tower Hamlets
+22,Alpha Grove (MCA),,13:00,,Docklands,Tower Hamlets
+23,St Johns Hall,,13:00,,Docklands,Tower Hamlets
+24,Island Gardens (4a Saunders Ness Rd),,12:45,,Docklands,Tower Hamlets
+25,The 50p Club (Stewart St),,13:15,,Docklands,Tower Hamlets
+26,Eastside Centre Masjid,23,12:45,13:15,Limehouse,Tower Hamlets
+27,Locksley Estate Mosque,31,13:00,13:30,Limehouse,Tower Hamlets
+28,Turners Road Masjid,46,12:45,13:15,Limehouse,Tower Hamlets
+29,Limehouse Masjid,30,12:45,13:30,Limehouse,Tower Hamlets
+30,Baitul Islah Academy,5,13:15,13:45,Limehouse,Tower Hamlets
+31,British Estate Masjid,13,13:00,13:40,Mile End,Tower Hamlets
+32,Mazahirul Uloom London,34,12:30,13:20,Mile End,Tower Hamlets
+33,Hamlets Way Masjid,26,12:30,13:00,Mile End,Tower Hamlets
+34,Hindgrove Masjid,28,12:45,13:15,Poplar,Tower Hamlets
+35,Hifzul Qur'an Masjid,27,13:00,13:30,Poplar,Tower Hamlets
+36,Teviot Masjid,45,13:00,13:30,Poplar,Tower Hamlets
+37,Burdett Estate Mosque,15,12:45,13:15,Poplar,Tower Hamlets
+38,Lansbury Estate Masjid,29,12:45,13:25,Poplar,Tower Hamlets
+39,Poplar Central Mosque,36,13:00,,Poplar,Tower Hamlets
+40,Poplar Mosque & CC,37,12:40,,Poplar,Tower Hamlets
+41,Poplar Shahjalal Masjid,38,13:00,13:30,Poplar,Tower Hamlets
+42,Aberfeldy Masjid,1,12:45,13:15,Poplar,Tower Hamlets
+43,Shadwell Jamme Masjid,41,12:30,13:10,Shadwell,Tower Hamlets
+44,Darul Ummah Jamme Masjid,19,12:40,,Shadwell,Tower Hamlets
+45,Shadwell Gardens Masjid,40,13:00,,Shadwell,Tower Hamlets
+46,Ashaadibi Masjid,3,12:25,13:00,Shadwell,Tower Hamlets
+47,BBC Masjid,7,13:15,,Shoreditch,Tower Hamlets
+48,Brick Lane Jamme Masjid,12,13:00,,Shoreditch,Tower Hamlets
+49,Shoreditch Masjid,43,12:35,13:15,Shoreditch,Tower Hamlets
+50,Redcoat Masjid,39,12:40,13:20,Stepney,Tower Hamlets
+51,Stepney Shahjalal Mosque,44,13:00,,Stepney,Tower Hamlets
+52,Wapping Masjid,47,12:45,13:15,Wapping,Tower Hamlets
+53,Collingwood Masjid,17,13:00,13:30,Whitechapel,Tower Hamlets
+54,Markazi Masjid,33,13:00,,Whitechapel,Tower Hamlets
+55,East London Mosque,22,12:30,,Whitechapel,Tower Hamlets
+56,Esha Atul Islam Mosque,24,13:00,,Whitechapel,Tower Hamlets
+57,Weavers Fields Masjid,48,13:00,13:45,Whitechapel,Tower Hamlets
+58,MIA Centre (102 W’chapel High St),,12:30,,Whitechapel,Tower Hamlets
+59,Whitechapel Sports Centre,,13:20,,Whitechapel,Tower Hamlets

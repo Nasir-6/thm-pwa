@@ -79,3 +79,18 @@ SELECT * FROM mosque_times WHERE mosque_id = 2 AND date = '01-Apr-23';
 SELECT * FROM mosque_times WHERE mosque_id = 2 AND date LIKE '%Apr-23%';
 
 SELECT id, date, fajr, sunrise, zuhr, asr_1st_mithl, asr_2nd_mithl, maghrib, isha FROM salah_beginning_times WHERE date = '15-Mar-23';
+
+CREATE TABLE jumuah_times (
+    id SERIAL UNIQUE PRIMARY KEY,
+    mosque_name VARCHAR NOT NULL,
+    mosque_id INTEGER REFERENCES mosques(id),
+    first_time TIME NOT NULL,
+    second_time TIME,
+	area VARCHAR NOT NULL,
+	borough VARCHAR NOT NULL
+    );
+
+COPY jumuah_times(id, mosque_name, mosque_id, first_time, second_time, area, borough)
+FROM '/Users/nasir/thm-pwa/time_converter_scripts/jumuah_times.csv'
+DELIMITER ','
+CSV HEADER;
