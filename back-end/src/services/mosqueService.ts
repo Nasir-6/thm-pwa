@@ -2,6 +2,7 @@ import { MosqueDTO } from "../db/models/mosques";
 import { MosqueTimesDailyDTO, SalahBeginningTimesDailyDTO } from "../db/models/dailyTimes";
 import { MosqueDAOInterface } from "../db/mosqueDb";
 import HttpException from "../exceptions/httpExceptions";
+import { MosqueJumuahTimes } from "../db/models/jumuahTimes";
 
 class MosqueService {
 	// Defining property types - # = private property
@@ -33,6 +34,12 @@ class MosqueService {
 
 	async getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO | null> {
 		const res = await this.mosqueDAO.getSalahBeginningTimesOnAGivenDate(date);
+		return res;
+	}
+
+	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
+		const res = await this.mosqueDAO.getJumuahTimesForAMosque(mosqueId);
+		console.log("res SERVICE", res);
 		return res;
 	}
 }

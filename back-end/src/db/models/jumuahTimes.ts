@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const mosqueJumuahTimesDBSchema = z.object({
+export const mosqueJumuahTimesDBSchema = z.object({
 	id: z.number(),
 	mosque_name: z.string(),
 	mosque_id: z.number().nullable(),
@@ -10,9 +10,9 @@ const mosqueJumuahTimesDBSchema = z.object({
 	borough: z.string(),
 });
 
-type mosqueJumuahTimesDB = z.infer<typeof mosqueJumuahTimesDBSchema>;
+export type MosqueJumuahTimesDB = z.infer<typeof mosqueJumuahTimesDBSchema>;
 
-const mosqueJumuahTimesSchema = z.object({
+export const mosqueJumuahTimesSchema = z.object({
 	id: z.number(),
 	mosqueName: z.string(),
 	mosqueId: z.number().nullable(),
@@ -22,4 +22,4 @@ const mosqueJumuahTimesSchema = z.object({
 	borough: z.string(),
 });
 
-type mosqueJumuahTimes = z.infer<typeof mosqueJumuahTimesSchema>;
+export type MosqueJumuahTimes = z.infer<typeof mosqueJumuahTimesSchema>;

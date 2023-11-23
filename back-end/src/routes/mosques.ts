@@ -30,4 +30,12 @@ router.get("/:mosqueId/timetables/:date", (req, res, next) => {
 	mosqueController.getTimesForAMosqueOnAGivenDate(req, res).catch((err) => next(err));
 });
 
+router.get("/:mosqueId/jumuah", (req, res, next) => {
+	console.log("req.params.mosqueId", req.params.mosqueId);
+	mosqueController
+		.getJumuahTimesForAMosque(req.params.mosqueId)
+		.then((resp) => res.json(resp))
+		.catch((err) => next(err));
+});
+
 export default router;

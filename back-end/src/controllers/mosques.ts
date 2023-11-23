@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { MosqueJumuahTimes } from "../db/models/jumuahTimes";
 import HttpException from "../exceptions/httpExceptions";
 import { MosqueServiceInterface } from "../services/mosqueServiceInterface";
 
@@ -35,6 +36,11 @@ class MosqueController {
 		if (date.toDateString() === "Invalid Date") throw new HttpException(400, `Date parameter ${req.params.date} is not a valid date`);
 		const results = await this.mosqueService.getSalahBeginningTimesOnAGivenDate(date);
 		res.json(results);
+	}
+
+	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
+		const res = await this.mosqueService.getJumuahTimesForAMosque(mosqueId);
+		return res;
 	}
 }
 

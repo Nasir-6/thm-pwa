@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { MosqueDB, MosqueDTO } from "../models/mosques";
 import { MosqueTimesDailyDTO, MosqueTimesDailyDB, SalahBeginningTimesDailyDTO, SalahBeginningTimesDailyDB } from "../models/dailyTimes";
 import HttpException from "../../exceptions/httpExceptions";
+import { MosqueJumuahTimes, mosqueJumuahTimesDBSchema } from "../models/jumuahTimes";
 
 class MosqueDAOPostgres {
 	// Defining property types - # = private property
@@ -109,6 +110,25 @@ class MosqueDAOPostgres {
 			googleUrl: r.google_url,
 			distanceToLocationInMiles: r.id,
 		}));
+
+	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
+		console.log("mosqueId", mosqueId);
+		console.log("MAKING REQ");
+		const query = "SELECT id, mosque_name, mosque_id, first_time, second_time, area, borough FROM jumuah_times WHERE mosque_id = $1";
+		const res = await this.#pool.query(query, [mosqueId]);
+		if (res.rowCount === 0) throw new HttpException(404, `Jumuah times for Mosque with id=${mosqueId} could not be found`);
+		const jumuahTimes = mosqueJumuahTimesDBSchema.parse(res.rows[0]);
+		console.log("jumuahTimes", jumuahTimes);
+		return {
+			id: jumuahTimes.id,
+			mosqueName: jumuahTimes.mosque_name,
+			mosqueId: jumuahTimes.mosque_id,
+			firstTime: jumuahTimes.first_time,
+			secondTime: jumuahTimes.second_time,
+			area: jumuahTimes.area,
+			borough: jumuahTimes.borough,
+		};
+	}
 }
 
 export default MosqueDAOPostgres;
