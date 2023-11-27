@@ -19,11 +19,17 @@ const mosqueController = new MosqueController(mosqueService);
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-	mosqueController.getAllMosques(req, res).catch((err) => next(err));
+	mosqueService
+		.getAllMosques()
+		.then((resp) => res.json(resp))
+		.catch((err) => next(err));
 });
 
 router.get("/:id", (req, res, next) => {
-	mosqueController.getMosqueById(req, res).catch((err) => next(err));
+	mosqueService
+		.getMosqueById(req.params.id)
+		.then((resp) => res.json(resp))
+		.catch((err) => next(err));
 });
 
 router.get("/:mosqueId/timetables/:date", (req, res, next) => {
@@ -31,8 +37,7 @@ router.get("/:mosqueId/timetables/:date", (req, res, next) => {
 });
 
 router.get("/:mosqueId/jumuah", (req, res, next) => {
-	console.log("req.params.mosqueId", req.params.mosqueId);
-	mosqueController
+	mosqueService
 		.getJumuahTimesForAMosque(req.params.mosqueId)
 		.then((resp) => res.json(resp))
 		.catch((err) => next(err));

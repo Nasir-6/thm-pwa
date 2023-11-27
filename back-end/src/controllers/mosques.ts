@@ -1,5 +1,6 @@
+// TODO: Collapse all logic here into service class
+// And call the service from the routes!!
 import { Request, Response } from "express";
-import { MosqueJumuahTimes } from "../db/models/jumuahTimes";
 import HttpException from "../exceptions/httpExceptions";
 import { MosqueServiceInterface } from "../services/mosqueServiceInterface";
 
@@ -11,16 +12,16 @@ class MosqueController {
 		this.mosqueService = mosqueServiceInstance;
 	}
 
-	async getAllMosques(req: Request, res: Response): Promise<void> {
-		const results = await this.mosqueService.getAllMosques();
-		res.json(results);
-	}
+	// async getAllMosques(req: Request, res: Response): Promise<void> {
+	// 	const results = await this.mosqueService.getAllMosques();
+	// 	res.json(results);
+	// }
 
-	async getMosqueById(req: Request, res: Response): Promise<void> {
-		if (Number.isNaN(Number(req.params.id))) throw new HttpException(400, `Mosque Id parameter "${req.params.id}" is not a number`);
-		const results = await this.mosqueService.getMosqueById(Number(req.params.id));
-		res.json(results);
-	}
+	// async getMosqueById(req: Request, res: Response): Promise<void> {
+	// 	if (Number.isNaN(Number(req.params.id))) throw new HttpException(400, `Mosque Id parameter "${req.params.id}" is not a number`);
+	// 	const results = await this.mosqueService.getMosqueById(Number(req.params.id));
+	// 	res.json(results);
+	// }
 
 	async getTimesForAMosqueOnAGivenDate(req: Request, res: Response): Promise<void> {
 		const mosqueId = Number(req.params.mosqueId);
@@ -38,10 +39,10 @@ class MosqueController {
 		res.json(results);
 	}
 
-	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
-		const res = await this.mosqueService.getJumuahTimesForAMosque(mosqueId);
-		return res;
-	}
+	// async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
+	// 	const res = await this.mosqueService.getJumuahTimesForAMosque(mosqueId);
+	// 	return res;
+	// }
 }
 
 export default MosqueController;

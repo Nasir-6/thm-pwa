@@ -15,9 +15,6 @@ class MosqueDAOPostgres {
 
 	// All the methods
 	async getAllMosques(): Promise<MosqueDTO[]> {
-		// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
-		// console.log("IM GETTING MOSQUES FROM DB");
-		// console.log("#pool", this.#pool);
 		const res = await this.#pool.query("SELECT * FROM mosques");
 		if (res.rowCount === 0) throw new HttpException(404, "Could not retrieve any mosques from the DB");
 		return MosqueDAOPostgres.mapMosqueResult(res);
@@ -112,13 +109,10 @@ class MosqueDAOPostgres {
 		}));
 
 	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
-		console.log("mosqueId", mosqueId);
-		console.log("MAKING REQ");
 		const query = "SELECT id, mosque_name, mosque_id, first_time, second_time, area, borough FROM jumuah_times WHERE mosque_id = $1";
 		const res = await this.#pool.query(query, [mosqueId]);
 		if (res.rowCount === 0) throw new HttpException(404, `Jumuah times for Mosque with id=${mosqueId} could not be found`);
 		const jumuahTimes = mosqueJumuahTimesDBSchema.parse(res.rows[0]);
-		console.log("jumuahTimes", jumuahTimes);
 		return {
 			id: jumuahTimes.id,
 			mosqueName: jumuahTimes.mosque_name,

@@ -18,8 +18,10 @@ class MosqueService {
 		return res;
 	}
 
-	async getMosqueById(id: number): Promise<MosqueDTO> {
-		const res = await this.mosqueDAO.getMosqueById(id);
+	async getMosqueById(id: string): Promise<MosqueDTO> {
+		const idNum = Number(id);
+		if (Number.isNaN(idNum)) throw new HttpException(400, `Mosque Id parameter "${id}" is not a number`);
+		const res = await this.mosqueDAO.getMosqueById(idNum);
 		return res;
 	}
 
@@ -39,7 +41,6 @@ class MosqueService {
 
 	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
 		const res = await this.mosqueDAO.getJumuahTimesForAMosque(mosqueId);
-		console.log("res SERVICE", res);
 		return res;
 	}
 }
