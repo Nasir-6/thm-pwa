@@ -33,7 +33,10 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.get("/:mosqueId/timetables/:date", (req, res, next) => {
-	mosqueController.getTimesForAMosqueOnAGivenDate(req, res).catch((err) => next(err));
+	mosqueService
+		.getTimesForAMosqueOnAGivenDate(req.params.mosqueId, req.params.date)
+		.then((resp) => res.json(resp))
+		.catch((err) => next(err));
 });
 
 router.get("/:mosqueId/jumuah", (req, res, next) => {

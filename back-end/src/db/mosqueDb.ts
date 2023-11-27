@@ -7,5 +7,5 @@ export interface MosqueDAOInterface {
 	getMosqueById(id: number): Promise<MosqueDTO>;
 	getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO>;
 	getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO | null>;
-	getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes>;
+	getJumuahTimesForAMosque(mosqueId: number): Promise<MosqueJumuahTimes>;
 }

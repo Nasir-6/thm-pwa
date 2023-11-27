@@ -18,14 +18,19 @@ class MosqueService {
 		return res;
 	}
 
-	async getMosqueById(id: string): Promise<MosqueDTO> {
-		const idNum = Number(id);
-		if (Number.isNaN(idNum)) throw new HttpException(400, `Mosque Id parameter "${id}" is not a number`);
-		const res = await this.mosqueDAO.getMosqueById(idNum);
+	async getMosqueById(idStr: string): Promise<MosqueDTO> {
+		const id = Number(idStr);
+		if (Number.isNaN(id)) throw new HttpException(400, `Mosque Id parameter "${idStr}" is not a number`);
+		const res = await this.mosqueDAO.getMosqueById(id);
 		return res;
 	}
 
-	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO> {
+	async getTimesForAMosqueOnAGivenDate(mosqueIdStr: string, dateStr: string): Promise<MosqueTimesDailyDTO> {
+		const mosqueId = Number(mosqueIdStr);
+		if (Number.isNaN(mosqueId)) throw new HttpException(400, `Mosque Id parameter "${mosqueIdStr}" is not a number`);
+
+		const date = new Date(dateStr);
+		if (date.toDateString() === "Invalid Date") throw new HttpException(400, `Date parameter ${dateStr} is not a valid date`);
 		// Check if mosque exists - will throw if not
 		const mosque = await this.mosqueDAO.getMosqueById(mosqueId);
 		if (mosque.id !== mosqueId) throw new HttpException(500, `returned mosque id ${mosque.id} did not match the id ${mosqueId}!`);
@@ -39,7 +44,9 @@ class MosqueService {
 		return res;
 	}
 
-	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
+	async getJumuahTimesForAMosque(mosqueIdStr: string): Promise<MosqueJumuahTimes> {
+		const mosqueId = Number(mosqueIdStr);
+		if (Number.isNaN(mosqueId)) throw new HttpException(400, `Mosque Id parameter "${mosqueIdStr}" is not a number`);
 		const res = await this.mosqueDAO.getJumuahTimesForAMosque(mosqueId);
 		return res;
 	}

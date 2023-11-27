@@ -20,7 +20,7 @@ class MosqueDAOPostgres {
 		return MosqueDAOPostgres.mapMosqueResult(res);
 	}
 
-	async getMosqueById(id: number): Promise<MosqueDTO> {
+	async getMosqueById(id: string): Promise<MosqueDTO> {
 		const res = await this.#pool.query("SELECT * FROM mosques WHERE id = $1", [id]);
 		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${id} could not be found`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -36,11 +36,10 @@ class MosqueDAOPostgres {
 			hasWheelchairAccess: Boolean(mosque.has_wheelchair_access),
 			urlSlug: mosque.url_slug,
 			googleUrl: mosque.google_url,
-			distanceToLocationInMiles: mosque.id,
 		};
 	}
 
-	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO> {
+	async getTimesForAMosqueOnAGivenDate(mosqueId: string, date: Date): Promise<MosqueTimesDailyDTO> {
 		const DD_MMM_YY = format(date, "dd-MMM-yy");
 		const query = "SELECT id, mosque_id, mosque_name, date, fajr, zuhr, asr, maghrib, isha FROM mosque_times WHERE mosque_id = $1 AND date = $2";
 		const res = await this.#pool.query(query, [mosqueId, DD_MMM_YY]);
@@ -50,8 +49,8 @@ class MosqueDAOPostgres {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const mosqueTimes: MosqueTimesDailyDB = res.rows[0];
 		return {
-			id: mosqueTimes.id,
-			mosqueId: mosqueTimes.mosque_id,
+			id: mosqueTimes.id.toString(),
+			mosqueId: mosqueTimes.mosque_id.toString(),
 			mosqueName: mosqueTimes.mosque_name,
 			date: mosqueTimes.date,
 			fajr: mosqueTimes.fajr,
@@ -95,7 +94,7 @@ class MosqueDAOPostgres {
 
 	private static mapMosqueResult = (res: QueryResult): MosqueDTO[] =>
 		res.rows.map((r: MosqueDB) => ({
-			id: r.id,
+			id: r.id.toString(),
 			name: r.name,
 			area: r.area,
 			address: r.address,
@@ -105,7 +104,6 @@ class MosqueDAOPostgres {
 			hasWheelchairAccess: Boolean(r.has_wheelchair_access),
 			urlSlug: r.url_slug,
 			googleUrl: r.google_url,
-			distanceToLocationInMiles: r.id,
 		}));
 
 	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {

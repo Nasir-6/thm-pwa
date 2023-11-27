@@ -9,7 +9,7 @@ export type MosqueDTO = {
 	hasWheelchairAccess: boolean;
 	urlSlug: string;
 	googleUrl: string;
-	distanceToLocationInMiles: number; // THIS IS set to the id as a placeholder!
+	distanceToLocationInMiles?: number; // THIS IS set to the id as a placeholder!
 };
 
 // NOTE: NUMERIC Type in postgres is a string in JS - in order to preserve accuracy!
