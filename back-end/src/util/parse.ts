@@ -1,7 +1,7 @@
 import HttpException from "../exceptions/httpExceptions";
 
 export const parseDate = (date: string) => {
-	const dateRegex = /\b\d{2}-[a-zA-Z]{3}-\d{4}\b/; // DD-MMM-YYYY TODO: Should it be same as DB which returns DD-MMM-YY?
+	const dateRegex = /\b\d{2}-[a-zA-Z]{3}-\d{2}\b/; // DD-MMM-YY TODO: Should it be same as DB which returns DD-MMM-YY?
 	if (!dateRegex.test(date)) throw new HttpException(400, `Date parameter ${date} is not a valid date`);
 	return new Date(date);
 };

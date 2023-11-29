@@ -29,7 +29,7 @@ const MosqueDetailsModal = ({ mosque, setIsModalShown }: Props) => {
         <MosqueModalHeader mosque={mosque} setIsModalShown={setIsModalShown} />
         <MosqueModalTabs tabToShow={tabToShow} setTabToShow={setTabToShow} />
         {tabToShow === 'Salah Times' && <MosqueSalahTimes mosqueId={mosque.id} setTabToShow={setTabToShow} />}
-        {tabToShow === "Jumu'ah Times" && <MosqueJumuahTimes />}
+        {tabToShow === "Jumu'ah Times" && <MosqueJumuahTimes mosqueId={mosque.id} />}
       </div>
     </div>,
     document.body

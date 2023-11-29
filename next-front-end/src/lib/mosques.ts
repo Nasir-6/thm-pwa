@@ -3,6 +3,7 @@
 import { MosqueDTO } from '../../../back-end/src/db/models/mosques';
 import { MosqueTimesDailyDTO, SalahBeginningTimesDailyDTO } from '../../../back-end/src/db/models/dailyTimes';
 import { formatDateIntoISOFormat, format_date_as_dd_MMM_yy_str, parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
+import { MosqueJumuahTimes } from '../../../back-end/src/db/models/jumuahTimes';
 
 // NOTE: Why did I return res.data rather than just the axiosResponse?
 // I wanted the data from useQuery to be the MosqueDTO[] not the axios response
@@ -100,4 +101,14 @@ export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<Sa
     maghrib: createDateObjFromDateObjAndTimeString(dateObj, res.maghrib),
     isha: createDateObjFromDateObjAndTimeString(dateObj, res.isha),
   };
+};
+
+export const getJumuahTimesForAMosque = async (id: number): Promise<MosqueJumuahTimes | null> => {
+  const res = await fetch(`${URL}/api/v1/mosques/${id}/jumuah`).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json() as Promise<MosqueJumuahTimes | null>;
+  });
+  return res;
 };

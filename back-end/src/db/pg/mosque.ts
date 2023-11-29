@@ -71,7 +71,6 @@ class MosqueDAOPostgres {
 		// if (res.rowCount !== 1) throw new HttpException(500, `Found more than one time for mosque_id=${mosqueId} and date=${DD_MMM_YY}`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const salahBeginningTimes: SalahBeginningTimesDailyDB = res.rows[0];
-		console.log("salahBeginningTimes", salahBeginningTimes);
 		return {
 			id: salahBeginningTimes.id,
 			date: salahBeginningTimes.date,
