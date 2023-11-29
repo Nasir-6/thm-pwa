@@ -40,8 +40,16 @@ const MosqueJumuahTimes = ({ mosqueId }: { mosqueId: number }) => {
   return (
     <>
       {jumuahRows}
-      <div className="p-2">
-        *Please note the times stated are Khutbah times. If you notice any changes please contact us at: towerhamletsmosques@gmail.com
+      <div className="p-3 border-t">
+        <p>
+          *Please note the times stated are <strong>Khutbah times</strong>.
+        </p>
+        <p>
+          If you notice any changes please contact us at:{' '}
+          <a className=" font-semibold text-gradient-gold" href="mailto:towerhamletsmosques@gmail.com">
+            towerhamletsmosques@gmail.com
+          </a>
+        </p>
       </div>
     </>
   );
