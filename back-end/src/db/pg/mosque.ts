@@ -20,7 +20,7 @@ class MosqueDAOPostgres {
 		return MosqueDAOPostgres.mapMosqueResult(res);
 	}
 
-	async getMosqueById(id: string): Promise<MosqueDTO> {
+	async getMosqueById(id: number): Promise<MosqueDTO> {
 		const res = await this.#pool.query("SELECT * FROM mosques WHERE id = $1", [id]);
 		if (res.rowCount === 0) throw new HttpException(404, `Mosque with id=${id} could not be found`);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -39,7 +39,7 @@ class MosqueDAOPostgres {
 		};
 	}
 
-	async getTimesForAMosqueOnAGivenDate(mosqueId: string, date: Date): Promise<MosqueTimesDailyDTO> {
+	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO> {
 		const DD_MMM_YY = format(date, "dd-MMM-yy");
 		const query = "SELECT id, mosque_id, mosque_name, date, fajr, zuhr, asr, maghrib, isha FROM mosque_times WHERE mosque_id = $1 AND date = $2";
 		const res = await this.#pool.query(query, [mosqueId, DD_MMM_YY]);
@@ -49,8 +49,8 @@ class MosqueDAOPostgres {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const mosqueTimes: MosqueTimesDailyDB = res.rows[0];
 		return {
-			id: mosqueTimes.id.toString(),
-			mosqueId: mosqueTimes.mosque_id.toString(),
+			id: mosqueTimes.id,
+			mosqueId: mosqueTimes.mosque_id,
 			mosqueName: mosqueTimes.mosque_name,
 			date: mosqueTimes.date,
 			fajr: mosqueTimes.fajr,
@@ -94,7 +94,7 @@ class MosqueDAOPostgres {
 
 	private static mapMosqueResult = (res: QueryResult): MosqueDTO[] =>
 		res.rows.map((r: MosqueDB) => ({
-			id: r.id.toString(),
+			id: r.id,
 			name: r.name,
 			area: r.area,
 			address: r.address,
@@ -106,7 +106,7 @@ class MosqueDAOPostgres {
 			googleUrl: r.google_url,
 		}));
 
-	async getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes> {
+	async getJumuahTimesForAMosque(mosqueId: number): Promise<MosqueJumuahTimes> {
 		const query = "SELECT id, mosque_name, mosque_id, first_time, second_time, area, borough FROM jumuah_times WHERE mosque_id = $1";
 		const res = await this.#pool.query(query, [mosqueId]);
 		if (res.rowCount === 0) throw new HttpException(404, `Jumuah times for Mosque with id=${mosqueId} could not be found`);

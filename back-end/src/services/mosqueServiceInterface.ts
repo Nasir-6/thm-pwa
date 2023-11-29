@@ -4,8 +4,8 @@ import { MosqueJumuahTimes } from "../db/models/jumuahTimes";
 
 export interface MosqueServiceInterface {
 	getAllMosques(): Promise<MosqueDTO[]>;
-	getMosqueById(id: string): Promise<MosqueDTO>;
-	getTimesForAMosqueOnAGivenDate(mosqueId: string, date: string): Promise<MosqueTimesDailyDTO>;
+	getMosqueById(id: number): Promise<MosqueDTO>;
+	getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO>;
 	getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO | null>;
-	getJumuahTimesForAMosque(mosqueId: string): Promise<MosqueJumuahTimes>;
+	getJumuahTimesForAMosque(mosqueId: number): Promise<MosqueJumuahTimes>;
 }

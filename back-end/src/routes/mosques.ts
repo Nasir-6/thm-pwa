@@ -11,10 +11,9 @@
 import express from "express";
 import mosqueDAO from "../db";
 import MosqueService from "../services/mosqueService";
-import MosqueController from "../controllers/mosques";
+import { parseDate, parseMosqueId } from "../util/parse";
 
 const mosqueService = new MosqueService(mosqueDAO);
-const mosqueController = new MosqueController(mosqueService);
 
 const router = express.Router();
 
@@ -27,21 +26,21 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
 	mosqueService
-		.getMosqueById(req.params.id)
+		.getMosqueById(parseMosqueId(req.params.id))
 		.then((resp) => res.json(resp))
 		.catch((err) => next(err));
 });
 
 router.get("/:mosqueId/timetables/:date", (req, res, next) => {
 	mosqueService
-		.getTimesForAMosqueOnAGivenDate(req.params.mosqueId, req.params.date)
+		.getTimesForAMosqueOnAGivenDate(parseMosqueId(req.params.mosqueId), parseDate(req.params.date))
 		.then((resp) => res.json(resp))
 		.catch((err) => next(err));
 });
 
-router.get("/:mosqueId/jumuah", (req, res, next) => {
+router.get("/:id/jumuah", (req, res, next) => {
 	mosqueService
-		.getJumuahTimesForAMosque(req.params.mosqueId)
+		.getJumuahTimesForAMosque(parseMosqueId(req.params.id))
 		.then((resp) => res.json(resp))
 		.catch((err) => next(err));
 });

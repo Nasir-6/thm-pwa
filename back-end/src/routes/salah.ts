@@ -11,15 +11,17 @@
 import express from "express";
 import mosqueDAO from "../db";
 import MosqueService from "../services/mosqueService";
-import MosqueController from "../controllers/mosques";
+import { parseDate } from "../util/parse";
 
 const mosqueService = new MosqueService(mosqueDAO);
-const mosqueController = new MosqueController(mosqueService);
 
 const router = express.Router();
 
 router.get("/:date", (req, res, next) => {
-	mosqueController.getSalahBeginningTimesOnAGivenDate(req, res).catch((err) => next(err));
+	mosqueService
+		.getSalahBeginningTimesOnAGivenDate(parseDate(req.params.date))
+		.then((resp) => res.json(resp))
+		.catch((err) => next(err));
 });
 
 export default router;
