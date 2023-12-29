@@ -5,6 +5,7 @@ import cors from "cors";
 import mosques from "./routes/mosques";
 import salah from "./routes/salah";
 import ErrorHandler from "./middlewares/ErrorHandler";
+import jumuah from "./routes/jumuah";
 
 if (process.env.NODE_ENV !== "production") {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
@@ -20,6 +21,7 @@ app.use(cors(corsOptions));
 
 app.use("/api/v1/mosques", mosques);
 app.use("/api/v1/salah", salah);
+app.use("/api/v1/jumuah", jumuah);
 
 app.get("/", async (req, res) => {
 	res.json({ test: "success" });

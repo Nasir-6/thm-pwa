@@ -41,6 +41,11 @@ class MosqueService {
 		const res = await this.mosqueDAO.getJumuahTimesForAMosque(mosqueId);
 		return res;
 	}
+
+	async getAllJumuahTimes(): Promise<MosqueJumuahTimes[]> {
+		const res = await this.mosqueDAO.getAllJumuahTimes();
+		return res;
+	}
 }
 
 export default MosqueService;

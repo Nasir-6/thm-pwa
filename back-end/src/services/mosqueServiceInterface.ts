@@ -8,4 +8,5 @@ export interface MosqueServiceInterface {
 	getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO>;
 	getSalahBeginningTimesOnAGivenDate(date: Date): Promise<SalahBeginningTimesDailyDTO | null>;
 	getJumuahTimesForAMosque(mosqueId: number): Promise<MosqueJumuahTimes>;
+	getAllJumuahTimes(): Promise<MosqueJumuahTimes[]>;
 }
