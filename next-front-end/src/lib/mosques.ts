@@ -112,3 +112,13 @@ export const getJumuahTimesForAMosque = async (id: number): Promise<MosqueJumuah
   });
   return res;
 };
+
+export const getAllJumuahTimes = async (): Promise<MosqueJumuahTimes[] | null> => {
+  const res = await fetch(`${URL}/api/v1/jumuah`).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json() as Promise<MosqueJumuahTimes[] | null>;
+  });
+  return res;
+};
