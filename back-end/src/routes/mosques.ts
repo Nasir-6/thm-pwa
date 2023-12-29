@@ -38,11 +38,4 @@ router.get("/:mosqueId/timetables/:date", (req, res, next) => {
 		.catch((err) => next(err));
 });
 
-router.get("/:id/jumuah", (req, res, next) => {
-	mosqueService
-		.getJumuahTimesForAMosque(parseMosqueId(req.params.id))
-		.then((resp) => res.json(resp))
-		.catch((err) => next(err));
-});
-
 export default router;

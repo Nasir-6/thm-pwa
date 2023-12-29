@@ -104,7 +104,7 @@ export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<Sa
 };
 
 export const getJumuahTimesForAMosque = async (id: number): Promise<MosqueJumuahTimes | null> => {
-  const res = await fetch(`${URL}/api/v1/mosques/${id}/jumuah`).then((response) => {
+  const res = await fetch(`${URL}/api/v1/jumuah/mosque/${id}`).then((response) => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
