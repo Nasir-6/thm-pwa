@@ -1,24 +1,11 @@
 import React from 'react';
 import { getAllJumuahTimes } from '@/lib/mosques';
-import { MosqueJumuahTimes } from '../../../../back-end/src/db/models/jumuahTimes';
-import JumuahByArea from './JumuahByArea';
+import JumuahTable from './JumuahTable';
 
 const JumuahPage = async () => {
   // TODO: Read in all jumuah times and display them.
   // TODO: Have the ability to update rows in DB when changed all from this one page
   const jumuahTimes = await getAllJumuahTimes();
-  const areas: { [area: string]: MosqueJumuahTimes[] } = {};
-  jumuahTimes?.forEach((mosque) => {
-    if (mosque.area in areas) {
-      areas[mosque.area].push(mosque);
-    } else {
-      areas[mosque.area] = [mosque];
-    }
-  });
-
-  const jumuahByAreas = Object.keys(areas)
-    .sort()
-    .map((area) => <JumuahByArea area={area} mosques={areas[area]} />);
 
   return (
     <div className="flex flex-col items-center p-4">
@@ -29,7 +16,7 @@ const JumuahPage = async () => {
           towerhamletsmosques@gmail.com
         </a>
       </p>
-      <table className="jumuah-timetable text-sm my-4 shadow-sm overflow-hidden rounded">{jumuahByAreas}</table>
+      {jumuahTimes && <JumuahTable jumuahTimes={jumuahTimes} />}
     </div>
   );
 };
