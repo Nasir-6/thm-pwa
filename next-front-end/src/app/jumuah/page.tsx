@@ -10,9 +10,9 @@ const JumuahPage = async () => {
   return (
     <div className="flex flex-col items-center p-4">
       <h1 className="text-xl font-semibold">Jumu'ah Times</h1>
-      <p className=" max-w-prose">
+      <p className="max-w-xl p-4">
         *Please note the times stated are Khutbah times. If you notice any changes please contact us at:{' '}
-        <a className=" font-medium" href="mailto:towerhamletsmosques@gmail.com">
+        <a className="font-medium" href="mailto:towerhamletsmosques@gmail.com">
           towerhamletsmosques@gmail.com
         </a>
       </p>

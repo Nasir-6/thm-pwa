@@ -44,10 +44,8 @@ const JumuahTable = ({ jumuahTimes }: Props) => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <>
-        <table className="jumuah-timetable text-sm my-4 shadow-sm overflow-hidden rounded">{jumuahByAreas}</table>
-        {searchQuery && queryResults.length === 0 && <h1 className="p-4">No results found</h1>}
-      </>
+      <table className="jumuah-timetable text-sm my-4 shadow-sm overflow-hidden rounded w-full max-w-xl">{jumuahByAreas}</table>
+      {searchQuery && queryResults.length === 0 && <h1 className="p-4">No results found</h1>}
     </>
   );
 };
