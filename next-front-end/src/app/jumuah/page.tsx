@@ -21,9 +21,15 @@ const JumuahPage = async () => {
     .map((area) => <JumuahByArea area={area} mosques={areas[area]} />);
 
   return (
-    <div className="mx-auto text-center">
-      <h1>Jumu'ah page</h1>
-      <table className="jumuah-timetable m-4 shadow-sm overflow-hidden rounded">{jumuahByAreas}</table>
+    <div className="flex flex-col items-center p-4">
+      <h1 className="text-xl font-semibold">Jumu'ah Times</h1>
+      <p className=" max-w-prose">
+        *Please note the times stated are Khutbah times. If you notice any changes please contact us at:{' '}
+        <a className=" font-medium" href="mailto:towerhamletsmosques@gmail.com">
+          towerhamletsmosques@gmail.com
+        </a>
+      </p>
+      <table className="jumuah-timetable text-sm my-4 shadow-sm overflow-hidden rounded">{jumuahByAreas}</table>
     </div>
   );
 };
