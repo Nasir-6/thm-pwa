@@ -53,3 +53,16 @@ export const format_date_as_dd_MMM_yy_str = (date: Date): string => {
   const year = String(date.getFullYear()).slice(-2);
   return `${day}-${month}-${year}`;
 };
+
+export const formatJumuahTime = (jumuahTime: string): string => {
+  const [hrs, mins, secs] = jumuahTime.split(':').map(Number);
+  const dateTimeObj = new Date();
+  dateTimeObj.setUTCHours(hrs, mins, secs);
+  return dateTimeObj
+    ?.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      // hour12: true,
+    })
+    .replace(/\s?[AP]M/, '');
+};
