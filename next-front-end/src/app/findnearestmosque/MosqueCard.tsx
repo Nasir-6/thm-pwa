@@ -20,13 +20,13 @@ type NextSalah = {
 };
 
 const MosqueCard: React.FC<Props> = ({ mosque }) => {
-  const { data: mosqueTimesToday, isSuccess: isTodayLoaded } = useQuery({
+  const { data: mosqueTimesToday, isError: isTodayError } = useQuery({
     queryKey: ['mosquesTimes', mosque.id, 'today'], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getTimesForAMosqueOnAGivenDate(mosque.id, new Date()),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
 
-  const { data: mosqueTimesTomorrow, isSuccess: isTomorrowLoaded } = useQuery({
+  const { data: mosqueTimesTomorrow, isError: isTomorrowError } = useQuery({
     queryKey: ['mosquesTimes', mosque.id, 'tomorrow'], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getTimesForAMosqueOnAGivenDate(mosque.id, addDays(new Date(), 1)),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
@@ -35,7 +35,7 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
   const [nextSalah, setNextSalah] = useState<NextSalah | undefined>();
 
   useEffect(() => {
-    if ((!isTodayLoaded && !isTomorrowLoaded) || mosqueTimesToday === undefined || mosqueTimesTomorrow === undefined) return;
+    if ((isTodayError && isTomorrowError) || mosqueTimesToday === undefined || mosqueTimesTomorrow === undefined) return;
 
     let nextSalahObj: NextSalah = {
       name: 'Fajr',
@@ -75,7 +75,7 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
         <MosqueDetailsBtn mosque={mosque} />
       </div>
 
-      {isTodayLoaded && isTomorrowLoaded ? (
+      {mosqueTimesToday && mosqueTimesTomorrow ? (
         <div className="next-salah py-1 flex flex-col items-center justify-center min-w-fit">
           <p className="font-bold text-xs text-primary-700">{nextSalah?.name}</p>
           <p className="font-bold text-xs text-primary-700">
@@ -85,6 +85,11 @@ const MosqueCard: React.FC<Props> = ({ mosque }) => {
               hour12: true,
             })}
           </p>
+        </div>
+      ) : isTodayError || isTomorrowError ? (
+        <div className="next-salah py-1 flex flex-col items-center justify-center min-w-fit">
+          <p className="font-bold text-xs text-primary-700">No Times</p>
+          <p className="font-bold text-xs text-primary-700">Found</p>
         </div>
       ) : (
         <NextSalahSkeleton />
