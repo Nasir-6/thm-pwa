@@ -1,5 +1,6 @@
 import CrossIcon from '@/icons/CrossIcon';
 import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
@@ -16,12 +17,14 @@ const stringToUrl = (str: string) => {
 const MosqueModalHeader = ({ mosque, setIsModalShown }: Props) => (
   <div className="flex items-start p-3">
     {/* TODO: Figure out how to get and store image */}
-    <img
-      src={`https://ik.imagekit.io/9gcdrszdk/${stringToUrl(mosque.borough)}/${stringToUrl(mosque.area)}/${mosque.urlSlug}.jpg`}
-      alt=""
-      width={95}
-      className="mr-3 rounded"
-    />
+    <div className=" w-20 h-16 relative mr-2">
+      <Image
+        src={`https://ik.imagekit.io/9gcdrszdk/${stringToUrl(mosque.borough)}/${stringToUrl(mosque.area)}/${mosque.urlSlug}.jpg`}
+        alt=""
+        fill
+        className="rounded object-cover"
+      />
+    </div>
     <div className="mosque-details">
       <h2 className=" text-xl font-bold">{mosque.name}</h2>
       <p>{mosque.address}</p>
