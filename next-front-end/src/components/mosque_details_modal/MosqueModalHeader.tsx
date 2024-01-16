@@ -9,11 +9,15 @@ type Props = {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const stringToUrl = (str: string) => {
+  return str.toLowerCase().replace(' ', '_');
+};
+
 const MosqueModalHeader = ({ mosque, setIsModalShown }: Props) => (
   <div className="flex items-start p-3">
     {/* TODO: Figure out how to get and store image */}
     <img
-      src="https://res.cloudinary.com/londonmosques/image/upload/v1641449688/londonmosques-image/vi1syif3sx0dqvtnfays.png"
+      src={`https://ik.imagekit.io/9gcdrszdk/${stringToUrl(mosque.borough)}/${stringToUrl(mosque.area)}/${mosque.urlSlug}.jpg`}
       alt=""
       width={95}
       className="mr-3 rounded"

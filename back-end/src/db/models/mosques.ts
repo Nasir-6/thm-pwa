@@ -1,6 +1,7 @@
 export type MosqueDTO = {
 	id: number;
 	name: string;
+	borough: string;
 	area: string;
 	address: string;
 	latitude: number;
@@ -16,6 +17,7 @@ export type MosqueDTO = {
 export type MosqueDB = {
 	id: number;
 	name: string;
+	borough: string;
 	area: string;
 	address: string;
 	latitude: string;

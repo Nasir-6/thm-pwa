@@ -28,6 +28,7 @@ class MosqueDAOPostgres {
 		return {
 			id: mosque.id,
 			name: mosque.name,
+			borough: mosque.borough,
 			area: mosque.area,
 			address: mosque.address,
 			latitude: Number(mosque.latitude),
@@ -95,6 +96,7 @@ class MosqueDAOPostgres {
 		res.rows.map((r: MosqueDB) => ({
 			id: r.id,
 			name: r.name,
+			borough: r.borough,
 			area: r.area,
 			address: r.address,
 			latitude: Number(r.latitude), // NOTE: Numeric values in DB are strings in JS
