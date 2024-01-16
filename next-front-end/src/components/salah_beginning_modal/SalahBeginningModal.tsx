@@ -101,8 +101,8 @@ const SalahBeginningModal: React.FC<SalahBeginningModalProps> = ({ setIsModalSho
             <RightChevronIcon />
           </button>
         </div>
-        {isLoadingSalahBeginningTimesOnChosenDate && <SalahTimesRowsSkeleton />}
-        {salahBeginningTimesOnChosenDate === null && <SalahTimesRowsEmptyState />}
+        {isLoadingSalahBeginningTimesOnChosenDate && <SalahTimesRowsSkeleton isSixRows />}
+        {salahBeginningTimesOnChosenDate === null && <SalahTimesRowsEmptyState isSixRows />}
         {salahBeginningTimesOnChosenDate && (
           <SalahTimesRows salahTimes={salahBeginningTimesOnChosenDate} currentSalahTime={currentSalahTime} />
         )}

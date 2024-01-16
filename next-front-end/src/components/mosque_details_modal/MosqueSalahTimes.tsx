@@ -30,11 +30,18 @@ const MosqueSalahTimes = ({ mosqueId, setTabToShow }: Props) => {
   const [currentSalahTime, setCurrentSalahTime] = useState<Date | null>(null);
   const [chosenDate, setChosenDate] = useState(new Date());
 
-  const { data: salahTimesOnChosenDate, isLoading: isLoadingSalahTimesOnChosenDate } = useQuery({
+  const {
+    data: salahTimesOnChosenDate,
+    isLoading: isLoadingSalahTimesOnChosenDate,
+    isError: isErrorOnChosenDate,
+  } = useQuery({
     queryKey: ['salahTimes', chosenDate, mosqueId], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getTimesForAMosqueOnAGivenDate(mosqueId, chosenDate),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
+
+  console.log('salahTimesOnChosenDate :>> ', salahTimesOnChosenDate);
+  console.log('isLoadingSalahTimesOnChosenDate', isLoadingSalahTimesOnChosenDate);
 
   useEffect(() => {
     if (!isTodayLoaded || !isTomorrowLoaded || !salahTimesToday || !salahTimesTomorrow) return;
@@ -90,11 +97,15 @@ const MosqueSalahTimes = ({ mosqueId, setTabToShow }: Props) => {
           <RightChevronIcon />
         </button>
       </div>
-      {isLoadingSalahTimesOnChosenDate && <SalahTimesRowsSkeleton />}
-      {salahTimesOnChosenDate === null && <SalahTimesRowsEmptyState />}
+      {/* {isLoadingSalahTimesOnChosenDate && <SalahTimesRowsSkeleton />}
+      {salahTimesOnChosenDate === null && <SalahTimesRowsEmptyState />} */}
       {/* TODO: Add links to page and also email so can have alternatives to empty state */}
-      {salahTimesOnChosenDate && (
+      {salahTimesOnChosenDate ? (
         <MosqueSalahTimesRows salahTimes={salahTimesOnChosenDate} currentSalahTime={currentSalahTime} setTabToShow={setTabToShow} />
+      ) : isErrorOnChosenDate ? (
+        <SalahTimesRowsEmptyState isSixRows={false} />
+      ) : (
+        <SalahTimesRowsSkeleton isSixRows={false} />
       )}
     </div>
   );
