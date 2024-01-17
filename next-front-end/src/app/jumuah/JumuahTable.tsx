@@ -1,7 +1,9 @@
 'use client';
+
 import Fuse from 'fuse.js';
 import React, { useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
+// eslint-disable-next-line import/no-relative-packages
 import { MosqueJumuahTimes } from '../../../../back-end/src/db/models/jumuahTimes';
 import JumuahByArea from './JumuahByArea';
 

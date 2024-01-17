@@ -1,6 +1,7 @@
 import './JumuahByArea.css';
-import { MosqueJumuahTimes } from '../../../../back-end/src/db/models/jumuahTimes';
 import { formatJumuahTime } from '@/util/datesfns';
+// eslint-disable-next-line import/no-relative-packages
+import { MosqueJumuahTimes } from '../../../../back-end/src/db/models/jumuahTimes';
 
 interface Props {
   area: string;

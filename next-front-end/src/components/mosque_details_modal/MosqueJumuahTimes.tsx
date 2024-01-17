@@ -1,22 +1,25 @@
 'use client';
+
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import SunIcon from '@/icons/salah_times_icons/SunIcon';
 import { getJumuahTimesForAMosque } from '@/lib/mosques';
 import { formatJumuahTime } from '@/util/datesfns';
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 
 // type Props = {}
 
 const MosqueJumuahTimes = ({ mosqueId }: { mosqueId: number }) => {
-  const { data: jumuahTimes, isSuccess } = useQuery({
+  const { data: jumuahTimes } = useQuery({
     queryKey: ['jumuahTimes', mosqueId],
     queryFn: () => getJumuahTimesForAMosque(mosqueId),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
   const jumuahRows = [jumuahTimes?.firstTime, jumuahTimes?.secondTime].map((timeString, index) => {
-    if (!timeString) return;
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    if (!timeString) return <></>;
     return (
-      <div key={index} className={`flex justify-between px-4 py-5 border-t`}>
+      // eslint-disable-next-line react/no-array-index-key
+      <div key={index} className="flex justify-between px-4 py-5 border-t">
         <div className="lhs flex gap-2">
           <SunIcon isCurrentSalahTime={false} />
           <p>{index === 0 ? "1st Jumu'ah" : "2nd Jumu'ah"}</p>

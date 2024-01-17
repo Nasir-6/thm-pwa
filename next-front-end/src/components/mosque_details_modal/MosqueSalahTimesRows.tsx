@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import SunIcon from '@/icons/salah_times_icons/SunIcon';
 import SunriseIcon from '@/icons/salah_times_icons/SunriseIcon';

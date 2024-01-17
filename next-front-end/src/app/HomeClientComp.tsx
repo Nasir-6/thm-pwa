@@ -1,9 +1,9 @@
 'use client';
 
-import ControlPanel from '@/components/ControlPanel';
-import Skeleton from '@/components/skeletons/Skeleton';
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import ControlPanel from '@/components/ControlPanel';
+import Skeleton from '@/components/skeletons/Skeleton';
 import './Home.css';
 import SalahBeginningBtn from '@/components/salah_beginning_modal/SalahBeginningBtn';
 // eslint-disable-next-line import/no-relative-packages

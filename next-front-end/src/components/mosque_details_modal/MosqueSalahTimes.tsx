@@ -1,9 +1,9 @@
+import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { addDays, isFuture, subDays } from 'date-fns';
 import LeftChevronIcon from '@/icons/salah_times_icons/LeftChevronIcon';
 import RightChevronIcon from '@/icons/salah_times_icons/RightChevronIcon';
 import { getTimesForAMosqueOnAGivenDate } from '@/lib/mosques';
-import { useQuery } from '@tanstack/react-query';
-import { addDays, isFuture, subDays } from 'date-fns';
-import React, { useEffect, useState } from 'react';
 import DatePickerBtn from '../salah_beginning_modal/DatePickerBtn';
 import SalahTimesRowsEmptyState from '../salah_beginning_modal/SalahTimesRowsEmptyState';
 import SalahTimesRowsSkeleton from '../skeletons/SalahTimesRowsSkeleton';
@@ -30,25 +30,18 @@ const MosqueSalahTimes = ({ mosqueId, setTabToShow }: Props) => {
   const [currentSalahTime, setCurrentSalahTime] = useState<Date | null>(null);
   const [chosenDate, setChosenDate] = useState(new Date());
 
-  const {
-    data: salahTimesOnChosenDate,
-    isLoading: isLoadingSalahTimesOnChosenDate,
-    isError: isErrorOnChosenDate,
-  } = useQuery({
+  const { data: salahTimesOnChosenDate, isError: isErrorOnChosenDate } = useQuery({
     queryKey: ['salahTimes', chosenDate, mosqueId], // Give Date give e.g 15/02/23 - Now the time! - as time changes but date is const
     queryFn: () => getTimesForAMosqueOnAGivenDate(mosqueId, chosenDate),
     staleTime: 1000 * 60 * 10, // TODO: Change this to ms until midnight! - setup a Util function
   });
-
-  console.log('salahTimesOnChosenDate :>> ', salahTimesOnChosenDate);
-  console.log('isLoadingSalahTimesOnChosenDate', isLoadingSalahTimesOnChosenDate);
 
   useEffect(() => {
     if (!isTodayLoaded || !isTomorrowLoaded || !salahTimesToday || !salahTimesTomorrow) return;
 
     setCurrentSalahTime(salahTimesTomorrow.fajr);
 
-    const { id, date, mosqueId, mosqueName, ...salahTimesObj } = salahTimesToday;
+    const { id, date, mosqueId: mosqueID, mosqueName, ...salahTimesObj } = salahTimesToday;
     const salahTimesArr = Object.values(salahTimesObj);
     for (let i = 0; i < salahTimesArr.length; i++) {
       if (isFuture(salahTimesArr[i])) {
@@ -88,7 +81,7 @@ const MosqueSalahTimes = ({ mosqueId, setTabToShow }: Props) => {
               // hour12: true,
             })}
           </p>
-          <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} isWhiteBackground={true} />
+          <DatePickerBtn chosenDate={chosenDate} setChosenDate={setChosenDate} isWhiteBackground />
         </div>
         <button
           type="button"
@@ -97,16 +90,17 @@ const MosqueSalahTimes = ({ mosqueId, setTabToShow }: Props) => {
           <RightChevronIcon />
         </button>
       </div>
-      {/* {isLoadingSalahTimesOnChosenDate && <SalahTimesRowsSkeleton />}
-      {salahTimesOnChosenDate === null && <SalahTimesRowsEmptyState />} */}
       {/* TODO: Add links to page and also email so can have alternatives to empty state */}
-      {salahTimesOnChosenDate ? (
-        <MosqueSalahTimesRows salahTimes={salahTimesOnChosenDate} currentSalahTime={currentSalahTime} setTabToShow={setTabToShow} />
-      ) : isErrorOnChosenDate ? (
-        <SalahTimesRowsEmptyState isSixRows={false} />
-      ) : (
-        <SalahTimesRowsSkeleton isSixRows={false} />
-      )}
+      {
+        // eslint-disable-next-line no-nested-ternary
+        salahTimesOnChosenDate ? (
+          <MosqueSalahTimesRows salahTimes={salahTimesOnChosenDate} currentSalahTime={currentSalahTime} setTabToShow={setTabToShow} />
+        ) : isErrorOnChosenDate ? (
+          <SalahTimesRowsEmptyState isSixRows={false} />
+        ) : (
+          <SalahTimesRowsSkeleton isSixRows={false} />
+        )
+      }
     </div>
   );
 };

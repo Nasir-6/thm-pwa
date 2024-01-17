@@ -1,7 +1,7 @@
-import CrossIcon from '@/icons/CrossIcon';
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
+import CrossIcon from '@/icons/CrossIcon';
 // eslint-disable-next-line import/no-relative-packages
 import { MosqueDTO } from '../../../../back-end/src/db/models/mosques';
 
@@ -10,9 +10,7 @@ type Props = {
   setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const stringToUrl = (str: string) => {
-  return str.toLowerCase().replace(' ', '_');
-};
+const stringToUrl = (str: string) => str.toLowerCase().replace(' ', '_');
 
 const MosqueModalHeader = ({ mosque, setIsModalShown }: Props) => (
   <div className="flex items-start p-3">
