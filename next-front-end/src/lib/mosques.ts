@@ -5,48 +5,24 @@ import { MosqueTimesDailyDTO, SalahBeginningTimesDailyDTO } from '../../../back-
 import { formatDateIntoISOFormat, format_date_as_dd_MMM_yy_str, parse_dd_MMM_yy_str_into_date } from '../util/datesfns';
 import { MosqueJumuahTimes } from '../../../back-end/src/db/models/jumuahTimes';
 
-// NOTE: Why did I return res.data rather than just the axiosResponse?
-// I wanted the data from useQuery to be the MosqueDTO[] not the axios response
-// It also solved all the ts/eslint issues so must be the way
-// But how will useQuery deal with errors?
-// since this is all in a promise here - any errors thrown by axios (i.e any status != 2xx will throw)
-// This will get thrown to useQuery and dealt with there - otherwise will return the MosquesDTO[]!
-// eslint-disable-next-line import/prefer-default-export
-
-let URL: string;
+let DOMAIN: string;
 if (process.env.NODE_ENV === 'production') {
-  URL = process.env.NEXT_PUBLIC_SERVER_URL ? process.env.NEXT_PUBLIC_SERVER_URL : 'http://localhost:8000';
+  DOMAIN = process.env.NEXT_PUBLIC_SERVER_URL ?? 'http://localhost:8000';
 } else {
-  URL = 'http://localhost:8000';
+  DOMAIN = 'http://localhost:8000';
 }
-// eslint-disable-next-line import/prefer-default-export
-export const getAllMosques = async (): Promise<MosqueDTO[]> => {
-  // eslint-disable-next-line no-console
-  //   const res = await axios.get<MosqueDTO[]>(`${URL}/api/v1/mosques/`);
-  const res = await fetch(`${URL}/api/v1/mosques/`);
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to All Mosques');
-  }
-
-  return res.json();
-  //   return res.data;
-};
-
-export const getMosqueBySlug = async (url_slug: string): Promise<MosqueDTO> => {
-  const res: MosqueDTO = await fetch(`${URL}/api/v1/mosques/${url_slug}`).then((response) => {
-    if (!response.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch Mosque by url slug');
+const fetcher = async <T>(url: string): Promise<T> =>
+  fetch(`${DOMAIN}/api/${url}/`).then((res) => {
+    if (!res.ok) {
+      throw new Error(res.statusText);
     }
-    return response.json();
+    return res.json();
   });
-  return res;
-};
+
+export const getAllMosques = async (): Promise<MosqueDTO[]> => fetcher<MosqueDTO[]>('v1/mosques/');
+
+export const getMosqueBySlug = async (url_slug: string): Promise<MosqueDTO> => fetcher<MosqueDTO>(`v1/mosques/${url_slug}`);
 
 const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
   const ISODate = formatDateIntoISOFormat(date);
@@ -54,19 +30,9 @@ const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
   return newDateObj;
 };
 
-// // Note: All date/time strings are converted into DateObj here -
-// // as calculations on DateObj are more frequent than static presentation of the strings
 export const getTimesForAMosqueOnAGivenDate = async (mosqueId: number, date: Date): Promise<MosqueTimesDaily> => {
   const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
-  // const res = await axios.get<MosqueTimesDailyDTO>(`${URL}/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`);
-  const res: MosqueTimesDailyDTO = await fetch(`${URL}/api/v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`).then((response) => {
-    if (!response.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to All Mosques');
-    }
-    return response.json();
-  });
-
+  const res: MosqueTimesDailyDTO = await fetcher<MosqueTimesDailyDTO>(`v1/mosques/${mosqueId}/timetables/${dateUrlFormat}`);
   // First parse date string into real Date obj - to use
   const dateObj = parse_dd_MMM_yy_str_into_date(res.date);
   if (dateObj === null) throw new Error(`Invalid date string from DB: ${res.date}`);
@@ -84,19 +50,11 @@ export const getTimesForAMosqueOnAGivenDate = async (mosqueId: number, date: Dat
   };
 };
 
-// // TODO: In future turn this into seperate API File?
 export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<SalahTimesDaily | null> => {
   const dateUrlFormat = format_date_as_dd_MMM_yy_str(date);
-  // const res = await axios.get<SalahBeginningTimesDailyDTO>(`${URL}/api/v1/salah/${dateUrlFormat}`);
-  const res = await fetch(`${URL}/api/v1/salah/${dateUrlFormat}`).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json() as Promise<SalahBeginningTimesDailyDTO | null>;
-  });
-
+  const res = await fetcher<SalahBeginningTimesDailyDTO | null>(`v1/salah/${dateUrlFormat}`);
   if (res === null) return null;
-  //   // First parse date string into real Date obj - to use
+
   const dateObj = parse_dd_MMM_yy_str_into_date(res.date);
   if (dateObj === null) throw new Error(`Invalid date string from DB: ${res.date}`);
 
@@ -113,22 +71,7 @@ export const getSalahBeginningTimesOnAGivenDate = async (date: Date): Promise<Sa
   };
 };
 
-export const getJumuahTimesForAMosque = async (id: number): Promise<MosqueJumuahTimes | null> => {
-  const res = await fetch(`${URL}/api/v1/jumuah/mosque/${id}`).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json() as Promise<MosqueJumuahTimes | null>;
-  });
-  return res;
-};
+export const getJumuahTimesForAMosque = async (id: number): Promise<MosqueJumuahTimes | null> =>
+  fetcher<MosqueJumuahTimes | null>(`v1/jumuah/mosque/${id}`);
 
-export const getAllJumuahTimes = async (): Promise<MosqueJumuahTimes[] | null> => {
-  const res = await fetch(`${URL}/api/v1/jumuah`).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json() as Promise<MosqueJumuahTimes[] | null>;
-  });
-  return res;
-};
+export const getAllJumuahTimes = async (): Promise<MosqueJumuahTimes[] | null> => fetcher<MosqueJumuahTimes[] | null>('v1/jumuah');
