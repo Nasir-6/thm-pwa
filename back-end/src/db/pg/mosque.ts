@@ -40,6 +40,26 @@ class MosqueDAOPostgres {
 		};
 	}
 
+	async getMosqueBySlug(slug: string): Promise<MosqueDTO> {
+		const res = await this.#pool.query("SELECT * FROM mosques WHERE url_slug = $1", [slug]);
+		if (res.rowCount === 0) throw new HttpException(404, `Mosque with url_slug=${slug} could not be found`);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const mosque: MosqueDB = res.rows[0];
+		return {
+			id: mosque.id,
+			name: mosque.name,
+			borough: mosque.borough,
+			area: mosque.area,
+			address: mosque.address,
+			latitude: Number(mosque.latitude),
+			longitude: Number(mosque.longitude),
+			hasFemaleFacilities: Boolean(mosque.has_female_facilities),
+			hasWheelchairAccess: Boolean(mosque.has_wheelchair_access),
+			urlSlug: mosque.url_slug,
+			googleUrl: mosque.google_url,
+		};
+	}
+
 	async getTimesForAMosqueOnAGivenDate(mosqueId: number, date: Date): Promise<MosqueTimesDailyDTO> {
 		const DD_MMM_YY = format(date, "dd-MMM-yy");
 		const query = "SELECT id, mosque_id, mosque_name, date, fajr, zuhr, asr, maghrib, isha FROM mosque_times WHERE mosque_id = $1 AND date = $2";

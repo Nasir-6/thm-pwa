@@ -24,9 +24,9 @@ router.get("/", (req, res, next) => {
 		.catch((err) => next(err));
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/:slug", (req, res, next) => {
 	mosqueService
-		.getMosqueById(parseMosqueId(req.params.id))
+		.getMosqueBySlug(req.params.slug)
 		.then((resp) => res.json(resp))
 		.catch((err) => next(err));
 });

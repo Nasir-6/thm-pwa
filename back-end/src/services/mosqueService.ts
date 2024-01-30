@@ -18,8 +18,8 @@ class MosqueService {
 		return res;
 	}
 
-	async getMosqueById(id: number): Promise<MosqueDTO> {
-		const res = await this.mosqueDAO.getMosqueById(id);
+	async getMosqueBySlug(slug: string): Promise<MosqueDTO> {
+		const res = await this.mosqueDAO.getMosqueBySlug(slug);
 		return res;
 	}
 

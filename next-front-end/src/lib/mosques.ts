@@ -22,7 +22,6 @@ if (process.env.NODE_ENV === 'production') {
 // eslint-disable-next-line import/prefer-default-export
 export const getAllMosques = async (): Promise<MosqueDTO[]> => {
   // eslint-disable-next-line no-console
-  console.log('URL', URL);
   //   const res = await axios.get<MosqueDTO[]>(`${URL}/api/v1/mosques/`);
   const res = await fetch(`${URL}/api/v1/mosques/`);
   // The return value is *not* serialized
@@ -36,6 +35,17 @@ export const getAllMosques = async (): Promise<MosqueDTO[]> => {
 
   return res.json();
   //   return res.data;
+};
+
+export const getMosqueBySlug = async (url_slug: string): Promise<MosqueDTO> => {
+  const res: MosqueDTO = await fetch(`${URL}/api/v1/mosques/${url_slug}`).then((response) => {
+    if (!response.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch Mosque by url slug');
+    }
+    return response.json();
+  });
+  return res;
 };
 
 const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
