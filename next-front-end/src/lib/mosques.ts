@@ -22,7 +22,10 @@ const fetcher = async <T>(url: string): Promise<T> =>
 
 export const getAllMosques = async (): Promise<MosqueDTO[]> => fetcher<MosqueDTO[]>('v1/mosques/');
 
-export const getMosqueBySlug = async (url_slug: string): Promise<MosqueDTO> => fetcher<MosqueDTO>(`v1/mosques/${url_slug}`);
+export const getMosqueBySlug = async (url_slug: string): Promise<MosqueDTO | null> => {
+  if (!url_slug) return null;
+  return fetcher<MosqueDTO>(`v1/mosques/${url_slug}`);
+};
 
 const createDateObjFromDateObjAndTimeString = (date: Date, time: string) => {
   const ISODate = formatDateIntoISOFormat(date);

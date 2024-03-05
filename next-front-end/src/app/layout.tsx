@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import Providers from '@/lib/providers';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import MosqueModal from './[mosqueSlug]/page';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,7 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* https://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers */}
         <div className="flex flex-col min-h-screen overflow-x-hidden w-screen relative">
           <Navbar />
-          <Providers>{children}</Providers>
+          <Providers>
+            <MosqueModal />
+            {children}
+          </Providers>
           <Footer />
         </div>
       </body>
