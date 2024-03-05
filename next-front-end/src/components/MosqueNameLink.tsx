@@ -9,7 +9,6 @@ type Props = {
 const MosqueNameLink = ({ mosqueName, mosqueUrlSlug }: Props) => (
   <p
     onClick={() => {
-      console.log('CLICKED');
       window.history.pushState({}, '', `/${mosqueUrlSlug}`);
     }}>
     {mosqueName}
