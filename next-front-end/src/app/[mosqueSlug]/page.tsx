@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { getMosqueBySlug } from '@/lib/mosques';
 import MosqueDetailsModal from '@/components/mosque_details_modal/MosqueDetailsModal';
